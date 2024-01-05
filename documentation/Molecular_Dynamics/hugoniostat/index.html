@@ -13,7 +13,7 @@
     
     
       
-        <title>PIMD - CASTEP Docs</title>
+        <title>Hugoniostat - CASTEP Docs</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#keywords" class="md-skip">
+        <a href="#hugoniostat" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PIMD
+              Hugoniostat
             
           </span>
         </div>
@@ -656,62 +656,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          PIMD
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../pimd/" class="md-nav__link">
         PIMD
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#keywords" class="md-nav__link">
-    Keywords
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#output-files" class="md-nav__link">
-    Output files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#working-with-i-pi" class="md-nav__link">
-    Working with i-pi
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -721,11 +670,320 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../hugoniostat/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Hugoniostat
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Hugoniostat
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hugoniot-equation-of-state" class="md-nav__link">
+    Hugoniot Equation of State
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvhug" class="md-nav__link">
+    NVHug
+  </a>
+  
+    <nav class="md-nav" aria-label="NVHug">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#param" class="md-nav__link">
+    .param
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nphug" class="md-nav__link">
+    NPHug
+  </a>
+  
+    <nav class="md-nav" aria-label="NPHug">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#param_1" class="md-nav__link">
+    .param
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cell" class="md-nav__link">
+    .cell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accelerated-equilibration" class="md-nav__link">
+    Accelerated Equilibration
+  </a>
+  
+    <nav class="md-nav" aria-label="Accelerated Equilibration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#damping" class="md-nav__link">
+    Damping
+  </a>
+  
+    <nav class="md-nav" aria-label="Damping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#related-keywords" class="md-nav__link">
+    Related Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quenching" class="md-nav__link">
+    Quenching
+  </a>
+  
+    <nav class="md-nav" aria-label="Quenching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#related-keywords_1" class="md-nav__link">
+    Related Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steady-compression" class="md-nav__link">
+    Steady compression
+  </a>
+  
+    <nav class="md-nav" aria-label="Steady compression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relevant-keywords" class="md-nav__link">
+    Relevant Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predictor-corrector-experimental" class="md-nav__link">
+    Predictor-corrector (Experimental)
+  </a>
+  
+    <nav class="md-nav" aria-label="Predictor-corrector (Experimental)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#related-keywords_2" class="md-nav__link">
+    Related Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-summary" class="md-nav__link">
+    Keywords Summary
+  </a>
+  
+    <nav class="md-nav" aria-label="Keywords Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#param-keywords" class="md-nav__link">
+    Param Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devel-code-parameters" class="md-nav__link">
+    Devel Code Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Devel Code Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#md-block" class="md-nav__link">
+    MD Block
+  </a>
+  
+    <nav class="md-nav" aria-label="MD Block">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equilibration-acceleration" class="md-nav__link">
+    Equilibration Acceleration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-averages" class="md-nav__link">
+    Running Averages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-states" class="md-nav__link">
+    Initial States
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-block" class="md-nav__link">
+    PC Block
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2062,6 +2320,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2070,23 +2330,277 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#keywords" class="md-nav__link">
-    Keywords
+  <a href="#hugoniot-equation-of-state" class="md-nav__link">
+    Hugoniot Equation of State
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#output-files" class="md-nav__link">
-    Output files
+  <a href="#nvhug" class="md-nav__link">
+    NVHug
   </a>
+  
+    <nav class="md-nav" aria-label="NVHug">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#param" class="md-nav__link">
+    .param
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#working-with-i-pi" class="md-nav__link">
-    Working with i-pi
+  <a href="#nphug" class="md-nav__link">
+    NPHug
   </a>
+  
+    <nav class="md-nav" aria-label="NPHug">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#param_1" class="md-nav__link">
+    .param
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cell" class="md-nav__link">
+    .cell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accelerated-equilibration" class="md-nav__link">
+    Accelerated Equilibration
+  </a>
+  
+    <nav class="md-nav" aria-label="Accelerated Equilibration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#damping" class="md-nav__link">
+    Damping
+  </a>
+  
+    <nav class="md-nav" aria-label="Damping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#related-keywords" class="md-nav__link">
+    Related Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quenching" class="md-nav__link">
+    Quenching
+  </a>
+  
+    <nav class="md-nav" aria-label="Quenching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#related-keywords_1" class="md-nav__link">
+    Related Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steady-compression" class="md-nav__link">
+    Steady compression
+  </a>
+  
+    <nav class="md-nav" aria-label="Steady compression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relevant-keywords" class="md-nav__link">
+    Relevant Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predictor-corrector-experimental" class="md-nav__link">
+    Predictor-corrector (Experimental)
+  </a>
+  
+    <nav class="md-nav" aria-label="Predictor-corrector (Experimental)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#related-keywords_2" class="md-nav__link">
+    Related Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-summary" class="md-nav__link">
+    Keywords Summary
+  </a>
+  
+    <nav class="md-nav" aria-label="Keywords Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#param-keywords" class="md-nav__link">
+    Param Keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devel-code-parameters" class="md-nav__link">
+    Devel Code Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Devel Code Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#md-block" class="md-nav__link">
+    MD Block
+  </a>
+  
+    <nav class="md-nav" aria-label="MD Block">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equilibration-acceleration" class="md-nav__link">
+    Equilibration Acceleration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-averages" class="md-nav__link">
+    Running Averages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-states" class="md-nav__link">
+    Initial States
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-block" class="md-nav__link">
+    PC Block
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2104,65 +2618,568 @@
                 
 
 
-  <h1>PIMD</h1>
-
-<p>For some systems, with light atoms and/or at low temperatures, the zero-point motion of the atom (rather than the electrons) 
-can become significant. This requires a level of theory beyond the Born-Oppenheimer approximation, which assuming that the 
-nuclei can be treated as classical point charges. One way of doing this, is the Feynman Path Integral approach to quantum 
-mechanics, and using the isomorphism of a ring of classical "beads and springs" to represent a quantum particle. This 
-approach is combined with MD to generate an ensemble of configurations, and so the approach is known as Path Integral 
-Molecular Dynamics (PIMD). With this approach, quantum expectation values can be calculated by trajectory averages. Hence 
-classical MD analysis techniques can be used to generate quantum values.</p>
-<h4 id="keywords">Keywords</h4>
-<p>PIMD is a form of MD, and so all the usual MD keywords apply. NB the only supported <code>md_thermostat</code> is Langevin but this works with all values of <code>md_barostat</code>.</p>
-<p>To activate PIMD, the key variables are:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>md_use_pathint : true
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>md_num_beads   : 2
+<h1 id="hugoniostat">Hugoniostat</h1>
+<p>The Hugoniostat is an approach to simulate shock-waves in DFT through a pseudo-ensemble which drives the temperature and
+pressure to the point on the Hugoniot line. Two Hugoniotstat methods are implemented. The constant volume
+Hugoniostat (NVHug) of Maillet <em>et al.</em><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> and the constant pressure/stress Hugoniostat of Ravelo
+<em>et al.</em><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<p>The NVHug and NPHug algorithms are a form of pseudo-ensemble which means that the do not strictly conserve a formal
+quantity, but drive the system into a desired state.</p>
+<p>The algorithms are implemented as other CASTEP ensembles and use many of the common <a href="../keywords/">MD keywords</a> and can
+function with with any of the standard CASTEP thermostat methods (see <a href="../basics/">basics</a>).</p>
+<p>Details of extended Hugoniostat methods can be found in the PhD thesis<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> where the methods were
+initially implemented in CASTEP.</p>
+<h2 id="hugoniot-equation-of-state">Hugoniot Equation of State</h2>
+<p>The Hugoniot describes the shocked state of the system</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{Mass:} \qquad{}\quad{}~~\,\rho{}_{1}u_{1} = \rho{}_{2}u_{2}
+</div>
+<script type="math/tex; mode=display">
+\text{Mass:} \qquad{}\quad{}~~\,\rho{}_{1}u_{1} = \rho{}_{2}u_{2}
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{Momentum:} \qquad{} \rho{}u_{1}^{2} + P_{1} = \rho{}u_{2}^{2} + P_{2}
+</div>
+<script type="math/tex; mode=display">
+\text{Momentum:} \qquad{} \rho{}u_{1}^{2} + P_{1} = \rho{}u_{2}^{2} + P_{2}
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{Energy:} \qquad{} h_{1} + \tfrac{1}{2}u_{1}^{2} =  h_{2} + \tfrac{1}{2}u_{2}^{2}
+</div>
+<script type="math/tex; mode=display">
+\text{Energy:} \qquad{} h_{1} + \tfrac{1}{2}u_{1}^{2} =  h_{2} + \tfrac{1}{2}u_{2}^{2}
+</script>
+</div>
+<p>where subscript <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> and <span class="arithmatex"><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span> refer to the states ahead and behind the shock-front, <span class="arithmatex"><span class="MathJax_Preview">\rho{}</span><script type="math/tex">\rho{}</script></span> is the mass density of the
+fluid, <span class="arithmatex"><span class="MathJax_Preview">u</span><script type="math/tex">u</script></span> is the fluid velocity, <span class="arithmatex"><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span> is the pressure and <span class="arithmatex"><span class="MathJax_Preview">h</span><script type="math/tex">h</script></span> is the specific enthalpy (per unit mass). It can also be
+formulated in terms of the shock speed:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{Mass:} \qquad{}\rho{}_{1}u_{s} = \rho{}_{2}(u_{s} - u_{2})
+</div>
+<script type="math/tex; mode=display">
+\text{Mass:} \qquad{}\rho{}_{1}u_{s} = \rho{}_{2}(u_{s} - u_{2})
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{Momentum:} \qquad{} P_{2}-P_{1} = \rho{}_{2}u_{2}(u_{s}-u_{2}) = \rho{}_{1}u_{s}u_{2}
+</div>
+<script type="math/tex; mode=display">
+\text{Momentum:} \qquad{} P_{2}-P_{1} = \rho{}_{2}u_{2}(u_{s}-u_{2}) = \rho{}_{1}u_{s}u_{2}
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\text{Energy:} \qquad{} P_2\,u_2  = \rho{}_{1}u_{s}(\tfrac{1}{2}u_{2}^{2} + e_{2} - e_{1})
+</div>
+<script type="math/tex; mode=display">
+\text{Energy:} \qquad{} P_2\,u_2  = \rho{}_{1}u_{s}(\tfrac{1}{2}u_{2}^{2} + e_{2} - e_{1})
+</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">u_{s}</span><script type="math/tex">u_{s}</script></span> is the shock speed and <span class="arithmatex"><span class="MathJax_Preview">e</span><script type="math/tex">e</script></span> is the specific internal energy. Using substitutions of the mass conservation
+&amp; momentum conservation into the energy conservation it is possible to derive the Hugoniot equation:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+e_{2} - e_{1} = \tfrac{1}{2}(P_{1} + P_{2})(\rho{}_{1}^{\text{-}1}-\rho{}_{2}^{\text{-}1}),
+</div>
+<script type="math/tex; mode=display">
+e_{2} - e_{1} = \tfrac{1}{2}(P_{1} + P_{2})(\rho{}_{1}^{\text{-}1}-\rho{}_{2}^{\text{-}1}),
+</script>
+</div>
+<p>which in the per-unit-mass basis gives us:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+e_{2} - e_{1} = \tfrac{1}{2}(P_{1} + P_{2})(V_{1}-V_{2}),
+</div>
+<script type="math/tex; mode=display">
+e_{2} - e_{1} = \tfrac{1}{2}(P_{1} + P_{2})(V_{1}-V_{2}),
+</script>
+</div>
+<h2 id="nvhug">NVHug</h2>
+<p>The NVHug method performs a static cell calculation at a compression ratio of <code>md_hug_compression</code> in the direction
+specified by <code>md_hug_dir</code> (by default <code>ISO</code>tropic).</p>
+<p>The equations of motion that govern NVHug are (in the Nose-Hoover formulation):</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{\textbf{r}}_{i} = \frac{\textbf{p}_{i}}{m_{i}},
+</div>
+<script type="math/tex; mode=display">
+\dot{\textbf{r}}_{i} = \frac{\textbf{p}_{i}}{m_{i}},
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{\textbf{p}}_{i} = \textbf{F}_{i} - \nu{}\chi{}\textbf{p}_{i},
+</div>
+<script type="math/tex; mode=display">
+\dot{\textbf{p}}_{i} = \textbf{F}_{i} - \nu{}\chi{}\textbf{p}_{i},
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{\chi{}} = \frac{\nu{}}{C}(E(t) - E_{H}(t)),
+</div>
+<script type="math/tex; mode=display">
+\dot{\chi{}} = \frac{\nu{}}{C}(E(t) - E_{H}(t)),
+</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">\chi{}</span><script type="math/tex">\chi{}</script></span> is the heat-flow of the thermostat into the system, <span class="arithmatex"><span class="MathJax_Preview">\nu{}</span><script type="math/tex">\nu{}</script></span> is the coupling between the thermostat and
+the system, <span class="arithmatex"><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> is a scaling constant in units of energy to conserve system size independence and</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+E_{H}(t) = E(t_{0}) + \tfrac{1}{2}(P(t) + P(t_{0})(V(t_{0}) - V(t))
+</div>
+<script type="math/tex; mode=display">
+E_{H}(t) = E(t_{0}) + \tfrac{1}{2}(P(t) + P(t_{0})(V(t_{0}) - V(t))
+</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">t_{0}</span><script type="math/tex">t_{0}</script></span> is the time before the system has been compressed (i.e. the equilibrium state), we deem the deviation of our current state from the Hugoniot state the Hugoniot estimator:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+E(t) - E_{H}(t) = E(t) - E(t_{0}) - \tfrac{1}{2}(P(t) + P(t_{0}))(V(t_{0}) - V(t)).
+</div>
+<script type="math/tex; mode=display">
+E(t) - E_{H}(t) = E(t) - E(t_{0}) - \tfrac{1}{2}(P(t) + P(t_{0}))(V(t_{0}) - V(t)).
+</script>
+</div>
+<h4 id="example">Example</h4>
+<h5 id="param"><code>.param</code></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>task             : molecular dynamics
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>md_ensemble      : HUG
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>md_hug_dir       : ZDIR
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>md_hug_method    : NVHug
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>md_temperature   : 70 K
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>md_thermostat    : langevin
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>md_hug_t         : 10 fs
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>md_ion_t         : 50 fs
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>md_delta_t       : 1 fs
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>md_eqm_t         : 500 fs
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>md_num_iter      : 1000
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>md_hug_compression : 0.7
 </code></pre></div>
-<p>which turns on PIMD and 2 beads. It is important to note that the number of beads is an extra convergence parameter - the 
-discretized ring becomes a continuous path integral in the limit that the number of beads tends to infinity. In practice, 
-this is usually 2 -- 128 for light atoms (e.g. hydrogen) at temperatures &gt; 10K. For lower temperatures, the number of beads 
-goes up significantly.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>num_farms      : 2
+<h2 id="nphug">NPHug</h2>
+<p>The equations of motion that govern the NPHug Hugoniostat (in the Nose-Hoover formulation) are:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{r}_{\alpha{}i} = \frac{p_{\alpha{}i}}{m_{i}} + \nu{}_{P}\eta{}_{\alpha{}}r_{\alpha{}i},
+</div>
+<script type="math/tex; mode=display">
+\dot{r}_{\alpha{}i} = \frac{p_{\alpha{}i}}{m_{i}} + \nu{}_{P}\eta{}_{\alpha{}}r_{\alpha{}i},
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{p}_{\alpha{}i} = F_{\alpha{}i} - (\nu{}_{p}\eta{}_{\alpha{}} - \nu{}_{H}\chi{})p_{\alpha{}i},
+</div>
+<script type="math/tex; mode=display">
+\dot{p}_{\alpha{}i} = F_{\alpha{}i} - (\nu{}_{p}\eta{}_{\alpha{}} - \nu{}_{H}\chi{})p_{\alpha{}i},
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{h}_{\alpha{}\alpha{}}     = \nu{}_{p}\eta{}_{\alpha{}}h_{\alpha{}\alpha{}},
+</div>
+<script type="math/tex; mode=display">
+\dot{h}_{\alpha{}\alpha{}}     = \nu{}_{p}\eta{}_{\alpha{}}h_{\alpha{}\alpha{}},
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{\chi{}}      = \frac{\nu{}_{H}}{C}(E(t) - E_{H}(t)),
+</div>
+<script type="math/tex; mode=display">
+\dot{\chi{}}      = \frac{\nu{}_{H}}{C}(E(t) - E_{H}(t)),
+</script>
+</div>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{\eta{}}_{\alpha{}}      = \frac{\nu{}_{p}}{D}(P_{\alpha{}\alpha{}}(t) - \sigma{}_{\alpha{}\alpha{}}),
+</div>
+<script type="math/tex; mode=display">
+\dot{\eta{}}_{\alpha{}}      = \frac{\nu{}_{p}}{D}(P_{\alpha{}\alpha{}}(t) - \sigma{}_{\alpha{}\alpha{}}),
+</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">\alpha{}</span><script type="math/tex">\alpha{}</script></span> refers to an element in the direction of a cell-vector <span class="arithmatex"><span class="MathJax_Preview">\vec{h}</span><script type="math/tex">\vec{h}</script></span>, <span class="arithmatex"><span class="MathJax_Preview">\nu{}_{H}</span><script type="math/tex">\nu{}_{H}</script></span> is the coupling of the
+thermostat to the system, <span class="arithmatex"><span class="MathJax_Preview">\nu{}_{P}{}</span><script type="math/tex">\nu{}_{P}{}</script></span> is the coupling of the barostat piston to the system, <span class="arithmatex"><span class="MathJax_Preview">\sigma{}</span><script type="math/tex">\sigma{}</script></span> is the
+target pressure tensor and <span class="arithmatex"><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span> is the instantaneous total pressure tensor, <span class="arithmatex"><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> is a scaling constant in units of
+pressure to conserve system size independence, Ravelo <em>et al</em>.<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup> suggest the equilibrium bulk modulus (<span class="arithmatex"><span class="MathJax_Preview">B_{0}</span><script type="math/tex">B_{0}</script></span>) .</p>
+<h4 id="example_1">Example</h4>
+<h5 id="param_1"><code>.param</code></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>task             : molecular dynamics
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>md_ensemble      : HUG
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>md_hug_dir       : ZDIR
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>md_hug_method    : NPHug
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>md_temperature   : 70 K
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>md_thermostat    : langevin
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>md_hug_t         : 10 fs
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>md_ion_t         : 50 fs
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>md_delta_t       : 1 fs
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>md_eqm_t         : 500 fs
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>md_num_iter      : 1000
 </code></pre></div>
-<p>This is an important way to parallelize a PIMD calculation. With task farming, each bead can be assigned to a farm, so the 
-number of farms should be either 1 (no farming) or <code>md_num_beads</code>. Then the PIMD calculation can be run in parallel on 
-<code>num_farms</code> blocks of processors, where the number of processors in each block is determined by the usual CASTEP+DFT 
-parallelization strategies (k-points, g-vectors, bands etc).</p>
-<p>More advanced keywords are:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>md_pathint_init : point / Gaussian
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>md_pathint_staging : true
+<h5 id="cell"><code>.cell</code></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>...
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>%block external_pressure
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>GPa
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>0.0 0.0 0.0
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>0.0 0.0 0.0
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>0.0 0.0 10.0
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>%endblock external_pressure
 </code></pre></div>
-<p>This determines how the initial beads positions for a given atom are assigned. 'point' puts all the beads at the same point, 
-whilst 'Gaussian' uses a Gaussian spreading function, which is analyticaly correct for a free particle to estimate the 
-delocalization at the given temperature.</p>
-<p>The staging mode transformation is a key way to eliminate the natural harmonics in the dynamics of the ring of beads, which 
-would otherwise significantly reduce the time step required, particularly at low temperatures.</p>
-<h4 id="output-files">Output files</h4>
-<p>When doing a PIMD calculation, there is <code>md_num_beads</code> times more information generated! Hence if using farming, then only 
-the centroid position of and velocity etc of each ring of beads (corresponding to the classical position of each atom) is output to the <code>.castep</code> 
-file. The coordinate data for each value of imaginary time (the cyclic index labelling the beads for each atom) is written 
-to individual <code>farmXXX.castep</code> where XXX is the farm number. If not farming, then all this data is written to the 
-single <code>.castep</code> file. The size of each ring for each atom at each real timestep is analysed in terms of the 'radius of gyration' 
-tensor, and the 3 RGY eigenvalues and corresponding eigenvectors are also output to the master .castep file.</p>
-<p>In addition, there are <code>beadXXX.md</code> files produced, one per imaginary time value (number of beads). These can 
-be used for different MD analysis techniques, and can also be merged using scripts such as <code>pimerge.pl</code> to put all the bead 
-data for each value of real time into the same file, which can be useful for visualization of the bead dynamics.</p>
-<h4 id="working-with-i-pi">Working with i-pi</h4>
-<p><code>i-pi</code> is a 3<sup>rd</sup>-party python package for doing PIMD. This needs other codes, such as CASTEP, to generate the forces for a 
-given configuration, and can then do different forms of PIMD, including centroid PIMD, which is not natively supported by 
-CASTEP. i-pi communicates to CASTEP via internet sockets. The support for this is built into CASTEP from v22 or later.</p>
-<p>There is an example of running i-pi with CASTEP in the examples/castep directory, along with a 'run_me' script that 
-launches the i-pi server, creates a set of sub-directories (one per bead), and then launches the separate CASTEP clients. 
-If doing PIMD in this mode, then you do not set PIMD variables in the <code>.param</code> file but rather in an i-pi <code>input.xml</code> file. </p>
-<p>The CASTEP <code>.param</code> file keywords needed are:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>task       : socketdriver
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>socket_port: 31415
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>socket_host: localhost
+<h2 id="accelerated-equilibration">Accelerated Equilibration</h2>
+<p>Due to the nature of plane-wave density functional theory (DFT) calculations and the way in which the forces are
+calculated, DFT can be very susceptible to rapid changes in structure and can become unstable at extremely high
+temperatures, and if atoms become close enough the fundamental assumptions of non-polarisability of core electrons
+becomes invalid in DFT.</p>
+<p>DFT is also expensive to calculate compared to the empirical force-fields, and so wasting as little calculation as
+possible is essential. The accelerated equilibration methods exist to make the process of computing shockwaves faster
+and more robust.</p>
+<h3 id="damping">Damping</h3>
+<p>Ravelo <em>et al</em>.<sup id="fnref3:2"><a class="footnote-ref" href="#fn:2">2</a></sup> suggested applying damping to the "velocity" of the thermo-/barostats preventing the over-shoot of
+the ideal Hugeoniot values. This makes the thermostat NVHug formulation:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{\chi{}} = \frac{\nu{}_{H}}{C}(E(t) - E_{H}(t)) - \beta{}_{H}\chi{},
+</div>
+<script type="math/tex; mode=display">
+\dot{\chi{}} = \frac{\nu{}_{H}}{C}(E(t) - E_{H}(t)) - \beta{}_{H}\chi{},
+</script>
+</div>
+<p>and similarly for the update equation of motion of the NPHug formulation:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\dot{\eta{}}_{\alpha{}} = \frac{\nu{}_{p}}{D}(P_{\alpha{}\alpha{}}(t) - \sigma{}_{\alpha{}\alpha{}}) - \beta{}_{p}\eta{},
+</div>
+<script type="math/tex; mode=display">
+\dot{\eta{}}_{\alpha{}} = \frac{\nu{}_{p}}{D}(P_{\alpha{}\alpha{}}(t) - \sigma{}_{\alpha{}\alpha{}}) - \beta{}_{p}\eta{},
+</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">\beta{}_{H}</span><script type="math/tex">\beta{}_{H}</script></span> and <span class="arithmatex"><span class="MathJax_Preview">\beta{}_{p}</span><script type="math/tex">\beta{}_{p}</script></span> are user-defined damping coefficients for the heat-flow and barostat piston respectively, chosen to bring about critical damping to the Hugoniot state.</p>
+<h4 id="related-keywords">Related Keywords</h4>
+<ul>
+<li>
+<p><code>beta_t</code> : (Physical)</p>
+<p>Damping parameter for Hugoniostat temperature coupling in 1/fs</p>
+</li>
+<li>
+<p><code>beta_h</code> : (Physical)</p>
+<p>Damping parameter for Hugoniostat pressure coupling in 1/fs</p>
+</li>
+</ul>
+<h4 id="examples">Examples</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>%block devel_code
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>md: BETA_T=0.1 BETA_H=0.1 :endmd # Lightly Damped
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>md: BETA_T=0.3 BETA_H=0.3 :endmd # Damped
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>%enblock devel_code
 </code></pre></div>
-<p>where the <code>task</code> tells CASTEP to communicate with i-pi on <code>socket_port</code> (in this case, it is sent the bead 
-coordinates and returns the energy and forces). The <code>socket_host</code> can be localhost, or an internet host, if running on a remote server.</p>
-<p>For more information, see the <a href="http://ipi-code.org">i-pi website</a>.</p>
+<p><img alt="Damping" src="../../../img/LangDampC.png" /></p>
+<p>Effects of the damping on the Langevin scheme (Eq. 4.2) on a 500- atom Lennard-Jones cell at 60% volume with an overly
+strong Hugoniostat coupling (<span class="arithmatex"><span class="MathJax_Preview">\nu{}_{H}</span><script type="math/tex">\nu{}_{H}</script></span>) of <span class="arithmatex"><span class="MathJax_Preview">0.1fs^{−1}</span><script type="math/tex">0.1fs^{−1}</script></span> and a damping factor (<span class="arithmatex"><span class="MathJax_Preview">\beta{}_{H}</span><script type="math/tex">\beta{}_{H}</script></span>) of (Undamped) 0.0,
+(Lightly Damped) 0.1, (Damped) 0.3.</p>
+<h3 id="quenching">Quenching</h3>
+<p>Quenching is a more extreme version of damping where upon the "acceleration" of the thermo-/barostat changing sign, the
+"velocity" is reset to 0. Because this is not directly coupled to the system this does not damage the internal dynamics
+of the system and can lead to faster convergence and more stable temperatures. Particularly in the initial phases of
+NVHug where upon initial compression temperatures and pressures can spike.</p>
+<p>Quenching only takes place during the equilibration phase as determined by <a href="../keywords/"><code>md_eqm_t</code></a></p>
+<h4 id="related-keywords_1">Related Keywords</h4>
+<ul>
+<li>
+<p><code>quench_t</code> : (Logical)</p>
+<p>Quench thermostat velocity upon changing direction for rapid equilibration</p>
+</li>
+<li>
+<p><code>quench_p</code> : (Logical)</p>
+<p>Quench barostat velocity upon changing direction for rapid equilibration</p>
+</li>
+</ul>
+<h4 id="examples_1">Examples</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>%block devel_code
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>md: QUENCH_T=T :endmd # Quench Thermostat
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>md: QUENCH_P=T :endmd # Quench Barostat
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>%enblock devel_code
+</code></pre></div>
+<p><img alt="Quenched" src="../../../img/Quench.png" /></p>
+<p>The effects of quenching on the temperature of a 70% volume 500-atom Lennard-Jones system, unquenched line (black)
+shows a large tran- sient initially, the quenched lines (blue and green) show the elimination of this transient at the
+expense of “unphysical” temperature dynamics, which are eliminated when the quenching is turned off (blue) after
+equilibration. It should be noted that all three converge to the same temperature.</p>
+<h3 id="steady-compression">Steady compression</h3>
+<p>Steady compression spreads the system compression in NVHug compression over a period of time rather than compressing
+instantaneously to allow the system to equilibrate more steadily and avoid transient temperature and pressure
+spikes. This was also proposed in Ravelo <em>et al</em>.<sup id="fnref4:2"><a class="footnote-ref" href="#fn:2">2</a></sup> as a means of smoothing equilibration.</p>
+<p>k-points and wavefunction samples are determined from the compressed cell so that the NVHug can be more efficient for
+the majority of the run.</p>
+<p><code>compression_t</code> and <code>compression_rate</code> are two different ways of specifying the same thing either as <code>%/fs</code> or
+<code>fs/%</code>. When the compression has reached the target compression the compression will stop. For steady compression, it is
+generally best to compress the system for slightly less time than the equilibration period to ensure that the system is
+in a valid steady state before measuring data.</p>
+<p><code>compression_block</code> gives the system time to equilibrate between compressions by compressing every <code>compression_block</code>
+steps rather than every step (though the compression at each compression step will be larger s.t. <code>compression_rate</code> and
+<code>compression_t</code> are preserved).</p>
+<h4 id="relevant-keywords">Relevant Keywords</h4>
+<ul>
+<li>
+<p><code>compression_t</code> : (Physical)</p>
+<p>Time over which the compression should take place for pressure ramping in <span class="arithmatex"><span class="MathJax_Preview">fs</span><script type="math/tex">fs</script></span>.</p>
+</li>
+<li>
+<p><code>compression_rate</code> : (Physical)</p>
+<p>Rate of decrease of cell volume as <span class="arithmatex"><span class="MathJax_Preview">\tfrac{\%}{fs}</span><script type="math/tex">\tfrac{\%}{fs}</script></span>.</p>
+</li>
+<li>
+<p><code>compression_block</code> : (Integer)</p>
+<p>Number of steps between cell compressions to steadily ramp up pressure.</p>
+</li>
+</ul>
+<h4 id="examples_2">Examples</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>md_eqm_t: 600fs
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>%block devel_code
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>md: compression_t=400 :endmd
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>%enblock devel_code
+</code></pre></div>
+<p><img alt="Steady Compression" src="../../../img/lang_steadT.png" />
+Effect of steady compression on reducing initial transients during equilibration.</p>
+<h2 id="predictor-corrector-experimental">Predictor-corrector (Experimental)</h2>
+<p>Due to the nature of DFT, where a lot of important properties (e.g. wavefunctions) are tied to the simulation cell, it
+is generally more efficient to use a fixed-cell calculation in order to reduce the computational expense of
+recalculating all the properties which are related to the cell. This means that using NVHug is generally more efficient
+in CASTEP, however, we are usually more interested in sampling particular pressures on the Hugoniot rather than the
+effect of a given compression.</p>
+<p>The predictor-corrector attempts to mitigate these issues by using past measures on the Hugoniot curve to automatically
+trace out the Hugoniot curve up to a given pressure with a series of NVHug simulations.</p>
+<p>It uses the previous <code>hist_len</code> points to fit a curve and predict what compression would give the target pressure and
+run it. Tracing out the Hugoniot to <code>target_p</code> in either <code>steps</code> steps or steps of size <code>pstep</code>. E.g.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pc:
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>target_p=10
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>steps=2
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>:endpc
+</code></pre></div>
+Will target 5 and 10GPa
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pc:
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>target_p=10
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>pstep=2
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>:endpc
+</code></pre></div>
+will target 2, 4, 6, 8 and 10GPa</p>
+<p><code>err</code> determines how close the actual pressure must be to the target to be accepted, relative to the actual target. E.g.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pc:
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>target_p=10
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>err=0.1
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>:endpc
+</code></pre></div>
+Will accept any calculation whose final Hugoniot <span class="arithmatex"><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span> is between 9-11GPa as complete and move to the next target.</p>
+<p>The <code>reuse</code> keyword causes the P-C to use the final state of the previous step as the initial state of the
+current. Including temperature/pressure and atomic positions to speed up the equilibration process.</p>
+<p><code>max_delta</code> limits the compression step the P-C can take between stages to ensure that initial steps, where estimates
+are limited by lack of datapoints, in very stiff materials do not result in extreme temperature or pressure jumps where
+fundamental assumptions of DFT may break down and cause the system to fail.</p>
+<h4 id="related-keywords_2">Related Keywords</h4>
+<ul>
+<li>
+<p><code>pc</code> : (Logical)</p>
+<p>Use predictor-corrector algorithm to attempt to trace the Hugoniot line automatically.</p>
+</li>
+<li>
+<p><code>reuse</code> : (Logical)</p>
+<p>Reuse previous compression's final state as the next steps initial state.</p>
+</li>
+<li>
+<p><code>max_delta</code> : (Physical)</p>
+<p>Maximum attempted compression step difference for P-C in GPa</p>
+</li>
+<li>
+<p><code>err</code> (Physical)</p>
+<p>Permitted difference between attained and target considered accepted</p>
+</li>
+<li>
+<p><code>target_p</code> : (Physical)</p>
+<p>Highest target pressure for P-C to reach in GPa</p>
+</li>
+<li>
+<p><code>pstep</code> : (Physical)</p>
+<p>Reach <code>target_p</code> in steps of approximately <code>pstep</code> GPa</p>
+</li>
+<li>
+<p><code>steps</code> : (Integer)</p>
+<p>Reach <code>target_p</code> in approximately <code>steps</code> steps</p>
+</li>
+<li>
+<p><code>method</code> : (LIN, POLY, EXP)</p>
+<p>Equation form to use for predictor corrector estimation, <code>POLY</code>nomial is recommended.</p>
+</li>
+<li>
+<p><code>poly_order</code> : (Integer)</p>
+<p>Polynomial order used in <code>POLY</code>nomial method</p>
+</li>
+<li>
+<p><code>hist_len</code> : (Integer)</p>
+<p>Length of history to keep</p>
+</li>
+</ul>
+<h4 id="examples_3">Examples</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>PC: PC=T TARGET_P=1.0 STEPS=2 METHOD=&#39;LIN&#39; AV_METHOD=&#39;RUNAV&#39; :ENDPC
+</code></pre></div>
+<h2 id="keywords-summary">Keywords Summary</h2>
+<h3 id="param-keywords">Param Keywords</h3>
+<ul>
+<li>
+<p><code>md_ensemble</code>:</p>
+<p>Should be set to <code>HUG</code> to use Hugoniostat methods.</p>
+</li>
+<li>
+<p><code>md_hug_method</code> : (NONE, NVHUG, NPHUG)</p>
+<p>Hugoniostat method. (default: NONE)</p>
+</li>
+<li>
+<p><code>md_hug_dir</code> : (XDIR, YDIR, ZDIR, ISO)</p>
+<p>Hugoniostat compression direction. (default: ISO)</p>
+</li>
+<li>
+<p><code>md_hug_t</code> : (Physical)</p>
+<p>Hugoniostat coupling constant.</p>
+</li>
+<li>
+<p><code>md_hug_compression</code> : (Physical)</p>
+<p>Hugoniostat compression ratio <span class="arithmatex"><span class="MathJax_Preview">\frac{V}{V_{0}}</span><script type="math/tex">\frac{V}{V_{0}}</script></span>. Values from 0.0 to 1.0 (default)</p>
+</li>
+</ul>
+<h3 id="devel-code-parameters">Devel Code Parameters</h3>
+<h4 id="md-block">MD Block</h4>
+<ul>
+<li>
+<p><code>chem_pot</code> : (Physical)</p>
+<p>Manually specify total chemical potential (scaling factor) in eV</p>
+</li>
+</ul>
+<h5 id="equilibration-acceleration">Equilibration Acceleration</h5>
+<ul>
+<li>
+<p><code>quench_t</code> : (Logical)</p>
+<p>Quench thermostat velocity upon changing direction for rapid equilibration</p>
+</li>
+<li>
+<p><code>quench_p</code> : (Logical)</p>
+<p>Quench barostat upon changing direction for rapid equilibration</p>
+</li>
+<li>
+<p><code>eqm_hug_t</code> : (Physical)</p>
+<p>Hugoniostat coupling during equilibration phase in 1/fs</p>
+</li>
+<li>
+<p><code>beta_t</code> : (Physical)</p>
+<p>Damping parameter for Hugoniostat temperature coupling in 1/fs</p>
+</li>
+<li>
+<p><code>beta_h</code> : (Physical)</p>
+<p>Damping parameter for Hugoniostat pressure coupling in 1/fs</p>
+</li>
+<li>
+<p><code>compression_t</code> : (Physical)</p>
+<p>Time over which the compression should take place for pressure ramping in <span class="arithmatex"><span class="MathJax_Preview">fs</span><script type="math/tex">fs</script></span>.</p>
+</li>
+<li>
+<p><code>compression_rate</code> : (Physical)</p>
+<p>Rate of decrease of cell volume as <span class="arithmatex"><span class="MathJax_Preview">\tfrac{\%}{fs}</span><script type="math/tex">\tfrac{\%}{fs}</script></span>.</p>
+</li>
+<li>
+<p><code>compression_block</code> : (Integer)</p>
+<p>Number of steps between cell compressions to steadily ramp up pressure.</p>
+</li>
+</ul>
+<h5 id="running-averages">Running Averages</h5>
+<ul>
+<li>
+<p><code>ra_len</code> : (Integer)</p>
+<p>Number of running average steps to use in calculating final Hugoniot</p>
+</li>
+<li>
+<p><code>av_method</code> : (CUMAV, RUNAV, DIRCT, FINAL)</p>
+<p>Method for computing Hugoniot to dump to <code>.hug</code> file.</p>
+</li>
+</ul>
+<h5 id="initial-states">Initial States</h5>
+<ul>
+<li>
+<p><code>ma_init_t</code> : (Logical)</p>
+<p>Use Maillet hugoniostat temperature estimator as initial temperature.</p>
+</li>
+<li>
+<p><code>init_eta</code> : (Physical)</p>
+<p>Initial <span class="arithmatex"><span class="MathJax_Preview">\eta{}</span><script type="math/tex">\eta{}</script></span> (cell compression velocity) for NPHug in <span class="arithmatex"><span class="MathJax_Preview">\tfrac{A}{fs}</span><script type="math/tex">\tfrac{A}{fs}</script></span>.</p>
+</li>
+<li>
+<p><code>temp_init</code> : (Physical)</p>
+<p>Initial temperature to be used for each hug stage (overriding <code>md_temperature</code> each stage in P-C) in <span class="arithmatex"><span class="MathJax_Preview">K</span><script type="math/tex">K</script></span>.</p>
+</li>
+</ul>
+<h4 id="pc-block">PC Block</h4>
+<ul>
+<li>
+<p><code>pc</code> : (Logical)</p>
+<p>Use predictor-corrector algorithm to attempt to trace the Hugoniot line automatically.</p>
+</li>
+<li>
+<p><code>reuse</code> : (Logical)</p>
+<p>Reuse previous compression's temperature as initial temperature rather than <code>md_temperature</code></p>
+</li>
+<li>
+<p><code>max_delta</code> : (Physical)</p>
+<p>Maximum attempted pressure step difference for P-C in GPa</p>
+</li>
+<li>
+<p><code>err</code> (Physical)</p>
+<p>Permitted difference between attained and target considered accepted</p>
+</li>
+<li>
+<p><code>target_p</code> : (Physical)</p>
+<p>Highest target pressure for P-C to reach in GPa</p>
+</li>
+<li>
+<p><code>pstep</code> : (Physical)</p>
+<p>Reach <code>target_p</code> in steps of approximately <code>pstep</code> GPa</p>
+</li>
+<li>
+<p><code>steps</code> : (Integer)</p>
+<p>Reach <code>target_p</code> in approximately <code>steps</code> steps</p>
+</li>
+<li>
+<p><code>method</code> : (LIN, POLY, EXP)</p>
+<p>Equation form to use for predictor corrector estimation, <code>POLY</code>nomial is recommended.</p>
+</li>
+<li>
+<p><code>poly_order</code> : (Integer)</p>
+<p>Polynomial order used in <code>POLY</code>nomial method</p>
+</li>
+<li>
+<p><code>hist_len</code> : (Integer)</p>
+<p>Length of history to keep</p>
+</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>J.-B. Maillet, M. Mareschal, L. Soulard, R. Ravelo, P. S. Lomdahl, T. C. Germann, and B. L. Holian. Uniaxial hugoniostat: A method for atomistic simulations of shocked materials. <em>Phys. Rev. E</em>, 63:016121, Dec 2000.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>R. Ravelo, B. L. Holian, T. C. Germann, and P. S. Lomdahl. Constant-stress hugoniostat method for following the dynamical evolution of shocked matter. <em>Phys. Rev. B</em>, 70:014103, 2004.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>J.S. Wilkins. Exploration of approaches to shock-wave simulations. PhD thesis, University of York, York, 2019.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
               
             </article>
@@ -2176,7 +3193,7 @@ coordinates and returns the energy and forces). The <code>socket_host</code> can
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../tools/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MD Tools" rel="prev">
+        <a href="../pimd/" class="md-footer__link md-footer__link--prev" aria-label="Previous: PIMD" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2185,20 +3202,20 @@ coordinates and returns the energy and forces). The <code>socket_host</code> can
               <span class="md-footer__direction">
                 Previous
               </span>
-              MD Tools
+              PIMD
             </div>
           </div>
         </a>
       
       
         
-        <a href="../hugoniostat/" class="md-footer__link md-footer__link--next" aria-label="Next: Hugoniostat" rel="next">
+        <a href="../../Transition_State_Search/neb/" class="md-footer__link md-footer__link--next" aria-label="Next: Nudged elastic band" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Hugoniostat
+              Nudged elastic band
             </div>
           </div>
           <div class="md-footer__button md-icon">
