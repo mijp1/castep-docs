@@ -82,25 +82,31 @@ cut_off_energy  = 20 ry
 
 4. You might wish to transfer the *.magres file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
 
-5. Identify which (hydrogen) ion  corresponds to which part of the molecule - in the case of ethanol, find out which ones correspond to CH<sub>3</sub>, CH<sub>2</sub> and OH.
-This can be done by uploading the cell file to VESTA and clicking each atom. 
-6. Examine the effect of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the pc)
-
-7. Find the "converged" hydrogen (or proton in NMR language) shieldings. We will compare them to experiment. The three methyl (CH<sub>3</sub>) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH<sub>2</sub> protons.
-
-8. Average the CH<sub>3</sub> and CH<sub>2</sub> chemical shieldings. This will give you 3 unique chemical shieldings.
-
-9. We now need to convert the chemical shieldings &#963;<sub>iso</sub> to chemical shifts &#948;<sub>iso</sub> on the experimental scale. We use the relation:  *&#948;<sub>iso</sub>=&#963;<sub>ref</sub>-&#963;*
-
+<ol start="5"> <li> Identify which (hydrogen) ion corresponds to which part of the molecule - in the case of ethanol, find out which ones correspond to CH<sub>3</sub>, CH<sub>2</sub> and OH.
+   This can be done by uploading the cell file to VESTA and clicking each atom.
+   <br>
+   <img alt="NMR vesta demonstration" src="../../img/NMR_vesta_demonstration.png" width="400"/>
+   <br>
+   Here you can see that one of the CH<sub>3</sub> hydrogens is atom 3
+</li>
+<li> Examine the effect
+ of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the pc)
+</li>
+<li> Find the "converged" hydrogen (or proton in NMR language) shieldings. We will compare them to experiment. The three methyl (CH<sub>3</sub>) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH<sub>2</sub> protons.
+</li>
+<li> Average the CH<sub>3</sub> and CH<sub>2</sub> chemical shieldings. This will give you 3 unique chemical shieldings.
+</li>
+<li> We now need to convert the chemical shieldings &#963;<sub>iso</sub> to chemical shifts &#948;<sub>iso</sub> on the experimental scale. We use the relation:  <i>&#948;<sub>iso</sub>=&#963;<sub>ref</sub>-&#963;</i>
+<br>
 A suitable &#963;<sub>ref</sub> for 1H is 30.97ppm.
 
-
+<br>
 <img alt="Fig2. 1H NMR spectrum of liquid ethanol" src="../../img/nmr_tut2.png" width="300"/>
 <figure fig1>
   <figcaption>Fig2.1 H NMR spectrum of liquid ethanol</figcaption>
 </figure>
+</li>
 
-
-<ol start="10">
-  <li>Fig. 2 shows a modern high-resolution 1H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the 1H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm. You should find that your computed values agree for two sites. Do you know why the other site has such a large disagreement with experiment?</li>
+<li> Fig. 2 shows a modern high-resolution 1H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the 1H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm. You should find that your computed values agree for two sites. Do you know why the other site has such a large disagreement with experiment?
+</li>
 </ol>
