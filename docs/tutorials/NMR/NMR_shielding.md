@@ -47,10 +47,10 @@ cut_off_energy  = 20 ry
 
 
 
-OBJECTIVES:
+## Objectives:
 
-* Examine the convergence of the chemical shieldings with planewave cutoff
-* Compare to experiment.
+1. Examine the convergence of the chemical shieldings with planewave cutoff
+2. Compare to experiment.
 
 INSTRUCTIONS:
 
