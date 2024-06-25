@@ -9,9 +9,9 @@ The discovery that one could actually see chemical shifts in hydrogen spectra wa
 
 ## Files   
 
-```
-! ethanol.cell
 
+*ethanol.cell*
+```
 
 %BLOCK LATTICE_ABC
 6 6 6
@@ -34,9 +34,9 @@ O 5.746254 5.812705 5.6871
 0.25 0.25 0.25 1.0
 %ENDBLOCK KPOINTS_LIST
 ```
-```
-! ethanol.param
 
+*ethanol.param*
+```
 xcfunctional = PBE
 fix_occupancy = true
 opt_strate.g.y : speed
