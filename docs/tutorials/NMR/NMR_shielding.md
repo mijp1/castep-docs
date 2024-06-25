@@ -1,6 +1,4 @@
-
-###Example 1 - Ethanol CH<sub>3</sub>CH<sub>2</sub>OH
-<p><img alt="Fig1. Proton spectrum of ethanol" src="../../img/nmr_tut1.png" width = "300"/></p>
+<img alt="Fig1. Proton spectrum of ethanol" src="../../img/nmr_tut1.png" width = "300"/>
 <figure fig1>
   <figcaption>Fig1. Proton spectrum of ethanol</figcaption>
 </figure>
