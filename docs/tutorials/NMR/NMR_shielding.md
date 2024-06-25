@@ -68,7 +68,7 @@ cut_off_energy  = 20 ry
 
 7. Average the CH<sub>3</sub> and CH<sub>2</sub> chemical shieldings. This will give you 3 unique chemical shieldings.
 
-8. We now need to convert the chemical shieldings &#963;<sub>iso</sub> to chemical shifts &#948;<sub>iso</sub> on the experimental scale. We use the relation: &#948;<sub>iso</sub>=&#963;<sub>ref</sub>-&#963;
+8. We now need to convert the chemical shieldings &#963;<sub>iso</sub> to chemical shifts &#948;<sub>iso</sub> on the experimental scale. We use the relation:  *&#948;<sub>iso</sub>=&#963;<sub>ref</sub>-&#963;*
 
 A suitable &#963;<sub>ref</sub> for 1H is 30.97ppm.
 
