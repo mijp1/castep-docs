@@ -56,7 +56,27 @@ cut_off_energy  = 20 ry
 
 1. Look at the cell and param file. Note that the only special keyword is `task = magres`
 
- 2. Run castep. `castepsub -n 4  ethanol` Look at the output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported (here we are only interested in the isotropic value.)
+ 2. Run castep. `castepsub -n 4  ethanol` Look at the output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported.
+ The result should contain these lines
+ ```
+ ====================================================================
+ |                      Chemical Shielding Tensor                   |
+ |------------------------------------------------------------------|
+ |     Nucleus                            Shielding tensor          |
+ |  Species            Ion            Iso(ppm)   Aniso(ppm)  Asym   |
+ |    H                1               29.45       8.84      0.14   |
+ |    H                2               30.10       8.07      0.20   |
+ |    H                3               29.94       7.12      0.06   |
+ |    H                4               26.83       8.02      0.95   |
+ |    H                5               27.24      -7.07      0.90   |
+ |    H                6               31.93      13.99      0.46   |
+ |    C                1              157.27      33.77      0.70   |
+ |    C                2              110.73      69.91      0.42   |
+ |    O                1              268.63     -50.78      0.96   |
+ ====================================================================
+ ```
+ Here we are only interested in the isotropic values
+
 
 3. This information, plus the full tensors is also given in the file ethanol.magres
 
