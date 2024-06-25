@@ -1,18 +1,20 @@
 
 ###Example 1 - Ethanol CH<sub>3</sub>CH<sub>2</sub>OH
-<p><img alt="Fig1. Proton spectrum of ethanol" src="../../img/nmr_tut1.png" width = "300"</p>
+<p><img alt="Fig1. Proton spectrum of ethanol" src="../../img/nmr_tut1.png" width = "300"/></p>
 <figure fig1>
   <figcaption>Fig1. Proton spectrum of ethanol</figcaption>
 </figure>
 
 
-The discovery that one could actually see chemical shifts in hydrogen spectra was made in 1951 at Stanford University by Packard, Arnold, Dharmatti (shown in Fig 1). We will try to reproduce this result.
+The discovery that one could actually see chemical shifts in hydrogen spectra was made in 1951 at Stanford University by Packard, Arnold, Dharmatti (shown in Fig 1). We will try to reproduce this result.  
 
-FILES:   
 
-* ethanol.cell
+## Files   
 
 ```
+! ethanol.cell
+
+
 %BLOCK LATTICE_ABC
 6 6 6
 90 90 90
@@ -34,9 +36,9 @@ O 5.746254 5.812705 5.6871
 0.25 0.25 0.25 1.0
 %ENDBLOCK KPOINTS_LIST
 ```
-
-* ethanol.param
 ```
+! ethanol.param
+
 xcfunctional = PBE
 fix_occupancy = true
 opt_strate.g.y : speed
