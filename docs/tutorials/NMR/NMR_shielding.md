@@ -52,30 +52,30 @@ cut_off_energy  = 20 ry
 1. Examine the convergence of the chemical shieldings with planewave cutoff
 2. Compare to experiment.
 
-INSTRUCTIONS:
+## Instructions:
 
-* Look at the cell and param file. Note that the only special keyword is `task = magres`
+1. Look at the cell and param file. Note that the only special keyword is `task = magres`
 
-* Run castep. `castepsub -n 4  ethanol` Look at the output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported (here we are only interested in the isotropic value.)
+ 2. Run castep. `castepsub -n 4  ethanol` Look at the output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported (here we are only interested in the isotropic value.)
 
-* This information, plus the full tensors is also given in the file ethanol.magres
+3. This information, plus the full tensors is also given in the file ethanol.magres
 
-* You might wish to transfer the *.magres file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
+4. You might wish to transfer the *.magres file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
 
-* Examine the effect of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the pc)
+5. Examine the effect of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the pc)
 
-* Find the "converged" hydrogen (or proton in NMR language) shieldings. We will compare them to experiment. The three methyl (CH<sub>3</sub>) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH<sub>2</sub> protons.
+6. Find the "converged" hydrogen (or proton in NMR language) shieldings. We will compare them to experiment. The three methyl (CH<sub>3</sub>) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH<sub>2</sub> protons.
 
-* Average the CH<sub>3</sub> and CH<sub>2</sub> chemical shieldings. This will give you 3 unique chemical shieldings.
+7. Average the CH<sub>3</sub> and CH<sub>2</sub> chemical shieldings. This will give you 3 unique chemical shieldings.
 
-* We now need to convert the chemical shieldings &#963;<sub>iso</sub> to chemical shifts &#948;<sub>iso</sub> on the experimental scale. We use the relation: &#948;<sub>iso</sub>=&#963;<sub>ref</sub>-&#963;
+8. We now need to convert the chemical shieldings &#963;<sub>iso</sub> to chemical shifts &#948;<sub>iso</sub> on the experimental scale. We use the relation: &#948;<sub>iso</sub>=&#963;<sub>ref</sub>-&#963;
 
 A suitable &#963;<sub>ref</sub> for 1H is 30.97ppm.
 
 
-![Fig2. 1H NMR spectrum of liquid ethanol](../img/nmr_tut2.png){width ="300"}
+<img alt="Fig2. 1H NMR spectrum of liquid ethanol" src="../../img/nmr_tut2.png" width="300"/>
 <figure fig1>
-  <figcaption>Fig2. 1H NMR spectrum of liquid ethanol</figcaption>
+  <figcaption>Fig2.1 H NMR spectrum of liquid ethanol</figcaption>
 </figure>
 
 
