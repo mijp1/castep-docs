@@ -1,6 +1,6 @@
 
 ###Example 1 - Ethanol CH<sub>3</sub>CH<sub>2</sub>OH
-![Fig1. Proton spectrum of ethanol](../img/nmr_tut1.png){width ="300"}
+<p><img alt="Fig1. Proton spectrum of ethanol" src="../../img/nmr_tut1.png" width = "300"</p>
 <figure fig1>
   <figcaption>Fig1. Proton spectrum of ethanol</figcaption>
 </figure>
@@ -80,5 +80,3 @@ A suitable &#963;<sub>ref</sub> for 1H is 30.97ppm.
 
 
 * Fig. 2 shows a modern high-resolution 1H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the 1H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm. You should find that your computed values agree for two sites. Do you know why the other site has such a large disagreement with experiment?
-
-
