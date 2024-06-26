@@ -85,10 +85,8 @@ nav:
       - 'Dispersion corrections': 'tutorials/dispersion_corrections/castep-ase-dispersion-tutorial.md'
       - 'Nudged elastic band': 'tutorials/NEB/neb_tutorial.md'
       - 'NMR Shielding':
-        - 'Introduction': 'tutorials/NMR/NMR_shielding.md'
-        - 'Inorganic': 'tutorials/NMR/NMR_silicate.md'
-        - 'Molecular Crystals': 'tutorials/NMR/NMR_molcrystal.md'
-        - 'J coupling': 'tutorials/NMR/NMR_shielding.md'
+        - 'Example 1 - Ethanol': 'tutorials/NMR/Example_1_-Ethanol.md'
+
       - 'Delta SCF':
         - 'Simple Delta SCF': 'tutorials/Delta_SCF/simple_delta_scf.md'
         - 'Linear expansion DeltaSCF': 'tutorials/Delta_SCF/lin_ex_delta_scf.md'
