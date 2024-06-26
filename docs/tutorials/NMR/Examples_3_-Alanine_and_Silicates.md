@@ -24,9 +24,9 @@ available. This is particularly true for organic materials. First principles cal
 
 ## Files
 
-* alanine.cell
-* alanine.param
-* alanine.pdb
+* [alanine.cell](alanine/alanine.cell)
+* [alanine.param](alanine/alanine.param)
+* [alanine.pdb](alanine/alanine.pdb)
 
 ## Objectives
 
@@ -63,10 +63,10 @@ available. This is particularly true for organic materials. First principles cal
 
 ## Files
 
-* quartz.cell
-* quartz.param
-* crist.cell
-* crist.param
+* [quartz.cell](silicates/quartz.cell)
+* [quartz.param](silicates/quartz.param)
+* [crist.cell](silicates/crist.cell)
+* [crist.param](silicates/crist.param)
 
 
 
