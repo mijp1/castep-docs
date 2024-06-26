@@ -49,15 +49,14 @@ available. This is particularly true for organic materials. First principles cal
 
 4. Assign the two resonances A and B. Do all three computed parameters support this assignment?
 
-| Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.||
+| | |
 |--|--|
 |&#948;(A)-&#948; (B) (ppm)| 23.5|
 |C<sub>Q</sub> (A) (MHz)| 7.86|
 |&#951;<sub>Q</sub> (A)| 0.28|
 |C<sub>Q</sub>(B) (MHz)| 6.53|
 |&#951;<sub>Q</sub>(B)| 0.70|
-
-
+| **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.**||
 
 # Silicates - Quartz and Cristoballite
 
@@ -86,5 +85,4 @@ available. This is particularly true for organic materials. First principles cal
 |---|---|---|---|
 |Material A| 37.2 | 5.21 | 0.13 |
 |Material B| 40.8 | 5.19 | 0.19 |
-
-**Table 2**: Experimental ^17^O NMR parameters for two silicates. Isotropic chemical shift &#948; , quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.
+| **Table 2: Experimental ^17^O NMR parameters for two silicates. Isotropic chemical shift &#948; , quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.** |
