@@ -56,8 +56,8 @@ cut_off_energy  = 20 ry
 
 1. Look at the cell and param file. Note that the only special keyword is `task = magres`
 
- 2. Run castep. `castepsub -n 4  ethanol` Look at the output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported.
- The result should contain these lines
+ 2. Run castep. `castepsub -n 4  ethanol` Look at the ethanol.castep output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported.
+ The result should contain these lines:
  ```
  ====================================================================
  |                      Chemical Shielding Tensor                   |
@@ -78,7 +78,7 @@ cut_off_energy  = 20 ry
  Here we are only interested in the isotropic values
 
 
-3. This information, plus the full tensors is also given in the file ethanol.magres
+3. This information, plus the full tensors, are also given in the file ethanol.magres
 
 4. You might wish to transfer the *.magres file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
 
@@ -90,7 +90,7 @@ cut_off_energy  = 20 ry
    Here you can see that one of the CH<sub>3</sub> hydrogens is atom 3
 </li>
 <li> Examine the effect
- of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the pc). The result looks a bit like this: <br> <img alt="Ethanol convergence plot" src="../../img/ethanol_convergence.png" width="500"/>
+ of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the PC). The result looks a bit like this: <br> <img alt="Ethanol convergence plot" src="../../img/ethanol_convergence.png" width="500"/>
 </li>
 <li> Find the "converged" hydrogen (or proton in NMR language) shieldings. We will compare them to experiment. The three methyl (CH<sub>3</sub>) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH<sub>2</sub> protons.
 </li>
@@ -101,12 +101,12 @@ cut_off_energy  = 20 ry
 A suitable &#963;<sub>ref</sub> for 1H is 30.97ppm.
 
 <br>
-<img alt="Fig2. 1H NMR spectrum of liquid ethanol" src="../../img/nmr_tut2.png" width="300"/>
+<img alt="Fig2. H NMR spectrum of liquid ethanol" src="../../img/nmr_tut2.png" width="300"/>
 <figure fig1>
   <figcaption>Fig2.1 H NMR spectrum of liquid ethanol</figcaption>
 </figure>
 </li>
 
-<li> Fig. 2 shows a modern high-resolution 1H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the 1H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm. You should find that your computed values agree for two sites. Do you know why the other site has such a large disagreement with experiment?
+<li> Fig2. shows a modern high-resolution 1H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the 1H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm. You should find that your computed values agree for two sites. Do you know why the other site has such a large disagreement with experiment?
 </li>
 </ol>
