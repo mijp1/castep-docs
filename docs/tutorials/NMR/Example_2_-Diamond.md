@@ -1,8 +1,6 @@
-###Example 2 - Diamond
+## Files
 
-FILES:
-
-* diamond.cell
+*diamond.cell*
 
 ```
 %block LATTICE_CART
@@ -21,7 +19,7 @@ kpoints_mp_grid  4 4 4
 
 symmetry_generate
 ```
-* diamond.param
+*diamond.param*
 
 ```
 comment         = nmr testing
@@ -33,17 +31,17 @@ opt_strategy : speed
 cut_off_energy  =  30 Ry
 ```
 
-OBJECTIVES:
+## Objectives
 
 Examine the convergence of the chemical shielding as the sampling of the electronic Brillouin zone (BZ) is increased.
 
-INSTRUCTIONS:
+## Instructions
 
-* Look at the files diamond.cell and diamond.param
-* We have specified the kpoints in the cell file using the keyword
+1. Look at the files diamond.cell and diamond.param
+2. We have specified the kpoints in the cell file using the keyword
 `kpoints_mp_grid 4 4 4`
-* Run CASTEP for a range of kpoint meshes (say 2,4,6,8,10)
-* Examine (plot?) the convergence of the chemical shielding.
+3. Run CASTEP for a range of kpoint meshes (say 2,4,6,8,10)
+4. Examine (plot?) the convergence of the chemical shielding.
 
 The computational cost scales linearly with the number of kpoints (i.e. the number of points in the irreducible Brillouin Zone). For a large unit cell (i.e. a small BZ) it may be possible to get converged results using a single k-point. But which kpoint should we choose?
 For diamond we will look at 3 different k-points (0,0,0), (½,½,½) (¼,¼,¼). Specify the kpoint in the cell file using
@@ -55,7 +53,7 @@ For diamond we will look at 3 different k-points (0,0,0), (½,½,½) (¼,¼,¼).
 Which gives a result closest to the converged answer?
 (as the diamond unit cell is rather small the 1 kpoint answer is not too close to converged. However, the observation holds true for all orthorhombic cells)
 
-##Part 2
+### Part 2
 
 We now look at some more realistic examples.
 
