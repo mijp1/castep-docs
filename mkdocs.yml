@@ -87,6 +87,7 @@ nav:
       - 'NMR Shielding':
         - 'Example 1 - Ethanol': 'tutorials/NMR/Example_1_-Ethanol.md'
         - 'Example 2 - Diamond': 'tutorials/NMR/Example_2_-Diamond.md'
+        - 'Examples 3 - Alanine and Silicates': 'tutorials/NMR/Examples_3_-Alanine_and_Silicates.md'
       - 'Delta SCF':
         - 'Simple Delta SCF': 'tutorials/Delta_SCF/simple_delta_scf.md'
         - 'Linear expansion DeltaSCF': 'tutorials/Delta_SCF/lin_ex_delta_scf.md'
