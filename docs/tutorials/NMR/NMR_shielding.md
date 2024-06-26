@@ -90,7 +90,7 @@ cut_off_energy  = 20 ry
    Here you can see that one of the CH<sub>3</sub> hydrogens is atom 3
 </li>
 <li> Examine the effect
- of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the pc)
+ of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the pc). The result looks a bit like this: <br> <img alt="Ethanol convergence plot" src="../../img/ethanol_convergence.png" width="500"/>
 </li>
 <li> Find the "converged" hydrogen (or proton in NMR language) shieldings. We will compare them to experiment. The three methyl (CH<sub>3</sub>) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH<sub>2</sub> protons.
 </li>
