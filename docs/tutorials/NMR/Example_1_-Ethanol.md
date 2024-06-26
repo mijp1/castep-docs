@@ -4,7 +4,7 @@
 </figure>
 
 
-The discovery that one could actually see chemical shifts in hydrogen spectra was made in 1951 at Stanford University by Packard, Arnold, Dharmatti (shown in Fig 1). We will try to reproduce this result.  
+The discovery that one could actually see chemical shifts in hydrogen spectra was made in 1951 at Stanford University by Packard, Arnold, Dharmatti (shown in Fig1. ). We will try to reproduce this result.  
 
 
 ## Files   
@@ -49,14 +49,16 @@ cut_off_energy  = 20 ry
 
 ## Objectives:
 
-1. Examine the convergence of the chemical shieldings with planewave cutoff
+1. Examine the convergence of the chemical shieldings with planewave cutoff.
 2. Compare to experiment.
 
 ## Instructions:
 
 1. Look at the cell and param file. Note that the only special keyword is `task = magres`
 
- 2. Run castep. `castepsub -n 4  ethanol` Look at the ethanol.castep output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported.
+ 2. Run castep
+  `castepsub -n 4  ethanol`
+   Look at the ethanol.castep output file. At the end, the isotropic chemical shielding, anisotropy, and asymmetry are reported.
  The result should contain these lines:
  ```
  ====================================================================
@@ -94,19 +96,20 @@ cut_off_energy  = 20 ry
 </li>
 <li> Find the "converged" hydrogen (or proton in NMR language) shieldings. We will compare them to experiment. The three methyl (CH<sub>3</sub>) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH<sub>2</sub> protons.
 </li>
-<li> Average the CH<sub>3</sub> and CH<sub>2</sub> chemical shieldings. This will give you 3 unique chemical shieldings.
+<li> Average the CH<sub>3</sub> and CH<sub>2</sub> chemical shieldings. This will give you 3 unique chemical shieldings (including the OH reading).
 </li>
 <li> We now need to convert the chemical shieldings &#963;<sub>iso</sub> to chemical shifts &#948;<sub>iso</sub> on the experimental scale. We use the relation:  <i>&#948;<sub>iso</sub>=&#963;<sub>ref</sub>-&#963;</i>
 <br>
-A suitable &#963;<sub>ref</sub> for 1H is 30.97ppm.
+
+A suitable &#963;<sub>ref</sub> for <sup><small>1</small></sup>H is 30.97ppm.
 
 <br>
 <img alt="Fig2. H NMR spectrum of liquid ethanol" src="../../img/nmr_tut2.png" width="300"/>
 <figure fig1>
-  <figcaption>Fig2.1 H NMR spectrum of liquid ethanol</figcaption>
+  <figcaption>Fig2. <sup><small>1</small></sup>H NMR spectrum of liquid ethanol</figcaption>
 </figure>
 </li>
 
-<li> Fig2. shows a modern high-resolution 1H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the 1H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm. You should find that your computed values agree for two sites. Do you know why the other site has such a large disagreement with experiment?
+<li> Fig2. shows a modern high-resolution <sup><small>1</small></sup>H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the 1H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm. You should find that your computed values agree for two sites. Do you know why the other site has such a large disagreement with experiment?
 </li>
 </ol>

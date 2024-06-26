@@ -13,10 +13,10 @@ cpus:**
 <b>Oxygen-17 NMR</b>
 <br>
 Oxygen is a component of many geological materials. Oxygen is
-also important element in organic and biological molecules since it is often intimately involved in hydrogen bonding. Solid State ^17^O NMR should be a uniquely valuable probe as the chemical shift range of ^17^O covers almost 1000 ppm in organic molecules. Furthermore ^17^O has spin I = 5/2 and hence a net quadrupole moment. As a consequence of this the solid state NMR spectrum is strongly affected by the electric
+also important element in organic and biological molecules since it is often intimately involved in hydrogen bonding. Solid State <sup><small>17</small></sup>O NMR should be a uniquely valuable probe as the chemical shift range of <sup><small>17</small></sup>O covers almost 1000 ppm in organic molecules. Furthermore <sup><small>17</small></sup>O has spin I = 5/2 and hence a net quadrupole moment. As a consequence of this the solid state NMR spectrum is strongly affected by the electric
 field gradient at the nucleus.
 
-Because the isotopic abundance of ^17^O is very low (0.037%) and the NMR linewidths due to the electric field gradient relatively large, only limited Solid State NMR data is
+Because the isotopic abundance of <sup><small>17</small></sup>O is very low (0.037%) and the NMR linewidths due to the electric field gradient relatively large, only limited Solid State NMR data is
 available. This is particularly true for organic materials. First principles calculations of ^17^O NMR parameters have played a vital role in assigning experimental spectra, and developing empirical rules between NMR  parameters and local atomic structure.</i>
 </p>
 
@@ -31,17 +31,17 @@ available. This is particularly true for organic materials. First principles cal
 ## Objectives
 
 1. Compute the chemical shift and Electric field gradient for alanine
-2. Assign the ^17^ NMR spectrum
+2. Assign the <sup><small>17</small></sup>NMR spectrum
 
 <img alt="Fig3. Solid-State O17 NMR spectrum of L-alanine" src="../../img/nmr_tut3.png" width = "300"/>
 <figure fig3>
-  <figcaption>Fig3. Solid-State O17 NMR spectrum of L-alanine. (b) is from MAS (magicangle- spinning) (c) is from DOR (double-orientation rotation)</figcaption>
+  <figcaption>Fig3. Solid-State <sup><small>17</small></sup>O NMR spectrum of L-alanine. (b) is from MAS (magicangle- spinning) (c) is from DOR (double-orientation rotation)</figcaption>
 </figure>
 
 
 ## Instructions
 
-1. Look at the cell and param files. The geometry for alanine was obtained by neutron diffraction and was downloaded from the [Cambridge Crystallographic database](https://www.ccdc.cam.ac.uk/). View the original pdb file note the hydrogen bonding
+1. Look at the cell and param files. The geometry for alanine was obtained by neutron diffraction and was downloaded from the [Cambridge Crystallographic database](https://www.ccdc.cam.ac.uk/). View the original pdb file - you may use Materials Studio. Note the hydrogen bonding
 
 2. Run the example - the calculation is not fully converged. However, the relative shift between the two sites is fairly converged.
 
