@@ -33,7 +33,7 @@ available. This is particularly true for organic materials. First principles cal
 1. Compute the chemical shift and Electric field gradient for alanine
 2. Assign the ^17^ NMR spectrum
 
-![Fig3. Proton spectrum of ethanol](../img/nmr_tut3.png){width ="300"}
+<img alt="Fig3. Solid-State O17 NMR spectrum of L-alanine" src="../../img/nmr_tut3.png" width = "300"/>
 <figure fig3>
   <figcaption>Fig3. Solid-State O17 NMR spectrum of L-alanine. (b) is from MAS (magicangle- spinning) (c) is from DOR (double-orientation rotation)</figcaption>
 </figure>
