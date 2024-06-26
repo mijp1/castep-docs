@@ -19,3 +19,70 @@ available. This is particularly true for organic materials. First principles cal
 </p>
 
 # Alanine
+
+## Files
+
+* alanine.cell
+* alanine.param
+* alanine.pdb
+
+## Objectives
+
+1. Compute the chemical shift and Electric field gradient for alanine
+2. Assign the ^17^ NMR spectrum
+
+![Fig3. Proton spectrum of ethanol](../img/nmr_tut3.png){width ="300"}
+<figure fig3>
+  <figcaption>Fig3. Solid-State O17 NMR spectrum of L-alanine. (b) is from MAS (magicangle- spinning) (c) is from DOR (double-orientation rotation)</figcaption>
+</figure>
+
+
+## Instructions
+
+1. Look at the cell and param files. The geometry for alanine was obtained by neutron diffraction and was downloaded from the Cambridge Crystallographic database. View the original pdb file note the hydrogen bonding
+
+2. Run the example - the calculation is not fully converged. However, the relative shift between the two sites is fairly converged.
+
+3. The experimental ^17^O NMR spectrum shows two peaks (Fig 3 (b)) - they are very broad due to the quadrupolar coupling, and overlap. The experimental parameters are given in Table 1.
+
+4. Assign the two resonances A and B. Do all three computed parameters support this assignment?
+
+| Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.||
+|--|--|
+|&#948;(A)-&#948; (B) (ppm)| 23.5|
+|C<sub>Q</sub> (A) (MHz)| 7.86|
+|&#951;<sub>Q</sub> (A)| 0.28|
+|C<sub>Q</sub>(B) (MHz)| 6.53|
+|&#951;<sub>Q</sub>(B)| 0.70|
+
+
+
+# Silicates - Quartz and Cristoballite
+
+## Files
+
+* quartz.cell
+* quartz.param
+* crist.cell
+* crist.param
+
+
+
+## Objectives
+
+1. Compute the chemical shift and Electric field gradient for two silicates.
+2. Assign the ^17^O NMR spectrum
+
+## Instructions
+
+1. The ^17^O parameters for two silicates are reported in Table 2. From the values you compute can you tell which one is quartz? (a suitable &#963;<sub>ref</sub> is 263ppm)
+
+
+
+
+| | &#948; (ppm) | C<sub>Q</sub> (MHz) | &#951;<sub>Q</sub> |
+|---|---|---|---|
+|Material A| 37.2 | 5.21 | 0.13 |
+|Material B| 40.8 | 5.19 | 0.19 |
+
+**Table 2**: Experimental ^17^O NMR parameters for two silicates. Isotropic chemical shift &#948; , quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.
