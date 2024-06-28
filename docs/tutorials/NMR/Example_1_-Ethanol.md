@@ -55,7 +55,7 @@ cut_off_energy  = 20 ry
 
 ## Instructions:
 
-1. Look at the cell and param file. Note that the only special keyword is `task = magres`
+1. Look at the [cell](../../documentation/Input_Files/cell_file.md) and [param](../../documentation/Input_Files/param_file.md) files. Note that the only special keyword is `task = magres`
 
  2. Run castep
   `castepsub -n 4  ethanol`
