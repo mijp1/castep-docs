@@ -95,14 +95,14 @@ This can be done by uploading the cell file to VESTA and clicking each atom. <br
 
 7. Average the CH<sub>3</sub> and CH<sub>2</sub> chemical shieldings. This will give you 3 unique chemical shieldings (including the OH reading).
 
-8. We now need to convert the chemical shieldings &#963;<sub>iso</sub> to chemical shifts &#948;<sub>iso</sub> on the experimental scale. We use the relation:  <i>&#948;<sub>iso</sub>=&#963;<sub>ref</sub>-&#963;</i>.
-A suitable &#963;<sub>ref</sub> for <sup><small>1</small></sup>H is 30.97ppm.
+8. We now need to convert the chemical shieldings $\sigma_{iso}$; to chemical shifts $\delta_{iso}$ on the experimental scale. We use the relation:  $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$.
+A suitable $\sigma_{ref}$ for <sup><small>1</small></sup>H is 30.97ppm.
 
 
 
 ![Fig2. H NMR spectrum of liquid ethanol](../../img/nmr_tut2.png){width="40%"}
-<figure fig1>
-<figure style="display: inline-block;">
+
+<figure Fig2 style="display: inline-block;">
   <figcaption style="text-align: left;">Fig2. <sup><small>1</small></sup>H NMR spectrum of liquid ethanol</figcaption>
 </figure>
 <br>
