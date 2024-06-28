@@ -1,4 +1,4 @@
-![Fig1. Proton spectrum of ethanol](../../img/nmr_tut1.png){width="50%"}
+![Fig1. Proton spectrum of ethanol](../img/nmr_tut1.png){width="50%"}
 <figure style="display: inline-block;">
   <figcaption style="text-align: left;">Fig1. Proton spectrum of ethanol</figcaption>
 </figure>
@@ -12,7 +12,7 @@ The discovery that one could actually see chemical shifts in hydrogen spectra wa
 
 
 *ethanol.cell*
-``` 
+```
 
 %BLOCK LATTICE_ABC
 6 6 6
@@ -86,11 +86,11 @@ cut_off_energy  = 20 ry
 4. You might wish to transfer the ***ethanol.magres*** file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
 
 5. Identify which (hydrogen) ion corresponds to which part of the molecule - in the case of ethanol, find out which ones correspond to CH3~3~ CH~2~ and OH.
-This can be done by uploading the cell file to VESTA and clicking each atom. <br>![NMR vesta demonstration](../../img/NMR_vesta_demonstration.png){width="40%"} <br>Here you can see that one of the CH~3~ hydrogens is atom 3
+This can be done by uploading the cell file to VESTA and clicking each atom. <br>![NMR vesta demonstration](../img/NMR_vesta_demonstration.png){width="40%"} <br>Here you can see that one of the CH~3~ hydrogens is atom 3
 
 6. Examine the effect
  of increasing the cutoff energy (say 20-50 Ryd in steps of 10 Ryd). It always helps to plot a graph of the convergence (e.g. with gnuplot or xmgrace on the cluster - or with excel on the PC). The result looks a bit like this:
- ![Ethanol convergence plot](../../img/ethanol_convergence.png){width="75%"} <br>
+ ![Ethanol convergence plot](../img/ethanol_convergence.png){width="75%"} <br>
  Find the "converged" hydrogen (or proton in NMR language) shieldings. We will compare them to experiment. The three methyl (CH~3~) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH~2~ protons.
 
 7. Average the CH~3~ and CH~2~ chemical shieldings. This will give you 3 unique chemical shieldings (including the OH reading).
@@ -100,7 +100,7 @@ A suitable $\sigma_{ref}$ for ^1^H is 30.97ppm.
 
 
 
-![Fig2. H NMR spectrum of liquid ethanol](../../img/nmr_tut2.png){width="40%"}
+![Fig2. H NMR spectrum of liquid ethanol](../img/nmr_tut2.png){width="40%"}
 
 <figure Fig2 style="display: inline-block;">
   <figcaption style="text-align: left;">Fig2. <sup><small>1</small></sup>H NMR spectrum of liquid ethanol</figcaption>

@@ -36,7 +36,7 @@ available. This is particularly true for organic materials. First principles cal
 2. Assign the ^17^NMR spectrum
 
 
-![Solid-State O17 NMR spectrum of L-alanine"](../../img/nmr_tut3.png){width="40%"}
+![Solid-State O17 NMR spectrum of L-alanine"](../img/nmr_tut3.png){width="40%"}
 <figure style="display: inline-block;">
   <figcaption style="text-align: left;">Fig3. Solid-State <sup><small>17</small></sup>O NMR spectrum of L-alanine. (b) is from MAS (magicangle- spinning) (c) is from DOR (double-orientation rotation)</figcaption>
 </figure>

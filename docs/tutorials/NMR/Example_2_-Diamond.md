@@ -45,7 +45,7 @@ Examine the convergence of the chemical shielding as the sampling of the electro
 
   The convergence plot should look like this:
   <br>
-  ![Diamond convergence plot](../../img/diamond_convergence.png){width="75%"}
+  ![Diamond convergence plot](../img/diamond_convergence.png){width="75%"}
 
 The computational cost scales linearly with the number of kpoints (i.e. the number of points in the irreducible Brillouin Zone). For a large unit cell (i.e. a small BZ) it may be possible to get converged results using a single k-point. But which kpoint should we choose?
 
