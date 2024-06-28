@@ -12,7 +12,7 @@ The discovery that one could actually see chemical shifts in hydrogen spectra wa
 
 
 *ethanol.cell*
-```
+``` 
 
 %BLOCK LATTICE_ABC
 6 6 6

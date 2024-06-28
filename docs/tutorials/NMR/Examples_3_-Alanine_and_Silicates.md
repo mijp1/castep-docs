@@ -1,11 +1,13 @@
-<h1>Examples 3 - Alanine and Silicates</h1>
+# Examples 3 - Alanine and Silicates</h1>
 
 We now look at some more realistic examples. These are fairly large crystals - to get them
 to complete in a short time we will run them on a cluster.
 **Use the following number of
-cpus:**
+CPUs:**
 
-**analine - 4 cristoballite - 6 quartz - 13**
+* analine - 4
+* cristoballite - 6
+* quartz - 13
 
 (these numbers are chosen to give efficient k-point scaling)
 
