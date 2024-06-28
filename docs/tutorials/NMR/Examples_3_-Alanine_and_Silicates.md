@@ -42,7 +42,7 @@ available. This is particularly true for organic materials. First principles cal
 
 ## Instructions
 
-1. Look at the cell and param files. The geometry for alanine was obtained by neutron diffraction and was downloaded from the [Cambridge Crystallographic database](https://www.ccdc.cam.ac.uk/). View the original pdb file - you may use Materials Studio. Note the hydrogen bonding
+1. Look at ***alanine.cell*** and ***alanine.param***. The geometry for alanine was obtained by neutron diffraction and was downloaded from the [Cambridge Crystallographic database](https://www.ccdc.cam.ac.uk/). View the original ***alanine.pdb*** file - you may use Materials Studio. Note the hydrogen bonding.
 
 2. Run the example - the calculation is not fully converged. However, the relative shift between the two sites is fairly converged.
 

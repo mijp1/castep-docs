@@ -37,7 +37,7 @@ Examine the convergence of the chemical shielding as the sampling of the electro
 
 ## Instructions
 
-1. Look at the files diamond.cell and diamond.param
+1. Look at the files ***diamond.cell*** and ***diamond.param***
 2. We have specified the kpoints in the cell file using the keyword
 `kpoints_mp_grid 4 4 4`
 3. Run CASTEP for a range of kpoint meshes (say 2, 4, 6, 8, 10)
@@ -49,11 +49,20 @@ Examine the convergence of the chemical shielding as the sampling of the electro
 
 The computational cost scales linearly with the number of kpoints (i.e. the number of points in the irreducible Brillouin Zone). For a large unit cell (i.e. a small BZ) it may be possible to get converged results using a single k-point. But which kpoint should we choose?
 
-For diamond we will look at 3 different k-points (0,0,0), (½,½,½) (¼,¼,¼). Specify the kpoint in the cell file using
+For diamond we will look at 3 different k-points (0,0,0), (½,½,½) (¼,¼,¼). Specify the kpoint in the ***diamond.cell*** file using
 ```
 %BLOCK KPOINTS_LIST
 0.25 0.25 0.25 1.0
 %ENDBLOCK KPOINTS_LIST
 ```
+
+after deleting the
+
+```
+kpoints_mp_grid x x x
+```
+
+line
+
 Which gives a result closest to the converged answer?
 (as the diamond unit cell is rather small the 1 kpoint answer is not too close to converged. However, the observation holds true for all orthorhombic cells)

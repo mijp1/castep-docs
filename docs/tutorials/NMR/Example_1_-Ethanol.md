@@ -59,7 +59,7 @@ cut_off_energy  = 20 ry
 
  2. Run castep
   `castepsub -n 4  ethanol`
-   Look at the ethanol.castep output file. At the end, the isotropic chemical shielding, anisotropy, and asymmetry are reported.
+   Look at the ***ethanol.castep*** output file. At the end, the isotropic chemical shielding, anisotropy, and asymmetry are reported.
  The result should contain these lines:
  ```
  ====================================================================
@@ -83,7 +83,7 @@ cut_off_energy  = 20 ry
 
 3. This information, plus the full tensors, are also given in the file ethanol.magres
 
-4. You might wish to transfer the *.magres file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
+4. You might wish to transfer the ***ethanol.magres*** file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
 
 5. Identify which (hydrogen) ion corresponds to which part of the molecule - in the case of ethanol, find out which ones correspond to CH<sub>3</sub>, CH<sub>2</sub> and OH.
 This can be done by uploading the cell file to VESTA and clicking each atom. <br>![NMR vesta demonstration](../../img/NMR_vesta_demonstration.png){width="40%"} <br>Here you can see that one of the CH<sub>3</sub> hydrogens is atom 3
