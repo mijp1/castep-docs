@@ -17,7 +17,7 @@ also important element in organic and biological molecules since it is often int
 field gradient at the nucleus.
 
 Because the isotopic abundance of <sup><small>17</small></sup>O is very low (0.037%) and the NMR linewidths due to the electric field gradient relatively large, only limited Solid State NMR data is
-available. This is particularly true for organic materials. First principles calculations of ^17^O NMR parameters have played a vital role in assigning experimental spectra, and developing empirical rules between NMR  parameters and local atomic structure.</i>
+available. This is particularly true for organic materials. First principles calculations of <sup><small>17</small></sup>O NMR parameters have played a vital role in assigning experimental spectra, and developing empirical rules between NMR  parameters and local atomic structure.</i>
 </p>
 
 # Alanine
@@ -31,7 +31,7 @@ available. This is particularly true for organic materials. First principles cal
 ## Objectives
 
 1. Compute the chemical shift and Electric field gradient for alanine
-2. Assign the <sup><small>17</small></sup>NMR spectrum
+2. Assign the ^17^NMR spectrum
 
 
 ![Solid-State O17 NMR spectrum of L-alanine"](../../img/nmr_tut3.png){width="40%"}
@@ -53,10 +53,10 @@ available. This is particularly true for organic materials. First principles cal
 | | |
 |--|--|
 |&#948;(A)-&#948; (B) (ppm)| 23.5|
-|C<sub>Q</sub> (A) (MHz)| 7.86|
-|&#951;<sub>Q</sub> (A)| 0.28|
-|C<sub>Q</sub>(B) (MHz)| 6.53|
-|&#951;<sub>Q</sub>(B)| 0.70|
+|C~Q~ (A) (MHz)| 7.86|
+|&#951;~Q~(A)| 0.28|
+|C~Q~(B) (MHz)| 6.53|
+|&#951;~Q~(B)| 0.70|
 | **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.**||
 
 # Silicates - Quartz and Cristoballite
