@@ -33,9 +33,10 @@ available. This is particularly true for organic materials. First principles cal
 1. Compute the chemical shift and Electric field gradient for alanine
 2. Assign the <sup><small>17</small></sup>NMR spectrum
 
-<img alt="Fig3. Solid-State O17 NMR spectrum of L-alanine" src="../../img/nmr_tut3.png" width = "300"/>
-<figure fig3>
-  <figcaption>Fig3. Solid-State <sup><small>17</small></sup>O NMR spectrum of L-alanine. (b) is from MAS (magicangle- spinning) (c) is from DOR (double-orientation rotation)</figcaption>
+
+![Solid-State O17 NMR spectrum of L-alanine"](../../img/nmr_tut3.png){width="40%"}
+<figure style="display: inline-block;">
+  <figcaption style="text-align: left;">Fig3. Solid-State <sup><small>17</small></sup>O NMR spectrum of L-alanine. (b) is from MAS (magicangle- spinning) (c) is from DOR (double-orientation rotation)</figcaption>
 </figure>
 
 
