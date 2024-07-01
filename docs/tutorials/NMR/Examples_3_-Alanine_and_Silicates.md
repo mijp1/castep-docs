@@ -131,31 +131,91 @@ all 3 of those hydrogens are bonded to a nitrogen that is also bonded to 2 other
 
 These results are confirmed by the other values provided in the table. To confirm A being oxygen 1 (or 3 or 5... - all the values are identical), $C_Q$ in the [table](alanine_table.txt) is 7.125 compared to the expected 7.86, and $\eta_Q$ is 0.25 compared to the expected 0.28. However, this is not the case for hydrogen - a $C_Q$ of 6.53 and an $\eta_Q$ of 0.7 are expected, but the castep results are 0.21 and 0.06 respectively.
 
-# Silicates - Quartz and Cristoballite
+## Silicates - Quartz and Cristoballite
 
-## Files
+As an extra example, we will now perform similar calculations and corresponding analysis with 2 forms of silicate - cristoballite and quartz. Naturally, we wiil do the castep calculations separately
 
-* [quartz.cell](silicates/quartz.cell)
-* [quartz.param](silicates/quartz.param)
-* [crist.cell](silicates/crist.cell)
-* [crist.param](silicates/crist.param)
+### Input and output files
 
+For quartz we will use the cell file
 
+[quartz.cell](silicates/quartz.cell)
 
-## Objectives
+And the param file ***quartz.param***
 
-1. Compute the chemical shift and Electric field gradient for two silicates.
-2. Assign the ^17^O NMR spectrum
+```
+cut_off_energy  = 40 ry
+xc_functional : PBE
+fix_occupancy = true
+opt_strategy : speed
+task        = magres
+magres_task = nmr
+elec_energy_tol = 1.0e-12 ry
+```
 
-## Instructions
+The param file is identical to the alanine one above.
 
-1. The ^17^O parameters for two silicates are reported in Table 2. From the values you compute can you tell which one is quartz? (a suitable &#963;<sub>ref</sub> is 263ppm)
+For cristoballite we will use the cell file
 
+[crist.cell](silicates/crist.cell)
 
+And exactly the same param file as above (just named ***crist.param*** instead)
 
+We then run castep on both crystal structures as usual, getting the output files ***quartz.castep*** and ***crist.castep***. Within those files, we will have the same types of tables as above:
+
+For quartz:
+
+```
+===============================================================================
+|                Chemical Shielding and Electric Field Gradient Tensors       |
+|-----------------------------------------------------------------------------|
+|     Nucleus                       Shielding tensor             EFG Tensor   |
+|    Species            Ion    Iso(ppm)   Aniso(ppm)  Asym    Cq(MHz)    Eta  |
+|    O                  1      234.54      68.31      0.12  -5.085E+00   0.20 |
+|    O                  2      234.54      68.30      0.12  -5.086E+00   0.20 |
+|    O                  3      234.54      68.30      0.12  -5.086E+00   0.20 |
+|    O                  4      234.54      68.30      0.12  -5.086E+00   0.20 |
+|    O                  5      234.54      68.30      0.12  -5.086E+00   0.20 |
+|    O                  6      234.54      68.31      0.12  -5.085E+00   0.20 |
+|    Si                 1      435.01      -5.44      0.82   2.067E+01   0.72 |
+|    Si                 2      435.01      -5.45      0.81   2.067E+01   0.72 |
+|    Si                 3      435.01      -5.44      0.82   2.067E+01   0.72 |
+===============================================================================
+```
+
+and for cristoballite
+```  
+===============================================================================
+|                Chemical Shielding and Electric Field Gradient Tensors       |
+|-----------------------------------------------------------------------------|
+|     Nucleus                       Shielding tensor             EFG Tensor   |
+|    Species            Ion    Iso(ppm)   Aniso(ppm)  Asym    Cq(MHz)    Eta  |
+|    O                  1      239.47      79.97      0.08  -5.055E+00   0.14 |
+|    O                  2      239.47      79.97      0.08  -5.055E+00   0.14 |
+|    O                  3      239.47      79.97      0.08  -5.055E+00   0.14 |
+|    O                  4      239.47      79.97      0.08  -5.055E+00   0.14 |
+|    O                  5      239.47      79.97      0.08  -5.055E+00   0.14 |
+|    O                  6      239.47      79.97      0.08  -5.055E+00   0.14 |
+|    O                  7      239.47      79.97      0.08  -5.055E+00   0.14 |
+|    O                  8      239.47      79.97      0.08  -5.055E+00   0.14 |
+|    Si                 1      437.12      -9.36      0.61  -1.077E+01   0.88 |
+|    Si                 2      437.12      -9.36      0.61  -1.077E+01   0.88 |
+|    Si                 3      437.12      -9.36      0.61  -1.077E+01   0.88 |
+|    Si                 4      437.12      -9.36      0.61  -1.077E+01   0.88 |
+===============================================================================
+
+```
+
+### Analysing and comparing to experiment
+
+Like with alanine, we will compare it to an experimental ^17^O NMR parameter table - this is shown below as Table 2
 
 | | $\delta$ (ppm) | $C_Q$ (MHz) | $\eta_Q$ |
 |---|---|---|---|
 |Material A| 37.2 | 5.21 | 0.13 |
 |Material B| 40.8 | 5.19 | 0.19 |
 | **Table 2: Experimental ^17^O NMR parameters for two silicates. Isotropic chemical shift $\delta$ , quadrupolar coupling $C_Q$, and EFG asymmetry $\eta_Q$.** |
+
+This example is much more straightforward - all the atoms of a certain element are identical.
+
+We are given that a suitable $\sigma_{ref}$ (for oxygen) is 263ppm. Using the equation $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$ - used before in [Example 1](Example_1-Ethanol.md) - we are able to convert the isometric chemical shielding tensor into a relative chemical shift: O in quartz has a shift of 28.46 and in cristoballite it has a shift of 23.53
