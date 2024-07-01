@@ -27,6 +27,8 @@ available. This is particularly true for organic materials. First principles cal
 
 
 ## Alanine
+
+### Examining input and output
 We will use the cell file
 
 [alanine.cell](alanine/alanine.cell)
@@ -66,6 +68,8 @@ This is much like our [previous](Example_1-Ethanol.md) [results](Example_2-Diamo
 
 This result is not fully converged (we will not be testing this in this tutorial, but feel free to check), but the relative shift between some of the sites is converged (again you may verify that if inclined).
 
+### Analysing and comparing to experiment
+
 We will now compare these results with experiment. The figure below is an experimental ^17^O NMR spectrum of L-alanine. It shows 2 peaks, which are very broad due to the quadripolar coupling, and overlap.
 
 ![Solid-State O17 NMR spectrum of L-alanine"](../img/nmr_tut3.png){width="40%"}
@@ -83,7 +87,49 @@ We will now compare these results with experiment. The figure below is an experi
  |$\eta_Q$(B)| 0.70|
  | **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry $\eta_Q$.**||
 
-Assign the two resonances A and B. Do all three computed parameters support this assignment?
+From this, we will try to find what A and B are.
+
+To do so, we will look at the ***alanine.castep*** [tensor table table](alanine_table.txt){width="50%"}.
+
+By a quick glance at the table, we see that the the chemical shift of hydrogen ranges from 20-30, carbon around 0, 124 or 159, nitrogen 194 and oxygen 48 or 63. Because of this we can tell that the 2 resonances are going to belong to carbon and oxygen: to get a chemical shift difference of 23.5, oxygen's 48 and a hydrogen (ideally of 24.5) are the only option of coming close to that value.
+
+We see in the oxygen portion of the table
+
+```
+===============================================================================
+|                Chemical Shielding and Electric Field Gradient Tensors       |
+|-----------------------------------------------------------------------------|
+|     Nucleus                       Shielding tensor             EFG Tensor   |
+|    Species            Ion    Iso(ppm)   Aniso(ppm)  Asym    Cq(MHz)    Eta  |
+|    O                  1       48.29     352.85      0.51   7.125E+00   0.25 |
+|    O                  2       62.86     255.66      0.71   5.794E+00   0.64 |
+|    O                  3       48.29     352.85      0.51   7.125E+00   0.25 |
+|    O                  4       62.86     255.66      0.71   5.794E+00   0.64 |
+|    O                  5       48.29     352.85      0.51   7.125E+00   0.25 |
+|    O                  6       62.86     255.66      0.71   5.794E+00   0.64 |
+|    O                  7       48.29     352.85      0.51   7.125E+00   0.25 |
+|    O                  8       62.86     255.66      0.71   5.794E+00   0.64 |
+===============================================================================
+
+```
+
+ that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the ***alinine.cell***  file in Vesta (or the ***alanine.pdb*** file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1-Ethanol.md), we will examine which atoms correspond to which environment.
+
+ The cell and a purposely highlighted atom are shown below.
+
+ ![alanine cell](alanine_cell.png)
+
+The oxygens are the red atoms. We see here that there are effectively 2 types of oxygen here - ones with hydrogen bonding (dashed lines joining to a hydrogen(grey atom)) and ones without. Here atom 52 (oxygen ion 8 in the [table](alanine_table.txt); it starts at 44 as there are 44 atoms before it) is selected: this has a chemical shielding value of 62.86, as seen above. When clicking any oxygen with 2 hydrogen bonds it corresponds to an atom number that has a shielding tensor of 62.86, while all the ones with 1 hydrogen bond have a value of 48.29. For this exercise, we have now identified that resonance A comes from a single-hydrogen-bonded oxygen.
+
+There are a lot more hydrogens and thus it is harder to find which specific one A is referring to. Because $\delta$(A) - $\delta$(B) = 23.5, we know that the chemical shielding should have a value of around $48.29 - 23.5 = 24.79$
+
+From the table, we see that the closest value is 24.01, corresponding to atoms 1, 8, 15 and 22. By clicking on hydrogens until one of those is found, we find that
+
+![Corresponding hydrogen](hydrogen_find.png){width="40%"}
+
+all 3 of those hydrogens are bonded to a nitrogen that is also bonded to 2 other hydrogens and a carbon. It is different from the other 2 hydrogens because the oxygen it is hydrogen-bonded to has no other hydrogen bonds: A and B are hydrogen-bonded to each other.
+
+These results are confirmed by the other values provided in the table. To confirm A being oxygen 1 (or 3 or 5... - all the values are identical), $C_Q$ in the [table](alanine_table.txt) is 7.125 compared to the expected 7.86, and $\eta_Q$ is 0.25 compared to the expected 0.28. However, this is not the case for hydrogen - a $C_Q$ of 6.53 and an $\eta_Q$ of 0.7 are expected, but the castep results are 0.21 and 0.06 respectively.
 
 # Silicates - Quartz and Cristoballite
 
