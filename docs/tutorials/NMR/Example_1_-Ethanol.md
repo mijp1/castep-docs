@@ -5,7 +5,7 @@
 
 
 
-The discovery that one could actually see chemical shifts in hydrogen spectra was made in 1951 at Stanford University by Packard, Arnold, Dharmatti (shown in Fig1. ). We will try to reproduce this result.  
+The discovery that one could actually see chemical shifts in hydrogen spectra was made in 1951 at Stanford University by Packard, Arnold, Dharmatti (shown in Fig1.). We will try to reproduce this result.  
 
 
 ## Files   
@@ -105,5 +105,4 @@ A suitable $\sigma_{ref}$ for ^1^H is 30.97ppm.
 <figure Fig2 style="display: inline-block;">
   <figcaption style="text-align: left;">Fig2. <sup><small>1</small></sup>H NMR spectrum of liquid ethanol</figcaption>
 </figure>
-<br>
  Fig2. shows a modern high-resolution ^1^H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the ^1^H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm. You should find that your computed values agree for two sites. Do you know why the other site has such a large disagreement with experiment?

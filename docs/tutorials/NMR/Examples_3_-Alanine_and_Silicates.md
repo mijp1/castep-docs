@@ -54,12 +54,12 @@ available. This is particularly true for organic materials. First principles cal
 
 | | |
 |--|--|
-|&#948;(A)-&#948; (B) (ppm)| 23.5|
-|C~Q~ (A) (MHz)| 7.86|
-|&#951;~Q~(A)| 0.28|
-|C~Q~(B) (MHz)| 6.53|
-|&#951;~Q~(B)| 0.70|
-| **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.**||
+|$\delta$(A)-$\delta$(B) (ppm)| 23.5|
+|$C_Q$(A) (MHz)| 7.86|
+|$\eta_Q$(A)| 0.28|
+|$C_Q$(B) (MHz)| 6.53|
+|$\eta_Q$(B)| 0.70|
+| **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry $\eta_Q$.**||
 
 # Silicates - Quartz and Cristoballite
 
@@ -84,8 +84,8 @@ available. This is particularly true for organic materials. First principles cal
 
 
 
-| | &#948; (ppm) | C<sub>Q</sub> (MHz) | &#951;<sub>Q</sub> |
+| | $\delta$ (ppm) | $C_Q$ (MHz) | $\eta_Q$ |
 |---|---|---|---|
 |Material A| 37.2 | 5.21 | 0.13 |
 |Material B| 40.8 | 5.19 | 0.19 |
-| **Table 2: Experimental ^17^O NMR parameters for two silicates. Isotropic chemical shift &#948; , quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry &#951;<sub>Q</sub>.** |
+| **Table 2: Experimental ^17^O NMR parameters for two silicates. Isotropic chemical shift $\delta$ , quadrupolar coupling $C_Q$, and EFG asymmetry $\eta_Q$.** |
