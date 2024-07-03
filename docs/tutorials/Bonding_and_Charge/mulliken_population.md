@@ -108,3 +108,23 @@ Despite having the same structure, the results are very different now -
 - Unlike before, the Ga and As ions have charges on them - this is indicative of ionic/polar character
 - There is now a much smaller population in the Ga-As bond. This indicates that the covalent bonds between them aren't particularly strong.
 - Especially in the case of Ga, the s:p ratio is far off from 3 - this again indicates that the bonding is not like in the cases above
+
+## Diatomic cases
+
+Next we will examine diatomic molecules - HF, HCl and HBr. We will examine the results given what we know about how electronegativity varies across the periodic table.
+
+Here is the ```HF.cell``` file
+
+```
+%block lattice_abc
+5 5 5
+90 90 90
+%endblock lattice_abc
+
+%block positions_abs
+H 2 2 2
+F 2.91 2 2
+%endblock positions_abs
+```
+
+Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but too small and it won't be accurate), 1 atom placed about in the middle, and the 2^nd^ atom placed a bond length away from it
