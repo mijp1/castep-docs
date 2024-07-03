@@ -114,7 +114,7 @@ We see in the oxygen portion of the table
 
 ```
 
- that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the `alinine.cell`  file in Vesta (or the `alanine.pdb` file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
+ that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the `alanine.cell`  file in Vesta (or the `alanine.pdb` file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
 
  The cell and a purposely highlighted atom are shown below.
 
