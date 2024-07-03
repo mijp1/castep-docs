@@ -128,3 +128,24 @@ F 2.91 2 2
 ```
 
 Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but too small and it won't be accurate), 1 atom placed about in the middle, and the 2^nd^ atom placed a bond length away from it. The bond lengths can be found on a [database](https://cccbdb.nist.gov/), or you may perform a [geometry optimisation](../../..//documentation/Geometry_Optimisation/overview) to find it yourself if you wish.
+
+Using a ```param``` file identical to before and running castep yields this towards the end of ```HF.castep```
+
+```
+Atomic Populations (Mulliken)
+-----------------------------
+Species          Ion     s       p       d       f      Total   Charge (e)
+==========================================================================
+H               1     0.309   0.000   0.000   0.000   0.309     0.691
+F               1     1.960   5.731   0.000   0.000   7.691    -0.691
+==========================================================================
+
+            Bond                   Population      Length (A)
+======================================================================
+          H 1 -- F 1                    0.34        0.91000
+======================================================================
+```
+There are some interesting things to note:
+
+- Like GaAs (and unlike Si and diamond), there are 2 opposite charges on both atoms. However, the charge is significantly larger, indicating that the molecule is highly polar/ionic.
+- The population of the H-F bond is rather low - this indicates that the molecule has little covalent character
