@@ -37,7 +37,7 @@ We will use the cell file
 !!! Note
     Don't worry about how long/complex it is - it is no different from any other [cell file](../../documentation/Input_Files/cell_file.md) - it just simply defines a large cell
 
-and param file ***alanine.param***
+and param file `alanine.param`
 
 ```
 fix_occupancy = true
@@ -61,9 +61,9 @@ You may also want to view the file
 
 [alanine.pdb](alanine/alanine.pdb)
 
-in Materials Studio or another software - this allows better examination of features like hydrogen bonding. This is the original file downloaded from the [Cambridge Crystallographic Database](https://www.ccdc.cam.ac.uk/) (and was used to obtain the ***alanine.cell*** file). The cell structure was obtained experimentally by neutron diffraction.
+in Materials Studio or another software - this allows better examination of features like hydrogen bonding. This is the original file downloaded from the [Cambridge Crystallographic Database](https://www.ccdc.cam.ac.uk/) (and was used to obtain the `alanine.cell` file). The cell structure was obtained experimentally by neutron diffraction.
 
-We will now run castep. The ***alanine.castep*** output file should contain the [table](alanine_table.txt)
+We will now run castep. The `alanine.castep` output file should contain the [table](alanine_table.txt)
 
 This is much like our [previous](Example_1_-Ethanol.md) [results](Example_2_-Diamond.md), except there are now 2 more columns - $C_Q$ and Eta - these are both because an EFG calculation was now performed.
 
@@ -90,7 +90,7 @@ We will now compare these results with experiment. The figure below is an experi
 
 From this, we will try to find what A and B are.
 
-To do so, we will look at the ***alanine.castep*** [tensor table table](alanine_table.txt){width="50%"}.
+To do so, we will look at the `alanine.castep` [tensor table table](alanine_table.txt){width="50%"}.
 
 By a quick glance at the table, we see that the the chemical shift of hydrogen ranges from 20-30, carbon around 0, 124 or 159, nitrogen 194 and oxygen 48 or 63. Because of this we can tell that the 2 resonances are going to belong to carbon and oxygen: to get a chemical shift difference of 23.5, oxygen's 48 and a hydrogen (ideally of 24.5) are the only option of coming close to that value.
 
@@ -114,7 +114,7 @@ We see in the oxygen portion of the table
 
 ```
 
- that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the ***alinine.cell***  file in Vesta (or the ***alanine.pdb*** file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
+ that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the `alinine.cell`  file in Vesta (or the `alanine.pdb` file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
 
  The cell and a purposely highlighted atom are shown below.
 
@@ -142,7 +142,7 @@ For quartz we will use the cell file
 
 [quartz.cell](silicates/quartz.cell)
 
-And the param file ***quartz.param***
+And the param file `quartz.param`
 
 ```
 cut_off_energy  = 40 ry
@@ -160,9 +160,9 @@ For cristoballite we will use the cell file
 
 [crist.cell](silicates/crist.cell)
 
-And exactly the same param file as above (just named ***crist.param*** instead)
+And exactly the same param file as above (just named `crist.param` instead)
 
-We then run castep on both crystal structures as usual, getting the output files ***quartz.castep*** and ***crist.castep***. Within those files, we will have the same types of tables as above:
+We then run castep on both crystal structures as usual, getting the output files `quartz.castep` and `crist.castep`. Within those files, we will have the same types of tables as above:
 
 For quartz:
 

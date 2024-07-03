@@ -34,7 +34,7 @@ fix_occupancy = true
 opt_strategy : speed
 cut_off_energy  =  30 Ry
 ```
-Running castep on these files will lead to the ***diamond.castep*** output file which will contain the table
+Running castep on these files will lead to the `diamond.castep` output file which will contain the table
 
 ```
 ====================================================================
@@ -50,12 +50,12 @@ Running castep on these files will lead to the ***diamond.castep*** output file 
 
 What we are going to be looking at is isometric shielding tensor of carbon (with both atoms being identical).
 
-While there is nothing particularly special in ***diamond.param***,
+While there is nothing particularly special in `diamond.param`,
 !!! note
     We have already done a convergence test of the cut-off energy, which is specified in that file, in [example 1](Example_1_-Ethanol.md)
 
 
-we have specified the k-points in the ***diamond.cell*** file using the keyword
+we have specified the k-points in the `diamond.cell` file using the keyword
 
 `kpoints_mp_grid 4 4 4`
 
@@ -78,7 +78,7 @@ For diamond we will look at 3 different k-points (0,0,0), (½,½,½) (¼,¼,¼).
 kpoints_mp_grid x x x
 ```
 
-Then we specify the kpoint we are examining in the ***diamond.cell*** file using
+Then we specify the kpoint we are examining in the `diamond.cell` file using
 ```
 %BLOCK KPOINTS_LIST
 0 0 0 1.0

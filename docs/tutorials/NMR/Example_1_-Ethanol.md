@@ -47,11 +47,11 @@ task        = magres
 cut_off_energy  = 50 ry
 ```
 
-Look at the [cell](../../documentation/Input_Files/cell_file.md) and [param](../../documentation/Input_Files/param_file.md) files. Note that the only special part of the ***ethanol.param*** file is
+Look at the [cell](../../documentation/Input_Files/cell_file.md) and [param](../../documentation/Input_Files/param_file.md) files. Note that the only special part of the `ethanol.param` file is
 
 `task = magres`
 
-Run a standard castep calculation for ethanol. Look at the ***ethanol.castep*** output file. Towards the end, you should be able to find the isotropic chemical shielding, anisotropy, and asymmetry in a table like this:
+Run a standard castep calculation for ethanol. Look at the `ethanol.castep` output file. Towards the end, you should be able to find the isotropic chemical shielding, anisotropy, and asymmetry in a table like this:
 
  ```
  ====================================================================
@@ -74,7 +74,7 @@ Run a standard castep calculation for ethanol. Look at the ***ethanol.castep*** 
  Here we are only interested in the isotropic values for the hydrogen ions
 
 
-You may also find this information (as well as extra detail) in the file ***ethanol.magres***, which contains tables such as
+You may also find this information (as well as extra detail) in the file `ethanol.magres`, which contains tables such as
 ```
 ============
 Atom: H        1
@@ -100,7 +100,7 @@ H        1 Asymmetry:        0.1373
 ```
 for each atom. You can see here that it also gives the same information - the isotropic value for atom 1 is the same (29.45 to 2dp for both). You may note that the isotropic value is the average of the diagonal values in the total shielding tensor, as wall as the average of the diagonal eigenvectors.
 
-You might wish to transfer the ***ethanol.magres*** file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
+You might wish to transfer the `ethanol.magres` file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
 
 ## Analysis
 
@@ -124,7 +124,7 @@ Hence a cut off energy of 50 Ry should indeed be appropriate - it's still relati
 
 Next we will note the converged isotropic hydrogen shieldings - in this case we may simply use a cut off energy of 20 since the results are about the same as the more converged 50. We will compare them to experiment. The three methyl (CH~3~) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH~2~ protons.
 
-Then we can average the CH~3~ and CH~2~ chemical shieldings. For example, the CH~2~ hydrogens (atoms 4 and 5) are found in the ***ethanol.castep*** file (shown above) to be 26.83 and 27.24: the average CH~2~ shielding is 27.04. CH~3~, meanwhile, has an average of 29.83. Lastly, the single OH hydrogen has a value of 31.93. We now have 3 unique chemical shieldings (though in your case the values will likely slightly differ)
+Then we can average the CH~3~ and CH~2~ chemical shieldings. For example, the CH~2~ hydrogens (atoms 4 and 5) are found in the `ethanol.castep` file (shown above) to be 26.83 and 27.24: the average CH~2~ shielding is 27.04. CH~3~, meanwhile, has an average of 29.83. Lastly, the single OH hydrogen has a value of 31.93. We now have 3 unique chemical shieldings (though in your case the values will likely slightly differ)
 
 We now need to convert the chemical shieldings $\sigma_{iso}$; to chemical shifts $\delta_{iso}$ on the experimental scale. We use the relation:  $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$.
 A suitable $\sigma_{ref}$ for ^1^H is 30.97ppm.
