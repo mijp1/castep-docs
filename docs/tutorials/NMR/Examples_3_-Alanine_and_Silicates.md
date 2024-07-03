@@ -47,7 +47,7 @@ magres_task = nmr
 cut_off_energy = 35 ry
 xc_functional : PBE
 ```
-Note that the only difference to the [previous](Example_1-Ethanol.md) [files](Example_2-Diamond.md) is the linewidths
+Note that the only difference to the [previous](Example_1_-Ethanol.md) [files](Example_2_-Diamond.md) is the linewidths
 
 ```
 magres_task = nmr
@@ -65,7 +65,7 @@ in Materials Studio or another software - this allows better examination of feat
 
 We will now run castep. The ***alanine.castep*** output file should contain the [table](alanine_table.txt)
 
-This is much like our [previous](Example_1-Ethanol.md) [results](Example_2-Diamond.md), except there are now 2 more columns - $C_Q$ and Eta - these are both because an EFG calculation was now performed.
+This is much like our [previous](Example_1_-Ethanol.md) [results](Example_2_-Diamond.md), except there are now 2 more columns - $C_Q$ and Eta - these are both because an EFG calculation was now performed.
 
 This result is not fully converged (we will not be testing this in this tutorial, but feel free to check), but the relative shift between some of the sites is converged (again you may verify that if inclined).
 
@@ -114,7 +114,7 @@ We see in the oxygen portion of the table
 
 ```
 
- that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the ***alinine.cell***  file in Vesta (or the ***alanine.pdb*** file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1-Ethanol.md), we will examine which atoms correspond to which environment.
+ that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the ***alinine.cell***  file in Vesta (or the ***alanine.pdb*** file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
 
  The cell and a purposely highlighted atom are shown below.
 
@@ -219,4 +219,4 @@ Like with alanine, we will compare it to an experimental ^17^O NMR parameter tab
 
 This example is much more straightforward - all the atoms of a certain element are identical.
 
-We are given that a suitable $\sigma_{ref}$ (for oxygen) is 263ppm. Using the equation $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$ - used before in [Example 1](Example_1-Ethanol.md) - we are able to convert the isometric chemical shielding tensor into a relative chemical shift: O in quartz has a shift of 28.46 and in cristoballite it has a shift of 23.53
+We are given that a suitable $\sigma_{ref}$ (for oxygen) is 263ppm. Using the equation $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$ - used before in [Example 1](Example_1_-Ethanol.md) - we are able to convert the isometric chemical shielding tensor into a relative chemical shift: O in quartz has a shift of 28.46 and in cristoballite it has a shift of 23.53

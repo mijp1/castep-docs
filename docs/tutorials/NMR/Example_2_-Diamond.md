@@ -52,7 +52,7 @@ What we are going to be looking at is isometric shielding tensor of carbon (with
 
 While there is nothing particularly special in ***diamond.param***,
 !!! note
-    We have already done a convergence test of the cut-off energy, which is specified in that file, in [example 1](Example_1-Ethanol.md)
+    We have already done a convergence test of the cut-off energy, which is specified in that file, in [example 1](Example_1_-Ethanol.md)
 
 
 we have specified the k-points in the ***diamond.cell*** file using the keyword
