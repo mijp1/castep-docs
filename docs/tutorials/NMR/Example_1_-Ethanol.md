@@ -105,15 +105,21 @@ You might wish to transfer the ***ethanol.magres*** file back to your desktop to
 ## Analysis
 
 Next we identify which (hydrogen) ion corresponds to which part of the molecule - in the case of ethanol, we find out which ones correspond to CH3~3~ CH~2~ and OH.
-This can be done by uploading the cell file to VESTA and clicking each atom. <br>![NMR vesta demonstration](../img/NMR_vesta_demonstration.png){width="40%"} <br>Here you can see that one of the CH~3~ hydrogens is atom 3. If you do the same for all of them, you should find that atoms 1, 2 and 3 are the CH~3~ hydrogens, 4 and 5 are the CH~2~ hyrdogens and 6 is the OH hydrogen.
+This can be done by uploading the cell file to VESTA and clicking each atom.
+
+![NMR vesta demonstration](../img/NMR_vesta_demonstration.png){width="40%"}
+
+Here you can see that one of the CH~3~ hydrogens is atom 3. If you do the same for all of them, you should find that atoms 1, 2 and 3 are the CH~3~ hydrogens, 4 and 5 are the CH~2~ hyrdogens and 6 is the OH hydrogen.
 
 It is important to check if the results are converged. Running a convergence test plot ranging the
 ~~~
 cut_off_energy = 20
 ~~~
 from 20 to 50 gives the plot
- <br>
- ![Ethanol convergence plot](../img/ethanol_convergence.png){width="75%"} <br>
+
+ ![Ethanol convergence plot](../img/ethanol_convergence.png){width="75%"}
+
+
 Hence a cut off energy of 50 Ry should indeed be appropriate - it's still relatively fast and should be fairly well-converged.
 
 Next we will note the converged isotropic hydrogen shieldings - in this case we may simply use a cut off energy of 20 since the results are about the same as the more converged 50. We will compare them to experiment. The three methyl (CH~3~) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH~2~ protons.
