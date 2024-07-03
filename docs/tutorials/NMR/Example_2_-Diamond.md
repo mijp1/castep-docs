@@ -62,7 +62,8 @@ we have specified the k-points in the ***diamond.cell*** file using the keyword
 We will test the convergence of the chemical shielding with varying k-point mesh grid sizes. To do so, we will run castep for a range of k-point meshes (2, 4, 6, 8, 10), and then make a convergence plot of k-point mesh size against  of the chemical shielding of carbon.
 
   The convergence plot should look like this:
-  <br>
+
+
   ![Diamond convergence plot](../img/diamond_convergence.png){width="75%"}
 
 We can see from this that it converges at a k-point grid size of 4, and the converged value is around 160.

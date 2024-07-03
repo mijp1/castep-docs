@@ -1,4 +1,4 @@
-# Examples 3 - Alanine and Silicates</h1>
+# Examples 3 - Alanine and Silicates
 
 We now look at some more realistic and complex structures - the amino acid alanine and 2 different silicates: cristoballite and qartz. These are fairly large crystals - to get them
 to complete in a short time we will run them on a cluster.
@@ -15,7 +15,8 @@ We will also perform EFG calculations for the above structures and examine the r
 
 <p style="border-width:3px; border-style:solid;"><i>
 <b>Oxygen-17 NMR</b>
-<br>
+
+
 Oxygen is a component of many geological materials. Oxygen is
 also important element in organic and biological molecules since it is often intimately involved in hydrogen bonding. Solid State <sup><small>17</small></sup>O NMR should be a uniquely valuable probe as the chemical shift range of <sup><small>17</small></sup>O covers almost 1000 ppm in organic molecules. Furthermore <sup><small>17</small></sup>O has spin I = 5/2 and hence a net quadrupole moment. As a consequence of this the solid state NMR spectrum is strongly affected by the electric
 field gradient at the nucleus.
