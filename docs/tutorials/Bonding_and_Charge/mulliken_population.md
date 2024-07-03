@@ -58,11 +58,11 @@ The atoms are not charged overall, and there is a large bond population. This is
 
 ### Comparing to Other Diamond Structures
 
-To understand the results of this further, we will compare the results of this to 2 other diamond structures - GaAs and diamond (as in carbon-diamond).
+To understand the results of this further, we will compare them to 2 other diamond structures - GaAs and diamond (as in carbon-diamond).
 
-For both of the cases, we will use an identical .param file (just rename them to ```diamond.param``` and ```GaAs.param```). The cell files will be slightly different - for diamond we will change the ```lattice_abc``` block lattice dimensions with 2.52 (rather than 3.8 - the structure is the same but the cell size is different). Naturally the ```Si```'s in the ```positions_frac``` block need to be replaced with ```C```'s
+For both of these cases, we will use an identical ```.param``` file (just rename them to ```diamond.param``` and ```GaAs.param```). The cell files will be slightly different - for diamond we will change the ```lattice_abc``` block lattice dimensions with 2.52 (rather than 3.8 - the structure is the same but the cell size is different). Naturally the ```Si```'s in the ```positions_frac``` block need to be replaced with ```C```'s
 
-Similarly, towards the end of ```diamond.castep``` we find
+Towards the end of ```diamond.castep``` we find
 
 ```
 Atomic Populations (Mulliken)
@@ -78,13 +78,12 @@ C               2     1.076   2.924   0.000   0.000   4.000     0.000
           C 1 -- C 2                    3.00        1.54318
 ======================================================================
 ```
-The results are rather similar but there are some interesting things to note:
+The results are rather similar but there are a couple of interesting things to note:
 
 - The ratio of the populations in s and p orbitals is closer to 1:3, which is expected for sp^3^ hybridization - this indicates that the bonds are much more perfectly hybridized, meaning it's more overlapped: this indicates stronger bonding, as well as showing that silicon is a semimetal
 - The population of electrons in the bonds is the same (indicating that the same type of bonding is present), but the bond length is smaller - again indicating more overlap and thus stronger bonding.
-- The charge on the atoms is 0 for both of them - this is expected given that it's 2 identical atoms.
 
-Now we will compare it with GaAs. The same procedure is used, except the lattice length is now 3.93 and the atoms in ```positions_frac``` with Ga and As (it doesn't matter which one goes in which position/line).
+Now we will compare it with GaAs. The same procedure is used, except the lattice length is now 3.93 and the atoms in ```positions_frac``` should be ```Ga``` and ```As``` (it doesn't matter which one goes in which position/line).
 
 We get an output looking like this:
 
@@ -103,15 +102,15 @@ As              1     1.488   3.595  10.000   0.000  15.083    -0.083
 ======================================================================
 ```
 
-Despite having the same structure, the results are very different now -
+Despite having the same structure, the results are very different now:
 
 - Unlike before, the Ga and As ions have charges on them - this is indicative of ionic/polar character
-- There is now a much smaller population in the Ga-As bond. This indicates that the covalent bonds between them aren't particularly strong.
-- Especially in the case of Ga, the s:p ratio is far off from 3 - this again indicates that the bonding is not like in the cases above
+- There is now a much smaller population in the Ga-As bond. This indicates less covalent character
+- Especially in the case of Ga, the s:p shell ratio is far off from 1:3 - this again indicates that the bonding is not like in the cases above
 
-## Diatomic cases
+## Diatomic molecules
 
-Next we will examine diatomic molecules - HF, HCl and HBr. We will examine the results given what we know about how electronegativity varies across the periodic table.
+Next we will examine a few diatomic molecules - HF, HCl and HBr.
 
 Here is the ```HF.cell``` file
 
@@ -127,7 +126,7 @@ F 2.91 2 2
 %endblock positions_abs
 ```
 
-Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but too small and it won't be accurate), 1 atom placed about in the middle, and the 2^nd^ atom placed a bond length away from it. The bond lengths can be found on a [database](https://cccbdb.nist.gov/), or you may perform a [geometry optimisation](../../..//documentation/Geometry_Optimisation/overview) to find it yourself if you wish.
+Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but make it too small and it won't be accurate), 1 atom placed about in the middle, and the 2^nd^ atom placed a bond length away from it - in this case F is $0.91 \mathring{A}$ to the right of the H . The bond lengths can be found on a [database](https://cccbdb.nist.gov/), or you may perform a [geometry optimisation](../../..//documentation/Geometry_Optimisation/overview) to find it yourself if you wish.
 
 Using a ```param``` file identical to before and running castep yields this towards the end of ```HF.castep```
 
@@ -145,12 +144,12 @@ F               1     1.960   5.731   0.000   0.000   7.691    -0.691
           H 1 -- F 1                    0.34        0.91000
 ======================================================================
 ```
-There are some interesting things to note:
+There are a couple of interesting things to note:
 
 - Like GaAs (and unlike Si and diamond), there are 2 opposite charges on both atoms. However, the charge is significantly larger, indicating that the molecule is highly polar/ionic.
 - The population of the H-F bond is rather low - this indicates that the molecule has little covalent character
 
-We will now compare to very similar molecules - HCl and HBr - keeping the trend of hydrogen bonded to a group 7 element. The ```param``` files are completely identical and in the ```cell``` files the bond lengths used are 1.275 for HCl and 1.44 for HBr.
+We will now compare HF to very similar molecules - HCl and HBr - keeping the trend of hydrogen bonded to a group 7 element. The ```param``` files are completely identical and in the ```cell``` files the bond lengths used are 1.275 for HCl and 1.44 for HBr.
 
 HCl has the result
 
