@@ -151,3 +151,35 @@ There are some interesting things to note:
 - The population of the H-F bond is rather low - this indicates that the molecule has little covalent character
 
 We will now compare to very similar molecules - HCl and HBr - keeping the trend of hydrogen bonded to a group 7 element. The ```param``` files are completely identical and in the ```cell``` files the bond lengths used are 1.275 for HCl and 1.44 for HBr.
+
+HCl has the result
+
+```
+Species          Ion     s       p       d       f      Total   Charge (e)
+==========================================================================
+  H               1     0.620   0.000   0.000   0.000   0.620     0.380
+  Cl              1     1.936   5.443   0.000   0.000   7.379    -0.379
+==========================================================================
+
+                 Bond                   Population      Length (A)
+======================================================================
+               H 1 -- Cl 1                   0.56        1.27500
+======================================================================
+```
+
+While HBr has
+
+```
+Atomic Populations (Mulliken)
+-----------------------------
+Species          Ion     s       p       d       f      Total   Charge (e)
+==========================================================================
+H               1     0.824   0.000   0.000   0.000   0.824     0.176
+Br              1     1.908   5.267   0.000   0.000   7.176    -0.176
+==========================================================================
+
+            Bond                   Population      Length (A)
+======================================================================
+          H 1 -- Br 1                   0.53        1.44000
+======================================================================
+```
