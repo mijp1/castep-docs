@@ -149,3 +149,5 @@ There are some interesting things to note:
 
 - Like GaAs (and unlike Si and diamond), there are 2 opposite charges on both atoms. However, the charge is significantly larger, indicating that the molecule is highly polar/ionic.
 - The population of the H-F bond is rather low - this indicates that the molecule has little covalent character
+
+We will now compare to very similar molecules - HCl and HBr - keeping the trend of hydrogen bonded to a group 7 element. The ```param``` files are completely identical and in the ```cell``` files the bond lengths used are 1.275 for HCl and 1.44 for HBr.
