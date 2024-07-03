@@ -79,13 +79,13 @@ We will now compare these results with experiment. The figure below is an experi
 </figure>
  The experimental parameters are given in Table 1 below.
 
- | | |
- |--|--|
+ |                             |     |
+ |-----------------------------|-----|
  |$\delta$(A)-$\delta$(B) (ppm)| 23.5|
- |$C_Q$(A) (MHz)| 7.86|
- |$\eta_Q$(A)| 0.28|
- |$C_Q$(B) (MHz)| 6.53|
- |$\eta_Q$(B)| 0.70|
+ |$C_Q$(A) (MHz)               | 7.86|
+ |$\eta_Q$(A)                  | 0.28|
+ |$C_Q$(B) (MHz)               | 6.53|
+ |$\eta_Q$(B)                  | 0.70|
  | **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry $\eta_Q$.**||
 
 From this, we will try to find what A and B are.
@@ -211,10 +211,10 @@ and for cristoballite
 
 Like with alanine, we will compare it to an experimental ^17^O NMR parameter table - this is shown below as Table 2
 
-| | $\delta$ (ppm) | $C_Q$ (MHz) | $\eta_Q$ |
-|---|---|---|---|
-|Material A| 37.2 | 5.21 | 0.13 |
-|Material B| 40.8 | 5.19 | 0.19 |
+|          | $\delta$ (ppm) | $C_Q$ (MHz) | $\eta_Q$ |
+|----------|----------------|-------------|----------|
+|Material A|      37.2      |     5.21    |   0.13   |
+|Material B|      40.8      |     5.19    |   0.19   |
 | **Table 2: Experimental ^17^O NMR parameters for two silicates. Isotropic chemical shift $\delta$ , quadrupolar coupling $C_Q$, and EFG asymmetry $\eta_Q$.** |
 
 This example is much more straightforward - all the atoms of a certain element are identical.
