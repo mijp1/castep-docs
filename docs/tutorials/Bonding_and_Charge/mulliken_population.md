@@ -56,4 +56,55 @@ Si              2     1.356   2.644   0.000   0.000   4.000     0.000
 ```
 The atoms are not charged overall, and there is a large bond population. This is all indicative of a strong covalent bond.
 
-##To finish
+### Comparing to Other Diamond Structures
+
+To understand the results of this further, we will compare the results of this to 2 other diamond structures - GaAs and diamond (as in carbon-diamond).
+
+For both of the cases, we will use an identical .param file (just rename them to ```diamond.param``` and ```GaAs.param```). The cell files will be slightly different - for diamond we will change the ```lattice_abc``` block lattice dimensions with 2.52 (rather than 3.8 - the structure is the same but the cell size is different). Naturally the ```Si```'s in the ```positions_frac``` block need to be replaced with ```C```'s
+
+Similarly, towards the end of ```diamond.castep``` we find
+
+```
+Atomic Populations (Mulliken)
+-----------------------------
+Species          Ion     s       p       d       f      Total   Charge (e)
+==========================================================================
+C               1     1.076   2.924   0.000   0.000   4.000     0.000
+C               2     1.076   2.924   0.000   0.000   4.000     0.000
+==========================================================================
+
+            Bond                   Population      Length (A)
+======================================================================
+          C 1 -- C 2                    3.00        1.54318
+======================================================================
+```
+The results are rather similar but there are some interesting things to note:
+
+- The ratio of the populations in s and p orbitals is closer to 1:3, which is expected for sp^3^ hybridization - this indicates that the bonds are much more perfectly hybridized, meaning it's more overlapped: this indicates stronger bonding
+- The population of electrons in the bonds is the same (indicating that the same type of bonding is present), but the bond length is smaller - again indicating more overlap and thus stronger bonding.
+- The charge on the atoms is 0 for both of them - this is expected given that it's 2 identical atoms.
+
+Now we will compare it with GaAs. The same procedure is used, except the lattice length is now 3.93 and the atoms in ```positions_frac``` with Ga and As (it doesn't matter which one goes in which position/line).
+
+We get an output looking like this:
+
+```
+Atomic Populations (Mulliken)
+-----------------------------
+Species          Ion     s       p       d       f      Total   Charge (e)
+==========================================================================
+Ga              1     1.180   1.743   9.994   0.000  12.917     0.083
+As              1     1.488   3.595  10.000   0.000  15.083    -0.083
+==========================================================================
+
+            Bond                   Population      Length (A)
+======================================================================
+         Ga 1 -- As 1                   0.34        2.44652
+======================================================================
+```
+
+Despite having the same structure, the results are very different now -
+
+- Unlike before, the Ga and As ions have charges on them - this is indicative of ionic/polar character
+- There is now a much smaller population in the Ga-As bond. This indicates that the covalent bonds between them aren't particularly strong.
+- Especially in the case of Ga, the s:p ratio is far off from 3 - this again indicates that the bonding is not like in the cases above
