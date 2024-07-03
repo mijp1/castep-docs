@@ -86,7 +86,7 @@ We will now compare these results with experiment. The figure below is an experi
  |$\eta_Q$(A)                  | 0.28|
  |$C_Q$(B) (MHz)               | 6.53|
  |$\eta_Q$(B)                  | 0.70|
- | **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labeled A and B. Isotropic chemical shift &#948;, quadrupolar coupling C<sub>Q</sub>, and EFG asymmetry $\eta_Q$.**||
+| **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labelled A and B. Isotropic chemical shift $\delta$, quadrupolar coupling $C_{Q}$, and EFG asymmetry $\eta_Q$.**||
 
 From this, we will try to find what A and B are.
 
