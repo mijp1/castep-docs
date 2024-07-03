@@ -127,4 +127,4 @@ F 2.91 2 2
 %endblock positions_abs
 ```
 
-Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but too small and it won't be accurate), 1 atom placed about in the middle, and the 2^nd^ atom placed a bond length away from it
+Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but too small and it won't be accurate), 1 atom placed about in the middle, and the 2^nd^ atom placed a bond length away from it. The bond lengths can be found on a [database](https://cccbdb.nist.gov/), or you may perform a [geometry optimisation](../../..//documentation/Geometry_Optimisation/overview) to find it yourself if you wish.
