@@ -80,7 +80,7 @@ C               2     1.076   2.924   0.000   0.000   4.000     0.000
 ```
 The results are rather similar but there are some interesting things to note:
 
-- The ratio of the populations in s and p orbitals is closer to 1:3, which is expected for sp^3^ hybridization - this indicates that the bonds are much more perfectly hybridized, meaning it's more overlapped: this indicates stronger bonding
+- The ratio of the populations in s and p orbitals is closer to 1:3, which is expected for sp^3^ hybridization - this indicates that the bonds are much more perfectly hybridized, meaning it's more overlapped: this indicates stronger bonding, as well as showing that silicon is a semimetal
 - The population of electrons in the bonds is the same (indicating that the same type of bonding is present), but the bond length is smaller - again indicating more overlap and thus stronger bonding.
 - The charge on the atoms is 0 for both of them - this is expected given that it's 2 identical atoms.
 
