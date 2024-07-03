@@ -60,9 +60,9 @@ The atoms are not charged overall, and there is a large bond population. This is
 
 To understand the results of this further, we will compare them to 2 other diamond structures - GaAs and diamond (as in carbon-diamond).
 
-For both of these cases, we will use an identical ```.param``` file (just rename them to ```diamond.param``` and ```GaAs.param```). The cell files will be slightly different - for diamond we will change the ```lattice_abc``` block lattice dimensions with 2.52 (rather than 3.8 - the structure is the same but the cell size is different). Naturally the ```Si```'s in the ```positions_frac``` block need to be replaced with ```C```'s
+For both of these cases, we will use an identical `.param` file (just rename them to `diamond.param` and `GaAs.param`). The cell files will be slightly different - for diamond we will change the `lattice_abc` block lattice dimensions with 2.52 (rather than 3.8 - the structure is the same but the cell size is different). Naturally the `Si`'s in the `positions_frac` block need to be replaced with `C`'s
 
-Towards the end of ```diamond.castep``` we find
+Towards the end of `diamond.castep` we find
 
 ```
 Atomic Populations (Mulliken)
@@ -83,7 +83,7 @@ The results are rather similar but there are a couple of interesting things to n
 - The ratio of the populations in s and p orbitals is closer to 1:3, which is expected for sp^3^ hybridization - this indicates that the bonds are much more perfectly hybridized, meaning it's more overlapped: this indicates stronger bonding, as well as showing that silicon is a semimetal
 - The population of electrons in the bonds is the same (indicating that the same type of bonding is present), but the bond length is smaller - again indicating more overlap and thus stronger bonding.
 
-Now we will compare it with GaAs. The same procedure is used, except the lattice length is now 3.93 and the atoms in ```positions_frac``` should be ```Ga``` and ```As``` (it doesn't matter which one goes in which position/line).
+Now we will compare it with GaAs. The same procedure is used, except the lattice length is now 3.93 and the atoms in `positions_frac` should be `Ga` and `As` (it doesn't matter which one goes in which position/line).
 
 We get an output looking like this:
 
@@ -112,7 +112,7 @@ Despite having the same structure, the results are very different now:
 
 Next we will examine a few diatomic molecules - HF, HCl and HBr.
 
-Here is the ```HF.cell``` file
+Here is the `HF.cell` file
 
 ```
 %block lattice_abc
@@ -128,7 +128,7 @@ F 2.91 2 2
 
 Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but make it too small and it won't be accurate), 1 atom placed about in the middle, and the 2^nd^ atom placed a bond length away from it - in this case F is $0.91 \mathring{A}$ to the right of the H . The bond lengths can be found on a [database](https://cccbdb.nist.gov/), or you may perform a [geometry optimisation](../../..//documentation/Geometry_Optimisation/overview) to find it yourself if you wish.
 
-Using a ```param``` file identical to before and running castep yields this towards the end of ```HF.castep```
+Using a `param` file identical to before and running castep yields this towards the end of `HF.castep`
 
 ```
 Atomic Populations (Mulliken)
@@ -149,7 +149,7 @@ There are a couple of interesting things to note:
 - Like GaAs (and unlike Si and diamond), there are 2 opposite charges on both atoms. However, the charge is significantly larger, indicating that the molecule is highly polar/ionic.
 - The population of the H-F bond is rather low - this indicates that the molecule has little covalent character
 
-We will now compare HF to very similar molecules - HCl and HBr - keeping the trend of hydrogen bonded to a group 7 element. The ```param``` files are completely identical and in the ```cell``` files the bond lengths used are 1.275 for HCl and 1.44 for HBr.
+We will now compare HF to very similar molecules - HCl and HBr - keeping the trend of hydrogen bonded to a group 7 element. The `param` files are completely identical and in the `cell` files the bond lengths used are 1.275 for HCl and 1.44 for HBr.
 
 HCl has the result
 
