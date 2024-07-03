@@ -183,3 +183,4 @@ Br              1     1.908   5.267   0.000   0.000   7.176    -0.176
           H 1 -- Br 1                   0.53        1.44000
 ======================================================================
 ```
+The most significant thing this shows us is that the charges on both atoms decrease as you go down group 7. This successfully demonstrates something we already know: as you go down group 7, the electronegativity decreases.
