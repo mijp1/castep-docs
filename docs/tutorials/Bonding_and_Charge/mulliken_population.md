@@ -127,7 +127,7 @@ F 2.91 2 2
 %endblock positions_abs
 ```
 
-Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but make it too small and it won't be accurate), 1 atom placed about in the middle, and the 2nd atom placed a bond length away from it - in this case F is 0.9$\mathring{\text{A}}$ to the right of the H . The bond lengths can be found on a [database](https://cccbdb.nist.gov/), or you may perform a [geometry optimisation](../../../documentation/Geometry_Optimisation/overview) to find it yourself if you wish.
+Since we are just trying to look at a single diatomic molecule, the cell is defined rather simply - an arbitrarily large cube for the cell (making it too large would make the calculation take longer, but make it too small and it'll simulate a loose crystal rather than a disperse molecule), 1 atom placed about in the middle, and the 2nd atom placed a bond length away from it - in this case F is 0.91$\mathring{\text{A}}$ to the right of the H . The bond lengths can be found on a [database](https://cccbdb.nist.gov/), or you may perform a [geometry optimisation](../../../documentation/Geometry_Optimisation/overview) to find it yourself if you wish.
 
 Using a `param` file identical to before and running castep yields this towards the end of `HF.castep`
 
