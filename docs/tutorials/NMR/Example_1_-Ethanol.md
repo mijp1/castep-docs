@@ -104,7 +104,7 @@ You might wish to transfer the `ethanol.magres` file back to your desktop to vis
 
 ## Analysis
 
-Next we identify which (hydrogen) ion corresponds to which part of the molecule - in the case of ethanol, we find out which ones correspond to CH3~3~ CH~2~ and OH.
+Next we identify which (hydrogen) ion corresponds to which part of the molecule - in the case of ethanol, we find out which ones correspond to CH~3~ CH~2~ and OH.
 This can be done by uploading the cell file to VESTA and clicking each atom.
 
 ![NMR vesta demonstration](../img/NMR_vesta_demonstration.png){width="40%"}
@@ -122,9 +122,9 @@ from 20 to 50 gives the plot
 
 Hence a cut off energy of 50 Ry should indeed be appropriate - it's still relatively fast and should be fairly well-converged.
 
-Next we will note the converged isotropic hydrogen shieldings - in this case we may simply use a cut off energy of 20 since the results are about the same as the more converged 50. We will compare them to experiment. The three methyl (CH~3~) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH~2~ protons.
+Next we will look at the converged isotropic hydrogen shieldings. We will compare them to experiment. The three methyl (CH~3~) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH~2~ protons.
 
-Then we can average the CH~3~ and CH~2~ chemical shieldings. For example, the CH~2~ hydrogens (atoms 4 and 5) are found in the `ethanol.castep` file (shown above) to be 26.83 and 27.24: the average CH~2~ shielding is 27.04. CH~3~, meanwhile, has an average of 29.83. Lastly, the single OH hydrogen has a value of 31.93. We now have 3 unique chemical shieldings (though in your case the values will likely slightly differ)
+Then we can average the CH~3~ and CH~2~ chemical shieldings. For example, the shieldings of the CH~2~ hydrogens (atoms 4 and 5) are found in the `ethanol.castep` file (shown above) to be 26.83ppm and 27.24ppm: the average CH~2~ shielding is 27.04ppm. CH~3~, meanwhile, has an average of 29.83ppm. Lastly, the single OH hydrogen has a value of 31.93ppm. We now have 3 unique chemical shieldings (though in your case the values will likely slightly differ)
 
 We now need to convert the chemical shieldings $\sigma_{iso}$; to chemical shifts $\delta_{iso}$ on the experimental scale. We use the relation:  $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$.
 A suitable $\sigma_{ref}$ for ^1^H is 30.97ppm.
@@ -136,4 +136,4 @@ A suitable $\sigma_{ref}$ for ^1^H is 30.97ppm.
 <figure Fig2 style="display: inline-block;">
   <figcaption style="text-align: left;">Fig2. <sup><small>1</small></sup>H NMR spectrum of liquid ethanol</figcaption>
 </figure>
- Fig2. shows a modern high-resolution ^1^H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the ^1^H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm - in this tutorial the shifts were found to be 1.14 (the CH~3~ shielding), 3.94 (CH~2~) and -0.96 (OH). The OH hydrogen clearly has a very different result while the other 2 roughly agree.
+ Fig2. shows a modern high-resolution ^1^H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the ^1^H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm - in this tutorial the shifts were found to be 1.14ppm (the CH~3~ shielding), 3.94ppm (CH~2~) and -0.96ppm (OH). The OH hydrogen clearly has a very different result while the other 2 roughly agree.
