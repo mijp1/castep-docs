@@ -37,7 +37,7 @@ O 5.746254 5.812705 5.6871
 %ENDBLOCK KPOINTS_LIST
 ```
 
-*ethanol.param*
+*ethanol.param* <a name ="ethanol.param"></a>
 ```
 xcfunctional = PBE
 fix_occupancy = true
@@ -52,7 +52,7 @@ Look at the [cell](../../documentation/Input_Files/cell_file.md) and [param](../
 `task = magres`
 
 Run a standard castep calculation for ethanol. Look at the `ethanol.castep` output file. Towards the end, you should be able to find the isotropic chemical shielding, anisotropy, and asymmetry in a table like this:
-
+<a name="ethanol_result"></a>
  ```
  ====================================================================
  |                      Chemical Shielding Tensor                   |
@@ -126,6 +126,7 @@ Next we will look at the converged isotropic hydrogen shieldings. We will compar
 
 Then we can average the CH~3~ and CH~2~ chemical shieldings. For example, the shieldings of the CH~2~ hydrogens (atoms 4 and 5) are found in the `ethanol.castep` file (shown above) to be 26.83ppm and 27.24ppm: the average CH~2~ shielding is 27.04ppm. CH~3~, meanwhile, has an average of 29.83ppm. Lastly, the single OH hydrogen has a value of 31.93ppm. We now have 3 unique chemical shieldings (though in your case the values will likely slightly differ)
 
+<a name="equation"></a>
 We now need to convert the chemical shieldings $\sigma_{iso}$; to chemical shifts $\delta_{iso}$ on the experimental scale. We use the relation:  $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$.
 A suitable $\sigma_{ref}$ for ^1^H is 30.97ppm.
 

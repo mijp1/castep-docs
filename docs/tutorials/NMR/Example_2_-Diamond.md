@@ -23,7 +23,7 @@ kpoints_mp_grid  4 4 4
 
 symmetry_generate
 ```
-*diamond.param*
+*diamond.param* <a name="diamond.param"></a>
 
 ```
 comment         = nmr testing
@@ -36,6 +36,7 @@ cut_off_energy  =  30 Ry
 ```
 Running castep on these files will lead to the `diamond.castep` output file which will contain the table
 
+<a name="diamond_result"></a>
 ```
 ====================================================================
 |                      Chemical Shielding Tensor                   |

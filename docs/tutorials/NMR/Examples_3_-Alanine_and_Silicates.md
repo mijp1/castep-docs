@@ -42,7 +42,7 @@ magres_task = nmr
 cut_off_energy = 35 ry
 xc_functional : PBE
 ```
-Note that the only difference to the [previous](Example_1_-Ethanol.md) [files](Example_2_-Diamond.md) is the linewidths
+Note that the only difference to the [previous](Example_1_-Ethanol.md#ethanol.param) [files](Example_2_-Diamond.md#diamond.param) is the line
 
 ```
 magres_task = nmr
@@ -60,7 +60,7 @@ in Materials Studio or another software - this allows better examination of feat
 
 We will now run castep. The `alanine.castep` output file should contain the [table](alanine_table.txt)
 
-This is much like our [previous](Example_1_-Ethanol.md) [results](Example_2_-Diamond.md), except there are now 2 more columns - $C_Q$ and Eta - these are both because an EFG calculation was now performed.
+This is much like our [previous](Example_1_-Ethanol.md#ethanol_result) [results](Example_2_-Diamond.md#diamond_result), except there are now 2 more columns - $C_Q$ and $Eta$ - these are both there because an EFG calculation was now performed.
 
 This result is not fully converged (we will not be testing this in this tutorial, but feel free to check), but the relative shift between some of the sites is converged (again you may verify that if inclined).
 
@@ -85,9 +85,9 @@ We will now compare these results with experiment. The figure below is an experi
 
 From this, we will try to find what A and B are.
 
-To do so, we will look at the `alanine.castep` [tensor table table](alanine_table.txt){width="50%"}.
+To do so, we will look at the `alanine.castep` [tensor table](alanine_table.txt).
 
-By a quick glance at the table, we see that the the chemical shift of hydrogen ranges from 20-30, carbon around 0, 124 or 159, nitrogen 194 and oxygen 48 or 63. Because of this we can tell that the 2 resonances are going to belong to carbon and oxygen: to get a chemical shift difference of 23.5, oxygen's 48 and a hydrogen (ideally of 24.5) are the only option of coming close to that value.
+By a quick glance at the table, we see that the the chemical shift of hydrogen ranges from 20-30ppm, carbon around 0, 124 or 159ppm, nitrogen 194ppm and oxygen 48 or 63ppm. Because of this we can tell that the 2 resonances are going to belong to carbon and oxygen: to get a chemical shift difference of 23.5ppm, oxygen's 48ppm and a hydrogen (ideally of 24.5ppm) are the only option of coming close to that value.
 
 We see in the oxygen portion of the table
 
@@ -109,23 +109,25 @@ We see in the oxygen portion of the table
 
 ```
 
- that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the `alinine.cell`  file in Vesta (or the `alanine.pdb` file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
+ that the chemical shift alternates consistently between 48.29 and 62.86ppm. To examine why this is the case we may look at the `alinine.cell`  file in Vesta (or the `alanine.pdb` file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
 
  The cell and a purposely highlighted atom are shown below.
 
  ![alanine cell](alanine_cell.png)
 
-The oxygens are the red atoms. We see here that there are effectively 2 types of oxygen here - ones with hydrogen bonding (dashed lines joining to a hydrogen(grey atom)) and ones without. Here atom 52 (oxygen ion 8 in the [table](alanine_table.txt); it starts at 44 as there are 44 atoms before it) is selected: this has a chemical shielding value of 62.86, as seen above. When clicking any oxygen with 2 hydrogen bonds it corresponds to an atom number that has a shielding tensor of 62.86, while all the ones with 1 hydrogen bond have a value of 48.29. For this exercise, we have now identified that resonance A comes from a single-hydrogen-bonded oxygen.
+The oxygens are the red atoms. We see here that there are effectively 2 types of oxygen here - ones with hydrogen bonding (dashed lines joining to a hydrogen (grey atom)) and ones without. Here atom 52 (oxygen ion 8 in the [table](alanine_table.txt); it starts at 44 as there are 44 atoms before it) is selected: this has a chemical shielding value of 62.86ppm, as seen above. When clicking any oxygen with 2 hydrogen bonds it corresponds to an atom number that has a shielding tensor of 62.86ppm, while all the ones with 1 hydrogen bond have a value of 48.29ppm. For this exercise, we have now identified that resonance A comes from a single-hydrogen-bonded oxygen.
 
-There are a lot more hydrogens and thus it is harder to find which specific one A is referring to. Because $\delta$(A) - $\delta$(B) = 23.5, we know that the chemical shielding should have a value of around $48.29 - 23.5 = 24.79$
+There are a lot more hydrogens and thus it is harder to find which specific one A is referring to. Because $\delta$(A) - $\delta$(B) = 23.5ppm, we know that the chemical shielding should have a value of around $48.29 - 23.5 = 24.79ppm$
 
-From the table, we see that the closest value is 24.01, corresponding to atoms 1, 8, 15 and 22. By clicking on hydrogens until one of those is found, we find that
+From the table, we see that the closest value is 24.01ppm, corresponding to atoms 1, 8, 15 and 22. By clicking on hydrogens until one of those is found, we find that
 
 ![Corresponding hydrogen](hydrogen_find.png){width="40%"}
 
 all 3 of those hydrogens are bonded to a nitrogen that is also bonded to 2 other hydrogens and a carbon. It is different from the other 2 hydrogens because the oxygen it is hydrogen-bonded to has no other hydrogen bonds: A and B are hydrogen-bonded to each other.
 
-These results are confirmed by the other values provided in the table. To confirm A being oxygen 1 (or 3 or 5... - all the values are identical), $C_Q$ in the [table](alanine_table.txt) is 7.125 compared to the expected 7.86, and $\eta_Q$ is 0.25 compared to the expected 0.28. However, this is not the case for hydrogen - a $C_Q$ of 6.53 and an $\eta_Q$ of 0.7 are expected, but the castep results are 0.21 and 0.06 respectively.
+These results are confirmed by the other values provided in the table. To confirm A being oxygen 1 (or 3 or 5... - all the values are identical), $C_Q$ in the [table](alanine_table.txt) is 7.125MHz compared to the expected 7.86MHz, and $\eta_Q$ is 0.25 compared to the expected 0.28 - the results are very similar.
+
+However, this is not the case for hydrogen - a $C_Q$ of 6.53MHz and an $\eta_Q$ of 0.7 are expected, but the castep results are 0.21MHz and 0.06 respectively. In fact, the only ion that comes close to matching the $C_Q$ $eta_Q$ expectation is the other (even-numbered) oxygen type: the oxygen that the hydrogen of interest (1, 8 and 15) is hydrogen-bonded to.
 
 ## Silicates - Quartz and Cristoballite
 
@@ -214,4 +216,4 @@ Like with alanine, we will compare it to an experimental ^17^O NMR parameter tab
 
 This example is much more straightforward - all the atoms of a certain element are identical.
 
-We are given that a suitable $\sigma_{ref}$ (for oxygen) is 263ppm. Using the equation $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$ - used before in [Example 1](Example_1_-Ethanol.md) - we are able to convert the isometric chemical shielding tensor into a relative chemical shift: O in quartz has a shift of 28.46 and in cristoballite it has a shift of 23.53
+We are given that a suitable $\sigma_{ref}$ (for oxygen) is 263ppm. Using the equation $\delta_{iso}$=$\sigma_{iso}$ - $\sigma$ - used before in [Example 1](Example_1_-Ethanol.md#equation) - we are able to convert the isometric chemical shielding tensor into a relative chemical shift: O in quartz has a shift of 28.46ppm and in cristoballite it has a shift of 23.53ppm
