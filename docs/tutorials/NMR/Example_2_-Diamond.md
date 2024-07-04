@@ -2,7 +2,7 @@ Here we will look more into convergence of chemical shielding calculations, exam
 
 ## Varying k-point grid size
 
-We will use the cell and param files below for our calculations:
+We will use the `cell` and `param` files below for our calculations:
 
 *diamond.cell*
 
@@ -48,14 +48,12 @@ Running castep on these files will lead to the `diamond.castep` output file whic
 
 ```
 
-What we are going to be looking at is isometric shielding tensor of carbon (with both atoms being identical).
-
-While there is nothing particularly special in `diamond.param`,
 !!! note
     We have already done a convergence test of the cut-off energy, which is specified in that file, in [example 1](Example_1_-Ethanol.md)
 
+What we are going to be looking at is isometric shielding tensor of carbon (with both atoms being identical).
 
-we have specified the k-points in the `diamond.cell` file using the keyword
+While there is nothing particularly special in `diamond.param`, we have specified the k-points in the `diamond.cell` file using the keyword
 
 `kpoints_mp_grid 4 4 4`
 
@@ -66,7 +64,7 @@ We will test the convergence of the chemical shielding with varying k-point mesh
 
   ![Diamond convergence plot](../img/diamond_convergence.png){width="75%"}
 
-We can see from this that it converges at a k-point grid size of 4, and the converged value is around 160.
+We can see from this that it converges at a k-point grid size of 4, and the converged value is around 160ppm.
 
 ## Single k-point test
 
@@ -84,7 +82,7 @@ Then we specify the kpoint we are examining in the `diamond.cell` file using
 0 0 0 1.0
 %ENDBLOCK KPOINTS_LIST
 ```
-to check (0,0,0) - in my case it resulted in an isometric chemical shielding of about 5798.71 (though, as in previous and future cases, the exact values may be slightly different) Similarly, we can change that block to
+to check (0,0,0) - in this case it resulted in an isometric chemical shielding of about 5798.71ppm (though, as in previous and future cases, the exact values you get may be slightly different) Similarly, we can change that block to
 
 ```
 %BLOCK KPOINTS_LIST
@@ -92,13 +90,13 @@ to check (0,0,0) - in my case it resulted in an isometric chemical shielding of 
 %ENDBLOCK KPOINTS_LIST
 ```
 
-to check (½,½,½), which led to 303.21. Lastly,we replace that block with
+to check (½,½,½), which led to 303.21ppm. Lastly,we replace that block with
 
 ```
 %BLOCK KPOINTS_LIST
 0.25 0.25 0.25 1
 %ENDBLOCK KPOINTS_LIST
 ```
-to check (¼,¼,¼) - this gave me a value of 164.79, which is by far the closest to the converged value (around 160, as found by the convergence graph).
+to check (¼,¼,¼) - this gave a value of 164.79ppm, which is by far the closest to the converged value (around 160ppm, as found by the convergence graph above).
 
 as the diamond unit cell is rather small the 1 kpoint answer is not too close to converged. However, the observation holds true for all orthorhombic cells
