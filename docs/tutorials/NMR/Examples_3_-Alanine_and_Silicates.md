@@ -14,9 +14,11 @@ CPUs:**
 We will also perform EFG calculations for the above structures and examine the respective data.
 
 ### Oxygen-17 NMR
+
 Oxygen is a component of many geological materials. Oxygen is
 also important element in organic and biological molecules since it is often intimately involved in hydrogen bonding. Solid State ^17^O NMR should be a uniquely valuable probe as the chemical shift range of ^17^O covers almost 1000 ppm in organic molecules. Furthermore ^17^O has spin I = 5/2 and hence a net quadrupole moment. As a consequence of this the solid state NMR spectrum is strongly affected by the electric
 field gradient at the nucleus.
+
 Because the isotopic abundance of ^17^O is very low (0.037%) and the NMR linewidths due to the electric field gradient relatively large, only limited Solid State NMR data is
 available. This is particularly true for organic materials. First principles calculations of ^17^O NMR parameters have played a vital role in assigning experimental spectra, and developing empirical rules between NMR  parameters and local atomic structure.
 
@@ -81,7 +83,7 @@ We will now compare these results with experiment. The figure below is an experi
  |$\eta_Q$(A)                  | 0.28|
  |$C_Q$(B) (MHz)               | 6.53|
  |$\eta_Q$(B)                  | 0.70|
- | **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labelled A and B. Isotropic chemical shift $\delta$, quadrupolar coupling $C_{Q}$, and EFG asymmetry $\eta_Q$.**||
+| **Table 1: Experimental ^17^O NMR parameters for alanine. The two resonances are labelled A and B. Isotropic chemical shift $\delta$, quadrupolar coupling $C_{Q}$, and EFG asymmetry $\eta_Q$.**||
 
 From this, we will try to find what A and B are.
 
@@ -109,7 +111,7 @@ We see in the oxygen portion of the table
 
 ```
 
- that the chemical shift alternates consistently between 48.29 and 62.86ppm. To examine why this is the case we may look at the `alinine.cell`  file in Vesta (or the `alanine.pdb` file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
+ that the chemical shift alternates consistently between 48.29 and 62.86. To examine why this is the case we may look at the `alanine.cell`  file in Vesta (or the `alanine.pdb` file in Materials Studio, or any other option of your choice that shows hydrogen bonding). Similarly to [example 1](Example_1_-Ethanol.md), we will examine which atoms correspond to which environment.
 
  The cell and a purposely highlighted atom are shown below.
 
