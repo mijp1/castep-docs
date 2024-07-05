@@ -70,4 +70,12 @@ Next we will visualise this data using Vesta. There is more detail on how that i
 
 What you should immediately see is something like this :
 
-![HF initial vesta output](HF_initial.png)
+![HF initial vesta output](HF_init.png)
+
+You'll be able to see it more properly by rotating it around yourself, but the yellow represents the electron cloud, and there are 2 atoms in the middle (naturally the small one is hydrogen and large one is fluorine) which are surrounded by said cloud.
+
+We can already see evidence of lone pairs/hydrogen bonding : the 'circles' of yellow outside the big cloud even visually resemble lone pairs, while chunks going even further away could potentially hint at them trying to form hydrogen bonds with adjacent cells.
+
+We can visualise this better by clicking `Utilities -> 2D Data Display` in Vesta. That'll open up a new window - in it, click `Slice...` and select the miller indices to be 001. Apply that and you should get an image like this :
+
+![ELF electron distribution](HF_slice.png){width="30%"}
