@@ -81,3 +81,39 @@ We can visualise this better by clicking `Utilities -> 2D Data Display` in Vesta
 ![ELF electron distribution](HF_slice.png){width="30%"}
 
 This gives us an interesting picture: the small regions of high electron density look even more like what we'd expect of lone pairs. The nitrogen has 3 around it (as expected), yet the hydrogen also has 1 - this is not what we'd expect. However, considering that this will be interacting with adjacent cells, this is a good indication that it has formed a hydrogen bond.
+
+## Water and ammonia
+
+The procedure for H~2~O and NH~3~ is almost identical. We use exactly the same `param` file as above, and perform the same procedures follow the `elf_fmt` output. The `cell` files we use are:
+
+*H2O.cell*
+```
+%block lattice_abc
+5 5 5
+90 90 90
+%endblock lattice_abc
+
+%block positions_abs
+O 2.5 2.5 2.5
+H 2.5 1.95 3.29
+H 2.5 1.95 1.72
+%endblock positions_abs
+```
+
+for water and
+
+*NH3.cell*
+```
+%BLOCK LATTICE_ABC
+6.0 6.0 6.0
+90.0 90.0 90.0
+%ENDBLOCK LATTICE_ABC
+%BLOCK POSITIONS_ABS
+N 3.0 3.0 3.0
+H 4.0 3.0 3.0
+H 3.0 2.0 3.8
+H 3.4 3.0 4.2
+%ENDBLOCK POSITIONS_ABS
+```
+
+For ammonia. 
