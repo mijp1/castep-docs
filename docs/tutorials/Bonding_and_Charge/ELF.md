@@ -79,3 +79,5 @@ We can already see evidence of lone pairs/hydrogen bonding : the 'circles' of ye
 We can visualise this better by clicking `Utilities -> 2D Data Display` in Vesta. That'll open up a new window - in it, click `Slice...` and select the miller indices to be 001. Apply that and you should get an image like this :
 
 ![ELF electron distribution](HF_slice.png){width="30%"}
+
+This gives us an interesting picture: the small regions of high electron density look even more like what we'd expect of lone pairs. The nitrogen has 3 around it (as expected), yet the hydrogen also has 1 - this is not what we'd expect. However, considering that this will be interacting with adjacent cells, this is a good indication that it has formed a hydrogen bond.
