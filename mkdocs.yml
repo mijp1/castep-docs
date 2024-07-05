@@ -76,6 +76,7 @@ nav:
       - 'Bonding and Charge':
         - 'Plotting Charge Density': 'tutorials/Bonding_and_Charge/charge_density.md'
         - 'Population Analysis': 'tutorials/Bonding_and_Charge/mulliken_population.md'
+        - 'ELF': 'tutorials/Bonding_and_Charge/ELF.md'
       - 'Bands and DOS':
         - 'Plotting - CASTEP tools': 'tutorials/Bands_and_DOS/plotting_perl.md'
         - 'Plotting - SUMO': 'tutorials/Bands_and_DOS/plotting_sumo.md'
