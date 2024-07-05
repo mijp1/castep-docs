@@ -67,3 +67,7 @@ First, we rename (or copy + rename) it to `HF.charg_frm`, changing the file type
 ```
 
 Next we will visualise this data using Vesta. There is more detail on how that is done in an [earlier tutorial](charge_density.md), including a [YouTube walkthrough](https://www.youtube.com/watch?v=_c2Hk4jxmm4). We simply download both the original `cell` file and newly created `charg_frm` file (if you wish to move the files around, make sure they're in the same directory), and open the `charg_frm` file on vesta.
+
+What you should immediately see is something like this :
+
+![HF initial vesta output](HF_initial.png)
