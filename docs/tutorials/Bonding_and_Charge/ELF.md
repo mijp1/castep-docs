@@ -135,3 +135,9 @@ An alternative way of getting a similar result is by clicking `Edit -> Lattice P
 
 !!! note
     Don't forget you can turn off `Show isosurfaces` and `Show sections` under `Volumetric data` - if you're going to be looking at the cell itself this may obscure what you're trying to look at
+
+Lastly, let's take a quick look at the NH~3~ result. Selecting the best plane containing 2 hydrogens and a nitrogen should give a result looking like:
+
+![NH3 result](NH3_slice.png){width=30%}
+
+Like in the previous examples, you should be able to see evidence of lone pairs/hydrogen bonding - it is important to note, however, this may not be the case for all planes. Even when selecting 2 hydrogens and a nitrogen, even picking 2 different hydrogens may yield different results.
