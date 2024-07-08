@@ -125,3 +125,7 @@ From then, we again go to `2D display data` and `Slice...`. This is where the pr
 The result for water in the (100) plane should look like:
 
 ![Water ELF](H2O_100.png){width=30%}
+
+An alternative way of getting a similar result is by clicking `Edit -> Lattice Planes`, after which you can click `New` to either manually add whatever lattice planes you wish to examine, or again `Calculate the best plane for the selected atoms` after selecting the atoms by shift-clicking 3 of them. This provides the advantage of seeing precisely which plane you're looking at, as well as having the option of seeing where the atoms are in the electrical distribution. By following this procedure for H~2~O we get this:
+
+![Water lattice image](H2O_lattice_img.png){width=30%}
