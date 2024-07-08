@@ -121,3 +121,7 @@ H 2.53 2.19 2.76
 For ammonia.
 
 From then, we again go to `2D display data` and `Slice...`. This is where the procedure might be a bit different: by shift clicking on all the atoms in H~2~O (and the atoms within the plane you wish to look at in NH~3~) and clicking `Calculate the best plane for the selected atoms` it'll give us the plane that we may be most interested in. In the case of water it is a simple (100), but for NH~3~ you may wish to play around with it by selecting different combinations - alternatively manually choose a plane in which you are interested.
+
+The result for water in the (100) plane should look like:
+
+![Water ELF](H2O_100.png){width=30%}
