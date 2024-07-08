@@ -84,7 +84,7 @@ This gives us an interesting picture: the small regions of high electron density
 
 ## Water and ammonia
 
-The procedure for H~2~O and NH~3~ is almost identical. We use exactly the same `param` file as above, and perform the same procedures follow the `elf_fmt` output. The `cell` files we use are:
+The procedure for H~2~O and NH~3~ is almost identical. We use exactly the same `param` file as above, and perform the same procedures following the `elf_fmt` output. The `cell` files we use are:
 
 *H2O.cell*
 ```
