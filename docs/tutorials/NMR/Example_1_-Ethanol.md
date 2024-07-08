@@ -39,12 +39,11 @@ O 5.746254 5.812705 5.6871
 
 *ethanol.param* <a name ="ethanol.param"></a>
 ```
-xcfunctional = PBE
-fix_occupancy = true
-opt_strate.g.y : speed
-task        = magres
-
-cut_off_energy  = 50 ry
+xcfunctional    = PBE
+fix_occupancy   = true
+opt_strategy    = speed
+task            = magres
+cut_off_energy  = 300 eV
 ```
 
 Look at the [cell](../../documentation/Input_Files/cell_file.md) and [param](../../documentation/Input_Files/param_file.md) files. Note that the only special part of the `ethanol.param` file is
@@ -71,7 +70,7 @@ Run a standard castep calculation for ethanol. Look at the `ethanol.castep` outp
  ====================================================================
 
  ```
- Here we are only interested in the isotropic values for the hydrogen ions
+ Here we are only interested in the isotropic values for the hydrogen atoms
 
 
 You may also find this information (as well as extra detail) in the file `ethanol.magres`, which contains tables such as
@@ -98,29 +97,29 @@ H        1 Isotropic:       29.4529 (ppm)
 H        1 Anisotropy:       8.8365 (ppm)
 H        1 Asymmetry:        0.1373
 ```
-for each atom. You can see here that it also gives the same information - the isotropic value for atom 1 is the same (29.45 to 2dp for both). You may note that the isotropic value is the average of the diagonal values in the total shielding tensor, as wall as the average of the diagonal eigenvectors.
+for each atom. You can see here that it also gives the same information - the isotropic value for atom 1 is the same. You may note that the isotropic value is the average of the diagonal values in the total shielding tensor.
 
-You might wish to transfer the `ethanol.magres` file back to your desktop to visualise with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
+You might wish to open the `ethanol.magres` with [MagresView](https://www.ccpnc.ac.uk/magresview/magresview/magres_view.html?JS).
 
 ## Analysis
 
 Next we identify which (hydrogen) ion corresponds to which part of the molecule - in the case of ethanol, we find out which ones correspond to CH~3~ CH~2~ and OH.
-This can be done by uploading the cell file to VESTA and clicking each atom.
+This can be done by uploading the cell file to VESTA or MagresView and clicking each atom.
 
 ![NMR vesta demonstration](../img/NMR_vesta_demonstration.png){width="40%"}
 
-Here you can see that one of the CH~3~ hydrogens is atom 3. If you do the same for all of them, you should find that atoms 1, 2 and 3 are the CH~3~ hydrogens, 4 and 5 are the CH~2~ hyrdogens and 6 is the OH hydrogen.
+Here you can see that one of the CH~3~ hydrogens is atom 3. If you do the same for all of them, you should find that atoms 1, 2 and 3 are the CH~3~ hydrogens, 4 and 5 are the CH~2~ hydrogens and 6 is the OH hydrogen.
 
 It is important to check if the results are converged. Running a convergence test plot ranging the
 ~~~
-cut_off_energy = 20
+cut_off_energy = 200 eV
 ~~~
 from 20 to 50 gives the plot
 
  ![Ethanol convergence plot](../img/ethanol_convergence.png){width="75%"}
 
 
-Hence a cut off energy of 50 Ry should indeed be appropriate - it's still relatively fast and should be fairly well-converged.
+Hence a cut off energy of 600 Ry should indeed be appropriate - it's still relatively fast and should be fairly well-converged.
 
 Next we will look at the converged isotropic hydrogen shieldings. We will compare them to experiment. The three methyl (CH~3~) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH~2~ protons.
 
@@ -137,4 +136,4 @@ A suitable $\sigma_{ref}$ for ^1^H is 30.97ppm.
 <figure Fig2 style="display: inline-block;">
   <figcaption style="text-align: left;">Fig2. <sup><small>1</small></sup>H NMR spectrum of liquid ethanol</figcaption>
 </figure>
- Fig2. shows a modern high-resolution ^1^H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the ^1^H magnetic moments - but let's ignore that for now. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm - in this tutorial the shifts were found to be 1.14ppm (the CH~3~ shielding), 3.94ppm (CH~2~) and -0.96ppm (OH). The OH hydrogen clearly has a very different result while the other 2 roughly agree.
+ Fig2. shows a modern high-resolution ^1^H spectrum for liquid ethanol. Note that the peaks are split due to J-coupling - the interaction of the ^1^H magnetic moments. The three peaks are roughly at 1.2ppm, 3.7ppm and 5ppm - in this tutorial the shifts were found to be 1.14ppm (the CH~3~ shielding), 3.94ppm (CH~2~) and -0.96ppm (OH). The OH hydrogen clearly has a very different result while the other 2 roughly agree. The OH hydrogen shift is very sensitive to hydrogen bonding. It is has a very different value in as isolated molecule (as per our calculation) compared to liquid ethanol. The experimental value in a non-polar solvent should be closer to our isolated molecule - but note that the measurement is sensitive to even small traces of absorbed water, which will affect the OH shift.
