@@ -43,7 +43,7 @@ xcfunctional    = PBE
 fix_occupancy   = true
 opt_strategy    = speed
 task            = magres
-cut_off_energy  = 300 eV
+cutoff_energy   = 300 eV
 ```
 
 Look at the [cell](../../documentation/Input_Files/cell_file.md) and [param](../../documentation/Input_Files/param_file.md) files. Note that the only special part of the `ethanol.param` file is
@@ -114,12 +114,12 @@ It is important to check if the results are converged. Running a convergence tes
 ~~~
 cut_off_energy = 200 eV
 ~~~
-from 20 to 50 gives the plot
+from 200 to 1600eV gives the plot
 
  ![Ethanol convergence plot](../img/ethanol_convergence.png){width="75%"}
 
 
-Hence a cut off energy of 600 Ry should indeed be appropriate - it's still relatively fast and should be fairly well-converged.
+Here a cut off energy of 600 eV is reasonable - it's still relatively fast and should be fairly well-converged. 800eV is better converged. The cut off is quite high due to the presence of oxygen.
 
 Next we will look at the converged isotropic hydrogen shieldings. We will compare them to experiment. The three methyl (CH~3~) protons undergo fast exchange; they "rotate" faster than the nuclear magnetic moment processes. The magnetic moment will therefore "see" an average chemical shielding. The same is true of the CH~2~ protons.
 
