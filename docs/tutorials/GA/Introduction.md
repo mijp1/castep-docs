@@ -207,3 +207,15 @@ GA: gen #  2 parent #  2 enthalpy = -4.200403E+000 eV/atom un-scaled fitness =  
  Here you'll notice that there are parents from both generation 0 (2nd line) and generation (1st) - based on their fitness, 12 got eliminated while the other 12 stayed to become parents in the next generation.
 
  The same exact procedure repeats - parents breed (with fitter ones doing moreso), children mutate and optimise, the parents and children are compared together as equal members and the best ones move on to become parents of the next generation. This is done until generation 6.
+
+## The best structure
+
+Finding the best structure found is fairly simple - if using Linux you may use the command
+
+`grep 'child' Si.castep | sort -k10,10n | head -20`
+
+In my case I got generation 6 member 7 to be the lowest enthalpy. Running
+
+`c2x --int -e=0.1-0.0001 Si.gen_006_mem_007-out.cell`
+
+tells me that it is Fd-3m - diamond (though the lower tolerance structure is R-3m - this was a very short run so it hasn't got the perfect structure still, but it is close). 
