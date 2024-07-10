@@ -210,4 +210,6 @@ In my case I got generation 6 member 7 to be the lowest enthalpy. Running
 
 `c2x --int -e=0.1-0.0001 Si.gen_006_mem_007-out.cell`
 
-tells me that it is Fd-3m - diamond (though the lower tolerance structure is R-3m - this was a very short run so it hasn't got the perfect structure still, but it is close).
+tells me that it is Fd-3m - diamond (though the lower tolerance structure is R-3m - this was a very short run so it hasn't got the perfect structure still, but it is close). The 'family tree' of that cell looks like this:
+
+![Family tree](Family_tree.png)
