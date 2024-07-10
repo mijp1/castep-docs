@@ -148,3 +148,7 @@ A key line for this tutorial is
 `rand_seed        = 129189`
 
 This means that you may be able to replicate similar results, though that isn't guranteed [[CHECK IF EVEN TRUE]]
+
+## Running
+
+We can now run castep GA on the Si. This should take about 3 minutes to run, but look at what is happening as it is running - you can use `tail -f Si.castep` to keep track of how the `castep` output file is being generated. Also, refresh your directory regularly to see what's being generated. 
