@@ -162,4 +162,20 @@ You should get a total of 12 members like that, up to `mem_012`. As it's running
 
 After the last member finishes its geometry optimisation, the next generation is generated: you'll get `<seed>.cell` and `<seed>.param` files.
 
-This is the point where the `castep` output file gets interesting. You have a table that starts like 
+This is the point where the `castep` output file gets interesting. You have a table that starts like
+
+```
+GA: gen #  1 parent #  1 enthalpy = -3.940733E+000 eV/atom un-scaled fitness =  0.684242 conv = T member error = F seed = Si.gen_000_mem_001 vol/ion =    19.4307 A**3/atom
+
+
+ GA: gen #  1 parent #  2 enthalpy = -4.070795E+000 eV/atom un-scaled fitness =  0.791433 conv = T member error = F seed = Si.gen_000_mem_002 vol/ion =    20.4806 A**3/atom
+```
+and ends with
+
+```
+GA: gen #  1 child  # 11 enthalpy = -4.200422E+000 eV/atom un-scaled fitness =  0.868980 conv = T member error = F seed = Si.gen_001_mem_011 vol/ion =    20.7893 A**3/atom
+
+ GA: gen #  1 child  # 12 enthalpy = -3.296903E+000 eV/atom un-scaled fitness =  0.119203 conv = T member error = F seed = Si.gen_001_mem_012 vol/ion =    28.3264 A**3/atom
+```
+
+The `parent` rows all using generation 0 members as the seed, and giving them an `un-scaled fitness`. What this means is that all the geometry-optimised cells from generation 0 have their enthalpy and similarity checked - the lower the enthalpy the fitter it is considered, as that is desirable to get the best structure. However, a structure that is similar to another parent will be penalised to encourage diversity. 
