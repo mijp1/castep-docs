@@ -192,7 +192,7 @@ For generation 2 the table starts with
 GA: gen #  2 parent #  1 enthalpy = -4.225502E+000 eV/atom un-scaled fitness =  0.866683 conv = T member error = F seed = Si.gen_001_mem_006 vol/ion =    19.0994 A**3/atom
 
  GA: gen #  2 parent #  2 enthalpy = -4.200403E+000 eV/atom un-scaled fitness =  0.839781 conv = T member error = F seed = Si.gen_000_mem_009 vol/ion =    20.7940 A**3/atom
- ```
+```
 
  Here you'll notice that there are parents from both generation 0 (2nd line) and generation (1st) - based on their fitness, 12 got eliminated while the other 12 stayed to become parents in the next generation.
 
