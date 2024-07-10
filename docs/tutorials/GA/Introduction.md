@@ -178,4 +178,22 @@ GA: gen #  1 child  # 11 enthalpy = -4.200422E+000 eV/atom un-scaled fitness =  
  GA: gen #  1 child  # 12 enthalpy = -3.296903E+000 eV/atom un-scaled fitness =  0.119203 conv = T member error = F seed = Si.gen_001_mem_012 vol/ion =    28.3264 A**3/atom
 ```
 
-The `parent` rows all using generation 0 members as the seed, and giving them an `un-scaled fitness`. What this means is that all the geometry-optimised cells from generation 0 have their enthalpy and similarity checked - the lower the enthalpy the fitter it is considered, as that is desirable to get the best structure. However, a structure that is similar to another parent will be penalised to encourage diversity. 
+The `parent` rows all using generation 0 members as the seed, and giving them an `un-scaled fitness`. What this means is that all the geometry-optimised cells from generation 0 have their enthalpy and similarity checked - the lower the enthalpy the fitter it is considered, as that is desirable to get the best structure. However, a structure that is similar to another parent will be penalised to encourage diversity.
+
+Those parents then breed together to form the children, which are then mutated and geometry optimised like before. The probability of a parent breeding is based on its fitness evaluation - in the example above, parent 2 is more likely to breed than parent 1 (ADD LINK TO ROULETTE RANDOMNESS)
+
+After the children are generated and geometry optimised, they are treated exactly the same as the parents and every member has their fitness (re)evaluated - the enthalpy is already calculated but similarities must be penalised. This leads to a very similar table labelled
+
+`GA: updated fitnesses with weighted fitness function`
+
+For generation 2 the table starts with
+
+```
+GA: gen #  2 parent #  1 enthalpy = -4.225502E+000 eV/atom un-scaled fitness =  0.866683 conv = T member error = F seed = Si.gen_001_mem_006 vol/ion =    19.0994 A**3/atom
+
+ GA: gen #  2 parent #  2 enthalpy = -4.200403E+000 eV/atom un-scaled fitness =  0.839781 conv = T member error = F seed = Si.gen_000_mem_009 vol/ion =    20.7940 A**3/atom
+ ```
+
+ Here you'll notice that there are parents from both generation 0 (2nd line) and generation (1st) - based on their fitness, 12 got eliminated while the other 12 stayed to become parents in the next generation.
+
+ The same exact procedure repeats - parents breed (with fitter ones doing moreso), children mutate and optimise, the parents and children are compared together as equal members and the best ones move on to become parents of the next generation. This is done until generation 6.
