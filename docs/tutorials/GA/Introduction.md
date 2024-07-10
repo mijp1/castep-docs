@@ -151,4 +151,9 @@ This means that you may be able to replicate similar results, though that isn't 
 
 ## Running
 
-We can now run castep GA on the Si. This should take about 3 minutes to run, but look at what is happening as it is running - you can use `tail -f Si.castep` to keep track of how the `castep` output file is being generated. Also, refresh your directory regularly to see what's being generated. 
+We can now run castep GA on the Si. This should take about 3 minutes to run, but look at what is happening as it is running - you can use `tail -f Si.castep` to keep track of how the `castep` output file is being generated. Also, refresh your directory regularly to see what's being generated.
+
+The first files to be generated will have the same format as `Si.gen_000_mem_001.cell` and `Si.gen_000_mem_001.param` - this is the 1st member of the 0th generation, which is generated randomly using the `Si.cell` as well as the mutation values specified in the `Si.param` file
+
+!!! note
+    I will refer to future files as being `<seed>.file_ending`in the interest of  brevity, specifying details where necessary
