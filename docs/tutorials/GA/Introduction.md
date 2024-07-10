@@ -222,3 +222,5 @@ Let's go through the steps above to see what happened in this specific case -
 4. Generation 3 member 4 was created by breeding 2,11 and 1,4. This means that 1,4 survived the fitness tests of generations 1 (where it was made as a child) and 2, where it competed with other parents and their children alike.
 5. In generations 4, 5 and 6, no ancestors were generated. Looking forward, that means that 1,4 and 2,11 either didn't breed at all (the parent combinations are ROULETTE RANDOM) or whatever child they made didn't have a mutation favourable enough to be the lowest enthalpy structure.
 6. Finally, in generation 6, 3,4 bred with 2,11 (its own parent - again after the children are generated they are all treated as equal parent candidates) to generate 6,7.
+
+Please note that in actual runs the family tree will most likely be significantly more complicated - as noted before, both `cell` and `param` files were geared towards getting a good structure in few generations and modest mutations. Even with such files it is highly chance-based whether you will get such a result. This was just a simple demonstration.
