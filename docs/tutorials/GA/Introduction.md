@@ -157,3 +157,9 @@ The first files to be generated will have the same format as `Si.gen_000_mem_001
 
 !!! note
     I will refer to future files as being `<seed>.file_ending`in the interest of  brevity, specifying details where necessary
+
+You should get a total of 12 members like that, up to `mem_012`. As it's running, the 0th generation will start to get `<seed>.geom` and `<seed>-out.cell` outputs for each member. These are obtained as fast geometry optimisations (ADD LINK) are performed on the randomly generated cells.
+
+After the last member finishes its geometry optimisation, the next generation is generated: you'll get `<seed>.cell` and `<seed>.param` files.
+
+This is the point where the `castep` output file gets interesting. You have a table that starts like 
