@@ -182,6 +182,16 @@ The `parent` rows all using generation 0 members as the seed, and giving them an
 
 Those parents then breed together to form the children, which are then mutated and geometry optimised like before. The probability of a parent breeding is based on its fitness evaluation - in the example above, parent 2 is more likely to breed than parent 1 (ADD LINK TO ROULETTE RANDOMNESS)
 
+You may find the ancestry of each individual child by looking for parts of the `castep` file such as
+
+```
+GA: Member filename    Si.gen_002_mem_011
+ GA: Parent 1 generation            0  and member            9
+ GA: Parent 2 generation            1  and member            9
+```
+
+Here you see that generation 2 member 11 was made by using the parents generation 0 member 9 and generation 1 member 9.
+
 After the children are generated and geometry optimised, they are treated exactly the same as the parents and every member has their fitness (re)evaluated - the enthalpy is already calculated but similarities must be penalised. This leads to a very similar table labelled
 
 `GA: updated fitnesses with weighted fitness function`
@@ -191,7 +201,7 @@ For generation 2 the table starts with
 ```
 GA: gen #  2 parent #  1 enthalpy = -4.225502E+000 eV/atom un-scaled fitness =  0.866683 conv = T member error = F seed = Si.gen_001_mem_006 vol/ion =    19.0994 A**3/atom
 
- GA: gen #  2 parent #  2 enthalpy = -4.200403E+000 eV/atom un-scaled fitness =  0.839781 conv = T member error = F seed = Si.gen_000_mem_009 vol/ion =    20.7940 A**3/atom
+GA: gen #  2 parent #  2 enthalpy = -4.200403E+000 eV/atom un-scaled fitness =  0.839781 conv = T member error = F seed = Si.gen_000_mem_009 vol/ion =    20.7940 A**3/atom
 ```
 
  Here you'll notice that there are parents from both generation 0 (2nd line) and generation (1st) - based on their fitness, 12 got eliminated while the other 12 stayed to become parents in the next generation.
