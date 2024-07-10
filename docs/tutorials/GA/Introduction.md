@@ -52,3 +52,99 @@ is only a bit off from where it'd be in a perfect diamond, which is
 `Si 0 0 0`
 
 In a normal castep GA run the positions of all the Si's, and even the starting unit cell, is completely arbitrary, and in most cases it should have little impact on the run. However, in this case we are trying to get it to get to diamond quickly, so that it is easier to analyse what is going on.
+
+For the `param` file we will use
+
+```
+task             = genetic algor # Run the GA
+ga_pop_size      = 12           # Parent population size
+ga_max_gens      = 6            # Max number of generations to run for
+ga_mutate_amp    = 0.05          # Mutation amplitude (in Angstrom)
+ga_mutate_rate   = 0.1          # Probability of mutation to occur
+ga_fixed_N       = true          # Fix number of ions in each member based on input cell
+
+rand_seed        = 129189 # Random seed for replicability
+
+
+# continuation = Si.xyz
+
+#################################################################
+# CASTEP Geomtery Optimisation Parameters		        #
+# These will be used for each cells geom opt/fitenss evaluation #
+#################################################################
+
+comment          = Si_Convex_hull
+
+#rand_seed        = 100003 # Random seed for replicability
+opt_strategy     = SPEED  # Run quick
+
+geom_max_iter    = 211 # Can have a large max iter as using pair potentials
+
+# Don't write most output files for each population member
+write_checkpoint = NONE
+write_bib        = FALSE
+write_cst_esp    = FALSE
+write_bands      = FALSE
+write_cell_structure = TRUE
+
+######################################
+# Any extra devel code options	     #
+# & required GA specific devel flags #
+######################################
+
+%block devel_code
+
+  # Command used to call castep for each population member
+  # If not given this defaults to castep.serial
+  CMD: castep.serial :ENDCMD
+
+  GA:
+
+    PP=T   # Using a pair potential
+    IPM=M  # Randomly mutated initial population
+
+    CW=24  # Num gens for convergence
+
+    NI=F   # No niching
+    FW=0.5 # Fitness weighting
+
+    # Asynchronous running options
+    # Required for asynchronous running, without this all geom opts will be run
+    # one after another
+    AS=T   # Run geometry optimisations asynchronously
+    MS=3   # Run 3 geometry optimisations at once
+
+    # Random symmetry children
+    NUM_CHILDREN=11
+    RSC=T
+    RSN=1
+
+    CORE_RADII_LAMBDA=0.8 # Core radii 0.8 pseudopotenital radii
+
+    SCALE_IGNORE_CONV=T   # Ignore convergence in fitness calcualtion
+
+  :ENDGA
+
+  # Use pair potentials in geometry optimisations and perform a final snap to symmetry
+  GEOM: PP=T SNAP=T :ENDGEOM
+
+  # Use the Stillinger-Weber pair potential
+  PP=T
+  PP:
+    SW=T
+  :ENDPP
+
+%endblock devel_code
+```
+
+There is a lot more to discuss here. For more information on all the key words look at the documentation (ADD LINK LATER). However, let's look at the key information here:
+
+- `ga_max_gens` defines the number of generations it will run for. 6 is a very low amount, but it does the job here
+- `ga_mutate_amp` describes how severe the mutations are. Again, this is using a low number because we're starting not too far off the final result
+- `ga_mutate_rate` tells you the probability of different parts of the cell mutating - 0.1 is a fairly ordinary value to use
+
+A key line for this tutorial is
+
+`rand_seed        = 129189`
+
+This means that you may be able to replicate similar results, though that isn't guranteed [[CHECK IF EVEN TRUE]]
