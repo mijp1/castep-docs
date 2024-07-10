@@ -213,3 +213,12 @@ In my case I got generation 6 member 7 to be the lowest enthalpy. Running
 tells me that it is Fd-3m - diamond (though the lower tolerance structure is R-3m - this was a very short run so it hasn't got the perfect structure still, but it is close). The 'family tree' of that cell looks like this:
 
 ![Family tree](Family_tree.png)
+
+Let's go through the steps above to see what happened in this specific case -
+
+1. The 0th generation was randomly generated. In this case, members 2, 5, 9, 10 and 12 ended up being ancestors of the final structure
+2. Members 2 and 5 bred to generate 1,4 (which mutated). The same happened for member 9
+3. Generation 2 member 11 was created using 0, 9 and 1,9. This means that out of the 24 potential parents from generation 1 (12 parents and 12 children generated from said parents), both of them were fit enough to become parents for generation 2.
+4. Generation 3 member 4 was created by breeding 2,11 and 1,4. This means that 1,4 survived the fitness tests of generations 1 (where it was made as a child) and 2, where it competed with other parents and their children alike.
+5. In generations 4, 5 and 6, no ancestors were generated. Looking forward, that means that 1,4 and 2,11 either didn't breed at all (the parent combinations are ROULETTE RANDOM) or whatever child they made didn't have a mutation favourable enough to be the lowest enthalpy structure.
+6. Finally, in generation 6, 3,4 bred with 2,11 (its own parent - again after the children are generated they are all treated as equal parent candidates) to generate 6,7.
