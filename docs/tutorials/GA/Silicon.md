@@ -144,7 +144,7 @@ to get the output file `out.put`, and the run the python script to see that data
 
 ![First image output](all_gens.png)
 
-
+Each dot in this graph is a member, showing the spread of enthalpy against their volume per ion. The lowest enthalpy member (in this generation generation 6, member 9) is highlighted - this is is currently considered the most stable structure found. 
 
 The `devel_code` block is a bit more complex. The fact that pair potentials are used are defined in both the `GA` sub-block and `GEOM` sub-block, again necessary for speed. The `CMD` sub-block is there so that geometry optimisations are performed on all members: what happens is `cell` files are generated (initially randomly and in the 1st generation onwards by breeding + mutation), as well as respective `param` files that tell them to geometry optimise, for each member, and then they are run.
 
