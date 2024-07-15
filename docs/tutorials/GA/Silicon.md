@@ -144,7 +144,39 @@ to get the output file `out.put`, and the run the python script to see that data
 
 ![First image output](all_gens.png)
 
-Each dot in this graph is a member, showing the spread of enthalpy against their volume per ion. The lowest enthalpy member (in this generation generation 6, member 9) is highlighted - this is is currently considered the most stable structure found. 
+Each dot in this graph is a member, showing the spread of enthalpy against their volume per ion. The lowest enthalpy member (in this generation generation 6, member 9) is highlighted - this is is currently considered the most stable structure found.
+
+You can also find the lowest enthalpy structure by running
+
+`grep 'child' Si.castep | sort -k10,10n | head -20`
+
+This gives the 10 lowest enthalpy members (each one repeats twice - don't worry about that). The output looks a bit like
+
+```
+
+ GA: gen #  6 child  #  9 enthalpy = -4.336393E+000 eV/atom un-scaled fitness =  0.880797 conv = T member error = F seed = Si.gen_006_mem_009 vol/ion =    20.0224 A**3/atom
+ GA: gen #  6 child  #  9 enthalpy = -4.336393E+000 eV/atom updated fitness =  0.880797 conv = T member error = F seed = Si.gen_006_mem_009 vol/ion =    20.0224 A**3/atom
+ GA: gen # 12 child  #  8 enthalpy = -4.336381E+000 eV/atom un-scaled fitness =  0.880788 conv = T member error = F seed = Si.gen_012_mem_008 vol/ion =    20.0241 A**3/atom
+ GA: gen # 12 child  #  8 enthalpy = -4.336381E+000 eV/atom updated fitness =  0.452993 conv = T member error = F seed = Si.gen_012_mem_008 vol/ion =    20.0241 A**3/atom
+ GA: gen #  5 child  #  9 enthalpy = -4.336369E+000 eV/atom un-scaled fitness =  0.880797 conv = T member error = F seed = Si.gen_005_mem_009 vol/ion =    20.0230 A**3/atom
+ GA: gen #  5 child  #  9 enthalpy = -4.336369E+000 eV/atom updated fitness =  0.880797 conv = T member error = F seed = Si.gen_005_mem_009 vol/ion =    20.0230 A**3/atom
+ GA: gen # 11 child  #  6 enthalpy = -4.258665E+000 eV/atom un-scaled fitness =  0.828518 conv = T member error = F seed = Si.gen_011_mem_006 vol/ion =    19.7822 A**3/atom
+ GA: gen # 11 child  #  6 enthalpy = -4.258665E+000 eV/atom updated fitness =  0.456619 conv = T member error = F seed = Si.gen_011_mem_006 vol/ion =    19.7822 A**3/atom
+ GA: gen #  4 child  # 10 enthalpy = -4.241488E+000 eV/atom un-scaled fitness =  0.880797 conv = T member error = F seed = Si.gen_004_mem_010 vol/ion =    18.2369 A**3/atom
+ GA: gen #  4 child  # 10 enthalpy = -4.241488E+000 eV/atom updated fitness =  0.880797 conv = T member error = F seed = Si.gen_004_mem_010 vol/ion =    18.2369 A**3/atom
+ GA: gen #  1 child  #  8 enthalpy = -4.240423E+000 eV/atom un-scaled fitness =  0.880797 conv = T member error = F seed = Si.gen_001_mem_008 vol/ion =    18.2175 A**3/atom
+ GA: gen #  1 child  #  8 enthalpy = -4.240423E+000 eV/atom updated fitness =  0.880797 conv = T member error = F seed = Si.gen_001_mem_008 vol/ion =    18.2175 A**3/atom
+ GA: gen #  9 child  #  3 enthalpy = -4.240415E+000 eV/atom un-scaled fitness =  0.835359 conv = T member error = F seed = Si.gen_009_mem_003 vol/ion =    18.2164 A**3/atom
+ GA: gen #  9 child  #  3 enthalpy = -4.240415E+000 eV/atom updated fitness =  0.432991 conv = T member error = F seed = Si.gen_009_mem_003 vol/ion =    18.2164 A**3/atom
+ GA: gen #  9 child  #  5 enthalpy = -4.240388E+000 eV/atom un-scaled fitness =  0.835345 conv = T member error = F seed = Si.gen_009_mem_005 vol/ion =    18.2140 A**3/atom
+ GA: gen #  9 child  #  5 enthalpy = -4.240388E+000 eV/atom updated fitness =  0.432963 conv = T member error = F seed = Si.gen_009_mem_005 vol/ion =    18.2140 A**3/atom
+ GA: gen # 11 child  # 10 enthalpy = -4.225493E+000 eV/atom un-scaled fitness =  0.801207 conv = T member error = F seed = Si.gen_011_mem_010 vol/ion =    19.0956 A**3/atom
+ GA: gen # 11 child  # 10 enthalpy = -4.225493E+000 eV/atom updated fitness =  0.420408 conv = T member error = F seed = Si.gen_011_mem_010 vol/ion =    19.0956 A**3/atom
+ GA: gen #  1 child  #  9 enthalpy = -4.225480E+000 eV/atom un-scaled fitness =  0.865596 conv = T member error = F seed = Si.gen_001_mem_009 vol/ion =    19.0992 A**3/atom
+ GA: gen #  1 child  #  9 enthalpy = -4.225480E+000 eV/atom updated fitness =  0.444351 conv = T member error = F seed = Si.gen_001_mem_009 vol/ion =    19.0992 A**3/atom
+```
+
+
 
 The `devel_code` block is a bit more complex. The fact that pair potentials are used are defined in both the `GA` sub-block and `GEOM` sub-block, again necessary for speed. The `CMD` sub-block is there so that geometry optimisations are performed on all members: what happens is `cell` files are generated (initially randomly and in the 1st generation onwards by breeding + mutation), as well as respective `param` files that tell them to geometry optimise, for each member, and then they are run.
 
