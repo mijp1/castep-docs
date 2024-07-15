@@ -6,11 +6,109 @@ Let's assume we don't know the ground state Stillinger-Weber silicon structure a
 
 ## Input Files
 
-First navigate to the directory
+We will use the `cell` file
+*Si.cell*
 
-    cd CASTEP_workshop_GA/1_Si_SW_GA
+```
+%block LATTICE_ABC
+ang
+3.8 3.8 3.8
+ 90  90  90
+%endblock LATTICE_ABC
 
-which should contain a CASTEP `Si.cell` and `Si.param` file, as well as the bash script `get_data.sh` and a python script `plot_results.py` (which we will use for results analysis later).
+%block POSITIONS_FRAC
+Si  0.203  0.617  0.209
+Si  0.844  0.442  0.350
+Si  0.964  0.379  0.096
+Si  0.762  0.524  0.941
+Si  0.544  0.605  0.781
+Si  0.238  0.597  0.531
+Si  0.728  0.914  0.742
+Si  0.209  0.929  0.435
+%endblock POSITIONS_FRAC
+
+%BLOCK SPECIES_POT
+QC5
+%ENDBLOCK SPECIES_POT
+
+symmetry_generate
+symmetry_tol : 0.05 ang
+```
+
+The definition of the lattice and positions of the atoms is fairly inconsequential to the kind of result you will get: in the 0th generation it gets effectively randomised. The only thing that matters is the amount of Si atoms defined in the `POSITIONS_FRAC` block - here it is 8 so future structures will also have 8 atoms. Another thing worth noting is the QC5 potential being used - it is used due to its speed, which is essential considering how many calculations will be done.
+
+For the `param` file we will use
+*Si.param*
+
+```
+task             = genetic algor # Run the GA
+ga_pop_size      = 12            # Parent population size
+ga_max_gens      = 12            # Max number of generations to run for
+ga_mutate_amp    = 1.00          # Mutation amplitude (in Angstrom)
+ga_mutate_rate   = 0.15          # Probability of mutation to occur
+ga_fixed_N       = true          # Fix number of ions in each member based on input cell
+
+rand_seed        = 101213 # Random seed for replicability
+opt_strategy     = SPEED  # Run quick
+
+geom_max_iter    = 211 # Can have a large max iter as using pair potentials
+
+# Don't write most output files for each population member
+write_checkpoint = NONE
+write_bib        = FALSE
+write_cst_esp    = FALSE
+write_bands      = FALSE
+write_cell_structure = TRUE
+
+######################################
+# Any extra devel code options	     #
+# & required GA specific devel flags #
+######################################
+
+%block devel_code
+
+  # Command used to call castep for each population member
+  # If not given this defaults to castep.serial
+  CMD: castep.serial :ENDCMD
+
+  GA:
+
+    PP=T   # Using a pair potential
+    IPM=M  # Randomly mutated initial population
+
+    CW=24  # Num gens for convergence
+
+    NI=F   # No niching
+    FW=0.5 # Fitness weighting
+
+    # Asynchronous running options
+    # Required for asynchronous running, without this all geom opts will be run
+    # one after another
+    AS=T   # Run geometry optimisations asynchronously
+    MS=3   # Run 3 geometry optimisations at once
+
+    # Random symmetry children
+    NUM_CHILDREN=12
+    RSC=F
+
+    CORE_RADII_LAMBDA=0.8 # Core radii 0.8 pseudopotenital radii
+
+    SCALE_IGNORE_CONV=T   # Ignore convergence in fitness calcualtion
+
+  :ENDGA
+
+  # Use pair potentials in geometry optimisations and perform a final snap to symmetry
+  GEOM: PP=T SNAP=T :ENDGEOM
+
+  # Use the Stillinger-Weber pair potential
+  PP=T
+  PP:
+    SW=T
+  :ENDPP
+
+%endblock devel_code
+```
+
 
 Like standard CASTEP, the CASTEP GA requires both a cell and a param file input. However, we likely do not know what the best cell structure is. As such, we give a cell that contains multiple ions of the species that we are interested in. The number of ions given in this cell is used as a baseline for the number of ions in cells created & bred over the course of the GA, where at least one ion of each species will always be represented at least once in each cell. We can also fix the number of ions in each population member to match that in the input cell. We should not add too few ions, as cells with more ions contain more \`genetic information', meaning smaller cells don't benefit from breeding operations as much.
 
