@@ -175,6 +175,20 @@ This gives the 10 lowest enthalpy members (each one repeats twice - don't worry 
  GA: gen #  1 child  #  9 enthalpy = -4.225480E+000 eV/atom un-scaled fitness =  0.865596 conv = T member error = F seed = Si.gen_001_mem_009 vol/ion =    19.0992 A**3/atom
  GA: gen #  1 child  #  9 enthalpy = -4.225480E+000 eV/atom updated fitness =  0.444351 conv = T member error = F seed = Si.gen_001_mem_009 vol/ion =    19.0992 A**3/atom
 ```
+This further confirms that 6,9 is the most stable member. Now we will examine the structure of it.
+
+Running c2x on it via
+
+`c2x --int -e=0.1-0.0001 Si.gen_006_mem_009`
+
+tells us its approximation of the structure of it. In my case it gives the output
+
+```
+Tol=0.1     International symmetry is P6_3/mmc
+Tol=0.00316 International symmetry is C2/m
+```
+From this we can immediately tell that the result is imperfect: the actual structure should be diamond (Fd-3m). 
+
 
 
 
