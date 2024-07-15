@@ -187,9 +187,44 @@ tells us its approximation of the structure of it. In my case it gives the outpu
 Tol=0.1     International symmetry is P6_3/mmc
 Tol=0.00316 International symmetry is C2/m
 ```
-From this we can immediately tell that the result is imperfect: the actual structure should be diamond (Fd-3m). 
+From this we can immediately tell that the result is imperfect: the actual structure should be diamond (Fd-3m). Do not worry, however, as looking at a 2x2 supercell in VESTA one can see the resemblance to what we'd expect:
 
+![Initial supercell](6_9_2x2.png)
 
+This is promising - though it started off by generating random structures, it has already arrived at one resembling diamond.
+
+Let's see if more generations will improve the results. Change the initial `param` file to have
+
+`ga_max_gens = 18`
+
+and add the line
+
+`continuation = Si.xyz`
+
+This tells it to continue to run, up to 18 generations, using the previous results as its history. Running castep GA on Si again will make it run as before.
+
+After it's done running, if you wish to save the previous graph, simply rename it. Then run the bash, and then python, script again to get a new `all_gens.png` for the continued, longer run. The new image will have more points on the graph, as more members have been examined, and (hopefully) a new minimum enthalpy member. Running the same `grep` command will give this in the top 4
+
+```
+GA: gen # 16 child  #  7 enthalpy = -4.336404E+000 eV/atom un-scaled fitness =  0.880797 conv = T member error = F seed = Si.gen_016_mem_007 vol/ion =    20.0237 A**3/atom
+GA: gen # 16 child  #  7 enthalpy = -4.336404E+000 eV/atom updated fitness =  0.880797 conv = T member error = F seed = Si.gen_016_mem_007 vol/ion =    20.0237 A**3/atom
+GA: gen #  6 child  #  9 enthalpy = -4.336393E+000 eV/atom un-scaled fitness =  0.880797 conv = T member error = F seed = Si.gen_006_mem_009 vol/ion =    20.0224 A**3/atom
+GA: gen #  6 child  #  9 enthalpy = -4.336393E+000 eV/atom updated fitness =  0.880797 conv = T member error = F seed = Si.gen_006_mem_009 vol/ion =    20.0224 A**3/atom
+```
+
+This is rather interesting: even after 6 * 12 = 72 new members have been generated, the original minimum is still the 2nd lowest enthalpy: it certainly is a good structure. However, 16,7 is now considered the best: let's look at how it improved.
+
+Running c2x on it tells me this
+
+```
+Tol=0.1     International symmetry is Fd-3m
+Tol=0.0001  International symmetry is P-1
+```
+According to c2x it is now more similar to diamond (though if you're being very strict with it it, is not - it is still imperfect, though closer). Looking at it on VESTA (again a 2x2 supercell) tells us a similar story
+
+![2nd vesta image](16_7_2x2.png)
+
+As expected of GA, it has managed to improve the structure through multiple generations. If you wish, you could continue to run it for more generations by keeping the `continuation` line and increasing `ga_max_gens` more - in fact, if using a different seed or if your environment processed said seed differently, you may have to - 6 more generations aren't guranteed to find a new lowest enthalpy structure!
 
 
 The `devel_code` block is a bit more complex. The fact that pair potentials are used are defined in both the `GA` sub-block and `GEOM` sub-block, again necessary for speed. The `CMD` sub-block is there so that geometry optimisations are performed on all members: what happens is `cell` files are generated (initially randomly and in the 1st generation onwards by breeding + mutation), as well as respective `param` files that tell them to geometry optimise, for each member, and then they are run.
