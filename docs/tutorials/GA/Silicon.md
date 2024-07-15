@@ -130,6 +130,22 @@ With the general rule that `NUM_CHILREN` + `RSN` = `ga_pop_size` (defined earlie
 !!! note
     Though not a gurantee, using an identical `RAND_SEED` makes it likely that you'll get identical results to this tutorial, so you can follow along more easily
 
+## Running and Output
+
+Now we can run castep GA on Si. You may use
+
+`tail -f Si.castep`
+
+If you wish to see what's going on in the `castep` file as it runs (it's explained in more detail in the previous tutorial ADD LINK). Once it is done running, we will use the scripts [get_data.sh](get_data.sh) and [plot_results.py](plot_results.py) - first run
+
+`./get_data.sh`
+
+to get the output file `out.put`, and the run the python script to see that data visually in `all_gens.png`. The graph should look like this
+
+![First image output](all_gens.png)
+
+
+
 The `devel_code` block is a bit more complex. The fact that pair potentials are used are defined in both the `GA` sub-block and `GEOM` sub-block, again necessary for speed. The `CMD` sub-block is there so that geometry optimisations are performed on all members: what happens is `cell` files are generated (initially randomly and in the 1st generation onwards by breeding + mutation), as well as respective `param` files that tell them to geometry optimise, for each member, and then they are run.
 
 Like standard CASTEP, the CASTEP GA requires both a cell and a param file input. However, we likely do not know what the best cell structure is. As such, we give a cell that contains multiple ions of the species that we are interested in. The number of ions given in this cell is used as a baseline for the number of ions in cells created & bred over the course of the GA, where at least one ion of each species will always be represented at least once in each cell. We can also fix the number of ions in each population member to match that in the input cell. We should not add too few ions, as cells with more ions contain more \`genetic information', meaning smaller cells don't benefit from breeding operations as much.
