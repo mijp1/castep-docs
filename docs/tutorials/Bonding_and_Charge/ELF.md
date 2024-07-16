@@ -1,4 +1,4 @@
-[ELF](../../documentation/Groundstate/ELF.md) (Electron Localization Function) is another way to measure electron density. In this tutorial, we will use it to roughly demonstrate lone pairs/hydrogen bonding in HF, H~2~O and NH~3~.
+[ELF](../../documentation/Groundstate/ELF.md) (Electron Localization Function) measures how "local" electrons are - the higher the value, the more likely electrons are to make opposite-spin pairs and generally be more "fixed" in place. We will use it to examine ionic, covalent and metallic bonding, and finally use it to examine lone pairs (and hydrogen bonding).
 
 ## HF
 
