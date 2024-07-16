@@ -1,5 +1,7 @@
 [ELF](../../documentation/Groundstate/ELF.md) (Electron Localization Function) measures how "local" electrons are - the higher the value, the more likely electrons are to make opposite-spin pairs and generally be more "fixed" in place. We will use it to examine ionic and covalent bonding, and then use it to examine lone pairs (and hydrogen bonding) in HF, H~2~O and NH~3~ molecules.
 
+A lot of the steps on examining the data are the same as in [Plotting Charge Density](charge_density.md) - if you prefer, you may use that (and its accompanying [video tutorial](https://www.youtube.com/watch?v=_c2Hk4jxmm4&feature=youtu.be)), though the cells and planes used are slightly different. 
+
 ## NaCl
 
 We will start by looking at how electrons in an NaCl crystal behave - to illustrate what ELF exactly does and doesn't do, we will compare it to the results of a standard population analysis.
@@ -194,4 +196,4 @@ Lastly, let's take a quick look at the NH~3~ result. Selecting the best plane co
 Here we see evidence of lone pairs on both of the hydrogens in the plane (as both can form hydrogen bonds - and so can the third if you look at that one). This is rather unexpected - in the classical view, NH~3~ has a nitrogen with 1 lone pair that simply forms a single hydrogen bond with a hydrogen in an adjacent NH~3~. However, because every hydrogen is capable of forming a hydrogen bond, ELF registers them as having regions of high locality near them. The same applies to nitrogen - though it should clasically only have 1 pair near it, it is seen as having 2 as it is capable of making 2 hydrogen bonds in that plane.
 
 !!! warning
-    The results will likely look different depending on which 2 hydrogens you pick along with the nitrogen. This can be mostly explained due to how adjacent ammonia molecules are aligned relative to it, which is defined by the cell. 
+    The results will likely look different depending on which 2 hydrogens you pick along with the nitrogen. This can be mostly explained due to how adjacent ammonia molecules are aligned relative to it, which is defined by the cell.
