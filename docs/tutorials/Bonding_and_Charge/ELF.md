@@ -99,7 +99,7 @@ You can uncheck `Show models` to see it better without the atoms
 
 ![100 lattice ELF Si no atoms](Si_ELF2.png){width="40%"}
 
-This tells us a rather interesting story - the atoms are highly localised along the covalent Si-Si bonds, but relatively delocalised near the atoms themselves.
+This tells us a rather interesting story - the atoms are highly localised along the covalent Si-Si bonds, but relatively delocalised near the atoms themselves. They are especially delocalised in regions where is no bonding or atoms - there electrons are effectively free.
 ## HF
 
 For HF we will use the `cell` file:
