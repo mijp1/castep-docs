@@ -57,8 +57,11 @@ There, click `Slice` - this will open another window
 
 ![Slice window](slice_window.png){width="40%"}
 
-You should keep the `hkl` (lattice Miller indices) as `001`, but make a 2x2 supercell but changing `x(min)`, `y(min)` and `z(min)` to `-1`. Click `Ok` and you should get an output looking like 
+You should keep the `hkl` (lattice Miller indices) as `001`, but make a 2x2 supercell but changing `x(min)`, `y(min)` and `z(min)` to `-1`. Click `Ok` and you should get an output looking like
 
+![Supercell of NaCl density](NaCl_den_2x2.png){width="50%"}
+
+This is what we'd expect of an ionic crystal: a regular pattern where dot with a low relative electron density (the cation) is next to one with a high electron density (the anion).
 ## HF
 
 For HF we will use the `cell` file:
