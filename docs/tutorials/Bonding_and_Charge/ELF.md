@@ -44,8 +44,20 @@ Running castep will yield 2 files of interest: `NaCl.elf_fmt` and `NaCl.den_fmt`
 5     1     1            0.000000
 ```
 
-Now download the 4 new files. 
+Now download the 4 new files.
 
+!!! note
+    If you wish to move the files around, make sure that the `.charg_frm` file is located in the same directory as its respective `cell` file - so `NaCl_elf.charg_frm` should be next to `NaCl_elf.cell` for example
+
+We will first look at the density output. Open it in Vesta, and, at the top (same row as where the `Files` tab is), go to `Utilities -> 2D Data Display`. It should open a window looking like
+
+![Data display window](data_display_window.png){width="40%")}
+
+There, click `Slice` - this will open another window
+
+![Slice window](slice_window.png){width="40%"}
+
+You should keep the `hkl` (lattice Miller indices) as `001`, but make a 2x2 supercell but changing `x(min)`, `y(min)` and `z(min)` to `-1`. Click `Ok` and you should get an output looking like 
 
 ## HF
 
