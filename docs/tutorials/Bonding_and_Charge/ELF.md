@@ -2,7 +2,7 @@
 
 ## NaCl
 
-We will start by looking at how electrons in an NaCl crystal behave - to understand it properly, we will look at both the ELF and standard electron density results.
+We will start by looking at how electrons in an NaCl crystal behave - to illustrate what ELF exactly does and doesn't do, we will compare it to the results of a standard population analysis.
 
 For both calculations we will use the `cell` file
 *NaCl.cell*
@@ -62,6 +62,12 @@ You should keep the `hkl` (lattice Miller indices) as `001`, but make a 2x2 supe
 ![Supercell of NaCl density](NaCl_den_2x2.png){width="50%"}
 
 This is what we'd expect of an ionic crystal: a regular pattern where dot with a low relative electron density (the cation) is next to one with a high electron density (the anion).
+
+Now let's follow the exact same procedure, except this time for `NaCl_elf`. This is the outcome:
+
+![Supercell of NaCl ELF](NaCl_elf_2x2.png){width="50%"}
+
+This is rather interesting: though the electron density around the Na^+^ cation is very low, the electrons are much more localised around it - the opposite is true for Cl^-^ : the results have virtually inversed. While both, in the simplest model, have full outer shells and thus should both be highly localised (in fact they are both localised, Na^+^ just moreso), Cl^-^ simply has larger orbitals and has full valence shell (rather than core), leading to lower localisation. This helps illustrate the key difference between ELF and population analysis: ELF is purely a measure of how localised the electrons are in space, and has little to do with their density
 ## HF
 
 For HF we will use the `cell` file:
