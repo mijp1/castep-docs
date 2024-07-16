@@ -99,8 +99,10 @@ You can uncheck `Show models` to see it better without the atoms
 
 ![100 lattice ELF Si no atoms](Si_ELF2.png){width="40%"}
 
-This tells us a rather interesting story - the atoms are highly localised along the covalent Si-Si bonds, but relatively delocalised near the atoms themselves. They are especially delocalised in regions where is no bonding or atoms - there electrons are effectively free.
+This tells us a rather interesting story - the atoms are highly localised along the covalent Si-Si bonds, but relatively delocalised near the atoms themselves. They are especially delocalised in regions where is no bonding or atoms.
 ## HF
+
+Now that we have a good understand of what ELF actually does, let's use it for a more interesting purpose: to demonstrate lone pairs and hydrogen bonding. Lone pairs are by their nature highly localised, pairing up with each other and being held largely in place by strong repulsions to any negative charges (including other lone pairs) and strong attractions to positive ones (such as adjacent dipoles - this leads to hydrogen bonding)
 
 For HF we will use the `cell` file:
 
