@@ -1,5 +1,52 @@
 [ELF](../../documentation/Groundstate/ELF.md) (Electron Localization Function) measures how "local" electrons are - the higher the value, the more likely electrons are to make opposite-spin pairs and generally be more "fixed" in place. We will use it to examine ionic, covalent and metallic bonding, and finally use it to examine lone pairs (and hydrogen bonding).
 
+## NaCl
+
+We will start by looking at how electrons in an NaCl crystal behave - to understand it properly, we will look at both the ELF and standard electron density results.
+
+For both calculations we will use the `cell` file
+*NaCl.cell*
+```
+%block lattice_cart
+5.693 0.000 0.000
+0.000 5.693 0.000
+0.000 0.000 5.693
+%endblock lattice_cart
+
+%block positions_frac
+Na 0.0 0.0 0.0
+Na 0.0 0.5 0.5
+Na 0.5 0.0 0.5
+Na 0.5 0.5 0.0
+Cl 0.5 0.5 0.5
+Cl 0.5 0.0 0.0
+Cl 0.0 0.5 0.0
+Cl 0.0 0.0 0.5
+%endblock positions_frac
+```
+and the `param` file
+*NaCl.param*
+```
+xc_functional : LDA
+cutoff_energy : 500 eV
+spin_polarised : false
+WRITE_FORMATTED_DENSITY : TRUE
+CALCULATE_ELF : TRUE
+WRITE_FORMATTED_ELF : TRUE
+```
+Running castep will yield 2 files of interest: `NaCl.elf_fmt` and `NaCl.den_fmt`. We will start by looking at the latter: rename/copy `NaCl.den_fmt` to `NaCl.charg_frm`, remove the head from the now renamed file so it starts similarly to
+
+```
+1     1     1            0.000000
+2     1     1            0.000000
+3     1     1            0.000000
+4     1     1            0.000000
+5     1     1            0.000000
+```
+
+and then download both the `NaCl.cell` and `NaCl.charg_frm` files, uploading the latter to Vesta.
+
+
 ## HF
 
 For HF we will use the `cell` file:
