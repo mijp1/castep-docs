@@ -68,6 +68,38 @@ Now let's follow the exact same procedure, except this time for `NaCl_elf`. This
 ![Supercell of NaCl ELF](NaCl_elf_2x2.png){width="50%"}
 
 This is rather interesting: though the electron density around the Na^+^ cation is very low, the electrons are much more localised around it - the opposite is true for Cl^-^ : the results have virtually inversed. While both, in the simplest model, have full outer shells and thus should both be highly localised (in fact they are both localised, Na^+^ just moreso), Cl^-^ simply has larger orbitals and has full valence shell (rather than core), leading to lower localisation. This helps illustrate the key difference between ELF and population analysis: ELF is purely a measure of how localised the electrons are in space, and has little to do with their density
+
+## Covalent bonding - Si
+
+We will now use ELF to demonstrate covalent bonding in diamond-silicon. We will use the `cell` file
+*Si.cell*
+
+```
+
+%block lattice_abc
+3.8 3.8 3.8
+60 60 60
+%endblock lattice_abc
+
+%block positions_frac
+Si 0.00 0.00 0.00
+Si 0.25 0.25 0.25
+%endblock positions_frac
+```
+
+Run castep with an idenitcal `param` file as above. Do the exact same procedure as above (though if you're not interested in the electron density results you may only make `_elf` copies). After opening it in Vesta, rather than taking a slice, click `Edit -> Lattice planes`, which will open the window
+
+![Lattice planes window](lattice_planes_window.png){width="30%"}
+
+Click `New` and use the (100) plane as before. Then clikc `Ok`, and again create a supercell - this time click `Boundary...` on the left side of the main window. Make it a 2x2 supercell as before. Rotate the cell around until you see what's happening well - you should see something like
+
+![100 lattice ELF Si](Si_ELF.png){width="50%"}
+
+You can uncheck `Show models` to see it better without the atoms
+
+![100 lattice ELF Si no atoms](Si_ELF2.png){width="40%"}
+
+This tells us a rather interesting story - the atoms are highly localised along the covalent Si-Si bonds, but relatively delocalised near the atoms themselves.
 ## HF
 
 For HF we will use the `cell` file:
