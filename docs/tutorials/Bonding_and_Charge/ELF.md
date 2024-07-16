@@ -34,7 +34,7 @@ WRITE_FORMATTED_DENSITY : TRUE
 CALCULATE_ELF : TRUE
 WRITE_FORMATTED_ELF : TRUE
 ```
-Running castep will yield 2 files of interest: `NaCl.elf_fmt` and `NaCl.den_fmt`. We will start by looking at the latter: rename/copy `NaCl.den_fmt` to `NaCl.charg_frm`, remove the head from the now renamed file so it starts similarly to
+Running castep will yield 2 files of interest: `NaCl.elf_fmt` and `NaCl.den_fmt`. We will want to compare the 2 outputs, so let's make 2 copies of the `cell` file by copying `NaCl.cell` as `NaCl_elf.cell` and `NaCl_den.cell`, and copying `NaCl.elf_fmt` to `NaCl_elf.charg_frm` and `NaCl.den_fmt` to `NaCl_den.charg_frm`. In both `.charg_frm` files remove the header, so they both start similarly to
 
 ```
 1     1     1            0.000000
@@ -44,7 +44,7 @@ Running castep will yield 2 files of interest: `NaCl.elf_fmt` and `NaCl.den_fmt`
 5     1     1            0.000000
 ```
 
-and then download both the `NaCl.cell` and `NaCl.charg_frm` files, uploading the latter to Vesta.
+Now download the 4 new files. 
 
 
 ## HF
