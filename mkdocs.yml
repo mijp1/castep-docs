@@ -77,9 +77,10 @@ nav:
         - 'Plotting Charge Density': 'tutorials/Bonding_and_Charge/charge_density.md'
         - 'Population Analysis': 'tutorials/Bonding_and_Charge/mulliken_population.md'
       - 'Bands and DOS':
-        - 'Plotting - CASTEP tools': 'tutorials/Bands_and_DOS/plotting_perl.md'
-        - 'Plotting - SUMO': 'tutorials/Bands_and_DOS/plotting_sumo.md'
+
         - 'Plotting':
+          - 'Plotting - CASTEP tools': 'tutorials/Bands_and_DOS/Plotting/plotting_perl.md'
+          - 'Plotting - SUMO': 'tutorials/Bands_and_DOS/Plotting/plotting_sumo.md'
           - 'Optados':
             - 'DOS': 'tutorials/Bands_and_DOS/Plotting/Optados/DOS.md'
             - 'pDOS': 'tutorials/Bands_and_DOS/Plotting/Optados/pDOS.md'
