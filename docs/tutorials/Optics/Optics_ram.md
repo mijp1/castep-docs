@@ -38,7 +38,7 @@ CUT_OFF_ENERGY         : 200
 
 Once that is done, we can perform the optical Optados calculations.
 
-## Dielectric Tensor
+## Demonstrating Birefringence
 
 We will begin by examining the dielectric tensor. We will do this by using the Opdatos input file
 
@@ -144,10 +144,38 @@ and plotting it with xmgrace via
 
 This gives us a graph looking like this:
 
+<a id="1_2_together"></a>
 ![xx and yy plotted together - identical](1_2_together.png)
 
 There is only 1 line visible - they (almost) perfectly overlap, meaning that $\epsilon_{xx}$ = $\epsilon_{yy}$. Now let's try comparing $\epsilon_{xx}$ with $\epsilon_{zz}$ - all you have to do is make the 2nd block `rut_tens3.dat` (and change the legend appropriately).
 
 ![xx and zz plotted together - different](1_3_together.png)
 
-This is a rather interesting result: this seems that the dielectric function in different directions is different - the material is optically anisotropic. Since it is identical in 2 directions, it would be considered birefringent. 
+This is a rather interesting result: this seems that the dielectric function in different directions is different - the material is optically anisotropic. Since it is identical in 2 directions, it would be considered birefringent.
+
+## Examining Dielectric Tensor
+
+So now that we have the dielectric function tensor, let's examine how this corresponds to its (anisotropic) optical properties
+
+We will run Optados again (no need to rerun Castep), changing the line
+
+```
+OPTICS_GEOM        : tensor    
+```
+
+in the `rut.odi` file to the lines
+
+```
+OPTICS_GEOM        : polarised     # Default
+OPTICS_QDIR : 1 0 0
+```
+
+Let's compare the dielectric function output with the $\epsilon_{xx}$ output we got from the tensor. Run
+
+`xmgrace rut_epsilon.dat tensors/rut_tens1.dat`
+
+We will get the same graph as the [1st one](Optics_ram.md#1_2_together). This is no surprise at all: if light is polarised in the xx direction, it'll effectively feel the $\epsilon_{xx}$ dielectric function.
+
+Let's try a more interesting example - change the direction line to
+
+`OPTICS_QDIR : 1 1 1`
