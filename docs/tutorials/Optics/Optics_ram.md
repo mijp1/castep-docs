@@ -179,3 +179,45 @@ We will get the same graph as the [1st one](Optics_ram.md#1_2_together). This is
 Let's try a more interesting example - change the direction line to
 
 `OPTICS_QDIR : 1 1 1`
+
+Now the result shouldn't align with anything: to demonstrate that let's compare it to $\epsilon_{xx}$, $\epsilon_{zz}$ and $\epsilon_{xy}$, all on the same graph - luckily xmgrace makes it very easy to plot them together. We'll modify the batch file to include all of them -
+
+*compare.bat*
+```
+
+READ BLOCK "tensors/rut_tens1.dat"
+
+BLOCK xy "1:2"
+S0 LEGEND "Real XX component"
+
+READ BLOCK "tensors/rut_tens3.dat"
+
+BLOCK xy "1:2"
+
+S1 LEGEND "Real ZZ component"
+
+
+READ BLOCK "tensors/rut_tens4.dat"
+
+BLOCK xy "1:2"
+S2 LEGEND "Real XY component"
+
+READ BLOCK "rut_epsilon.dat"
+
+BLOCK xy "1:2"
+
+S3 LEGEND "1 1 1 result"
+
+
+
+XAXIS LABEL "Energy (eV)"
+YAXIS LABEL "Dielectric constant"
+
+WORLD XMAX 5
+```
+
+We have also made the graph smaller (only goes up to 5eV) in the last line to make it easier to see overlaps (or lack of them). This is the kind of output we get:
+
+![Demonstration of 111](111_comparison.png)
+
+You can try comparing it to any other value, but you'll find it's completely different. So how is this related to the tensor? 
