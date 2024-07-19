@@ -116,3 +116,5 @@ for line in lines:
 
 !!! note
     It is recommended to copy and do this is in a separate directory - we will be comparing this output to subsequent calculations. In future instructions this will be in the directory "tensors"
+
+We now have 6 files for each component of the 3x3 tensor (keep in mind that it is symmetric ie. $\epsilon_{xy}$ = $\epsilon_{yx}$). `rut_tens1.dat` corresponds to  $\epsilon_{xx}$, 2 and 3 and to yy and zz, while 4, 5 and 6 correspond to xy, xz and yz. 
