@@ -25,3 +25,50 @@ SPECTRAL_KPOINTS_MP_GRID 14 14 14
 ```
 
 This `cell` file was obtained using cif2cell using the structure with the COD ID 1010942, found on the [Crystallography Open Database](www.crystallography.net)
+
+We will first run a castep calculation using the above cell with the `param` file
+
+*rut.param*
+
+```
+TASK                   : SPECTRAL
+SPECTRAL_TASK          : OPTICS
+CUT_OFF_ENERGY         : 200
+```
+
+Once that is done, we can perform the optical Optados calculation. This is done by running Optados calculation with the Optados input file
+
+*rut.odi*
+
+```
+TASK               : optics
+
+# Sample the JDOS at 0.01 eV intervals
+JDOS_SPACING       : 0.01
+
+# Calculate the JDOS up to 60eV about the valence band maximum
+JDOS_MAX_ENERGY    : 60
+
+# Recalculate the Fermi energy using the new DOS
+# (discasrd the CASTEP efermi)
+EFERMI             : optados
+
+# Since we're recalculating the Fermi energy we do
+# a DOS calculation first.
+# Sample the DOS at 0.1 eV intervals
+DOS_SPACING        : 0.1
+
+# The broadening used, (also try linear, or fixed)
+BROADENING         : adaptive # Default
+
+# The broadening parameter, A, when using adaptive smearing,
+# set by eye to be similar to the linear smearing method
+ADAPTIVE_SMEARING  : 0.4     # Default
+
+# Specify the geometry to be used in the optics calculation
+OPTICS_GEOM        : tensor     # Default
+# Include additional broadening for the loss function
+OPTICS_LOSSFN_BROADENING : 0.0    # Default
+```
+
+The line `TASK : optics` is key here, as that is what tells us to perform an optical calculation. The other crucial line is `OPTICS_GEOM : tensor` - this tells it to calculate the full dielectric tensor of rutile. This produces 2 output files: `rut.odo` and `rut_epsilon.dat` - we are interested in the latter. 
