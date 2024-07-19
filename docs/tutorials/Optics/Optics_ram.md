@@ -36,7 +36,11 @@ SPECTRAL_TASK          : OPTICS
 CUT_OFF_ENERGY         : 200
 ```
 
-Once that is done, we can perform the optical Optados calculation. This is done by running Optados calculation with the Optados input file
+Once that is done, we can perform the optical Optados calculations.
+
+## Dielectric Tensor
+
+We will begin by examining the dielectric tensor. We will do this by using the Opdatos input file
 
 *rut.odi*
 
@@ -71,4 +75,4 @@ OPTICS_GEOM        : tensor     # Default
 OPTICS_LOSSFN_BROADENING : 0.0    # Default
 ```
 
-The line `TASK : optics` is key here, as that is what tells us to perform an optical calculation. The other crucial line is `OPTICS_GEOM : tensor` - this tells it to calculate the full dielectric tensor of rutile. This produces 2 output files: `rut.odo` and `rut_epsilon.dat` - we are interested in the latter. 
+The line `TASK : optics` is key here, as that is what tells us to perform an optical calculation. The other crucial line is `OPTICS_GEOM : tensor` - this tells it to calculate the full dielectric tensor of rutile. This produces 2 output files: `rut.odo` and `rut_epsilon.dat` - we are interested in the latter.
