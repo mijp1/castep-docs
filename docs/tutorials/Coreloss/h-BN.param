@@ -1,0 +1,6 @@
+task: spectral
+spectral_task: coreloss
+
+xc_functional: LDA
+
+opt_strategy: speed

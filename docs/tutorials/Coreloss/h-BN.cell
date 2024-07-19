@@ -1,0 +1,20 @@
+%block lattice_abc
+2.5 2.5 2.5
+60 60 60
+%endblock lattice_abc
+
+%block positions_frac
+B 0.00 0.00 0.00
+N 0.25 0.25 0.25
+%endblock positions_frac
+
+kpoints_mp_grid 2 2 2
+
+symmetry_generate
+
+%block species_pot
+B 2|1.2|12|14|16|20:21(qc=8)
+%block species_pot
+
+spectral_kpoint_mp_grid 10 10 10
+
