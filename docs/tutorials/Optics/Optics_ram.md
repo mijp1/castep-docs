@@ -87,4 +87,32 @@ The output file starts off looking like
   1.0001666944490749E-002   10.986133776534746        4.5560614006426980E-003
   2.0003333888981498E-002   10.990669467897412        5.9329124271557589E-003
 ```
-The 1st column corresponds to energy (in eV), the 2nd is the real part of the dielectric constant and the 3rd is the imaginary part. The file contains 6 components, each having their own table. 
+The 1st column corresponds to energy (in eV), the 2nd is the real part of the dielectric constant and the 3rd is the imaginary part. The file contains 6 components, each having their own table. This is bothersome to plot, so let's use a Python script to separate it into its components
+
+*separate.py*
+
+```python
+
+input_file = 'rut_epsilon.dat'
+print ("huh")
+def write_to_file(component,lines):
+  file_name = "rut_tens" + str(component) + ".dat"
+  with open(file_name,"w") as f:
+    f.writelines(lines)
+
+with open("rut_tens.dat", "r") as f:
+  lines = f.readlines()[::-1]
+component_lines = []
+component = 6
+for line in lines:
+
+  component_lines.append(line)
+  if "Componen" in line:
+
+    write_to_file(component,component_lines)
+    component -= 1
+    component_lines = []
+```
+
+!!! note
+    It is recommended to copy and do this is in a separate directory - we will be comparing this output to subsequent calculations. In future instructions this will be in the directory "tensors"
