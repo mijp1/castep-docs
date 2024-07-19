@@ -117,4 +117,37 @@ for line in lines:
 !!! note
     It is recommended to copy and do this is in a separate directory - we will be comparing this output to subsequent calculations. In future instructions this will be in the directory "tensors"
 
-We now have 6 files for each component of the 3x3 tensor (keep in mind that it is symmetric ie. $\epsilon_{xy}$ = $\epsilon_{yx}$). `rut_tens1.dat` corresponds to  $\epsilon_{xx}$, 2 and 3 and to yy and zz, while 4, 5 and 6 correspond to xy, xz and yz. 
+We now have 6 files for each component of the 3x3 tensor (keep in mind that it is symmetric ie. $\epsilon_{xy}$ = $\epsilon_{yx}$). `rut_tens1.dat` corresponds to  $\epsilon_{xx}$, 2 and 3 and to yy and zz, while 4, 5 and 6 correspond to xy, xz and yz.
+
+Now that we have all the components, let's start actually looking at the results. First, let's plot the real parts of $\epsilon_{xx}$ and $\epsilon_{yy}$ on the same graph. We can do this by using the batch file
+
+*plot_12_together.bat*
+```
+READ BLOCK "rut_tens1.dat"
+
+BLOCK xy "1:2"
+S0 LEGEND "Real XX component"
+
+READ BLOCK "rut_tens2.dat"
+
+BLOCK xy "1:2"
+S1 LEGEND "Real YY component"
+
+XAXIS LABEL "Energy (eV)"
+YAXIS LABEL "Dielectric constant"
+
+```
+
+and plotting it with xmgrace via
+
+`xmgrace -batch plot_12_together.bat`
+
+This gives us a graph looking like this:
+
+![xx and yy plotted together - identical](1_2_together.png)
+
+There is only 1 line visible - they (almost) perfectly overlap, meaning that $\epsilon_{xx}$ = $\epsilon_{yy}$. Now let's try comparing $\epsilon_{xx}$ with $\epsilon_{zz}$ - all you have to do is make the 2nd block `rut_tens3.dat` (and change the legend appropriately).
+
+![xx and zz plotted together - different](1_3_together.png)
+
+This is a rather interesting result: this seems that the dielectric function in different directions is different - the material is optically anisotropic. Since it is identical in 2 directions, it would be considered birefringent. 
