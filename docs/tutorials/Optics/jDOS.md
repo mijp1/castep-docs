@@ -37,9 +37,6 @@ IPRINT                 : 1
 ```
 * `examples/Si2_JDOS/Si2.odi` - The optados input file, containing the parameters necessary to run optados.
 ```
-###########################################################
-#       OptaDOS example file -- AJ Morris 18/V/11
-###########################################################
 
 # Choose the task to perform
 TASK              : jdos
@@ -62,15 +59,6 @@ DOS_SPACING       : 0.1
 # Give progress reports as it goes
 IPRINT : 2
 
-###########################################################
-#            A D V A N C E D   K E Y W O R D S
-###########################################################
-
-# The keywords below are all at their default value
-# They are presented here to indicate the internal
-# workings of OptaDOS and allow you to tweak the
-# output
-
 # The broadening used, (also try linear, or fixed)
 BROADENING        : adaptive # Default
 
@@ -88,11 +76,6 @@ SET_EFERMI_ZERO : true       # Default
 # Normalise the DOS with the volume of the simulation
 # cell
 DOS_PER_VOLUME  : false      # Default
-
-
-###########################################################
-#            C O M P A T I B I L I T Y
-###########################################################
 
 # Perform numerical integration of the DOS, instead of
 # semi-analytic (useful to compare with LinDOS)
