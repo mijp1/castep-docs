@@ -76,3 +76,15 @@ OPTICS_LOSSFN_BROADENING : 0.0    # Default
 ```
 
 The line `TASK : optics` is key here, as that is what tells us to perform an optical calculation. The other crucial line is `OPTICS_GEOM : tensor` - this tells it to calculate the full dielectric tensor of rutile. This produces 2 output files: `rut.odo` and `rut_epsilon.dat` - we are interested in the latter.
+
+The output file starts off looking like
+
+```
+# Component            1
+
+
+  0.0000000000000000        10.985963719914423        0.0000000000000000     
+  1.0001666944490749E-002   10.986133776534746        4.5560614006426980E-003
+  2.0003333888981498E-002   10.990669467897412        5.9329124271557589E-003
+```
+The 1st column corresponds to energy (in eV), the 2nd is the real part of the dielectric constant and the 3rd is the imaginary part. The file contains 6 components, each having their own table. 
