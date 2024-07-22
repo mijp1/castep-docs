@@ -76,7 +76,30 @@ After running Optados, we get several output `.dat` and `.agr` files. We will no
 
 ### Epsilon.dat
 
-* `Si2_OPTICS_epsilon.dat` : This file contains the dielectric function.  The columns are the energy and real and imaginary parts of the dielectric function respectively. The file header also includes the result of the sum rule $\int_0^{\omega'} \textrm{Im} \epsilon(\omega) \mathrm{d}\omega = N_\textrm{eff}(\omega')$. $N_\textrm{eff}$ is the effective number of electrons contributing to the absorption process, and is a function of energy.  
+First let's look at the file containing the (polycrystalline) dielectric function - `Si_epsilon.dat`. The contents of the file look like
+
+```
+0.0000000000000000        14.107263205387552        0.0000000000000000     
+1.0003334444814937E-002   14.107363765236455        0.0000000000000000     
+2.0006668889629875E-002   14.107665455817445        0.0000000000000000     
+3.0010003334444812E-002   14.108168310237140        0.0000000000000000    
+```
+
+The 1st column corresponds to the energy (of the photon interacting with it), the 2nd is the real component of the dielectric function, and the 3rd is the imaginary component.
+
+The header also contains the results of the sum rule $\int_0^{\omega'} \textrm{Im} \epsilon(\omega) \mathrm{d}\omega = N_\textrm{eff}(\omega')$
+
+`# Result of sum rule: Neff(E) =     7.0939380864459736`
+
+Where $N_\textrm{eff}$ is the effective number of electrons contributing to the absorption process, and is a function of energy.
+
+Let's plot it using xmgrace. Although you could plot the `dat` file (after configuring a bit to get it to plot everything properly), but luckily Optados has also generated an equivalent `agr` file that contains the same data, but also formats the xmgrace graph better. So let's use
+
+`xmgrace Si_epsilon.agr`
+
+and get an output looking like
+
+![Standard dielectric plot of Si](Si_dielectric.png){width="60%"}
 
 
 
