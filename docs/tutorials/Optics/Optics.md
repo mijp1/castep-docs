@@ -1,6 +1,6 @@
 ### Optics
 
-Two sets of example files are provided for calculations of optical properties.  For each example, the `.castep` files containing all the cell and simulation parameters are included, along with an optados input file. We assume that the reader is familiar with the previous sections on DOS and JDOS.  
+In this tutorial, we will use Optados to examine the optical properties of silicon and aluminium. 
 
 #### Silicon
 
