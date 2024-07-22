@@ -90,7 +90,7 @@ nav:
       - 'Optics':
         - 'jDOS': 'tutorials/Optics/jDOS.md'
         - 'Optics': 'tutorials/Optics/Optics.md'
-        - 'Optics 2': 'tutorials/Optics/Optics_ram.md'
+        - 'Optics 2': 'tutorials/Optics/Optics_ani.md'
       - 'Coreloss':
         - 'Coreloss': 'tutorials/Coreloss/Coreloss.md'
       - 'Dispersion corrections': 'tutorials/dispersion_corrections/castep-ase-dispersion-tutorial.md'

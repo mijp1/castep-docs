@@ -174,7 +174,7 @@ Let's compare the dielectric function output with the $\epsilon_{xx}$ output we 
 
 `xmgrace rut_epsilon.dat tensors/rut_tens1.dat`
 
-We will get the same graph as the [1st one](Optics_ram.md#1_2_together). This is no surprise at all: if light is polarised in the xx direction, it'll effectively feel the $\epsilon_{xx}$ dielectric function.
+We will get the same graph as the [1st one](Optics_ani.md#1_2_together). This is no surprise at all: if light is polarised in the xx direction, it'll effectively feel the $\epsilon_{xx}$ dielectric function.
 
 Let's try a more interesting example - change the direction line to
 
@@ -310,14 +310,61 @@ output_filename = "rut_111_out.dat"
 np.savetxt(output_filename, output_data, fmt='% .16e', header="Energy (eV) Effective Epsilon_111")
 ```
 
-This gives the output of the [above equation](Optics_ram.md#final_equation) acting on the dielectric function tensor we calculate, stored in `rut_111.dat`. Now let's see if the 2 results agree: let's try
+This gives the output of the [above equation](Optics_ani.md#final_equation) acting on the dielectric function tensor we calculate, stored in `rut_111.dat`. Now let's see if the 2 results agree: let's try
 
 ` xmgrace rut_epsilon.dat tensors/rut_111_out.dat`
 
-Using `rut_epsilon.dat` from our [last Optados calculation](Optics_ram.md#examining). We should see that the lines almost perfectly overlap:
+Using `rut_epsilon.dat` from our [last Optados calculation](Optics_ani.md#examining). We should see that the lines almost perfectly overlap:
 
 ![111 overlap](111_together.png)
 
 Now we properly understand what is going on when choosing a certain polarisation direction, and what the dielectric function tensor truly means.
 
-## Isotropic Value
+## Isotropic Dielectric Function
+
+There is another case to have a look at: what is the dielectric function when the material is polycrystalline, and thus behaves isotropically? Optados can easily find this by changing the keyword in the `rut.odi` file to
+
+
+`OPTICS_GEOM        : tensor`
+
+and removing the `OPTICS_QDIR` line (as the direction no longer matters). If you wish to verify how this is being calculated, use the same Python script as above but change the calculation
+
+```python
+ eps_111_values = (eps_xx_values + eps_yy_values + eps_zz_values +
+                  2 * eps_xy_values + 2 * eps_xz_values + 2 * eps_yz_values) / 3
+```
+
+to
+
+```python
+for i in range(len(energies)):
+    tensor = np.array([
+        [eps_xx_values[i], eps_xy_values[i], eps_xz_values[i]],
+        [eps_xy_values[i], eps_yy_values[i], eps_yz_values[i]],
+        [eps_xz_values[i], eps_yz_values[i], eps_zz_values[i]]
+    ])
+
+    eigenvalues = np.linalg.eigvals(tensor)
+
+    iso_value = np.mean(eigenvalues)
+
+    iso_values.append(eps_111_value)
+```
+
+and change variable, output file name etc. as appropraite
+
+```python
+output_data = np.column_stack((energies, iso_values))
+
+output_filename = "rut_111_eigen.dat"
+```
+
+This gives us the average of the eigenvalues of the dielectric matrix for every enegy, giving us the isotropic value. Let's plot them together to see if they're identical:
+
+`xmgrace rut_epsilon.dat tensors/rut_111_eigen.dat`
+
+We get a graph looking like this:
+
+![isotropic calculation](poly_together.png)
+
+As expected, the 2 lines overlap: this demonstrates that the polycrystalline calculation is effectively the "average" of the dielectric tensor in all directions, which is what we'd expect for a polycrystalline sample, where we can assume that all directions are equally likely.
