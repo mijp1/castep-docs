@@ -1,12 +1,12 @@
 ### Optics
 
-In this tutorial, we will use Optados to examine the optical properties of silicon and aluminium. 
+In this tutorial, we will use Optados to examine the optical properties of silicon and aluminium.
 
-#### Silicon
+## Silicon
 
-### Input Files:
-* `examples/Si2_OPTICS/Si2.cell` - The castep cell file containing information about the simulation cell.
+For Silicon, we will use the input `cell` file
 
+*Si.cell*
 ```
 %BLOCK LATTICE_CART
 2.73  2.73 0.00
@@ -23,12 +23,11 @@ SYMMETRY_GENERATE
 
 KPOINTS_MP_GRID 10 10 10  
 SPECTRAL_KPOINTS_MP_GRID 14 14 14
-
 ```
 
+and the `param` file
 
-* `examples/Si2_OPTICS/Si2.param` - The castep param file containing information about the parameters for the SCF and spectral calculations.
-
+*Si.param*
 ```
 TASK                   : SPECTRAL
 SPECTRAL_TASK          : OPTICS
@@ -36,7 +35,9 @@ CUT_OFF_ENERGY         : 200
 IPRINT                 : 2
 
 ```
-* `examples/Si2_OPTICS/Si2.odi` - The optados input file, containing the parameters necessary to run optados.
+Run Castep as usual. When it is done, run Optados on Si with the Optados input file
+
+*Si.odi*
 ```
 # Choose the task to perform
 TASK               : optics
@@ -71,17 +72,15 @@ OPTICS_LOSSFN_BROADENING : 0.0    # Default
 
 ```
 
-See `examples/Si2_OPTICS/`. This is a simple example of using optados to calculate the optical properties of crystalline silicon, which is an insulator.
+After running Optados, we get several output `.dat` and `.agr` files. We will now examine them.
 
-Instructions:
 
-* Execute `optados` to calculate the optical properties.  Several `.dat` files are produced:
-	* `Si2_OPTICS_absorption.dat` : This file contains the absorption coefficient (second column) as function of energy (first column).
-	* `Si2_OPTICS_conductivity.dat` : This file contains the conductivity outputted in SI units (Siemens per metre).  The columns are the energy, real part  and imaginary part of the conductivity respectively.  
-	* `Si2_OPTICS_epsilon.dat` : This file contains the dielectric function.  The columns are the energy and real and imaginary parts of the dielectric function respectively. The file header also includes the result of the sum rule $\int_0^{\omega'} \textrm{Im} \epsilon(\omega) \mathrm{d}\omega = N_\textrm{eff}(\omega')$. $N_\textrm{eff}$ is the effective number of electrons contributing to the absorption process, and is a function of energy.    
-	* `Si2_OPTICS_loss_fn.dat` : This file contains the loss function (second column) as a function of energy (first column).  The header of the file shows the results of the two sum rules associated with the loss function $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\omega \mathrm{d}\omega = N_\textrm{eff}$ and $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\frac{1}{\omega} \mathrm{d}\omega = \frac{\pi}{2}$
-	* `Si2_OPTICS_reflection.dat` : This file contains the reflection coefficient (second column) as a function of energy (first column).
-	* `Si2_OPTICS_refractive_index.dat` : This file contains the refractive index.  The columns are the energy and real and imaginary parts of the refractive index respectively. Corresponding `.agr` files are also generated which can be plotted easily using xmgrace.
+* `Si2_OPTICS_absorption.dat` : This file contains the absorption coefficient (second column) as function of energy (first column).
+* `Si2_OPTICS_conductivity.dat` : This file contains the conductivity outputted in SI units (Siemens per metre).  The columns are the energy, real part  and imaginary part of the conductivity respectively.  
+* `Si2_OPTICS_epsilon.dat` : This file contains the dielectric function.  The columns are the energy and real and imaginary parts of the dielectric function respectively. The file header also includes the result of the sum rule $\int_0^{\omega'} \textrm{Im} \epsilon(\omega) \mathrm{d}\omega = N_\textrm{eff}(\omega')$. $N_\textrm{eff}$ is the effective number of electrons contributing to the absorption process, and is a function of energy.    
+* `Si2_OPTICS_loss_fn.dat` : This file contains the loss function (second column) as a function of energy (first column).  The header of the file shows the results of the two sum rules associated with the loss function $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\omega \mathrm{d}\omega = N_\textrm{eff}$ and $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\frac{1}{\omega} \mathrm{d}\omega = \frac{\pi}{2}$
+* `Si2_OPTICS_reflection.dat` : This file contains the reflection coefficient (second column) as a function of energy (first column).
+* `Si2_OPTICS_refractive_index.dat` : This file contains the refractive index.  The columns are the energy and real and imaginary parts of the refractive index respectively. Corresponding `.agr` files are also generated which can be plotted easily using xmgrace.
 
 * Change parameters `JDOS_SPACING` and `JDOS_MAX` and check the effect on the optical properties.  Note: all of the other optical properties are derived from the dielectric function.  
 *  The `optados` input file has been set up to calculate the optical properties in the polycrystalline geometry (`optics_geom = polycrystalline`).  It is possible to calculate either polarised or unpolarised geometries, or to calculate the full dielectric tensor.  To calculate the full dielectric tensor set `optics_geom = tensor`.  This time only the file `Si2_OPTICS_epsilon.dat` is generated.  The format of this file is the same as before (the columns are the energy and the real and imaginary parts of the dielectric function respectively), but this time the six different components of the tensor are listed sequentially in the order $\epsilon_{xx}$, $\epsilon_{yy}$, $\epsilon_{zz}$, $\epsilon_{xy}$, $\epsilon_{xz}$ and $\epsilon_{yz}$.
