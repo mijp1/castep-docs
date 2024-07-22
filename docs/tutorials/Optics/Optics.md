@@ -93,7 +93,7 @@ The header also contains the results of the sum rule $\int_0^{\omega'} \textrm{I
 
 Where $N_\textrm{eff}$ is the effective number of electrons contributing to the absorption process, and is a function of energy.
 
-Let's plot it using xmgrace. Although you could plot the `dat` file (after configuring a bit to get it to plot everything properly), but luckily Optados has also generated an equivalent `agr` file that contains the same data, but also formats the xmgrace graph better. So let's use
+Let's plot it using xmgrace. Although you could plot the `dat` file (after configuring a bit to get it to plot everything properly), but luckily Optados has also generated an equivalent `agr` file that contains the same data, but also formats the xmgrace graph nicely. So let's use
 
 `xmgrace Si_epsilon.agr`
 
@@ -103,8 +103,62 @@ and get an output looking like
 
 This is a very neat result: it looks just like what you'd expect from the [Debye equations](https://en.wikipedia.org/wiki/Dielectric#Debye_relaxation)
 
+This file gives us all the data necessary for the calculation of any optical property of the cell examined. As we will see in the remainder of the tutorial, it is the basis of the generation of all the other files.
 
-* `Si2_OPTICS_absorption.dat` : This file contains the absorption coefficient (second column) as function of energy (first column).
+### absorption
+
+Next let's look at the absorption data. The `dat` file is very similar, this time with 2 columns: the 1st is the energy of the photon, and the 2nd is the absorption coefficient. It doesn't look particularly different, but if you wish to check, the data table should start like
+
+```
+0.0000000000000000        0.0000000000000000     
+1.0020040080160320E-002   0.0000000000000000  
+```
+
+You can plot it with xmgrace the same way as before (again the `agr` file is prepared by Optados). It should look like this
+
+<a id="absorption_graph"></a>
+![Si absorption graph](Si_absorption.png){width="40%"}
+
+Let's examine how this is calculated. The absorption coefficient is calculated as
+
+$$
+\alpha(\omega) = \frac{2 \omega \kappa(\omega)}{c}
+$$
+
+Where $\omega$ is the energy divided by $\hbar$, $\kappa$ is the imaginary refractive index and $c$ is the speed of light. $\kappa$ can be easily obtained from the real and imaginary dielectric functions, knowing that the complex refractive index is the square root of the complex dielectric function - this leads to the equation
+
+$$
+\kappa(\omega) = \sqrt{\frac{1}{2} \left[ \sqrt{\epsilon_1(\omega)^2 + \epsilon_2(\omega)^2} - \epsilon_1(\omega) \right]}
+$$
+
+To check that this is really what's going on in the absorption calculation, we can use the Python script
+
+```python
+import numpy as np
+c = 3e8  
+hbar = 6.582119569e-16  
+def calculate_property(energy, epsilon_1, epsilon_2):
+    omega = energy / hbar  
+    kappa = np.sqrt(0.5 * (-epsilon_1 + np.sqrt(epsilon_1**2 + epsilon_2**2)))
+    alpha = (2 * omega * kappa) / c  
+    return alpha
+data = np.loadtxt('Si2_OPTICS_epsilon.dat')
+
+energy = data[:, 0]  
+epsilon_1 = data[:, 1]
+epsilon_2 = data[:, 2]  
+result = calculate_property_coefficient(energy, epsilon_1, epsilon_2)
+output_data = np.column_stack((energy, result))
+np.savetxt('predicted_abs.dat', output_data, fmt='%e', delimiter=' ')
+```
+
+If plot this together with `Si_absorption.dat`, you should get an identical result to [above](Optics.md#absorption_graph).
+
+For the next properties we will calculate, we will also see where they come from using an almost identical Python script: simply change the `calculate_property` function.
+
+### Conductivity
+
+
 * `Si2_OPTICS_conductivity.dat` : This file contains the conductivity outputted in SI units (Siemens per metre).  The columns are the energy, real part  and imaginary part of the conductivity respectively.  
 
 * `Si2_OPTICS_loss_fn.dat` : This file contains the loss function (second column) as a function of energy (first column).  The header of the file shows the results of the two sum rules associated with the loss function $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\omega \mathrm{d}\omega = N_\textrm{eff}$ and $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\frac{1}{\omega} \mathrm{d}\omega = \frac{\pi}{2}$
