@@ -105,7 +105,7 @@ This is a very neat result: it looks just like what you'd expect from the [Debye
 
 This file gives us all the data necessary for the calculation of any optical property of the cell examined. As we will see in the remainder of the tutorial, it is the basis of the generation of all the other files.
 
-### absorption
+### Absorption
 
 Next let's look at the absorption data. The `dat` file is very similar, this time with 2 columns: the 1st is the energy of the photon, and the 2nd is the absorption coefficient. It doesn't look particularly different, but if you wish to check, the data table should start like
 
@@ -156,14 +156,57 @@ If plot this together with `Si_absorption.dat`, you should get an identical resu
 
 For the next properties we will calculate, we will also see where they come from using an almost identical Python script: simply change the `calculate_property` function.
 
-### Conductivity
+### Refractive Index
+
+Next we will look at the (real and imaginary) refractive index. This data is found in the `Si_refractive_index.dat` (and `.agr`) files. The file is similar to the previous, this time having 3 columns again - the 1st is energy, the 2nd is the real refractive index and the 3rd is the imaginary refractive index. We have already looked at how to calculate the imaginary refractive index [above](Optics.md#Absorption) (multiply it by some constants and you have the absorption coefficient). The calculation of the real refractive index is very similar, instead becoming
+
+$$
+n(\omega) = \sqrt{\frac{1}{2} \left[ \sqrt{\epsilon_1(\omega)^2 + \epsilon_2(\omega)^2} + \epsilon_1(\omega) \right]}
+$$
+
+and the accompanying Python script to verify if this is right is also very similar: the function becomes
+
+```python
+def calculate_absorption_coefficient(energy, epsilon_1, epsilon_2):
+    omega = energy / hbar  # Convert energy (eV) to angular frequency (rad/s)
+    kappa = np.sqrt(0.5 * (epsilon_1 + np.sqrt(epsilon_1**2 + epsilon_2**2)))
+    alpha = (2 * omega * kappa) / c  # Absorption coefficient (1/m)
+    return alpha
+```
+If you're not interested in the Python output, just plot the `Si_refractive_index.agr` file using xmgrace, but if you wish to plot them together it is easiest to use
+
+`xmgrace -batch plot_refractive.bat`
+
+on the batch file
+
+*plot_refractive.bat*
+```
+READ BLOCK "predicted_refractive_indices.dat"
+BLOCK XY "1:2"
+S0 LEGEND "Predicted real"
+BLOCK XY "1:3"
+S1 LEGEND "Predicted imaginary"
+
+READ BLOCK "Si2_OPTICS_refractive_index.dat"
+BLOCK XY "1:2"
+S2 LEGEND "Optados real"
+BLOCK XY "1:3"
+S3 LEGEND "Optados imaginary"
+
+LEGEND 0.9, 0.9
+```
+This gives a graph that looks like this:
+
+![Refractive index](Refractive_index.png){width="40%"}
+
+Once again, the values derived from the dielectric function dataset are identical, so they overlap - confirming for us how the properties are calculated. You may note that the imaginary refractive index's shape is [identical to that of the absorption](Optics.md#absorption_graph) - as we've seen, it's just that multiplied by a constant.
 
 
 * `Si2_OPTICS_conductivity.dat` : This file contains the conductivity outputted in SI units (Siemens per metre).  The columns are the energy, real part  and imaginary part of the conductivity respectively.  
 
 * `Si2_OPTICS_loss_fn.dat` : This file contains the loss function (second column) as a function of energy (first column).  The header of the file shows the results of the two sum rules associated with the loss function $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\omega \mathrm{d}\omega = N_\textrm{eff}$ and $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\frac{1}{\omega} \mathrm{d}\omega = \frac{\pi}{2}$
 * `Si2_OPTICS_reflection.dat` : This file contains the reflection coefficient (second column) as a function of energy (first column).
-* `Si2_OPTICS_refractive_index.dat` : This file contains the refractive index.  The columns are the energy and real and imaginary parts of the refractive index respectively. Corresponding `.agr` files are also generated which can be plotted easily using xmgrace.
+
 
 * Change parameters `JDOS_SPACING` and `JDOS_MAX` and check the effect on the optical properties.  Note: all of the other optical properties are derived from the dielectric function.  
 *  The `optados` input file has been set up to calculate the optical properties in the polycrystalline geometry (`optics_geom = polycrystalline`).  It is possible to calculate either polarised or unpolarised geometries, or to calculate the full dielectric tensor.  To calculate the full dielectric tensor set `optics_geom = tensor`.  This time only the file `Si2_OPTICS_epsilon.dat` is generated.  The format of this file is the same as before (the columns are the energy and the real and imaginary parts of the dielectric function respectively), but this time the six different components of the tensor are listed sequentially in the order $\epsilon_{xx}$, $\epsilon_{yy}$, $\epsilon_{zz}$, $\epsilon_{xy}$, $\epsilon_{xz}$ and $\epsilon_{yz}$.
