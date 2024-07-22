@@ -220,4 +220,54 @@ We have also made the graph smaller (only goes up to 5eV) in the last line to ma
 
 ![Demonstration of 111](111_comparison.png)
 
-You can try comparing it to any other value, but you'll find it's completely different. So how is this related to the tensor? 
+You can try comparing it to any other value, but you'll find it's completely different. So how is this related to the tensor?
+
+Considering the properties of tensors in general, we know that the value from a tensor in any direction is given by the equation
+
+$$ {\epsilon}' = \hat{\mathbf{n}}^T \cdot \mathbf{\epsilon} \hat{\mathbf{n}} $$
+
+Where $\epsilon'$ is the dielectric constant in the direction of $\hat{\mathbf{n}}$, and $\mathbf{\epsilon}$ is the dielectric matrix.
+
+Let's quickly work through what we'd expect in the (111) direction and compare that with what we get from Optados. To get $$ \mathbf{\epsilon} \hat{\mathbf{n}} $$ we do
+
+$$
+\begin{pmatrix}
+\epsilon_{xx} & \epsilon_{xy} & \epsilon_{xz} \\
+\epsilon_{yx} & \epsilon_{yy} & \epsilon_{yz} \\
+\epsilon_{zx} & \epsilon_{zy} & \epsilon_{zz}
+\end{pmatrix}
+\frac{1}{\sqrt3}
+\begin{pmatrix}
+1 \\
+1 \\
+1
+\end{pmatrix}
+= \frac{1}{\sqrt3} \begin{pmatrix}
+\epsilon_{xx} + \epsilon_{xy} + \epsilon_{xz} \\
+\epsilon_{yx} + \epsilon_{yy} + \epsilon_{yz} \\
+\epsilon_{zx} + \epsilon_{zy} + \epsilon_{zz}
+\end{pmatrix}
+$$
+
+Then to get the final result we do
+
+
+
+$$
+\frac{1}{\sqrt3}
+\begin{pmatrix}
+\epsilon_{xx} + \epsilon_{xy} + \epsilon_{xz} \\
+\epsilon_{yx} + \epsilon_{yy} + \epsilon_{yz} \\
+\epsilon_{zx} + \epsilon_{zy} + \epsilon_{zz}
+\end{pmatrix}
+\cdot
+\frac{1}{\sqrt3}
+\begin{pmatrix}
+1 & 1 & 1
+\end{pmatrix}
+= \frac{1}{3} \bigg((\epsilon_{xx} + \epsilon_{xy} + \epsilon_{xz}) + (\epsilon_{yx} + \epsilon_{yy} + \epsilon_{yz}) + (\epsilon_{zx} + \epsilon_{zy} + \epsilon_{zz}) \bigg)
+$$
+
+$$
+= \frac{1}{3} \bigg ( \epsilon_{xx} + \epsilon_{yy} + \epsilon_{zz} + 2(\epsilon_{xy} + \epsilon_{yz} + \epsilon_{zx}) \bigg )
+$$
