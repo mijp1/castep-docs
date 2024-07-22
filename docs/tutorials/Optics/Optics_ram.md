@@ -156,7 +156,7 @@ This is a rather interesting result: this seems that the dielectric function in 
 ## Examining Dielectric Tensor
 
 So now that we have the dielectric function tensor, let's examine how this corresponds to its (anisotropic) optical properties
-
+<a id = "examining"></a>
 We will run Optados again (no need to rerun Castep), changing the line
 
 ```
@@ -268,6 +268,56 @@ $$
 = \frac{1}{3} \bigg((\epsilon_{xx} + \epsilon_{xy} + \epsilon_{xz}) + (\epsilon_{yx} + \epsilon_{yy} + \epsilon_{yz}) + (\epsilon_{zx} + \epsilon_{zy} + \epsilon_{zz}) \bigg)
 $$
 
+<a id="final_equation"></a>
 $$
 = \frac{1}{3} \bigg ( \epsilon_{xx} + \epsilon_{yy} + \epsilon_{zz} + 2(\epsilon_{xy} + \epsilon_{yz} + \epsilon_{zx}) \bigg )
 $$
+
+Let's check if this is true using our separated dielectric function tensor files. We will get a function that is equal to the above equation using a Python script, and plot it on the same graph as the case polarised in the (111) direction.
+
+You may use the script
+
+*get_in_direction.py*
+```python
+import numpy as np
+
+# Function to read the data from a file
+def read_data(filename):
+    return np.loadtxt(filename)
+
+eps_xx = read_data("rut_tens1.dat")
+eps_yy = read_data("rut_tens2.dat")
+eps_zz = read_data("rut_tens3.dat")
+eps_xy = read_data("rut_tens4.dat")
+eps_xz = read_data("rut_tens5.dat")
+eps_yz = read_data("rut_tens6.dat")
+
+energies = eps_xx[:, 0]
+
+eps_xx_values = eps_xx[:, 1]
+eps_yy_values = eps_yy[:, 1]
+eps_zz_values = eps_zz[:, 1]
+eps_xy_values = eps_xy[:, 1]
+eps_xz_values = eps_xz[:, 1]
+eps_yz_values = eps_yz[:, 1]
+
+eps_111_values = (eps_xx_values + eps_yy_values + eps_zz_values +
+                  2 * eps_xy_values + 2 * eps_xz_values + 2 * eps_yz_values) / 3
+
+output_data = np.column_stack((energies, eps_111_values))
+
+output_filename = "rut_111_out.dat"
+np.savetxt(output_filename, output_data, fmt='% .16e', header="Energy (eV) Effective Epsilon_111")
+```
+
+This gives the output of the [above equation](Optics_ram.md#final_equation) acting on the dielectric function tensor we calculate, stored in `rut_111.dat`. Now let's see if the 2 results agree: let's try
+
+` xmgrace rut_epsilon.dat tensors/rut_111_out.dat`
+
+Using `rut_epsilon.dat` from our [last Optados calculation](Optics_ram.md#examining). We should see that the lines almost perfectly overlap:
+
+![111 overlap](111_together.png)
+
+Now we properly understand what is going on when choosing a certain polarisation direction, and what the dielectric function tensor truly means.
+
+## Isotropic Value
