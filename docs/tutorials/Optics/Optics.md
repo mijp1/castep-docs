@@ -101,7 +101,7 @@ and get an output looking like
 
 ![Standard dielectric plot of Si](Si_dielectric.png){width="60%"}
 
-
+This is a very neat result: it looks just like what you'd expect from the [Debye equations](https://en.wikipedia.org/wiki/Dielectric#Debye_relaxation)
 
 
 * `Si2_OPTICS_absorption.dat` : This file contains the absorption coefficient (second column) as function of energy (first column).
