@@ -100,6 +100,7 @@ Let's plot it using xmgrace. Although you could plot the `dat` file (after confi
 
 and get an output looking like
 
+<a id="dielectric_plot"></a>
 ![Standard dielectric plot of Si](Si_dielectric.png){width="60%"}
 
 This is a very neat result: it looks just like what you'd expect from the [Debye equations](https://en.wikipedia.org/wiki/Dielectric#Debye_relaxation)
@@ -293,9 +294,15 @@ Now that we know what Optados optics does and how it works, let's try changing s
 
 ### JDOS Parameters
 
-First let's have a look at the effect of changing the line `JDOS_MAX_ENERGY : 30`. We'll set it to 10 and 100 and plot `Si_epsilon.agr` using xmgrace. Doing it for 10 gives the graph:
+First let's have a look at the effect of changing the line `JDOS_MAX_ENERGY : 30`. We'll set it to 10 and 100 and plot `Si_epsilon.agr` using xmgrace. Doing it for 10 gives the graph
 
+![JDOS max energy 10](jdos_10.png){width="30%"}
 
+while 100 gives us
+
+![JDOS max energy 100](jdos_100.png){width="30%"}
+
+You can also compare with the result for [30](Optics.md#dielectric_plot). What you should notice is that all the plots are the same - what this does is change the maximum energy it calculates the optical properties up to. The graphs aren't particularly interesting (you could do a higher max energy calculation and just set `WORLD XMAX 10` to see it up to 10eV for example), but it does affect the results of the sum rules. 
 
 * Change parameters `JDOS_SPACING` and `JDOS_MAX` and check the effect on the optical properties.  Note: all of the other optical properties are derived from the dielectric function.  
 *  The `optados` input file has been set up to calculate the optical properties in the polycrystalline geometry (`optics_geom = polycrystalline`).  It is possible to calculate either polarised or unpolarised geometries, or to calculate the full dielectric tensor.  To calculate the full dielectric tensor set `optics_geom = tensor`.  This time only the file `Si2_OPTICS_epsilon.dat` is generated.  The format of this file is the same as before (the columns are the energy and the real and imaginary parts of the dielectric function respectively), but this time the six different components of the tensor are listed sequentially in the order $\epsilon_{xx}$, $\epsilon_{yy}$, $\epsilon_{zz}$, $\epsilon_{xy}$, $\epsilon_{xz}$ and $\epsilon_{yz}$.
