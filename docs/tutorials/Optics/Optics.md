@@ -302,7 +302,31 @@ while 100 gives us
 
 ![JDOS max energy 100](jdos_100.png){width="30%"}
 
-You can also compare with the result for [30](Optics.md#dielectric_plot). What you should notice is that all the plots are the same - what this does is change the maximum energy it calculates the optical properties up to. The graphs aren't particularly interesting (you could do a higher max energy calculation and just set `WORLD XMAX 10` to see it up to 10eV for example), but it does affect the results of the sum rules - which are in headers and thus not seen in graphs. Let's try seeing the results for `JDOS_MAX_ENERGY : ` 2, 5, 10, 30 and 100. 
+You can also compare with the result for [30](Optics.md#dielectric_plot). What you should notice is that all the plots are the same - what this does is change the maximum energy it calculates the optical properties up to. The graphs aren't particularly interesting (you could do a higher max energy calculation and just set `WORLD XMAX 10` to see it up to 10eV for example), but it does affect the results of the sum rules - which are in headers and thus not seen in graphs. Let's try seeing the results for `JDOS_MAX_ENERGY : ` 2, 5, 10, 30 and 100.
+
+In `Si_epsilon.dat` the sum rule results for the different max energies should be around as follows:
+
+| JDOS Max E | Sum Rule Result |
+|------------|-----------------|
+| 2          | 1.58E-6         |
+| 5          | 4.40            |
+| 10         | 6.42            |
+| 30         | 7.09            |
+| 100        | 7.11            |
+
+This tells us that at 2eV barely any electrons contribute to the absorption process, at 5eV over half do, and beyond that slowly increasing amounts do. Most electrons seem to act for energies between 2 and 30eV.
+
+Meanwhile, the results of the 1st and 2nd sum rules in `Si_loss_fn` look rather different:
+
+| JDOS Max E | Sum Rule 1 | Sum Rule 2 |
+|------------|------------|------------|
+| 2          | 1.58E-6    | 2.18E-5    |
+| 5          | 4.25E-3    | 1.54E-2    |
+| 10         | 7.07E-2    | 7.58E-2    |
+| 30         | 7.08       | 1.46       |
+| 100        | 7.10       | 1.46       |
+
+Here the 1st rule seems to shoot up much more drastically and in a different region (between 10 and 30eV), while the 2nd tends towards a different value, and again shoots up faster and in the same region.         
 
 * Change parameters `JDOS_SPACING` and `JDOS_MAX` and check the effect on the optical properties.  Note: all of the other optical properties are derived from the dielectric function.  
 *  The `optados` input file has been set up to calculate the optical properties in the polycrystalline geometry (`optics_geom = polycrystalline`).  It is possible to calculate either polarised or unpolarised geometries, or to calculate the full dielectric tensor.  To calculate the full dielectric tensor set `optics_geom = tensor`.  This time only the file `Si2_OPTICS_epsilon.dat` is generated.  The format of this file is the same as before (the columns are the energy and the real and imaginary parts of the dielectric function respectively), but this time the six different components of the tensor are listed sequentially in the order $\epsilon_{xx}$, $\epsilon_{yy}$, $\epsilon_{zz}$, $\epsilon_{xy}$, $\epsilon_{xz}$ and $\epsilon_{yz}$.
