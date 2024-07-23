@@ -286,6 +286,7 @@ def calculate_property(epsilon_1, epsilon_2):
 
 Plotting it together with `Si_loss_fn.dat` on xmgrace gives us the graph
 
+<a id="loss_graph"></a>
 ![Loss graph](loss.png){width="40%"}
 
 ## Changing Parameters
@@ -346,9 +347,13 @@ As we see here, changing `JDOS_SPACING` simply affects the frequency of the samp
 | 0.01         | 6.74        | 6.73       | 1.50       |
 | 1            | 8.28        | 7.22       | 1.39       |
 
+### Loss Function Broadening
 
+Additional broadening can be included in the calculation of the loss function.  This is done by setting the keyword `optics_lossfn_broadening` in the `odi` file to a non-zero value. To have a look at what it does, let's set `optics_lossfn_broadening : 1` and rerun Optados. The only files that are different are the `Si_loss_fn.dat` and `.agr` files - they now contain a 3rd column. The 1st is still energy, the 2nd is the unbroadened spectrum (the same result as when we did it [above](Optics.md#loss_graph)), and the 3rd is the broadened spectrum. Plotting thr `agr` file using xmgrace gives us this graph:
 
-* Additional broadening can be included in the calculation of the loss function.  This is done by including the keyword `optics_lossfn_broadening` in the optados input file.  If you include this keyword and re-run optados, you will find that the file `Si2_OPTICS_loss_fn.dat` now has three columns.  These are the energy, unbroadened spectrum and broadened spectrum respectively.  
+![Broadened loss](broadened_loss.png){width="40%"}
+
+Broadening it has effectively "smoothed out" the curve, and the `agr` file has the unbroadened results for comparison. 
 
 #### Aluminium
 
