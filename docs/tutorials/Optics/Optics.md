@@ -256,8 +256,35 @@ Since there are 3 columns, it is easier to plot them together - we can simply re
 
 ![Conductivity](conductivity.png){width="40%"}
 
-* `Si2_OPTICS_loss_fn.dat` : This file contains the loss function (second column) as a function of energy (first column).  The header of the file shows the results of the two sum rules associated with the loss function $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\omega \mathrm{d}\omega = N_\textrm{eff}$ and $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\frac{1}{\omega} \mathrm{d}\omega = \frac{\pi}{2}$
+### Loss Function
 
+Lastly, we will examine the loss function in `Si_loss_fn.dat`. The 1st column is the energy, while the 2nd is the loss function for that energy. The header of the file shows the results of the two sum rules associated with the loss function:
+
+$\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\omega \mathrm{d}\omega = N_\textrm{eff}$
+
+and
+
+$\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\frac{1}{\omega} \mathrm{d}\omega = \frac{\pi}{2}$
+
+The loss function itself is calculated rather simply from the dielectric: it is simply the imaginary component of the inverse of the complex dielectric:
+
+$\text{Loss}(\omega) = \text{Im}\left(\frac{1}{\epsilon(\omega)}\right)$
+
+This leads to
+
+$\text{Loss}(\omega) = \frac{\epsilon_2(\omega)}{\epsilon_1(\omega)^2 + \epsilon_2(\omega)^2}$
+
+Let's implement this into our Python script by changing the function to
+
+```python
+def calculate_property(epsilon_1, epsilon_2):
+    loss_function = epsilon_2 / (epsilon_1**2 + epsilon_2**2)
+    return loss_function
+```
+
+Plotting it together with `Si_loss_fn.dat` on xmgrace gives us the graph
+
+![Loss graph](loss.png){width="40%"}
 
 
 * Change parameters `JDOS_SPACING` and `JDOS_MAX` and check the effect on the optical properties.  Note: all of the other optical properties are derived from the dielectric function.  
