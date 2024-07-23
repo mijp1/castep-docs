@@ -176,11 +176,12 @@ def calculate_property(energy, epsilon_1, epsilon_2):
 ```
 If you're not interested in the Python output, just plot the `Si_refractive_index.agr` file using xmgrace, but if you wish to plot them together it is easiest to use
 
-`xmgrace -batch plot_refractive.bat`
+<a id="batch"></a>
+`xmgrace -batch double.bat`
 
 on the batch file
 
-*plot_refractive.bat*
+*double.bat*
 ```
 READ BLOCK "predicted_refractive_indices.dat"
 BLOCK XY "1:2"
@@ -229,9 +230,31 @@ Once again, we plot the output file of the script along with the `.dat` file and
 
 If you are interested, you could change the Fresnel equation used and appropriately adjust the script to include the imaginary part, see how it behaves coming from a different medium, different angle etc. - there is a lot you could look at in terms of reflectivity.
 
+### Conductivity
+
+Next we will look the optical conductivity of silicon in `Si_conductivity.dat`. The 1st column is the energy, while the 2nd and 3rd columns are the real and imaginary parts of conductivity, both in the SI units Siemens per meter. The complex optical conductivity can be found by [approximating in the high frequency limit](https://en.wikipedia.org/wiki/Optical_conductivity#High_frequency_limit) and rearranging the equation to:
 
 
-* `Si2_OPTICS_conductivity.dat` : This file contains the conductivity outputted in SI units (Siemens per metre).  The columns are the energy, real part  and imaginary part of the conductivity respectively.  
+$\sigma_1(\omega) = \epsilon_0 \omega \epsilon_2(\omega)$
+
+$\sigma_2(\omega) = -\epsilon_0 \omega (\epsilon_1(\omega) - \epsilon_\infty)$
+
+where $\sigma_1$ is the real part and $\sigma_2$ is the imaginary. As usual $\epsilon_1$ corresponds to the real dielectric and $\epsilon_2$ to the imaginary. In this calculation, $\epsilon_\infty$ is approximated as 1. This can be implemented in our Python script as
+
+```python
+def calculate_conductivity(epsilon_1, epsilon_2, energy):
+    omega = energy / hbar  
+    sigma_1 = epsilon_0 * omega * epsilon_2  
+    sigma_2 = -epsilon_0 * omega * (epsilon_1 - epsilon_inf)
+    return sigma_1, sigma_2
+
+```
+
+As in previous cases, make sure all constants are defined and any file/variable names adjusted as you implement it.
+
+Since there are 3 columns, it is easier to plot them together - we can simply repurpose our [previous batch file](Optics.md#batch) - just make sure to change file names as appropriate. The output should look like:
+
+![Conductivity](conductivity.png){width="40%"}
 
 * `Si2_OPTICS_loss_fn.dat` : This file contains the loss function (second column) as a function of energy (first column).  The header of the file shows the results of the two sum rules associated with the loss function $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\omega \mathrm{d}\omega = N_\textrm{eff}$ and $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\frac{1}{\omega} \mathrm{d}\omega = \frac{\pi}{2}$
 
