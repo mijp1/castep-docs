@@ -156,6 +156,7 @@ If plot this together with `Si_absorption.dat`, you should get an identical resu
 
 For the next properties we will calculate, we will also see where they come from using an almost identical Python script: simply change the `calculate_property` function.
 
+<a id="refractive_index"></a>
 ### Refractive Index
 
 Next we will look at the (real and imaginary) refractive index. This data is found in the `Si_refractive_index.dat` (and `.agr`) files. The file is similar to the previous, this time having 3 columns again - the 1st is energy, the 2nd is the real refractive index and the 3rd is the imaginary refractive index. We have already looked at how to calculate the imaginary refractive index [above](Optics.md#Absorption) (multiply it by some constants and you have the absorption coefficient). The calculation of the real refractive index is very similar, instead becoming
@@ -167,7 +168,7 @@ $$
 and the accompanying Python script to verify if this is right is also very similar: the function becomes
 
 ```python
-def calculate_absorption_coefficient(energy, epsilon_1, epsilon_2):
+def calculate_property(energy, epsilon_1, epsilon_2):
     omega = energy / hbar  # Convert energy (eV) to angular frequency (rad/s)
     kappa = np.sqrt(0.5 * (epsilon_1 + np.sqrt(epsilon_1**2 + epsilon_2**2)))
     alpha = (2 * omega * kappa) / c  # Absorption coefficient (1/m)
@@ -201,11 +202,39 @@ This gives a graph that looks like this:
 
 Once again, the values derived from the dielectric function dataset are identical, so they overlap - confirming for us how the properties are calculated. You may note that the imaginary refractive index's shape is [identical to that of the absorption](Optics.md#absorption_graph) - as we've seen, it's just that multiplied by a constant.
 
+## Reflectivity
+
+Next we will look at the reflectivity. This can be found in `Si_reflection.dat` (and `.agr` again). The 1st column represents the energy, as usual, while the 2nd is the corresponding reflection coefficient. The reflectivity is calculated using the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations), using normal incidence and assuming the incoming light ray is coming out of air/vacuum (real and imaginary refractive index n~1~ and n~2~ of the first medium = 1). The imaginary component was also neglected. Under these conditions, the equation for reflectivity becomes
+
+$$
+R = \left( \frac{\tilde{n} - 1}{\tilde{n} + 1} \right)^2
+$$
+
+Where $\tilde{n}$ is the complex refractive index (real + imaginary part). We can implement this in the Python script more easily by separating it into functions to find the refractive indices (like we did [before](Optics.md#refractive_index)), and then use that to find the reflectivity.
+
+```python
+def calculate_refractive_indices(epsilon_1, epsilon_2):
+    n = np.sqrt((epsilon_1 + np.sqrt(epsilon_1**2 + epsilon_2**2)) / 2)
+    kappa = np.sqrt((-epsilon_1 + np.sqrt(epsilon_1**2 + epsilon_2**2)) / 2)
+    return n, kappa
+def calculate_property(n, kappa):
+    n_complex = n + 1j * kappa
+    reflectivity = np.abs((n_complex - 1) / (n_complex + 1))**2
+    return reflectivity
+```
+
+Once again, we plot the output file of the script along with the `.dat` file and see that they're identical:
+
+![Reflectivity](reflectivity.png){width="40%"}
+
+If you are interested, you could change the Fresnel equation used and appropriately adjust the script to include the imaginary part, see how it behaves coming from a different medium, different angle etc. - there is a lot you could look at in terms of reflectivity.
+
+
 
 * `Si2_OPTICS_conductivity.dat` : This file contains the conductivity outputted in SI units (Siemens per metre).  The columns are the energy, real part  and imaginary part of the conductivity respectively.  
 
 * `Si2_OPTICS_loss_fn.dat` : This file contains the loss function (second column) as a function of energy (first column).  The header of the file shows the results of the two sum rules associated with the loss function $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\omega \mathrm{d}\omega = N_\textrm{eff}$ and $\int_0^{\omega'} \textrm{Im} -\frac{1}{\epsilon(\omega)}\frac{1}{\omega} \mathrm{d}\omega = \frac{\pi}{2}$
-* `Si2_OPTICS_reflection.dat` : This file contains the reflection coefficient (second column) as a function of energy (first column).
+
 
 
 * Change parameters `JDOS_SPACING` and `JDOS_MAX` and check the effect on the optical properties.  Note: all of the other optical properties are derived from the dielectric function.  
