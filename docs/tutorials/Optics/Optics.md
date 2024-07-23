@@ -326,10 +326,27 @@ Meanwhile, the results of the 1st and 2nd sum rules in `Si_loss_fn` look rather 
 | 30         | 7.08       | 1.46       |
 | 100        | 7.10       | 1.46       |
 
-Here the 1st rule seems to shoot up much more drastically and in a different region (between 10 and 30eV), while the 2nd tends towards a different value, and again shoots up faster and in the same region.         
+Here the 1st rule seems to shoot up much more drastically and in a different region (between 10 and 30eV), while the 2nd tends towards a different value, and again shoots up faster and in the same region.
 
-* Change parameters `JDOS_SPACING` and `JDOS_MAX` and check the effect on the optical properties.  Note: all of the other optical properties are derived from the dielectric function.  
-*  The `optados` input file has been set up to calculate the optical properties in the polycrystalline geometry (`optics_geom = polycrystalline`).  It is possible to calculate either polarised or unpolarised geometries, or to calculate the full dielectric tensor.  To calculate the full dielectric tensor set `optics_geom = tensor`.  This time only the file `Si2_OPTICS_epsilon.dat` is generated.  The format of this file is the same as before (the columns are the energy and the real and imaginary parts of the dielectric function respectively), but this time the six different components of the tensor are listed sequentially in the order $\epsilon_{xx}$, $\epsilon_{yy}$, $\epsilon_{zz}$, $\epsilon_{xy}$, $\epsilon_{xz}$ and $\epsilon_{yz}$.
+Now we'll take a look at the effects of changing the `JDOS_SPACING` value. Let's change `JDOS_SPACING : 0.01` to 1 and 0.001. We'll do this for `JDOS_MAX_ENERGY : 30`.
+
+For 1 the graph looks like
+
+![JDOS spacing 1](spacing_1.png){width="40%"}
+
+while for 0.001 it looks like
+
+![JDOS spacing 0.001](spacing_001.png){width="40%"}
+
+As we see here, changing `JDOS_SPACING` simply affects the frequency of the sampling: the smaller the value, the smaller the energy intervals at which it examines the dielectric function and thus the smoother the curve. You may note that the graphs look the same as the when we first did it with the default 0.01 [above](Optics.md#dielectric_plot) - 0.01 is sufficient, and increasing the sampling frequency gives us virtually the same results but slower. This is reflected in the sum rule calculations - the higher the spacing, the more rough of an estimate they are, and that typically leads to them being larger, with it not getting much more accurate being 0.01.
+
+| JDOS Spacing | Epsilon Sum | Loss Sum 1 | Loss Sum 2 |
+|--------------|-------------|------------|------------|
+| 0.001        | 6.73        | 6.72       | 1.50       |
+| 0.01         | 6.74        | 6.73       | 1.50       |
+| 1            | 8.28        | 7.22       | 1.39       |
+
+
 
 * Additional broadening can be included in the calculation of the loss function.  This is done by including the keyword `optics_lossfn_broadening` in the optados input file.  If you include this keyword and re-run optados, you will find that the file `Si2_OPTICS_loss_fn.dat` now has three columns.  These are the energy, unbroadened spectrum and broadened spectrum respectively.  
 
