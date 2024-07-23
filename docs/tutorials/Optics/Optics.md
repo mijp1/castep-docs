@@ -2,7 +2,7 @@
 
 In this tutorial, we will use Optados to examine the optical properties of silicon and aluminium.
 
-## Silicon
+## Silicon Properties
 
 For Silicon, we will use the input `cell` file
 
@@ -37,6 +37,7 @@ IPRINT                 : 2
 ```
 Run Castep as usual. When it is done, run Optados on Si with the Optados input file
 
+<a id="odi"></a>
 *Si.odi*
 ```
 # Choose the task to perform
@@ -117,7 +118,7 @@ Next let's look at the absorption data. The `dat` file is very similar, this tim
 You can plot it with xmgrace the same way as before (again the `agr` file is prepared by Optados). It should look like this
 
 <a id="absorption_graph"></a>
-![Si absorption graph](Si_absorption.png){width="40%"}
+![Si absorption graph](absorption.png){width="40%"}
 
 Let's examine how this is calculated. The absorption coefficient is calculated as
 
@@ -199,7 +200,7 @@ LEGEND 0.9, 0.9
 ```
 This gives a graph that looks like this:
 
-![Refractive index](Refractive_index.png){width="40%"}
+![Refractive index](refractive_index.png){width="40%"}
 
 Once again, the values derived from the dielectric function dataset are identical, so they overlap - confirming for us how the properties are calculated. You may note that the imaginary refractive index's shape is [identical to that of the absorption](Optics.md#absorption_graph) - as we've seen, it's just that multiplied by a constant.
 
@@ -226,7 +227,7 @@ def calculate_property(n, kappa):
 
 Once again, we plot the output file of the script along with the `.dat` file and see that they're identical:
 
-![Reflectivity](reflectivity.png){width="40%"}
+![Reflectivity](reflection.png){width="40%"}
 
 If you are interested, you could change the Fresnel equation used and appropriately adjust the script to include the imaginary part, see how it behaves coming from a different medium, different angle etc. - there is a lot you could look at in terms of reflectivity.
 
@@ -285,6 +286,15 @@ def calculate_property(epsilon_1, epsilon_2):
 Plotting it together with `Si_loss_fn.dat` on xmgrace gives us the graph
 
 ![Loss graph](loss.png){width="40%"}
+
+## Changing Parameters
+
+Now that we know what Optados optics does and how it works, let's try changing some parameters in the [Optados input file](Optics.md#odi) `Si.odi`, and re-running Optados, to see what effects it has.
+
+### JDOS Parameters
+
+First let's have a look at the effect of changing the line `JDOS_MAX_ENERGY : 30`. We'll set it to 10 and 100 and plot `Si_epsilon.agr` using xmgrace. Doing it for 10 gives the graph:
+
 
 
 * Change parameters `JDOS_SPACING` and `JDOS_MAX` and check the effect on the optical properties.  Note: all of the other optical properties are derived from the dielectric function.  
