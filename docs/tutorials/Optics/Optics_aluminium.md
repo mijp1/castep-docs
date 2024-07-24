@@ -71,7 +71,9 @@ OPTICS_GEOM        : polycrystalline     # Default
 ```
 There is 1 key difference to before: it contains the line `OPTICS_INTRABAND : true`. This is to include the intraband contribution, which is necessary for metals.
 
-We're starting with the high spacing so we get few results (measuring only at 3 energies) - this makes it easier to have a quick look at what's going on.
+We're starting with the high spacing so we get few results (measuring only at 3 energies) - this makes it easier to have a quick look at what's going on. We will use those results for the remainder of the tutorial.
+
+## Dielectric Dat File
 
 The file `Al_epsilon.dat` contains the following data:
 
@@ -103,26 +105,48 @@ You may choose to use/plot this data in your preferred method, but this tutorial
 
 It's exactly the same data except all the data is in separate columns now: 1 is still energy, 2 is interband real, 3 is interband imaginary, 4 is intraband real, 5 is intraband imaginary, 6 is total real and 7 is total imaginary dielectric.
 
-Now let's make a graph of more useful data: rerun Optados with `JDOS_SPACING : 0.01` set instead (to get more data for more meaningful graphs), and rerun the Python script. You could plot it with xmgrace (and using any accompanying batch files as you wish), but it is more convenient to plot it using plotly (and Bokeh to add a bit more functionality).
+Now let's make a graph of more useful data: rerun Optados with `JDOS_SPACING : 0.01` set instead (to get more data for more meaningful graphs), and rerun the Python script. You could plot it with xmgrace (and using any accompanying batch files as you wish), but it is more convenient to plot it using plotly (and Bokeh to add a bit more functionality) - this is because the values vary greatly.
 
+To replicate this, you may use this [Python script](basic_graph.py) to use plotly to get a basic output, and to get 1 with a bit of extra functionality (such as being able to manually select the range of values to look at) use [this script](inter_graph.py). Make sure you have all the required libraries installed if doing this: pandas and plotly are required for the 1st, and Bokeh is also required for the 2nd. The 1st generates an output HTML file called `interactive_graph.html` and the 2nd generates `interactive_graph_extra.html`. The latter is embedded here for your convenience:
 
+<iframe id="embed_link" width="800" height="400"></iframe>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var basePath = window.location.origin;
+    var iframe = document.getElementById("embed_link");
+    iframe.src = basePath + "/tutorials/Optics/interactive_graph_extra.html";
+});
+</script>
 
-Here we see that, above 1.5eV, the imaginary total dielectric is dominated by the interband contribution, while the real part appears to be influenced slightly moreso by the intraband term. By adjusting the axis limits, or looking at the `Al_epsilon_sep.dat` file
+Alternatively down the [data](cleaned_data.dat) and [HTML file](interactive_graph_extra.html) and view it on your browser - or just view that HTML link on a new tab.
 
-```
-0.0000000000000000         111.3599917818530116           0.0000000000000000      -32490.3191726066543197           0.0000000000000000      -32379.9591808248005691           0.0000000000000000
-0.0100033344448149         101.2911635864703186          21.4321242322942318      -31756.8048547613216215      208963.9725235598161817      -31656.5136911748522834      208985.4046477921074256
-0.0200066688896299          92.9566193519629564          21.9702759743209981      -29742.3723795367077400       97854.5790097907593008      -29650.4157601847437036       97876.5492857650679071
-```
+As loaded, the graph doesn't look great: because the values become extremely high towards 0eV, it just looks like 2 straight lines followed by 0. In the HTML, let's set the y min to -10 and y max to 10. Now we can make some general observations.
 
-we see that the intraband contribution makes the dielectric function at low eV's extremely large, while the interband has little effect.
+- At very low energies, the total dielectric (both real and imaginary) shoot up/down to extremely large values - it seems to settle down around 2eV
+- The imaginary components tend towards 0, while the real parts tend towards a non-zero finite value
 
-Running Optados generates the same files as without its contribution, except some of the files are slightly different different.
+Try setting x min to 2 (and y min to -50 - just to get no cut-offs): you'll see that the lines are fairly straightforward beyond 2eV. So let's try examine in more detail what is happening between 0 and 2eV. Feel free to drag and (box)-zoom with the widgets provided in the HTML to look at different sections of the graph.
 
+Try looking at the region where energy (x) is between 1.3 and 1.6 - you should see that there is a distinct discontinuity there - while the intraband imaginary term remains close to 0, the interband jumps up (up to around 700) and then goes down - the total is the same. The real part also follows the of shape of the interband contribution, being adjusted slightly by a barely-changing intraband term. Try having a look at other regions in the 0-2eV range to see what else you can find.
 
+## Other files
 
-* The `Al_OPTICS_epsilon.dat` file has the same format as before, but it now contains sequentially the interband contribution, the intraband contribution and the total dielectric function.  The file `Al_OPTICS_epsilon.agr` only contains the interband term.  In the same way, `Al_OPTICS_loss_fn.dat` contains the interband contribution, intraband contribution and total loss function.  All other optical properties are calculated from the total dielectric function and the format of the output files remains the same.
+Running Optados generates the same files as without its contribution, except some of the files are slightly different different. For example, the file `Al_epsilon.agr` only contains the interband term - it only has 2 columns. Similarly to `Al_epsilon.dat`, `Al_loss_fn.dat` contains the interband, intraband and total loss function (though this time the components aren't separated by a double space - you'd have to adjust the Python script used before). Unlike `epsilon`, the `Al_loss_fn.agr` file contains all the terms - you can plot all the loss function data easily using
 
-* In the case where the dielectric tensor is calculated and the intraband term is included, only the `Al_OPTICS_epsilon.dat` file is generated.  As before it contains each component, but this time it lists sequentially the interband contribution, intraband contribution and total dielectric function for each component.   
+`xmgrace Al_loss_fn.agr`
 
-* This time, if additional broadening for the loss function is included by using the key word `optics_lossfn_broadening`,  `AL_OPTICS_loss_fn.dat` will contains four sequential data sets.  These are the interband contribution, the intraband contribution, the total loss function without the additional broadening and the broadened total loss function.  
+The graph should look a bit like
+
+![Al loss graph](Al_loss_fn.png){width="40%"}
+
+For the loss function, you could also include `optics_lossfn_broadening : x` where x is the value of broadening you wish to use: this will generate a 4th column containing the broadened total loss function (again well-included in the `agr` file)
+
+If you change the Optados input file to find the tensor properties - which can be done by changing the line
+
+`OPTICS_GEOM : POLYCRYSTALLINE`
+
+to
+
+`OPTICS_GEOM : TENSOR`
+
+in *Al.odi* - you'll also get all the contributions in the outputted `Al_epsilon.dat` file - so you have 3 parts of 6 components, leading to 18 bits of data in total. Only the dielectric dat output is created.
