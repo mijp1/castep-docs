@@ -199,16 +199,40 @@ Let's go back to looking at the `odo` output file. Because `COMPUTE_BAND_GAP : T
 
 Optados is very careful in its band gap analysis. It uses the bare eigenvalues (un-broadened) and works out the nature and size of the thermal gap, optical gap and the average gap over all of the Brillouin zone. In cases of multi-valleyed semiconductors optados will report the number of conduction band minima or valence band maxima with identical energies, but will not report the nature of the gap.
 
-Increasing the number of integration points has improved the band energy of the adaptive smearing:
 
+## Broadening
+
+We will now compare the different forms of broadening. This can be done quickly by changing the first in `Si.odi` to
+
+`task : compare_dos`
+
+and re-running Optados. This gives us 4 new output files - `Si_linear.dat` and `Si_fixed.dat`, plus their accompanying `agr` files. Let's compare them by running `xmgrace -batch compare.bat` on the batch file
+
+*compare.bat*
 ```
-|      Band energy (Adaptive broadening) :  1.3623 eV   <- BEA |
+READ BLOCK "Si.adaptive.dat"
+
+BLOCK XY "1:2"
+S0 LEGEND "Adaptive DOS"
+
+READ BLOCK "Si.linear.dat"
+
+BLOCK XY "1:2"
+S1 LEGEND "Linear DOS"
+
+READ BLOCK "Si.fixed.dat"
+BLOCK XY "1:2"
+S2 LEGEND "Fixed DOS"
+
+WORLD XMIN 0
+WORLD XMAX 5
 ```
 
-1. We will now compare the DOS with the adaptive broadening scheme with simple Gaussian smearing. In the optados input file (`Si2.odi`) change the value of `BROADENING` to `fixed`.
+!!! note
+    We're looking at a small region, between 0 and 5 eV, so it is easier to see the differences
 
-	Plotting the fixed broadened DOS over the adaptive we see the advantages of the adaptive broadening.
+The graph should look like this:
 
-	```
-	xmgrace Si2.adaptive.agr Si2.fixed.agr
-	```
+![Broadening comparison](compare.png)
+
+To further improve the appearance of the graph, you can lower `DOS_SPACING` and tinker with the value of `ADAPTIVE_SMEARING` in the `odi` file. 
