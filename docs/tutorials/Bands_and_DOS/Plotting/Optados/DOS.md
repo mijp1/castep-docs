@@ -79,85 +79,71 @@ NUMERICAL_INTDOS      : false  # Default
 FINITE_BIN_CORRECTION : true  # Default
 ```
 
+One interesting thing to note here is the line `efermi : optados` - this sets the internal value of the Fermi level to the one it has derived from the DoS. This is important for subsequent calculations. Other valid options are:
+
+* `file`, where `optados` uses the value calculated by the electronic structure code that generated the eigenvalues
+* `insulator`, where optados uses a value calculated from assuming the system is non-metallic
+* A custom value you may want to use
 
 This generates 3 files:
 
-	* `Si2.odo` -- optados general output file.
-	* `Si2.adaptive.dat` -- The adaptive broadened DOS raw output data.
-	* `Si2.adaptive.agr` -- The adaptive broadened DOS in a file suitable to be plotted by  xmgrace.
+* `Si.odo` - Optados general output file.
+* `Si.adaptive.dat` - The adaptive broadened DOS raw output data.
+* `Si.adaptive.agr` - The adaptive broadened DOS in a file suitable to be plotted by  xmgrace.
 
-Examine the `Si2.odo` file. `optados` has performed a Density of States calculation.
+Let's have a look at the file `Si.odo`
 
-	```
-	+--------------- Fermi Energy Analysis ------------------------+
-	| From Adaptive broadening                                     |
-	| Spin Component:1 occupation between 3.99961 and 4.00003 <-Oc |
-	| Spin Component:2 occupation between 3.99961 and 4.00003 <-Oc |
-	|       Fermi energy (Adaptive broadening) : 5.4109 eV  <- EfA |
-	+--------------------------------------------------------------+
-	```
-	It has used the integrated DOS to work out the Fermi level, and has suggested the error in the integration by indicating the number of electrons at the Fermi level. Since we had 4 up electrons and 4 down in the input file this analysis seems satisfactory.
+Towards the top of the data output, we have a table looking like this:
 
 	```
-	+----------------------- Electronic Data ---------------------+
-	|  Number of Bands                           :       23       |
-	|  Grid size                                 :  10 x 10 x 10  |
-	|  Number of K-points                        :           110  |
-	|  Spin-Polarised Calculation                :           True |
-	|  Number of up-spin electrons               :          4.00  |
-	|  Number of down-spin electrons             :          4.00  |
-	+-------------------------------------------------------------+
-	```
-	Since we had `efermi : optados`, `optados` sets the internal value of the Fermi level to the one it has derived from the DOS. This is important for subsequent calculations. Other valid options are `file`, where `optados` uses the value calculated by the electronic structure code that generated the eigenvalues;  `insulator`, where optados uses a value calculated from assuming the system is non-metallic; or a value set by the user.
-
-	optados now performs some analysis of the DOS at the Fermi level,
-
-	```
-	+-------------- DOS at Fermi Energy Analysis ----------------+
-	|                          Fermi energy used :   5.4109 eV   |
-	| From Adaptive broadening                                   |
-	| Spin Component:1 DOS at Fermi Energy:0.0011 eln/cell <-DEA |
-	| Spin Component:2 DOS at Fermi Energy:0.0011 eln/cell<- DEA |
-	+------------------------------------------------------------+
-	```
-	From this we may assume that there is a band gap.
-
-	Importantly, then optados calculates the band energy from the DOS is has calculated.
-
-	```
-	+------------------- Band Energy Analysis -------------------+
-	|     Band energy (Adaptive broadening) : 1.3609 eV   <- BEA |
-	|     Band energy (From CASTEP) :         1.3622 eV   <- BEC |
-	+------------------------------------------------------------+
-	```
-	As the quality of the optados calculation is increased these two values should converge to the same answer.
-
-	Finally optados shifts the Fermi level to 0 eV, for the output files.
-
-1. The DOS is written to `Si2.adaptive.dat`. This contains 5 columns as described in the header of the file:
-
-	```
-	################################################################
-	#
-	#                  O p t a D O S   o u t p u t   f i l e
-	#
-	#    Density of States using adaptive broadening
-	#  Generated on 12 Feb 2012 at 16:50:37
-	# Column        Data
-	#    1        Energy (eV)
-	#    2        Up-spin DOS (electrons per eV)
-	#    3        Down-spin DOS (electrons per eV)
-	#    4        Up-spin Integrated DOS (electrons)
-	#    5        Down-spin Integrated DOS (electrons)
-	#
-	################################################################
+	+--------------- Fermi Energy Analysis ---------------------------+
+	| From Adaptive broadening                                        |
+	| Spin Component:1 occupation between 3.99964 and    4.00003 <-Oc |
+	| Spin Component:2 occupation between 3.99964 and    4.00003 <-Oc |
+	|       Fermi energy (Adaptive broadening) : 4.4479 eV     <- EfA |
+	+-----------------------------------------------------------------+
 	```
 
-	This file can be plotted by your favourite graph-plotting software. However, `optados` has made things easy and generated a  `Si2.adaptive.agr` file which is directly plottable using `xmgrace`.
+It has used the integrated DOS to work out the Fermi level, and has suggested the error in the integration by indicating the number of electrons at the Fermi level. Since we had 4 up electrons and 4 down in the input file this analysis seems satisfactory.
 
-	```
-	$ xmgrace Si2.adaptive.agr
-	```
+Optados now performs some analysis of the DOS at the Fermi level,
+
+```
++----------------------- DOS at Fermi Energy Analysis -----------------------+
+|                          Fermi energy used :   4.4479 eV                   |
+| From Adaptive broadening                                                   |
+|   Spin Component : 1   DOS at Fermi Energy :   0.0010 eln/cell      <- DEA |
+|   Spin Component : 2   DOS at Fermi Energy :   0.0010 eln/cell      <- DEA |
++----------------------------------------------------------------------------+
+```
+
+From this we may assume that there is a band gap.
+
+A bit further down, Optados then calculates the band energy from the DOS is has calculated.
+
+```
++--------------------------- Band Energy Analysis ---------------------------+
+|          Band energy (Adaptive broadening) :      -6.3472 eV        <- BEA |
+|                  Band energy (From CASTEP) :      -6.3471 eV        <- BEC |
++----------------------------------------------------------------------------+
+```
+
+As the quality of the optados calculation is increased these two values should converge to the same answer.
+
+Finally, optados shifts the Fermi level to 0 eV for the output files.
+
+The DoS is written to `Si2.adaptive.dat`. This contains 5 columns - the 1st is the energy, the 2nd is the up-spin DoS, the 3rd is the down-spin DoS, the 4th is the up-spin integrated DoS, and the 5th is the down-spin integrated DoS. If instead `SPIN_POLARIZED : FALSE` were set in the `param` file, there would only be 3 columns: energy, DoS and integrated DoS.
+
+This file can be plotted by your preferred graph-plotting software. However, `optados` has made things easy and generated a  `Si2.adaptive.agr` file which is directly plottable using `xmgrace` - to get a plot all you have to run is:
+
+```
+$ xmgrace Si2.adaptive.agr
+```
+
+The graph should look a bit like this:
+
+![AGR xmgrace plot](agr_out.png){width="40%"}
+
 1. We now try again with a better sampling of the DOS, by setting `DOS_SPACING : 0.001` and also analyse the band gap, by setting `COMPUTE_BAND_GAP : true`. You can set `IPRINT : 2` to see a progress report in  `Si2.odo`.
 
 	In  `Si2.odo` we now have a new section analysing the band gap in various ways.
