@@ -1,13 +1,12 @@
-## Density of States
+# Density od States
 
-### Outline
-This is a simple example of using `optados` for calculating electronic density of states of crystalline silicon in a 2 atom cell. It shows how optados's adaptive broadening can be used to resolve fine spectral features that a fixed broadening scheme will obscure.
+In this tutorial, we will go through a simple example of using Optados to calculate the electronic density of states (DoS) of crystalline silicon in a 2 atom cell. We will then examine how Optados' adaptive broadening can be used to resolve fine spectral features that a fixed broadening scheme will obscure.
 
-The tarball for the tutorial files for all of the optados tutorials are here: [optados-examples.tgz](optados-examples.tgz)
+## ODO Output
 
-### Input Files:
-* `examples/Si2_DOS/Si2.cell` - The castep cell file containing information about the simulation cell.
+Firstly, we will run the calculation and examine the Optados output file `Si.odo`. We will use the `cell` file
 
+*Si.cell*
 ```
 %BLOCK LATTICE_CART
 2.73  2.73 0.00
@@ -26,9 +25,9 @@ KPOINTS_MP_GRID 10 10 10
 SPECTRAL_KPOINTS_MP_GRID 10 10 10
 ```
 
+together with the `param` file
 
-* `examples/Si2_DOS/Si2.param` - The castep param file containing information about the parameters for the SCF and spectral calculations.
-
+*Si.param*
 ```
 TASK                   : SPECTRAL
 SPECTRAL_TASK          : DOS
@@ -37,9 +36,11 @@ SPIN_POLARIZED         : TRUE
 CUT_OFF_ENERGY         : 200
 IPRINT                 : 1
 ```
-* `examples/Si2_DOS/Si2.odi` - The optados input file, containing the parameters necessary to run optados.
+
+The first 2 lines are what determine that we will be doing a DoS calculation. Run castep as usual, and then run optados on Si with the Optados input file
+
+*Si.odi*
 ```
-# Choose the task to perform
 TASK              : dos
 
 # Recalculate the Fermi energy using the new DOS
@@ -78,27 +79,14 @@ NUMERICAL_INTDOS      : false  # Default
 FINITE_BIN_CORRECTION : true  # Default
 ```
 
-### Instructions:
 
-1. Perform a castep calculation on the bulk silicon using the  `Si2.cell`  and `Si2.param` input files.
-
-	This should take a couple of seconds to run.
-
-1. Examine the optados input file - `Si2.odi`
-
-	Perform an optados calculation.
-
-	```
-	$ optados.mpi Si2
-	```
-
-	This generates 3 files:
+This generates 3 files:
 
 	* `Si2.odo` -- optados general output file.
 	* `Si2.adaptive.dat` -- The adaptive broadened DOS raw output data.
 	* `Si2.adaptive.agr` -- The adaptive broadened DOS in a file suitable to be plotted by  xmgrace.
 
-	Examine the `Si2.odo` file. `optados` has performed a Density of States calculation.
+Examine the `Si2.odo` file. `optados` has performed a Density of States calculation.
 
 	```
 	+--------------- Fermi Energy Analysis ------------------------+
