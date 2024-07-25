@@ -1,13 +1,10 @@
-## Projected Density of States
+# Projected Density of States
 
-We assume the reader is familiar with the previous section on Density of States calculations and is now familiar with running `optados`.
+In this tutorial, we will using Optados to calculate the electronic density of states of 2 atoms of crystalline silicon projected onto LCAO basis states. It may be helpful to have gone through the [previous tutorial on calculating the DoS](DOS.md).
 
-### Outline
-This is a simple example of using optados for calculating electronic density of states of 2 atoms of crystalline silicon projected onto LCAO basis states.
+We will use the `cell` file
 
-### Input Files
-* `examples/Si2_PDOS/Si2.cell` - The castep `.cell` file containing information about the simulation cell.
-
+*Si.cell*
 ```
 %BLOCK LATTICE_CART
 2.73  2.73 0.00
@@ -26,8 +23,9 @@ KPOINTS_MP_GRID 10 10 10
 SPECTRAL_KPOINTS_MP_GRID 2 2 2
 ```
 
-* `examples/Si2_PDOS/Si2.param` - The castep `.param` file containing information about the parameters for the SCF and spectral calculations.
+and the `param` file
 
+*Si.param*
 ```
 TASK                   : SPECTRAL
 %BLOCK devel_code
@@ -40,7 +38,9 @@ CUT_OFF_ENERGY         : 200
 IPRINT                 : 1
 ```
 
-* `examples/Si2_PDOS/Si2.odi` - The optados input file, containing the parameters necessary to run optados.
+Run castep. Then, run Optados with the Optados input file
+
+*Si.odi*
 ```
 TASK              : pdos
 
@@ -92,55 +92,74 @@ NUMERICAL_INTDOS      : false  # Default
 # (Should always be true, but useful for comparison with
 # LinDOS)
 FINITE_BIN_CORRECTION : true  # Default
+
 ```
-### Instructions:
 
-* Examine the optados input file noting `TASK : pdos`. We choose to decompose the DOS into angular momentum channels `PDOS : angular` and as in the previous example we choose to recalculate the Fermi level using the calculated DOS, rather than use the Fermi level suggested by castep.
+Note the line `TASK : pdos` - this is what allows us to calculate the PDoS. We have chosen to decompose the DOS into angular momentum channels with the line `PDOS : angular`, and as in the [previous example](DOS.md), we choose to recalculate the Fermi level using the calculated DOS, rather than use the Fermi level suggested by Castep.
 
-* Execute optados.
+The output can be found in `Si2.pdos.dat` - it contains the header below to tell us what each column represnts.
 
-* The output can be found in `Si2.pdos.dat`.
+```
+################################################################
+#
+#                  O p t a D O S   o u t p u t   f i l e
+#
+#  Generated on 13 Feb 2012 at 10:15:10
+################################################################
+#+-------------------------------------------------------------+
+#|                    Partial Density of States -- Projectors  |
+#+-------------------------------------------------------------+
+#| Projector:    1 contains:                                   |
+#|           Atom            AngM Channel                      |
+#|          Si   1                 s                           |
+#|          Si   2                 s                           |
+#+-------------------------------------------------------------+
+#| Projector:    2 contains:                                   |
+#|           Atom            AngM Channel                      |
+#|          Si   1                 p                           |
+#|          Si   2                 p                           |
+#+-------------------------------------------------------------+
+#| Projector:    3 contains:                                   |
+#|           Atom            AngM Channel                      |
+#|          Si   1                 d                           |
+#|          Si   2                 d                           |
+#+-------------------------------------------------------------+
+#| Projector:    4 contains:                                   |
+#|           Atom            AngM Channel                      |
+#|          Si   1                 f                           |
+#|          Si   2                 f                           |
+#+-------------------------------------------------------------+
+```
 
-	```
-	################################################################
-	#
-	#                  O p t a D O S   o u t p u t   f i l e
-	#
-	#  Generated on 13 Feb 2012 at 10:15:10
-	################################################################
-	#+-------------------------------------------------------------+
-	#|                    Partial Density of States -- Projectors  |
-	#+-------------------------------------------------------------+
-	#| Projector:    1 contains:                                   |
-	#|           Atom            AngM Channel                      |
-	#|          Si   1                 s                           |
-	#|          Si   2                 s                           |
-	#+-------------------------------------------------------------+
-	#| Projector:    2 contains:                                   |
-	#|           Atom            AngM Channel                      |
-	#|          Si   1                 p                           |
-	#|          Si   2                 p                           |
-	#+-------------------------------------------------------------+
-	#| Projector:    3 contains:                                   |
-	#|           Atom            AngM Channel                      |
-	#|          Si   1                 d                           |
-	#|          Si   2                 d                           |
-	#+-------------------------------------------------------------+
-	#| Projector:    4 contains:                                   |
-	#|           Atom            AngM Channel                      |
-	#|          Si   1                 f                           |
-	#|          Si   2                 f                           |
-	#+-------------------------------------------------------------+
-	```
-	The header shows that there are four projectors described below. The first containing the s-channels of both silicon atoms, the second the p-channels etc.
+This shows that there are four projectors described below - each one corresponding to a column in the actual data. The 1st contains the s-channels of both silicon atoms, the 2nd the p-channels etc. The values correspond to the sums of the values of both Si atoms.
 
-* The output is easily plotted using `xmgrace`.
+You can change which projectors you will gain by changing the line `PDOS : ANGULAR`. Changing the value to `SPECIES_ANG` will give you only the first 2 projectors. `SPECIES` will yield the sum of all the orbitals and atoms. `SITES` will give you 1 projector of the sum of all orbitals of Si atom 1, and 1 of atom 2 (note that they're identical). You can also make custom projectors - write down the element, number and orbital in brackets, with columns separating adjacent projectors if you want multiple. For example, `Si1(s):Si2(p)` will give you 1 column of the PDoS of the s orbital on silicon atom 1, and a column of the p orbital on silicon atom 2.
 
-* Setting `DOS_SPACING : 0.001` gives a high quality plot, as shown in the figure below.
+!!! note
+    Using custom projectors won't save the data in `Si.pdos.dat`, but a file named based on the projectors chosen - in the example above, it'd be saved in `Si.pdos.proj-0001-0002.dat`.
 
-	| ![Si DOS](opt1.png) |
-	|:--:|
-	| <b>Density of States of Silicon generated by adaptive broadening projected onto LCAO momentum states</b>|
+The output is easily plotted by using xmgrace on the `dat` file. To plot multiple bits of data, it is easiest to use a batch file - this is the plot of the s and p channels:
+
+![Result plot](pdos_full.png){width="50%"}
+
+This can be obtained by running `xmgrace -batch pdos_plot.bat` on the batch file
+
+*pdos_plot.bat*
+```
+READ BLOCK "Si.pdos.dat"
+
+BLOCK XY "1:2"
+S0 LEGEND "s-channel"
+
+BLOCK XY "1:3"
+S1 LEGEND "P-channel"
+```
+
+This plot `DOS_SPACING : 0.001` gives a high quality plot, as shown in the figure below.
+
+| ![Si DOS](opt1.png) |
+|:--:|
+| <b>Density of States of Silicon generated by adaptive broadening projected onto LCAO momentum states</b>|
 
 * Other projections to try are:
 	* `PDOS : Si1;Si2(s)`  -- Output the PDOS on Si atom 1 and the PDOS on the s-channel of Si atom 2. (Resulting in two projectors)
