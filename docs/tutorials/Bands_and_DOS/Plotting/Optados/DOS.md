@@ -130,7 +130,9 @@ A bit further down, Optados then calculates the band energy from the DOS is has 
 
 As the quality of the optados calculation is increased these two values should converge to the same answer.
 
-Finally, optados shifts the Fermi level to 0 eV for the output files.
+## Other Output Files
+
+Finally, Optados shifts the Fermi level to 0 eV for the output files - let's have a look at the other 2 files generated.
 
 The DoS is written to `Si2.adaptive.dat`. This contains 5 columns - the 1st is the energy, the 2nd is the up-spin DoS, the 3rd is the down-spin DoS, the 4th is the up-spin integrated DoS, and the 5th is the down-spin integrated DoS. If instead `SPIN_POLARIZED : FALSE` were set in the `param` file, there would only be 3 columns: energy, DoS and integrated DoS.
 
@@ -144,41 +146,64 @@ The graph should look a bit like this:
 
 ![AGR xmgrace plot](agr_out.png){width="40%"}
 
-1. We now try again with a better sampling of the DOS, by setting `DOS_SPACING : 0.001` and also analyse the band gap, by setting `COMPUTE_BAND_GAP : true`. You can set `IPRINT : 2` to see a progress report in  `Si2.odo`.
+What is important to mention is that this `agr` file only contains the data for DoS, not integrated DoS. If you want to plot all the data, including up and down integrated DoS, run `xmgrace -batch other_data.bat` on the batch file
 
-	In  `Si2.odo` we now have a new section analysing the band gap in various ways.
+*other_data.bat*
+```
+READ BLOCK "Si.adaptive.dat"
 
-	```
-	+----------------------------- Bandgap Analysis ---------------+
-	|          Number of kpoints at       VBM       CBM            |
-	|                   Spin :   1  :      1         1             |
-	|                   Spin :   2  :      1         1             |
-	|               Thermal Bandgap :   0.6676272107  eV    <- TBg |
-	|            Between VBM kpoint :    0.05000    0.05000 0.05000|
-	|               and CBM kpoint:   -0.45000    -0.05000 -0.45000|
-	|             ==> Indirect Gap                                 |
-	+--------------------------------------------------------------+
-	|                            Optical Bandgap                   |
-	|                   Spin :   1  :     2.5542517447  eV  <- OBg |
-	|                   Spin :   2  :     2.5542463024  eV  <- OBg |
-	|          Number of kpoints with this gap                     |
-	|                   Spin :   1  :           1                  |
-	|                   Spin :   2  :           1                  |
-	+--------------------------------------------------------------+
-	|                            Average Bandgap                   |
-	|                   Spin :   1  :     3.8121372691  eV  <- ABg |
-	|                   Spin :   2  :     3.8121342659  eV  <- ABg |
-	|              Weighted Average :     3.8121357675  eV  <- wAB |
-	+--------------------------------------------------------------+
-	```
+BLOCK XY "1:2"
+S0 LEGEND "Up DOS"
 
-	`optados` is very careful in its band gap analysis. It uses the bare eigenvalues (un-broadened) and works out the nature and size of the thermal gap, optical gap and the average gap over all of the Brillouin zone. In cases of multi-valleyed semiconductors optados will report the number of conduction band minima or valence band maxima with identical energies, but will not report the nature of the gap.
+BLOCK XY "1:3"
+S1 LEGEND "Down DOS"
 
-	Increasing the number of integration points has improved the band energy of the adaptive smearing:
+BLOCK XY "1:4"
+S2 LEGEND "Up IntDos"
 
-	```
-	|      Band energy (Adaptive broadening) :  1.3623 eV   <- BEA |
-	```
+BLOCK XY "1:5"
+S3 LEGEND "Down IntDos"
+```
+
+This should give a graph that looks like:
+
+![All DOS data](all_data.png){width="40%"}
+
+## Band Gap Analysis
+
+Let's go back to looking at the `odo` output file. Because `COMPUTE_BAND_GAP : TRUE` is set by default, the band gap analysis section should already be present. The results are a table that looks like:
+
+```
++----------------------------- Bandgap Analysis -----------------------------+
+|          Number of kpoints at       VBM       CBM                          |
+|                   Spin :   1  :      1         1                           |
+|                   Spin :   2  :      1         1                           |
+|               Thermal Bandgap :   0.6724150536  eV                  <- TBg |
+|            Between VBM kpoint :    0.05000    0.05000    0.05000           |
+|                 and CBM kpoint:   -0.45000   -0.45000   -0.05000           |
+|             ==> Indirect Gap                                               |
++----------------------------------------------------------------------------+
+|                            Optical Bandgap                                 |
+|                   Spin :   1  :     2.5639496096  eV                <- OBg |
+|                   Spin :   2  :     2.5639441673  eV                <- OBg |
+|          Number of kpoints with this gap                                   |
+|                   Spin :   1  :           1                                |
+|                   Spin :   2  :           1                                |
++----------------------------------------------------------------------------+
+|                            Average Bandgap                                 |
+|                   Spin :   1  :     3.8132681742  eV                <- ABg |
+|                   Spin :   2  :     3.8132658290  eV                <- ABg |
+|              Weighted Average :     3.8132670016  eV                <- wAB |
++----------------------------------------------------------------------------+
+```
+
+Optados is very careful in its band gap analysis. It uses the bare eigenvalues (un-broadened) and works out the nature and size of the thermal gap, optical gap and the average gap over all of the Brillouin zone. In cases of multi-valleyed semiconductors optados will report the number of conduction band minima or valence band maxima with identical energies, but will not report the nature of the gap.
+
+Increasing the number of integration points has improved the band energy of the adaptive smearing:
+
+```
+|      Band energy (Adaptive broadening) :  1.3623 eV   <- BEA |
+```
 
 1. We will now compare the DOS with the adaptive broadening scheme with simple Gaussian smearing. In the optados input file (`Si2.odi`) change the value of `BROADENING` to `fixed`.
 
