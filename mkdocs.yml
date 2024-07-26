@@ -80,12 +80,11 @@ nav:
         - 'Plotting':
           - 'Plotting - CASTEP tools': 'tutorials/Bands_and_DOS/Plotting/plotting_perl.md'
           - 'Plotting - SUMO': 'tutorials/Bands_and_DOS/Plotting/plotting_sumo.md'
-          - 'Optados':
         - 'Semiconductors':      'tutorials/Bands_and_DOS/semiconductors.md'
         - 'Metals':      'tutorials/Bands_and_DOS/metals.md'
         - 'Magnetic Materials':      'tutorials/Bands_and_DOS/magnetic.md'
       - 'Optics':
-        - 'Examining Optical Anisotropy': 'tutorials/Optics/Optics_ani.md'
+        - 'Optical Anisotropy': 'tutorials/Optics/Optics_ani.md'
       - 'Dispersion corrections': 'tutorials/dispersion_corrections/castep-ase-dispersion-tutorial.md'
       - 'Nudged elastic band': 'tutorials/NEB/neb_tutorial.md'
       - 'NMR Shielding':
