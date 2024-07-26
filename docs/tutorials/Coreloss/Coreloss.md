@@ -61,15 +61,31 @@ LAI_GAUSSIAN_WIDTH : 1.0
 
 which adds some Gaussian broadening to simulate instrument effects.
 
-Running Optados should generate 2 files of interest: `hbn_B1K1_core_edge.dat` and `bn_N1K1_core_edge.dat` - these are the results of the core-loss calculations.
-
-The file `hBN_core_edge.dat` now has three columns. The third column is the broadened spectrum. To compare the broadened and un-broadened spectra
+Running Optados should generate 2 files of interest: `hbn_B1K1_core_edge.dat` and `bn_N1K1_core_edge.dat` - these are the results of the core-loss calculations. We will focus on the first `dat` file - let's look at the boron part specifically. The file starts off like
 
 ```
-xmgrace hBN_core_edge_broad.agr hBN_core_edge.agr
+-15.685787277124911        0.0000000000000000        4.3994742417499804E-005
+-15.675786930280168        0.0000000000000000        4.4820011439245385E-005
 ```
 
-Now add some lifetime broadening (look up the meaning of the keywords in the optados user guide)
+The 1st column is the energy, the 2nd is the standard Gaussian-broadened core-loss and the 3rd column is the instrumentation broadened core-loss. Let's try plotting this with xmgrace - you could use `xmgrace -nxy hbn_B1K1_core_edge.dat`, but to easily add legends I'd use `xmgrace -batch plot.bat` on the batch file
+
+*plot.dat*
+```
+READ BLOCK "bn_B1K1_core_edge.dat"
+
+BLOCK XY "1:2"
+S0 LEGEND "No Instrumentation Broadening"
+
+BLOCK XY "1:3"
+S1 LEGEND "Instrumentation Broadened"
+
+WORLD XMIN 0
+```
+
+This creates a graph that looks like:
+
+![Result of above steps](basic_result.png){width="50%"}
 
 ```
 LAI_LORENTZIAN_WIDTH : 0.5
