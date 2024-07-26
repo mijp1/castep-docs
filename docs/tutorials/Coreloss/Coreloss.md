@@ -1,25 +1,67 @@
+# Coreloss
+
 ## Calculation of core-loss spectra for hBN
 
-We begin by running a CASTEP calculation using the files provided.  Note that we specify a pseudopotential file for one B atom and both N atom, and use an on-the-fly pseudopotential for the other B atom.  This looks a bit weird!  It is simply a way to only compute the EELS for one atomic site (core-loss spectra can only be computed for atoms described by on-the-fly potentials). An h-BN [cell](h-BN.cell) and [param](h-BN.param) file are provided.
+Core-loss calculations effectively calculate the probability of an electron being excited from 1 state into the conduction band. This is useful for calculating the core-loss (ionisation edge) peaks - by performing these calculations, you can get an approximate simulation of what you would see in an experimental [EELS](https://en.wikipedia.org/wiki/Electron_energy_loss_spectroscopy) or [XANES](https://en.wikipedia.org/wiki/X-ray_absorption_near_edge_structure) spectrum.
 
-Execute optados using the optados input file provided and the file `hBN_core_edge.dat` will be created. The file contains two columns, the first is the energy and the second is the spectrum. This file contains the following edges:
+In this tutorial, we will look at the results of such a calculation on hexagonal boron nitride (h-BN). We will use the `cell` file
 
+*hbn.cell*
 ```
-B 1    K1       B:1
+%block lattice_abc
+2.5 2.5 2.5
+60 60 60
+%endblock lattice_abc
+
+%block positions_frac
+B 0.00 0.00 0.00
+N 0.25 0.25 0.25
+%endblock positions_frac
+
+kpoints_mp_grid 2 2 2
+
+symmetry_generate
+
+%block species_pot
+B 2|1.2|12|14|16|20:21(qc=8)
+%endblock species_pot
+
+spectral_kpoint_mp_grid 10 10 10
 ```
 
-OptaDOS has also written a grace file
+with the `param` file
 
+*hbn.param*
 ```
-$ xmgrace hBN_core_edge.agr
+task: spectral
+spectral_task: coreloss
+xc_functional: LDA
+opt_strategy: speed
 ```
 
-This spectrum has lots of fine detail.  To compare with experiment we can include lifetime and instrument broadening effects. First let's add some Gaussian broadening to simulate instrument effects. Add the following the odi file and re-run.
+Note that, for now, the `species_pot` block doesn't change anything - the value inside is the same as the default pseudopotential you'd get. Run castep. After it is done, run Optados on hbn with the Optados input file
 
+*hbn.odi*
 ```
-CORE_LAI_BROADENING : true
+TASK               : core
+DOS_SPACING       : 0.01
+BROADENING         : adaptive # Default
+ADAPTIVE_SMEARING  : 0.4  # Default
+CORE_GEOM          : polycrystalline  # Default
+CORE_LAI_BROADENING : true  # Default
 LAI_GAUSSIAN_WIDTH : 1.0
 ```
+
+The line `TASK : core` is what determines that a core-loss calculation will be performed. `CORE_GEOM : polycrystalline` could also be replaced by a different value, such as `TENSOR`, to get other results: here we are finding the results of the polycrystalline (uniform) case. To compare with experiment we can include lifetime and instrument broadening effects - this is done by the lines
+
+```
+CORE_LAI_BROADENING : true  # Default
+LAI_GAUSSIAN_WIDTH : 1.0
+```
+
+which adds some Gaussian broadening to simulate instrument effects.
+
+Running Optados should generate 2 files of interest: `hbn_B1K1_core_edge.dat` and `bn_N1K1_core_edge.dat` - these are the results of the core-loss calculations.
 
 The file `hBN_core_edge.dat` now has three columns. The third column is the broadened spectrum. To compare the broadened and un-broadened spectra
 
@@ -97,3 +139,6 @@ Other things to try include:
 * Compare your simulated spectra to experimental data (the EELS database is a good place to find experimental data)
 * Compare to spectra from cubic BN
 * Calculating spectra from graphite (graphene) and diamond
+
+
+We begin by running a CASTEP calculation using the files provided.  Note that we specify a pseudopotential file for one B atom and both N atom, and use an on-the-fly pseudopotential for the other B atom.  This looks a bit weird!  It is simply a way to only compute the EELS for one atomic site (core-loss spectra can only be computed for atoms described by on-the-fly potentials). An h-BN [cell](h-BN.cell) and [param](h-BN.param) file are provided.
