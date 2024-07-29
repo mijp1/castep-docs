@@ -182,29 +182,37 @@ Click `Transform...`. This opens up a new window
 
 ![Transformation window](transform_window.png)
 
-To create the 2x2x1 supercell, the transformation matrix is rather simple: make 2 of the diagonal terms 2 like in the figure above (so it becomes 2x larger in 2 directions) and click `Ok`. Select `Search atoms in the new unit-cell and add them as new sites` in the next pop-up window.
+To create the 2x2x2 supercell, the transformation matrix is rather simple: make the diagonal values 2 like in the figure above (so it becomes 2x larger in all directions) and click `Ok`. Select `Search atoms in the new unit-cell and add them as new sites` in the next pop-up window.
 
 Now that the supercell has been generated, we must save it and turn it into a cell file. Click `File -> Export Data` and save it as  `hbn.cif` file (saving it as a `cell` file is not an option). We can use `cif2cell hbn.cif` to get information on how to make the new cell - we can change the `cell` file to look like this
 
 *hbn.cell*
 ```
 %block lattice_abc
-5 5 2.5
+5 5 5
 60 60 60
 %endblock lattice_abc
 
 %block positions_frac
 B:exi       0.0000000   0.0000000   0.0000000
+B       0.0000000   0.0000000   0.5000000
 B       0.0000000   0.5000000   0.0000000
+B       0.0000000   0.5000000   0.5000000
 B       0.5000000   0.0000000   0.0000000
+B       0.5000000   0.0000000   0.5000000
 B       0.5000000   0.5000000   0.0000000
-N       0.1250000   0.1250000   0.2500000
-N       0.1250000   0.6250000   0.2500000
-N       0.6250000   0.1250000   0.2500000
-N       0.6250000   0.6250000   0.2500000
+B       0.5000000   0.5000000   0.5000000
+N       0.1250000   0.1250000   0.1250000
+N       0.1250000   0.1250000   0.6250000
+N       0.1250000   0.6250000   0.1250000
+N       0.1250000   0.6250000   0.6250000
+N       0.6250000   0.1250000   0.1250000
+N       0.6250000   0.1250000   0.6250000
+N       0.6250000   0.6250000   0.1250000
+N       0.6250000   0.6250000   0.6250000
 %endblock positions_frac
 
-kpoints_mp_grid 12 12 12
+kpoints_mp_grid 6 6 6
 
 symmetry_generate
 
@@ -212,15 +220,15 @@ symmetry_generate
 B:exi 2|1.2|12|14|16|20:21(qc=8){1s1.00}
 %endblock species_pot
 
-spectral_kpoint_mp_grid 10 10 10
+spectral_kpoint_mp_grid 5 5 5
 ```
 
-Specifying 1 of the borons to be called `B:exi` and making changing the potential block to only affect that means that we simulate only 1 of the boron atoms losing that electron - by doing this we prevent the interaction problem mentioned above. Re-run Castep and Optados. There will now be 7 output files, rather than just 2 - there is a core edge output for every atom - so `bn_B1K1_core_edge.dat` is the file with the missing 1s electron. Let's plot it on xmgrace, using the same method as before. This is the output:
+With double the size of the supercell, you may also halve the kpoints: this allows it to be calculated faster without losing accuracy.
+
+Specifying 1 of the boron atoms to be called `B:exi` and making changing the potential block to only affect that means that we simulate only 1 of the boron atoms losing that electron - by doing this we prevent the interaction problem mentioned above. Re-run Castep and Optados. There will now be 16 output files, rather than just 2 - there is a core edge output for every atom - so `bn_B1K1_core_edge.dat` is the core edge result for the boron with the missing 1s electron. Let's plot it on xmgrace, using the same method as before. This is the output:
 
 ![Supercell 1s output](super.png)
-
-
- and carry out another core-loss B K-edge simulation.  Compare the spectra to that from the primitive cell.  Construct larger and larger unit cells until the spectrum stops changing with increasing separation between the periodic images.  
+ 
 
 Other things to try include:
 
