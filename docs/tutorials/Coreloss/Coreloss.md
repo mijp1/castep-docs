@@ -22,9 +22,6 @@ kpoints_mp_grid 12 12 12
 
 symmetry_generate
 
-%block species_pot
-B 2|1.2|12|14|16|20:21(qc=8)
-%endblock species_pot
 
 spectral_kpoint_mp_grid 10 10 10
 ```
@@ -98,60 +95,37 @@ and rerunning Optados. Plotting the results again yields this graph:
 
 ![Less instrumentation broadening](less_lai_broaden.png){width="50%"}
 
-In practice, both the instrumentation and adaptive (or linear of fixed) broadening are adjusted until the results are close to experiment. 
+In practice, both the instrumentation and adaptive (or linear of fixed) broadening are adjusted until the results are close to experiment.
 
 ### Including a core-hole
 
-First we will include a core-hole on atom B:1.  To do this we add a modified pseudopotential string into the hBN.cell file
+The above was effectively calculating the probability of an electron being able to be excited into the conduction band, corresponding to that same energy being lost from an X-ray/electron and thus XANES/EELs data. However, when calculating that, it was not accounting for the fact that there'd be a core-hole as a result (which naturally will affect energy, DOS and thus probability of occuring): that must be factored in for more realistic results.
+
+This is done rather simply by specifying the missing electron when describing the potential in the `cell` file. If you look at the `hbn.castep` file generated earlier, you may see that the pseudopotential report contains the lines
 
 ```
-B:1  2|1.2|12|14|16|20:21{1s1.00}(qc=8)
+"2|1.2|12|14|16|20:21(qc=8)"
 ```
 
-The core-hole is created by removing a 1s electron from the electronic configuration used in the generation of the pseudopotential.  Information about the pseudopotential is included at the top of the `hBN.castep` file
+This tells us what kind of pseudopotential is used for the boron. To specify that there is a 1s electron missing, all you have to do is add `{1s1.00}` at the end: with only 1 electron in the 1s shell, there is a core electron missing: a core hole.
+
+Go into `hbn.cell`, and add the lines
 
 ```
-   ============================================================
-   | Pseudopotential Report - Date of generation 17-08-2018   |
-   ------------------------------------------------------------
-   | Element: B Ionic charge:  3.00 Level of theory: PBE      |
-   | Atomic Solver: Koelling-Harmon                           |
-   |                                                          |
-   |               Reference Electronic Structure             |
-   |         Orbital         Occupation         Energy        |
-   |            2s              2.000           -0.347        |
-   |            2p              1.000           -0.133        |
-   |                                                          |
-   |                 Pseudopotential Definition               |
-   |        Beta     l      e      Rc     scheme   norm       |
-   |          1      0   -0.347   1.199     qc      0         |
-   |          2      0    0.250   1.199     qc      0         |
-   |          3      1   -0.133   1.199     qc      0         |
-   |          4      1    0.250   1.199     qc      0         |
-   |         loc     2    0.000   1.199     pn      0         |
-   |                                                          |
-   | Augmentation charge Rinner = 0.838                       |
-   | Partial core correction Rc = 0.838                       |
-   ------------------------------------------------------------
-   | "2|1.2|12|14|16|20:21(qc=8)"                             |
-   ------------------------------------------------------------
-   |      Author: Chris J. Pickard, Cambridge University      |
-   ============================================================
+%block species_pot
+B 2|1.2|12|14|16|20:21(qc=8){1s1.00}
+%endblock species_pot
 ```
 
-The line
+to calculate the core edge data factoring in the missing 1s electron.
+!!! note
+    Your potential may be different, depending on your version of Castep etc. - but don't worry as the procedure is the same.
 
-```
-   | "2|1.2|12|14|16|20:21(qc=8)"                             |
-```
-
-specifies the parameters used to create the OFT B pseudopotential. We use this as a starting point and remove one of the core 1s electrons to create the core-hole pseudopotential by including `{1s1.00}`.  
-
-To maintain the neutrality of the cell, we include
+Before we re-run Castep, add the line
 
 `CHARGE : +1`
 
-in the `hBN.param` file.  Run the calculation.  Compare the K-edge from the core-hole calculation with the previous non-core-hole calculation.  
+in the `hBN.param` file - this must be done to maintain charge neutrality.  Next, re-run castep and Optados. 
 
 The periodic images of the core-hole will interact with one another.  As this is unphysical, we need to increase the distance between the core-holes. This is done by creating a supercell.  Create a 2x2x1 supercell (talk to one of the tutors if you’re unsure about how to do this) and carry out another core-loss B K-edge simulation.  Compare the spectra to that from the primitive cell.  Construct larger and larger unit cells until the spectrum stops changing with increasing separation between the periodic images.  
 
