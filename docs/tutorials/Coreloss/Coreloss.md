@@ -174,7 +174,50 @@ This time, there are 6 columns: the first 2 are the normal broadened data, the 3
 
 ## Supercell
 
-The periodic images of the core-hole will interact with one another.  As this is unphysical, we need to increase the distance between the core-holes. This is done by creating a supercell.  Create a 2x2x1 supercell (talk to one of the tutors if you’re unsure about how to do this) and carry out another core-loss B K-edge simulation.  Compare the spectra to that from the primitive cell.  Construct larger and larger unit cells until the spectrum stops changing with increasing separation between the periodic images.  
+The periodic images of the core-hole will interact with one another.  As this is unphysical, we need to increase the distance between the core-holes. This is done by creating a supercell.  To do this, we will create a 2x2x1 supercell. There are multiple ways of doing this, but this tutorial will cover how it can be done using [Vesta](https://jp-minerals.org/vesta/en/). First, upload the `cell` file we used to Vesta. From the top of the toolbar, go into `Edit -> Edit Data -> Unit cell...`. This should open up a window that looks like this
+
+![Edit unit cell window](cell_window.png)
+
+Click `Transform...`. This opens up a new window
+
+![Transformation window](transform_window.png)
+
+To create the 2x2x1 supercell, the transformation matrix is rather simple: make 2 of the diagonal terms 2 like in the figure above (so it becomes 2x larger in 2 directions) and click `Ok`. Select `Search atoms in the new unit-cell and add them as new sites` in the next pop-up window.
+
+Now that the supercell has been generated, we must save it and turn it into a cell file. Click `File -> Export Data` and save it as  `hbn.cif` file (saving it as a `cell` file is not an option). We can use `cif2cell hbn.cif` to get information on how to make the new cell - we can change the `cell` file to look like this
+
+*hbn.cell*
+```
+%block lattice_abc
+5 5 2.5
+60 60 60
+%endblock lattice_abc
+
+%block positions_frac
+B       0.0000000   0.0000000   0.0000000
+B       0.0000000   0.5000000   0.0000000
+B       0.5000000   0.0000000   0.0000000
+B       0.5000000   0.5000000   0.0000000
+N       0.1250000   0.1250000   0.2500000
+N       0.1250000   0.6250000   0.2500000
+N       0.6250000   0.1250000   0.2500000
+N       0.6250000   0.6250000   0.2500000
+%endblock positions_frac
+
+kpoints_mp_grid 12 12 12
+
+symmetry_generate
+
+%block species_pot
+B 2|1.2|12|14|16|20:21(qc=8){1s1.00}
+%endblock species_pot
+
+spectral_kpoint_mp_grid 10 10 10
+```
+
+
+
+ and carry out another core-loss B K-edge simulation.  Compare the spectra to that from the primitive cell.  Construct larger and larger unit cells until the spectrum stops changing with increasing separation between the periodic images.  
 
 Other things to try include:
 
