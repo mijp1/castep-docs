@@ -67,6 +67,8 @@ Running Optados should generate 2 files of interest: `hbn_B1K1_core_edge.dat` an
 
 The 1st column is the energy, the 2nd is the standard Gaussian-broadened core-loss and the 3rd column is the instrumentation broadened core-loss. Let's try plotting this with xmgrace - you could use `xmgrace -nxy hbn_B1K1_core_edge.dat`, but to easily add legends I'd use `xmgrace -batch plot.bat` on the batch file
 
+<a id="plot_bat"></a>
+
 *plot.bat*
 ```
 READ BLOCK "bn_B1K1_core_edge.dat"
@@ -125,7 +127,52 @@ Before we re-run Castep, add the line
 
 `CHARGE : +1`
 
-in the `hBN.param` file - this must be done to maintain charge neutrality.  Next, re-run castep and Optados. 
+in the `hBN.param` file - this must be done to maintain charge neutrality.  Next, re-run Castep. Let's have a quick look at the pseudopotential report of boron in `hbn.castep`
+
+```
+============================================================                
+| Pseudopotential Report - Date of generation 29-07-2024   |                
+------------------------------------------------------------                
+| Element: B Ionic charge:  4.00 Level of theory: LDA      |                
+| Atomic Solver: Koelling-Harmon                           |                
+|                                                          |                
+|               Reference Electronic Structure             |                
+|         Orbital         Occupation         Energy        |                
+|            2s              2.000           -0.865        |                
+|            2p              1.000           -0.654        |                
+|                                                          |                
+|                 Pseudopotential Definition               |                
+|        Beta     l      e      Rc     scheme   norm       |                
+|          1      0   -0.865   1.199     qc      0         |                
+|          2      0    0.250   1.199     qc      0         |                
+|          3      1   -0.654   1.199     qc      0         |                
+|          4      1    0.250   1.199     qc      0         |                
+|         loc     2    0.000   1.199     pn      0         |                
+|                                                          |                
+| Augmentation charge Rinner = 0.838                       |                
+| Partial core correction Rc = 0.838                       |                
+------------------------------------------------------------                
+| "2|1.2|12|14|16|20:21(qc=8){1s1.00}"                     |                
+------------------------------------------------------------                
+|      Author: Chris J. Pickard, Cambridge University      |                
+============================================================
+```
+
+You should notice that the energies in the 2s and 2p orbitals are lower, the beta values are all different, and, most importantly, that the pseudopotential used is the one we manually wrote in: the one with only 1 electron in the 1s shell.
+
+Now, re-run Optados. This create the same files as before. Again, let's focus on the boron result. The output file `bn_B1K1_core_edge.dat` now starts like:
+
+```
+-0.1658927622868E+02    0.0000000000000E+00    0.0000000000000E+00    0.0000000000000E+00    0.2380874466795E-04    0.2380871874215E-04    0.4761746341010E-04
+-0.1657927571493E+02    0.0000000000000E+00    0.0000000000000E+00    0.0000000000000E+00    0.2381712134151E-04    0.2381709540197E-04    0.4763421674348E-04
+
+```
+
+This time, there are 6 columns: the first 2 are the normal broadened data, the 3rd is the sum of those 2, the next 2 are the instrumentation-broadened data and the 6th column is the sum of the previous 2 columns again. We are only interested in the 1st and 4th column (counting energy as the 0th) for this tutorial. Plotting it with the same batch file as [above](Coreloss.md#plot_bat) (with the 2nd block being "1:5" instead of "1:3" to reflect the different column used)  yields us this graph:
+
+![1s missing core edge](1s_missing.png){width="50%"}
+
+## Supercell
 
 The periodic images of the core-hole will interact with one another.  As this is unphysical, we need to increase the distance between the core-holes. This is done by creating a supercell.  Create a 2x2x1 supercell (talk to one of the tutors if you’re unsure about how to do this) and carry out another core-loss B K-edge simulation.  Compare the spectra to that from the primitive cell.  Construct larger and larger unit cells until the spectrum stops changing with increasing separation between the periodic images.  
 
