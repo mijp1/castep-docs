@@ -64,13 +64,13 @@ which adds some Gaussian broadening to simulate instrument effects.
 Running Optados should generate 2 files of interest: `hbn_B1K1_core_edge.dat` and `bn_N1K1_core_edge.dat` - these are the results of the core-loss calculations. We will focus on the first `dat` file - let's look at the boron part specifically. The file starts off like
 
 ```
--15.685787277124911        0.0000000000000000        4.3994742417499804E-005
--15.675786930280168        0.0000000000000000        4.4820011439245385E-005
+-15.700479247265910        0.0000000000000000        8.6070320322269327E-005
+-15.690478675557825        0.0000000000000000        8.6103943275722382E-005
 ```
 
 The 1st column is the energy, the 2nd is the standard Gaussian-broadened core-loss and the 3rd column is the instrumentation broadened core-loss. Let's try plotting this with xmgrace - you could use `xmgrace -nxy hbn_B1K1_core_edge.dat`, but to easily add legends I'd use `xmgrace -batch plot.bat` on the batch file
 
-*plot.dat*
+*plot.bat*
 ```
 READ BLOCK "bn_B1K1_core_edge.dat"
 
@@ -87,12 +87,18 @@ This creates a graph that looks like:
 
 ![Result of above steps](basic_result.png){width="50%"}
 
+While the instrumentation broadening does make the results more similar to what you'd expect in experiment, it also leads to information being lost from the graph (for example, the peak right after 40eV is completely missing) and the instruments used in practice are likely more realistic than that: let's try adding to the `odi` file
+
 ```
-LAI_LORENTZIAN_WIDTH : 0.5
-LAI_LORENTZIAN_SCALE : 0.1
+LAI_LORENTZIAN_WIDTH : 1
+LAI_LORENTZIAN_SCALE : 0.01
 ```
 
-Now try running CASTEP and OptaDOS to produce a N K-edge
+and rerunning Optados. Plotting the results again yields this graph:
+
+![Less instrumentation broadening](less_lai_broaden.png){width="50%"}
+
+In practice, both the instrumentation and adaptive (or linear of fixed) broadening are adjusted until the results are close to experiment. 
 
 ### Including a core-hole
 
