@@ -18,7 +18,7 @@ B 0.00 0.00 0.00
 N 0.25 0.25 0.25
 %endblock positions_frac
 
-kpoints_mp_grid 2 2 2
+kpoints_mp_grid 12 12 12
 
 symmetry_generate
 
