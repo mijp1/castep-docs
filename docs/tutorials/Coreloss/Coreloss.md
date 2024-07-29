@@ -194,7 +194,7 @@ Now that the supercell has been generated, we must save it and turn it into a ce
 %endblock lattice_abc
 
 %block positions_frac
-B       0.0000000   0.0000000   0.0000000
+B:exi       0.0000000   0.0000000   0.0000000
 B       0.0000000   0.5000000   0.0000000
 B       0.5000000   0.0000000   0.0000000
 B       0.5000000   0.5000000   0.0000000
@@ -209,12 +209,15 @@ kpoints_mp_grid 12 12 12
 symmetry_generate
 
 %block species_pot
-B 2|1.2|12|14|16|20:21(qc=8){1s1.00}
+B:exi 2|1.2|12|14|16|20:21(qc=8){1s1.00}
 %endblock species_pot
 
 spectral_kpoint_mp_grid 10 10 10
 ```
 
+Specifying 1 of the borons to be called `B:exi` and making changing the potential block to only affect that means that we simulate only 1 of the boron atoms losing that electron - by doing this we prevent the interaction problem mentioned above. Re-run Castep and Optados. There will now be 7 output files, rather than just 2 - there is a core edge output for every atom - so `bn_B1K1_core_edge.dat` is the file with the missing 1s electron. Let's plot it on xmgrace, using the same method as before. This is the output:
+
+![Supercell 1s output](super.png)
 
 
  and carry out another core-loss B K-edge simulation.  Compare the spectra to that from the primitive cell.  Construct larger and larger unit cells until the spectrum stops changing with increasing separation between the periodic images.  
@@ -225,6 +228,3 @@ Other things to try include:
 * Compare your simulated spectra to experimental data (the EELS database is a good place to find experimental data)
 * Compare to spectra from cubic BN
 * Calculating spectra from graphite (graphene) and diamond
-
-
-We begin by running a CASTEP calculation using the files provided.  Note that we specify a pseudopotential file for one B atom and both N atom, and use an on-the-fly pseudopotential for the other B atom.  This looks a bit weird!  It is simply a way to only compute the EELS for one atomic site (core-loss spectra can only be computed for atoms described by on-the-fly potentials). An h-BN [cell](h-BN.cell) and [param](h-BN.param) file are provided.
