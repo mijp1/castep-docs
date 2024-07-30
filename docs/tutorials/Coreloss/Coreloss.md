@@ -250,8 +250,9 @@ The result should look like this:
 
 ![Attempt to make similar to experiment](best_could_get.png)
 
-Compare this output with the one from the [EELS Database](https://eelsdb.eu/spectra/cubic-boron-nitride/). You should see that they look reasonably similar. 
+Compare this output with the one from the [EELS Database](https://eelsdb.eu/spectra/cubic-boron-nitride/). You should see that they look reasonably similar.
 
+You may wish to plot the 2 results together. To do this, first download the `msa` file from the above link. Looking at the graph or the file, you can immediately see a problem - the energies are shifted (the region of interest starts at 190eV) and the intensities are much higher (order of thousands rather than 0.001). Therefore, we will use a script to shift and scale our results to be more like what you'd see in experiment.  
 
 Other things to try include:
 
