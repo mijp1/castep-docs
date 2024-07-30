@@ -225,9 +225,9 @@ spectral_kpoint_mp_grid 5 5 5
 
 With double the size of the supercell, you may also halve the kpoints: this allows it to be calculated faster without losing accuracy. However, it will still take significantly longer to calculate.
 
-Specifying 1 of the boron atoms to be called `B:exi` and making changing the potential block to only affect that means that we simulate only 1 of the boron atoms losing that electron - by doing this we prevent the interaction problem mentioned above. Re-run Castep and Optados. There will now be 16 output files, rather than just 2 - there is a core edge output for every atom - so `bn_B1K1_core_edge.dat` is the core edge result for the boron with the missing 1s electron. Let's plot it on xmgrace, using the same method as before. This is the output:
+Specifying 1 of the boron atoms to be called `B:exi` and making changing the potential block to only affect that means that we simulate only 1 of the boron atoms losing that electron - by doing this we prevent the interaction problem mentioned above. Re-run Castep and Optados. There will now be 16 output files, rather than just 2 - there is a core edge output for every atom - `bn_ B 1    K1     B:exi_core_edge.dat` is the core edge result for the boron with the missing 1s electron. The spaces in the file name are a bit awkward so let's rename it to `bn_BExi.dat` Let's plot it on xmgrace, using the same method as before (again there are 6 columns, so plot "1:2" and "1:5" - also set include the lines `WORLD XMIN 10` and `WORLD XMAX 40` in the batch file to look at a more reasonable range). This is the output:
 
-![Supercell 1s output](super.png)
+![Supercell 1s output](222_super.png)
 
 ## Comparison to Experiment
 
