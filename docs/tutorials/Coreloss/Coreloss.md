@@ -252,7 +252,36 @@ The result should look like this:
 
 Compare this output with the one from the [EELS Database](https://eelsdb.eu/spectra/cubic-boron-nitride/). You should see that they look reasonably similar.
 
-You may wish to plot the 2 results together. To do this, first download the `msa` file from the above link. Looking at the graph or the file, you can immediately see a problem - the energies are shifted (the region of interest starts at 190eV) and the intensities are much higher (order of thousands rather than 0.001). Therefore, we will use a script to shift and scale our results to be more like what you'd see in experiment.  
+You may wish to plot the 2 results together. To do this, first download the `msa` file from the above link. Looking at the graph or the file, you can immediately see a problem - the energies are shifted (the region of interest starts at 190eV) and the intensities are much higher (order of thousands rather than 0.001). Therefore, we will use a script to shift and scale our results to be more like what you'd see in experiment.
+
+We can do this by using a Python script
+
+```Python
+with open('bn_BExi.dat', 'r') as infile, open('bn_BExi_ss.dat', 'w') as outfile:
+    for line in infile:
+        columns = line.split()
+        col1 = float(columns[0]) + 180
+        col5 = float(columns[4]) * 2000000
+        outfile.write(f"{col1} {col5}\n")
+```
+
+and then plotting the 2 sets of results together by using xmgrace on the batch file
+
+```
+READ BLOCK "bn_BExi_ss.dat"
+
+BLOCK XY "1:2"
+S0 LEGEND "Castep"
+
+READ BLOCK "Dspec.60967.1.msa"
+
+BLOCK XY "1:2"
+S1 LEGEND "EELS Database"
+```
+
+The output should look like this:
+
+![Experimental and Castep plotted together](together.png)
 
 Other things to try include:
 
