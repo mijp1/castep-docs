@@ -231,6 +231,24 @@ Specifying 1 of the boron atoms to be called `B:exi` and making changing the pot
 
 ## Comparison to Experiment
 
+To compare properly to experiment, we will need to adjust the lifetime broadening; the supercell EELS results we just obtained are unrealistic as you cannot measure the spectrum so precisely. To account for that, we can add both Lorentzian and Gaussian broadening - add these lines to the `hbn.odi` file
+
+```
+LAI_LORENTZIAN_WIDTH : 1
+LAI_LORENTZIAN_SCALE : 1
+LAI_LORENTZIAN_OFFSET : 25
+
+LAI_GAUSSIAN_WIDTH : 1
+```
+
+And plot the lifetime broadened result with xmgrace.
+
+!!! note
+    You can combine Gaussian and Lorentzian broadening, as is done above. Off-setting Lorentzian broadening can also be done to adjust the appearance of the graph - this is all done to try make it look more like experimental data. Feel free to tinker with the broadening.
+
+The result should look like this:
+
+![Attempt to make similar to experiment](best_could_get.png)
 
 
 Other things to try include:
