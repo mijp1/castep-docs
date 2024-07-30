@@ -250,6 +250,8 @@ The result should look like this:
 
 ![Attempt to make similar to experiment](best_could_get.png)
 
+Compare this output with the one from the [EELS Database](https://eelsdb.eu/spectra/cubic-boron-nitride/). You should see that they look reasonably similar. 
+
 
 Other things to try include:
 
