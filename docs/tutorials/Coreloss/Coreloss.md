@@ -1,12 +1,12 @@
 # Coreloss
 
-## Calculation of core-loss spectra for hBN
+## Calculation of core-loss spectra for cBN
 
 Core-loss calculations effectively calculate the probability of an electron being excited from 1 state into the conduction band. This is useful for calculating the core-loss (ionisation edge) peaks - by performing these calculations, you can get an approximate simulation of what you would see in an experimental [EELS](https://en.wikipedia.org/wiki/Electron_energy_loss_spectroscopy) or [XANES](https://en.wikipedia.org/wiki/X-ray_absorption_near_edge_structure) spectrum.
 
-In this tutorial, we will look at the results of such a calculation on hexagonal boron nitride (h-BN). We will use the `cell` file
+In this tutorial, we will look at the results of such a calculation on cubic boron nitride (cBN). We will use the `cell` file
 
-*hbn.cell*
+*cbn.cell*
 ```
 %block lattice_abc
 2.5 2.5 2.5
@@ -28,7 +28,7 @@ spectral_kpoint_mp_grid 10 10 10
 
 with the `param` file
 
-*hbn.param*
+*cbn.param*
 ```
 task: spectral
 spectral_task: coreloss
@@ -36,9 +36,9 @@ xc_functional: LDA
 opt_strategy: speed
 ```
 
-Note that, for now, the `species_pot` block doesn't change anything - the value inside is the same as the default pseudopotential you'd get. Run castep. After it is done, run Optados on hbn with the Optados input file
+Note that, for now, the `species_pot` block doesn't change anything - the value inside is the same as the default pseudopotential you'd get. Run castep. After it is done, run Optados on cBN with the Optados input file
 
-*hbn.odi*
+*cbn.odi*
 ```
 TASK               : core
 DOS_SPACING       : 0.01
@@ -58,20 +58,20 @@ LAI_GAUSSIAN_WIDTH : 1.0
 
 which adds some Gaussian broadening to simulate instrument effects.
 
-Running Optados should generate 2 files of interest: `hbn_B1K1_core_edge.dat` and `bn_N1K1_core_edge.dat` - these are the results of the core-loss calculations. We will focus on the first `dat` file - let's look at the boron part specifically. The file starts off like
+Running Optados should generate 2 files of interest: `cbn_B1K1_core_edge.dat` and `cbn_N1K1_core_edge.dat` - these are the results of the core-loss calculations. We will focus on the first `dat` file - let's look at the boron part specifically. The file starts off like
 
 ```
 -15.700479247265910        0.0000000000000000        8.6070320322269327E-005
 -15.690478675557825        0.0000000000000000        8.6103943275722382E-005
 ```
 
-The 1st column is the energy, the 2nd is the standard Gaussian-broadened core-loss and the 3rd column is the instrumentation broadened core-loss. Let's try plotting this with xmgrace - you could use `xmgrace -nxy hbn_B1K1_core_edge.dat`, but to easily add legends I'd use `xmgrace -batch plot.bat` on the batch file
+The 1st column is the energy, the 2nd is the standard Gaussian-broadened core-loss and the 3rd column is the instrumentation broadened core-loss. Let's try plotting this with xmgrace - you could use `xmgrace -nxy cbn_B1K1_core_edge.dat`, but to easily add legends I'd use `xmgrace -batch plot.bat` on the batch file
 
 <a id="plot_bat"></a>
 
 *plot.bat*
 ```
-READ BLOCK "bn_B1K1_core_edge.dat"
+READ BLOCK "cbn_B1K1_core_edge.dat"
 
 BLOCK XY "1:2"
 S0 LEGEND "No Instrumentation Broadening"
@@ -103,7 +103,7 @@ In practice, both the instrumentation and adaptive (or linear of fixed) broadeni
 
 The above was effectively calculating the probability of an electron being able to be excited into the conduction band, corresponding to that same energy being lost from an X-ray/electron and thus XANES/EELs data. However, when calculating that, it was not accounting for the fact that there'd be a core-hole as a result (which naturally will affect energy, DOS and thus probability of occuring): that must be factored in for more realistic results.
 
-This is done rather simply by specifying the missing electron when describing the potential in the `cell` file. If you look at the `hbn.castep` file generated earlier, you may see that the pseudopotential report contains the lines
+This is done rather simply by specifying the missing electron when describing the potential in the `cell` file. If you look at the `cbn.castep` file generated earlier, you may see that the pseudopotential report contains the lines
 
 ```
 "2|1.2|12|14|16|20:21(qc=8)"
@@ -111,7 +111,7 @@ This is done rather simply by specifying the missing electron when describing th
 
 This tells us what kind of pseudopotential is used for the boron. To specify that there is a 1s electron missing, all you have to do is add `{1s1.00}` at the end: with only 1 electron in the 1s shell, there is a core electron missing: a core hole.
 
-Go into `hbn.cell`, and add the lines
+Go into `cbn.cell`, and add the lines
 
 ```
 %block species_pot
@@ -127,7 +127,7 @@ Before we re-run Castep, add the line
 
 `CHARGE : +1`
 
-in the `hBN.param` file - this must be done to maintain charge neutrality.  Next, re-run Castep. Let's have a quick look at the pseudopotential report of boron in `hbn.castep`
+in the `cbn.param` file - this must be done to maintain charge neutrality.  Next, re-run Castep. Let's have a quick look at the pseudopotential report of boron in `cbn.castep`
 
 ```
 ============================================================                
@@ -184,9 +184,9 @@ Click `Transform...`. This opens up a new window
 
 To create the 2x2x2 supercell, the transformation matrix is rather simple: make the diagonal values 2 like in the figure above (so it becomes 2x larger in all directions) and click `Ok`. Select `Search atoms in the new unit-cell and add them as new sites` in the next pop-up window.
 
-Now that the supercell has been generated, we must save it and turn it into a cell file. Click `File -> Export Data` and save it as  `hbn.cif` file (saving it as a `cell` file is not an option). We can use `cif2cell hbn.cif` to get information on how to make the new cell - we can change the `cell` file to look like this
+Now that the supercell has been generated, we must save it and turn it into a cell file. Click `File -> Export Data` and save it as  `cbn.cif` file (saving it as a `cell` file is not an option). We can use `cif2cell cbn.cif` to get information on how to make the new cell - we can change the `cell` file to look like this
 
-*hbn.cell*
+*cbn.cell*
 ```
 %block lattice_abc
 5 5 5
@@ -231,7 +231,7 @@ Specifying 1 of the boron atoms to be called `B:exi` and making changing the pot
 
 ## Comparison to Experiment
 
-To compare properly to experiment, we will need to adjust the lifetime broadening; the supercell EELS results we just obtained are unrealistic as you cannot measure the spectrum so precisely. To account for that, we can add both Lorentzian and Gaussian broadening - add these lines to the `hbn.odi` file
+To compare properly to experiment, we will need to adjust the lifetime broadening; the supercell EELS results we just obtained are unrealistic as you cannot measure the spectrum so precisely. To account for that, we can add both Lorentzian and Gaussian broadening - add these lines to the `cbn.odi` file
 
 ```
 LAI_LORENTZIAN_WIDTH : 1
