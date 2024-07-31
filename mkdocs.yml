@@ -85,6 +85,7 @@ nav:
         - 'Metals':      'tutorials/Bands_and_DOS/metals.md'
         - 'Magnetic Materials':      'tutorials/Bands_and_DOS/magnetic.md'
       - 'Optics':
+        - 'JDOS': 'tutorials/Optics/JDOS.md'
         - 'Optics': 'tutorials/Optics/Optics.md'
         - 'Optics - Aluminium': 'tutorials/Optics/Optics_aluminium.md'
       - 'Dispersion corrections': 'tutorials/dispersion_corrections/castep-ase-dispersion-tutorial.md'
