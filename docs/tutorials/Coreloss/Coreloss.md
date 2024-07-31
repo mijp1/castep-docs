@@ -121,13 +121,13 @@ B 2|1.2|12|14|16|20:21(qc=8){1s1.00}
 
 to calculate the core edge data factoring in the missing 1s electron.
 !!! note
-    Your potential may be different, depending on your version of Castep etc. - but don't worry as the procedure is the same.
+    Your potential may be different, depending on your version of Castep etc. - but don't worry, as the procedure is the same.
 
 Before we re-run Castep, add the line
 
-`CHARGE : +1`
+`CHARGE : -1`
 
-in the `cbn.param` file - this must be done to maintain charge neutrality.  Next, re-run Castep. Let's have a quick look at the pseudopotential report of boron in `cbn.castep`
+to the `cbn.param` file - this must be done to maintain charge neutrality.  Next, re-run Castep. Let's have a quick look at the pseudopotential report of boron in `cbn.castep`
 
 ```
 ============================================================                
@@ -163,18 +163,17 @@ You should notice that the energies in the 2s and 2p orbitals are lower, the bet
 Now, re-run Optados. This create the same files as before. Again, let's focus on the boron result. The output file `bn_B1K1_core_edge.dat` now starts like:
 
 ```
--0.1658927622868E+02    0.0000000000000E+00    0.0000000000000E+00    0.0000000000000E+00    0.2380874466795E-04    0.2380871874215E-04    0.4761746341010E-04
--0.1657927571493E+02    0.0000000000000E+00    0.0000000000000E+00    0.0000000000000E+00    0.2381712134151E-04    0.2381709540197E-04    0.4763421674348E-04
-
+-16.879627404257498        0.0000000000000000        4.3418325679994708E-005
+-16.869627177952179        0.0000000000000000        4.3433042280034070E-005
 ```
 
-This time, there are 6 columns: the first 2 are the normal broadened data, the 3rd is the sum of those 2, the next 2 are the instrumentation-broadened data and the 6th column is the sum of the previous 2 columns again. We are only interested in the 1st and 4th column (counting energy as the 0th) for this tutorial. Plotting it with the same batch file as [above](Coreloss.md#plot_bat) (with the 2nd block being "1:5" instead of "1:3" to reflect the different column used)  yields us this graph:
+The columns represent the same information as before. Plotting it with the same batch file as [above](Coreloss.md#plot_bat) yields us this graph:
 
 ![1s missing core edge](1s_missing.png){width="50%"}
 
 ## Supercell
 
-The periodic images of the core-hole will interact with one another.  As this is unphysical, we need to increase the distance between the core-holes. This is done by creating a supercell.  To do this, we will create a 2x2x1 supercell. There are multiple ways of doing this, but this tutorial will cover how it can be done using [Vesta](https://jp-minerals.org/vesta/en/). First, upload the `cell` file we used to Vesta. From the top of the toolbar, go into `Edit -> Edit Data -> Unit cell...`. This should open up a window that looks like this
+The periodic images of the core-hole will interact with one another.  As this is unphysical, we need to increase the distance between the core-holes. This is done by creating a supercell.  To do this, we will create a 2x2x2 supercell. There are multiple ways of doing this, but this tutorial will cover how it can be done using [Vesta](https://jp-minerals.org/vesta/en/). First, upload the `cell` file we used to Vesta. From the top of the toolbar, go into `Edit -> Edit Data -> Unit cell...`. This should open up the window below
 
 ![Edit unit cell window](cell_window.png)
 
@@ -184,7 +183,7 @@ Click `Transform...`. This opens up a new window
 
 To create the 2x2x2 supercell, the transformation matrix is rather simple: make the diagonal values 2 like in the figure above (so it becomes 2x larger in all directions) and click `Ok`. Select `Search atoms in the new unit-cell and add them as new sites` in the next pop-up window.
 
-Now that the supercell has been generated, we must save it and turn it into a cell file. Click `File -> Export Data` and save it as  `cbn.cif` file (saving it as a `cell` file is not an option). We can use `cif2cell cbn.cif` to get information on how to make the new cell - we can change the `cell` file to look like this
+Now that the supercell has been generated, we must save it and turn it into a cell file. Click `File -> Export Data` and save it as  `cbn.cif` file (saving it as a `cell` file is not an option). We can use `cif2cell cbn.cif` to get information on how to make the new cell. We change `cbn.cell` to:
 
 *cbn.cell*
 ```
@@ -225,7 +224,7 @@ spectral_kpoint_mp_grid 5 5 5
 
 With double the size of the supercell, you may also halve the kpoints: this allows it to be calculated faster without losing accuracy. However, it will still take significantly longer to calculate.
 
-Specifying 1 of the boron atoms to be called `B:exi` and making changing the potential block to only affect that means that we simulate only 1 of the boron atoms losing that electron - by doing this we prevent the interaction problem mentioned above. Re-run Castep and Optados. There will now be 16 output files, rather than just 2 - there is a core edge output for every atom - `bn_ B 1    K1     B:exi_core_edge.dat` is the core edge result for the boron with the missing 1s electron. The spaces in the file name are a bit awkward so let's rename it to `bn_BExi.dat` Let's plot it on xmgrace, using the same method as before (again there are 6 columns, so plot "1:2" and "1:5" - also set include the lines `WORLD XMIN 10` and `WORLD XMAX 40` in the batch file to look at a more reasonable range). This is the output:
+Specifying 1 of the boron atoms to be called `B:exi` and making changing the potential block to only affect that means that we simulate only 1 of the boron atoms losing that electron - by doing this we prevent the interaction problem mentioned above. Re-run Castep and Optados. There will now be 16 output files, rather than just 2 - there is a core edge output for every atom - `cbn_ B 1    K1     B:exi_core_edge.dat` is the core edge result for the boron with the missing 1s electron. The spaces in the file name can be a bit awkward so let's rename it to `cbn_BExi.dat`. Let's plot it on xmgrace, using the same method as before (include the lines `WORLD XMIN 10` and `WORLD XMAX 40` in the batch file to look at a more reasonable range). This is the output:
 
 ![Supercell 1s output](222_super.png)
 
@@ -234,21 +233,21 @@ Specifying 1 of the boron atoms to be called `B:exi` and making changing the pot
 To compare properly to experiment, we will need to adjust the lifetime broadening; the supercell EELS results we just obtained are unrealistic as you cannot measure the spectrum so precisely. To account for that, we can add both Lorentzian and Gaussian broadening - add these lines to the `cbn.odi` file
 
 ```
-LAI_LORENTZIAN_WIDTH : 1
-LAI_LORENTZIAN_SCALE : 1
-LAI_LORENTZIAN_OFFSET : 25
+LAI_LORENTZIAN_WIDTH : 0.5
+LAI_LORENTZIAN_SCALE : 0.5
+LAI_LORENTZIAN_OFFSET : 18
 
 LAI_GAUSSIAN_WIDTH : 1
 ```
 
-And plot the lifetime broadened result with xmgrace.
+And plot the lifetime broadened result (we're not interested in the un-broadened result so remove the `1:2` block from the batch file) with xmgrace.
 
 !!! note
     You can combine Gaussian and Lorentzian broadening, as is done above. Off-setting Lorentzian broadening can also be done to adjust the appearance of the graph - this is all done to try make it look more like experimental data. Feel free to tinker with the broadening.
 
 The result should look like this:
 
-![Attempt to make similar to experiment](best_could_get.png)
+![Attempt to make similar to experiment](broadened_output.png)
 
 Compare this output with the one from the [EELS Database](https://eelsdb.eu/spectra/cubic-boron-nitride/). You should see that they look reasonably similar.
 
@@ -256,13 +255,14 @@ You may wish to plot the 2 results together. To do this, first download the `msa
 
 We can do this by using a Python script
 
-```Python
-with open('bn_BExi.dat', 'r') as infile, open('bn_BExi_ss.dat', 'w') as outfile:
+```py
+with open('bn_ B 1    K1     B:exi_core_edge.dat', 'r') as infile, open('bn_BExi_ss.dat', 'w>
     for line in infile:
         columns = line.split()
-        col1 = float(columns[0]) + 180
-        col5 = float(columns[4]) * 2000000
+        col1 = (float(columns[0]) * 3) + 140
+        col5 = float(columns[2]) * 750000
         outfile.write(f"{col1} {col5}\n")
+
 ```
 
 and then plotting the 2 sets of results together by using xmgrace on the batch file
@@ -282,6 +282,8 @@ S1 LEGEND "EELS Database"
 The output should look like this:
 
 ![Experimental and Castep plotted together](together.png)
+
+You can see that they are reasonably similar - the peaks are in similar positions. However, in a real real EELS spectrum, the spectrum doesn't fall to 0 but rather a finite value, unlike what was calculated here. 
 
 Other things to try include:
 
