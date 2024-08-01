@@ -70,8 +70,60 @@ The 1st column is the energy, and the 2nd is the JDOS. The `agr` file allows us 
 
  ![JDOS Result](jdos_result.png){width="50%"}
 
-### Joint DOS
-See  `examples/Si2_JDOS`. This is a simple example of using `optados` for calculating joint electronic density of states.  We choose to recalculate the Fermi level using the calculated DOS, rather than use the Fermi level suggested by castep, and so `EFERMI: OPTADOS` is included in the `Si2.odi` file.  
+## Imaginary Dielectric
 
-* Execute castep and optados using the example files.  The JDOS is written to `Si2.jadaptive.dat`. A file suitable for plotting using `xmgrace` is written to `Si2.jadaptive.agr`.
+Now that we have the results, let's examine how they are used to get the dielectric function. You may immediately notice that the shape of the graph above is completely different from either component of the dielectric function. We will need to process the results for them to be meaningful.
+
+We will start processing the data by using the Python script
+
+```py
+energies = []
+imaginaries = []
+
+input_file = 'Si.jadaptive.dat'
+output_file = 'imaginary.dat'
+new_lines = []
+with open(input_file, 'r') as infile:
+    for line in infile:
+        if "#" in line:
+            continue
+        parts = line.split()
+        if len(parts) == 2:
+            energy = float(parts[0])
+            jdos = float(parts[1])
+            energies.append(energy)
+            if jdos == 0.0 or energy == 0:
+                test = 0
+            else:
+                test = (jdos/energy**2)
+            imaginaries.append(test)
+            new_line = f"{energy} {jdos} {test}\n"
+            new_lines.append(new_line)
+
+with open(output_file, 'w') as outfile:
+    outfile.writelines(new_lines)
+
+```
+This creates a new file `imaginary.dat` that contains the energy, JDOS and our first approximation of the imaginary dielectric function in the 3rd column. This is approximated by the relationship
+
+ $\epsilon_2 \propto \frac{\text{JDOS}}{\omega^2}$
+
+ which was implemented in the line
+
+```py
+test = (jdos/energy**2)
+```
+
+We can plot this `dat` file by using xmgrace on the batch script
+
+*plot.bat*
+```
+READ BLOCK "imaginary.dat"
+BLOCK XY "1:3"
+```
+
+to get just the imaginary output. The graph should look like this:
+
+![First Imaginary Approximation](first_approx.png){width="50%"}
+
 * Check the effect of changing the sampling by increasing and decreasing the value of `JDOS_SPACING` in the `Si2.odi` file.
