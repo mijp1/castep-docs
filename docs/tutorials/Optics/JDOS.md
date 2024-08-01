@@ -126,4 +126,10 @@ to get just the imaginary output. The graph should look like this:
 
 ![First Imaginary Approximation](first_approx.png){width="50%"}
 
+We're starting to see a bit of a resemblance to the imaginary component of the imaginary dielectric function, but it still clearly has room for improvement - the calculation is performed by multiplying what we found by a matrix element, which in this case we are assuming to be constant with energy - which is not the case in reality. We can improve the approximation by using the relationship
+
+$\epsilon_2 \propto \frac{1}{m^*}$
+
+This is a hard thing to implement properly; the effective mass is very difficult to get, depends on position in k-space etc. However, we can simply this with the approximation that, near the band edges, the band is roughly parabolic: this means that
+
 * Check the effect of changing the sampling by increasing and decreasing the value of `JDOS_SPACING` in the `Si2.odi` file.
