@@ -111,7 +111,7 @@ This creates a new file `imaginary.dat` that contains the energy, JDOS and our f
  which was implemented in the line
 
 ```py
-test = (jdos/energy**2)
+eps1 = (jdos/energy**2)
 ```
 
 We can plot this `dat` file by using xmgrace on the batch script
@@ -138,14 +138,39 @@ This is a hard thing to implement properly; the effective mass is very difficult
 Let's change the line where `eps1` is calculated in the Python script to
 
 ```py
-test = (dos/energy**3)
+eps1 = (dos/energy**3)
 ```
 
 Re-running the same procedure now yields the graph:
 
 ![Better Imaginary Approximation](second_approx.png){width="50%"}
 
-At a glance, you can see that it levels off much more quickly - just as it happens in the more-properly calculated dielectric function. 
+At a glance, you can see that it levels off much more quickly - just as it happens in the more-properly calculated dielectric function.
 
+To confirm that the results are reasonable, let's plot this together with the results from an actual Optados optics calculation. You can see how to obtain this data at the start of the [optics tutorial](Optics.md), or you can download the relevant `dat` file [here](Si_epsilon.dat). Because we have gotten the results using simple proportionality relations, we'll have to scale the results to make them match experiment - adjust the Python script by changing the `eps1` calculation line to
+
+```
+eps1 = (dos/energy**3) * 650
+```
+
+650 was found by trial and error to give a reasonable match - again this is simply estimating the constant of proportionality that has been ignored throughout this approximation. You can use the batch file
+
+```
+READ BLOCK "Si_epsilon.dat"
+
+BLOCK XY "1:3"
+S0 LEGEND "Optics Calculated"
+
+READ BLOCK "imaginary.dat"
+
+BLOCK XY "1:3"
+S1 LEGEND "JDOS Approximated"
+```
+
+to plot it with xmgrace. You can see that they are fairly similar in the graph produced:
+
+![Plotted together](eps1_calc.png)
+
+## Real Dielectric
 
 * Check the effect of changing the sampling by increasing and decreasing the value of `JDOS_SPACING` in the `Si2.odi` file.
