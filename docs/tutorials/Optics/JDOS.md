@@ -93,10 +93,10 @@ with open(input_file, 'r') as infile:
             jdos = float(parts[1])
             energies.append(energy)
             if jdos == 0.0 or energy == 0:
-                eps1 = 0
+                eps2 = 0
             else:
-                eps1 = (jdos/energy**2)
-            imaginaries.append(eps1)
+                eps2 = (jdos/energy**2)
+            imaginaries.append(eps2)
             new_line = f"{energy} {jdos} {test}\n"
             new_lines.append(new_line)
 
@@ -111,7 +111,7 @@ This creates a new file `imaginary.dat` that contains the energy, JDOS and our f
  which was implemented in the line
 
 ```py
-eps1 = (jdos/energy**2)
+eps2 = (jdos/energy**2)
 ```
 
 We can plot this `dat` file by using xmgrace on the batch script
@@ -135,10 +135,10 @@ This is a hard thing to implement properly; the effective mass is very difficult
 !!! note
     This does have some mathematical merit - if you wish to see where this comes from, have a look at [this paper](https://arxiv.org/abs/1207.4282)
 
-Let's change the line where `eps1` is calculated in the Python script to
+Let's change the line where `eps2` is calculated in the Python script to
 
 ```py
-eps1 = (dos/energy**3)
+eps2 = (dos/energy**3)
 ```
 
 Re-running the same procedure now yields the graph:
@@ -147,10 +147,10 @@ Re-running the same procedure now yields the graph:
 
 At a glance, you can see that it levels off much more quickly - just as it happens in the more-properly calculated dielectric function.
 
-To confirm that the results are reasonable, let's plot this together with the results from an actual Optados optics calculation. You can see how to obtain this data at the start of the [optics tutorial](Optics.md), or you can download the relevant `dat` file [here](Si_epsilon.dat). Because we have gotten the results using simple proportionality relations, we'll have to scale the results to make them match experiment - adjust the Python script by changing the `eps1` calculation line to
+To confirm that the results are reasonable, let's plot this together with the results from an actual Optados optics calculation. You can see how to obtain this data at the start of the [optics tutorial](Optics.md), or you can download the relevant `dat` file [here](Si_epsilon.dat). Because we have gotten the results using simple proportionality relations, we'll have to scale the results to make them match experiment - adjust the Python script by changing the `eps2` calculation line to
 
 ```
-eps1 = (dos/energy**3) * 650
+eps2 = (dos/energy**3) * 650
 ```
 
 650 was found by trial and error to give a reasonable match - again this is simply estimating the constant of proportionality that has been ignored throughout this approximation. You can use the batch file
@@ -172,5 +172,43 @@ to plot it with xmgrace. You can see that they are fairly similar in the graph p
 ![Plotted together](eps1_calc.png)
 
 ## Real Dielectric
+
+We have seen how the JDOS is used to calculate the imaginary dielectric function, and now we will look at how the real component is calculated. The real component is actually calculated only using the imaginary component, using the Kramers-Kroniger relations - and we will demonstrate that.
+
+The equation we will use is
+
+$\epsilon_1(\omega) = 1 + \frac{2}{\pi} \mathcal{P} \int_{0}^{\infty} \frac{\omega' \epsilon_2(\omega')}{\omega'^2 - \omega^2} \, d\omega'$
+
+We'll ignore the constants of proportionality again and just adjust the results. Adding this block of code to the previous Python script
+
+```py
+import numpy as np
+energies_arr = np.array(energies)
+eps2_arr = np.array(imaginaries)
+
+def kramers():
+    eps1_arr = []
+    for i, e in enumerate(energies_arr):
+        real = 0
+        sub = (energies_arr**2)-(e**2)
+        sub[i] = np.inf
+
+        integrand = (energies_arr * eps2_arr)/sub
+        real = 1 + 0.6(np.trapz(integrand, energies_arr))
+        eps1_arr.append(real)
+    return eps1_arr
+eps1_arr = kramers()
+data = np.column_stack((energies_arr, eps2_arr, eps1_arr))
+np.savetxt("both.dat", data)
+```
+
+The implementation is fairly straightforward: for every energy: the integral as in the equation is simply performed for every energy. While adding 1 to the integral is specified in the equation, again the constant of proportionality was found by trial and error until it was a decent fit (and the imaginary part was already scaled the same way).
+
+The data is then saved in `both.dat` with the 1st column being energy, the 2nd imaginary dielectric and the 3rd real dielectric. Let's now compare the imaginary components using xmgrace. Adjust the batch file appropriately, and you should get a graph that looks like:
+
+![Real part plotted together](eps2_calc.png)
+
+Now we have demonstrated how both parts of the dielectric are related to the JDOS.
+
 
 * Check the effect of changing the sampling by increasing and decreasing the value of `JDOS_SPACING` in the `Si2.odi` file.
