@@ -93,10 +93,10 @@ with open(input_file, 'r') as infile:
             jdos = float(parts[1])
             energies.append(energy)
             if jdos == 0.0 or energy == 0:
-                test = 0
+                eps1 = 0
             else:
-                test = (jdos/energy**2)
-            imaginaries.append(test)
+                eps1 = (jdos/energy**2)
+            imaginaries.append(eps1)
             new_line = f"{energy} {jdos} {test}\n"
             new_lines.append(new_line)
 
@@ -130,6 +130,22 @@ We're starting to see a bit of a resemblance to the imaginary component of the i
 
 $\epsilon_2 \propto \frac{1}{m^*}$
 
-This is a hard thing to implement properly; the effective mass is very difficult to get, depends on position in k-space etc. However, we can simply this with the approximation that, near the band edges, the band is roughly parabolic: this means that
+This is a hard thing to implement properly; the effective mass is very difficult to get, depends on position in k-space etc. However, we can simply this with the approximation that, near the band edges, the effective mass is directly proportional to the energy.
+
+!!! note
+    This does have some mathematical merit - if you wish to see where this comes from, have a look at [this paper](https://arxiv.org/abs/1207.4282)
+
+Let's change the line where `eps1` is calculated in the Python script to
+
+```py
+test = (dos/energy**3)
+```
+
+Re-running the same procedure now yields the graph:
+
+![Better Imaginary Approximation](second_approx.png){width="50%"}
+
+At a glance, you can see that it levels off much more quickly - just as it happens in the more-properly calculated dielectric function. 
+
 
 * Check the effect of changing the sampling by increasing and decreasing the value of `JDOS_SPACING` in the `Si2.odi` file.
