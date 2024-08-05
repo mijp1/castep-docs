@@ -236,4 +236,20 @@ Now the overlap is no longer perfect: especially towards the end, the real part 
 
 This shows us that the imaginary component is calculated independently for each energy, but, because the real component is calculated by integrating over all energies, the imaginary component becomes increasingly incorrect as the integral becomes performed not over the full relevant range.
 
-* Check the effect of changing the sampling by increasing and decreasing the value of `JDOS_SPACING` in the `Si2.odi` file.
+### Spacing
+
+Now let's try decreasing and increasing the rate of sampling by changing the `JDOS_SPACING` parameter. We will compare it to the standard 0.01eV results we calculated before. First, let's try lowering it - be warned that making it too low will make the python script used to get the real component run extremely slowly; the integral becomes too demanding with too many points.
+
+`JDOS_SPACING      : 0.0005`
+
+was used in for the result below:
+
+![0.0005 spacing](00005.png)
+
+We see here that the results are virtually the same for low and high frequencies, and even the middle part is mostly the same, except for a very narrow range of energies - precisely where the most extreme jumps are occurring. Having a larger sampling failed to capture the largest increases, and increasing the sampling rate meant that they are now seen. Since the other parts of the dielectric function doesn't have such extreme changes, nothing was missed by a slightly higher sampling spacing.
+
+Let's now have a look at what happens when we increase the spacing. The result is about what you'd expect: the graph simply loses some of the detail, as seen below.
+
+![0.1 Spacing](01.png)
+
+The graph is smoothened out, and, if you were to increase the spacing further, increasing amounts of detail would be lost. Though both results are affected, the real component is more affected: due to it being calculated by integrating the imaginary part, it is much more sensitive to any kind of change in sampling.
