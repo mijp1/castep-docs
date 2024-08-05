@@ -214,6 +214,8 @@ Now we have demonstrated how both parts of the dielectric are related to the JDO
 
 We will now have a look at the effect of increasing and decreasing the `JDOS_MAX_ENERGY` and `JDOS_SPACING` parameters. `JDOS_MAX_ENERGY` determines the highest energy band that is examined, while `JDOS_SPACING` determines how frequently the results are sampled. We will perform exactly the same procedure as above (including calculating the real and imaginary dielectric - this is the crucial part). It is recommended that you do these calculations in new directories to make it easier to compare results.
 
+### Maximum Energy
+
 Let's first look at increasing and decreasing the maximum energy. We'll start off by increasing it to 100eV. Run the full procedure as above (ending up with `both.dat` in the new directory), except with the `odi` file having the line
 
 `JDOS_MAX_ENERGY   : 100`
@@ -224,6 +226,14 @@ instead of 30. In this case, it is most useful to compare with the result we got
 
 We see that the overlap is virtually perfect: sampling beyond 30eV does not improve any results. This indicates that all contributing bands have an energy of 30eV or lower.
 
-Let's now try lowering the maximum energy. 
+Let's now try lowering the maximum energy. If we try 20eV and plotting it together with the 30eV result the same way we see this:
+
+![20 and 30 maximum same graph](20.png){width="70%"}
+
+Now the overlap is no longer perfect: especially towards the end, the real part is becoming increasingly different. Feel free to try different lower energies - you should notice that the lower the maximum energy, the more different the real part becomes, while the imaginary component is unchanging. The example below is for very low 5eV:
+
+![5 and 30 maximum same graph](5.png){width="50%"}
+
+This shows us that the imaginary component is calculated independently for each energy, but, because the real component is calculated by integrating over all energies, the imaginary component becomes increasingly incorrect as the integral becomes performed not over the full relevant range.
 
 * Check the effect of changing the sampling by increasing and decreasing the value of `JDOS_SPACING` in the `Si2.odi` file.
