@@ -75,7 +75,6 @@ The 1st column corresponds to energy (in eV), the 2nd is the real part of the di
 ```python
 
 input_file = 'rut_epsilon.dat'
-print ("huh")
 def write_to_file(component,lines):
   file_name = "rut_tens" + str(component) + ".dat"
   with open(file_name,"w") as f:
@@ -161,7 +160,7 @@ Let's try a more interesting example - change the direction line to
 
 `OPTICS_QDIR : 1 1 1`
 
-Now the result shouldn't align with anything: to demonstrate that let's compare it to $\epsilon_{xx}$, $\epsilon_{zz}$ and $\epsilon_{xy}$, all on the same graph - luckily xmgrace makes it very easy to plot them together. We'll modify the batch file to include all of them -
+Now the result shouldn't align with anything. To demonstrate that let's compare it to $\epsilon_{xx}$, $\epsilon_{zz}$ and $\epsilon_{xy}$, all on the same graph - luckily xmgrace makes it very easy to plot them together. We'll modify the batch file to include all of them -
 
 *compare.bat*
 ```
@@ -262,28 +261,13 @@ You may use the script
 ```python
 import numpy as np
 
-# Function to read the data from a file
-def read_data(filename):
-    return np.loadtxt(filename)
+eps = {key: np.loadtxt(f"rut_tens{i}.dat")
+       for i, key in enumerate(('xx', 'yy', 'zz', 'xy', 'xz', 'yz'))}
+eps_vals = {key: val[:, 1] for key, val in eps.items()}
+energies = eps['xx'][:, 0]
 
-eps_xx = read_data("rut_tens1.dat")
-eps_yy = read_data("rut_tens2.dat")
-eps_zz = read_data("rut_tens3.dat")
-eps_xy = read_data("rut_tens4.dat")
-eps_xz = read_data("rut_tens5.dat")
-eps_yz = read_data("rut_tens6.dat")
-
-energies = eps_xx[:, 0]
-
-eps_xx_values = eps_xx[:, 1]
-eps_yy_values = eps_yy[:, 1]
-eps_zz_values = eps_zz[:, 1]
-eps_xy_values = eps_xy[:, 1]
-eps_xz_values = eps_xz[:, 1]
-eps_yz_values = eps_yz[:, 1]
-
-eps_111_values = (eps_xx_values + eps_yy_values + eps_zz_values +
-                  2 * eps_xy_values + 2 * eps_xz_values + 2 * eps_yz_values) / 3
+eps_111_values = (sum(eps[ind] for ind in ('xx', 'yy', 'zz')) +
+                  2*sum(eps[ind] for ind in ('xy', 'xz', 'yz')) / 3
 
 output_data = np.column_stack((energies, eps_111_values))
 
@@ -311,8 +295,8 @@ There is another case to have a look at: what is the dielectric function when th
 and removing the `OPTICS_QDIR` line (as the direction no longer matters). If you wish to verify how this is being calculated, use the same Python script as above but change the calculation
 
 ```python
- eps_111_values = (eps_xx_values + eps_yy_values + eps_zz_values +
-                  2 * eps_xy_values + 2 * eps_xz_values + 2 * eps_yz_values) / 3
+ eps_111_values = (eps['xx'] + eps['yy'] +  eps['zz'] +
+                  2 * eps['xy'] + 2 * eps['xz'] + 2 * eps['yz']) / 3
 ```
 
 to
@@ -320,9 +304,9 @@ to
 ```python
 for i in range(len(energies)):
     tensor = np.array([
-        [eps_xx_values[i], eps_xy_values[i], eps_xz_values[i]],
-        [eps_xy_values[i], eps_yy_values[i], eps_yz_values[i]],
-        [eps_xz_values[i], eps_yz_values[i], eps_zz_values[i]]
+    [eps['xx'][i], eps['xy'][i], eps['xz'][i]],
+    [eps['xy'][i], eps['yy'][i], eps['yz'][i]],
+    [eps['xz'][i], eps['yz'][i], eps['zz'][i]]
     ])
 
     eigenvalues = np.linalg.eigvals(tensor)
