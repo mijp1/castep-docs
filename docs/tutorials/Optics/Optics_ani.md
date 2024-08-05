@@ -46,32 +46,13 @@ We will begin by examining the dielectric tensor. We will do this by using the O
 
 ```
 TASK               : optics
-
-# Sample the JDOS at 0.01 eV intervals
 JDOS_SPACING       : 0.01
-
-# Calculate the JDOS up to 60eV about the valence band maximum
 JDOS_MAX_ENERGY    : 60
-
-# Recalculate the Fermi energy using the new DOS
-# (discasrd the CASTEP efermi)
 EFERMI             : optados
-
-# Since we're recalculating the Fermi energy we do
-# a DOS calculation first.
-# Sample the DOS at 0.1 eV intervals
 DOS_SPACING        : 0.1
-
-# The broadening used, (also try linear, or fixed)
 BROADENING         : adaptive # Default
-
-# The broadening parameter, A, when using adaptive smearing,
-# set by eye to be similar to the linear smearing method
 ADAPTIVE_SMEARING  : 0.4     # Default
-
-# Specify the geometry to be used in the optics calculation
 OPTICS_GEOM        : tensor     # Default
-# Include additional broadening for the loss function
 OPTICS_LOSSFN_BROADENING : 0.0    # Default
 ```
 
