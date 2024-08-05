@@ -210,5 +210,20 @@ The data is then saved in `both.dat` with the 1st column being energy, the 2nd i
 
 Now we have demonstrated how both parts of the dielectric are related to the JDOS.
 
+## Sampling Parameters
+
+We will now have a look at the effect of increasing and decreasing the `JDOS_MAX_ENERGY` and `JDOS_SPACING` parameters. `JDOS_MAX_ENERGY` determines the highest energy band that is examined, while `JDOS_SPACING` determines how frequently the results are sampled. We will perform exactly the same procedure as above (including calculating the real and imaginary dielectric - this is the crucial part). It is recommended that you do these calculations in new directories to make it easier to compare results.
+
+Let's first look at increasing and decreasing the maximum energy. We'll start off by increasing it to 100eV. Run the full procedure as above (ending up with `both.dat` in the new directory), except with the `odi` file having the line
+
+`JDOS_MAX_ENERGY   : 100`
+
+instead of 30. In this case, it is most useful to compare with the result we got from the 30eV maximum energy - plot them both on the same graph. This is what was obtained using an appropriate batch file:
+
+![100 and 30 maximum on same graph](100_comparison.png){width="40%"}
+
+We see that the overlap is virtually perfect: sampling beyond 30eV does not improve any results. This indicates that all contributing bands have an energy of 30eV or lower.
+
+Let's now try lowering the maximum energy. 
 
 * Check the effect of changing the sampling by increasing and decreasing the value of `JDOS_SPACING` in the `Si2.odi` file.
