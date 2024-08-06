@@ -154,7 +154,7 @@ Let's compare the dielectric function output with the $\epsilon_{xx}$ output we 
 
 `xmgrace rut_epsilon.dat tensors/rut_tens1.dat`
 
-We will get the same graph as the [1st one](Optics_ani.md#1_2_together). This is no surprise at all: if light is polarised in the xx direction, it'll effectively feel the $\epsilon_{xx}$ dielectric function.
+We will get the same graph as the [1st one](#1_2_together). This is no surprise at all: if light is polarised in the xx direction, it'll effectively feel the $\epsilon_{xx}$ dielectric function.
 
 Let's try a more interesting example - change the direction line to
 
