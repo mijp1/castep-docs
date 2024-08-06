@@ -42,40 +42,14 @@ The first 2 lines are what determine that we will be doing a DoS calculation. Ru
 *Si.odi*
 ```
 TASK              : dos
-
-# Recalculate the Fermi energy using the new DOS
-# (discasrd the CASTEP efermi)
 EFERMI : optados
-
-# Sample the DOS at 0.1 eV intervals
 DOS_SPACING       : 0.1
-
-# The broadening used, (also try linear, or fixed)
 BROADENING        : adaptive # Default
-
-# The broadening parameter, A, when using adaptive smearing,
-# set by eye to be similar to the linear smearing method
 ADAPTIVE_SMEARING : 0.4      # Default
-
-# The Gaussian broadening parameter for fixed smearing,
-# in electron Volts
 FIXED_SMEARING    : 0.3      # Default
-
-# Set the Fermi energy to zero on the output plots
 SET_EFERMI_ZERO : true       # Default
-
-# Normalise the DOS with the volume of the simulation
-# cell
 DOS_PER_VOLUME  : false      # Default
-
-# Perform numerical integration of the DOS, instead of
-# semi-analytic (useful to compare with LinDOS)
 NUMERICAL_INTDOS      : false  # Default
-
-# When performing numerical integration of the DOS make
-# sure that no Gaussians are smaller than the dos_spacing.
-# (Should always be true, but useful for comparison with
-# LinDOS)
 FINITE_BIN_CORRECTION : true  # Default
 ```
 
@@ -235,4 +209,4 @@ The graph should look like this:
 
 ![Broadening comparison](compare.png)
 
-To further improve the appearance of the graph, you can lower `DOS_SPACING` and tinker with the value of `ADAPTIVE_SMEARING` in the `odi` file. 
+To further improve the appearance of the graph, you can lower `DOS_SPACING` and tinker with the value of `ADAPTIVE_SMEARING` in the `odi` file.
