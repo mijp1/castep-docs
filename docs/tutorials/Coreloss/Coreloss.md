@@ -284,10 +284,3 @@ The output should look like this:
 ![Experimental and Castep plotted together](together.png)
 
 You can see that they are reasonably similar - the peaks are in similar positions. However, in a real real EELS spectrum, the spectrum doesn't fall to 0 but rather a finite value, unlike what was calculated here.
-
-Other things to try include:
-
-* Include the core-hole on the N atom rather than the B
-* Compare your simulated spectra to experimental data (the EELS database is a good place to find experimental data)
-* Compare to spectra from cubic BN
-* Calculating spectra from graphite (graphene) and diamond
