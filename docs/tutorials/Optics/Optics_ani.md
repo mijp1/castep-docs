@@ -204,11 +204,16 @@ You can try comparing it to any other value, but you'll find it's completely dif
 
 Considering the properties of tensors in general, we know that the value from a tensor in any direction is given by the equation
 
-$$ {\epsilon}' = \hat{\mathbf{n}}^T \cdot \mathbf{\epsilon} \hat{\mathbf{n}} $$
+$$ \epsilon' = \hat{\mathbf{n}}^T \cdot \underline{\mathbf{\epsilon}} \hat{\mathbf{n}} $$
 
 Where $\epsilon'$ is the dielectric constant in the direction of $\hat{\mathbf{n}}$, and $\mathbf{\epsilon}$ is the dielectric matrix.
 
-Let's quickly work through what we'd expect in the (111) direction and compare that with what we get from Optados. To get $$ \mathbf{\epsilon} \hat{\mathbf{n}} $$ we do
+!!! note
+    In this tutorial, a symbol being bold and underlined (like $\underline{\mathbf{\epsilon}}$) shows that it's a matrix, while being just bold (like $\mathbf{n}$) shows that it's a vector.
+
+Let's quickly work through what we'd expect in the (111) direction and compare that with what we get from Optados. To get
+
+$$ \underline{\mathbf{\epsilon}} \hat{\mathbf{n}} $$ we do
 
 $$
 \begin{pmatrix}
