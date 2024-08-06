@@ -256,7 +256,7 @@ You may wish to plot the 2 results together. To do this, first download the `msa
 We can do this by using a Python script
 
 ```py
-with open('bn_ B 1    K1     B:exi_core_edge.dat', 'r') as infile, open('bn_BExi_ss.dat', 'w>
+with open('cbn_BExi.dat', 'r') as infile, open('cbn_BExi_ss.dat', 'w>
     for line in infile:
         columns = line.split()
         col1 = (float(columns[0]) * 3) + 140
@@ -268,7 +268,7 @@ with open('bn_ B 1    K1     B:exi_core_edge.dat', 'r') as infile, open('bn_BExi
 and then plotting the 2 sets of results together by using xmgrace on the batch file
 
 ```
-READ BLOCK "bn_BExi_ss.dat"
+READ BLOCK "cbn_BExi_ss.dat"
 
 BLOCK XY "1:2"
 S0 LEGEND "Castep"
@@ -283,7 +283,7 @@ The output should look like this:
 
 ![Experimental and Castep plotted together](together.png)
 
-You can see that they are reasonably similar - the peaks are in similar positions. However, in a real real EELS spectrum, the spectrum doesn't fall to 0 but rather a finite value, unlike what was calculated here. 
+You can see that they are reasonably similar - the peaks are in similar positions. However, in a real real EELS spectrum, the spectrum doesn't fall to 0 but rather a finite value, unlike what was calculated here.
 
 Other things to try include:
 
