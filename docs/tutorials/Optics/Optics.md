@@ -1,4 +1,4 @@
-### Optics
+# Optics
 
 In this tutorial, we will use Optados to examine the optical properties of silicon and aluminium.
 
@@ -40,37 +40,15 @@ Run Castep as usual. When it is done, run Optados on Si with the Optados input f
 <a id="odi"></a>
 *Si.odi*
 ```
-# Choose the task to perform
 TASK               : optics
-
-# Sample the JDOS at 0.01 eV intervals
 JDOS_SPACING       : 0.01
-
-# Calculate the JDOS up to 60eV about the valence band maximum
 JDOS_MAX_ENERGY    : 30
-
-# Recalculate the Fermi energy using the new DOS
-# (discasrd the CASTEP efermi)
 EFERMI             : optados
-
-# Since we're recalculating the Fermi energy we do
-# a DOS calculation first.
-# Sample the DOS at 0.1 eV intervals
 DOS_SPACING        : 0.1
-
-# The broadening used, (also try linear, or fixed)
 BROADENING         : adaptive # Default
-
-# The broadening parameter, A, when using adaptive smearing,
-# set by eye to be similar to the linear smearing method
 ADAPTIVE_SMEARING  : 0.4     # Default
-
-# Specify the geometry to be used in the optics calculation
 OPTICS_GEOM        : polycrystalline     # Default
-
-# Include additional broadening for the loss function
-OPTICS_LOSSFN_BROADENING : 0.0    # Default
-
+OPTICS_LOSSFN_BROADENING : 0.0    
 ```
 
 After running Optados, we get several output `.dat` and `.agr` files. We will now examine them.
@@ -129,6 +107,8 @@ $$
 
 Where $\omega$ is the energy divided by $\hbar$, $\kappa$ is the imaginary refractive index and $c$ is the speed of light. $\kappa$ can be easily obtained from the real and imaginary dielectric functions, knowing that the complex refractive index is the square root of the complex dielectric function - this leads to the equation
 
+<a id="imaginary_equation"></a>
+
 $$
 \kappa(\omega) = \sqrt{\frac{1}{2} \left[ \sqrt{\epsilon_1(\omega)^2 + \epsilon_2(\omega)^2} - \epsilon_1(\omega) \right]}
 $$
@@ -154,14 +134,14 @@ output_data = np.column_stack((energy, result))
 np.savetxt('predicted_abs.dat', output_data, fmt='%e', delimiter=' ')
 ```
 
-If plot this together with `Si_absorption.dat`, you should get an identical result to [above](Optics.md#absorption_graph).
+If plot this together with `Si_absorption.dat`, you should get an identical result to [above](#absorption_graph).
 
 For the next properties we will calculate, we will also see where they come from using an almost identical Python script: simply change the `calculate_property` function.
 
 <a id="refractive_index"></a>
 ### Refractive Index
 
-Next we will look at the (real and imaginary) refractive index. This data is found in the `Si_refractive_index.dat` (and `.agr`) files. The file is similar to the previous, this time having 3 columns again - the 1st is energy, the 2nd is the real refractive index and the 3rd is the imaginary refractive index. We have already looked at how to calculate the imaginary refractive index [above](Optics.md#Absorption) (multiply it by some constants and you have the absorption coefficient). The calculation of the real refractive index is very similar, instead becoming
+Next we will look at the (real and imaginary) refractive index. This data is found in the `Si_refractive_index.dat` (and `.agr`) files. The file is similar to the previous, this time having 3 columns again - the 1st is energy, the 2nd is the real refractive index and the 3rd is the imaginary refractive index. We have already looked at how to calculate the imaginary refractive index [above](#imaginary_equation) (multiply it by some constants and you have the absorption coefficient). The calculation of the real refractive index is very similar, instead becoming
 
 $$
 n(\omega) = \sqrt{\frac{1}{2} \left[ \sqrt{\epsilon_1(\omega)^2 + \epsilon_2(\omega)^2} + \epsilon_1(\omega) \right]}
@@ -201,9 +181,9 @@ LEGEND 0.9, 0.9
 ```
 This gives a graph that looks like this:
 
-![Refractive index](refractive_index.png){width="40%"}
+![Refractive index](Refractive_index.png){width="40%"}
 
-Once again, the values derived from the dielectric function dataset are identical, so they overlap - confirming for us how the properties are calculated. You may note that the imaginary refractive index's shape is [identical to that of the absorption](Optics.md#absorption_graph) - as we've seen, it's just that multiplied by a constant.
+Once again, the values derived from the dielectric function dataset are identical, so they overlap - confirming for us how the properties are calculated. You may note that the imaginary refractive index's shape is [identical to that of the absorption](#absorption_graph) - as we've seen, it's just that multiplied by a constant.
 
 ## Reflectivity
 
@@ -254,7 +234,7 @@ def calculate_conductivity(epsilon_1, epsilon_2, energy):
 
 As in previous cases, make sure all constants are defined and any file/variable names adjusted as you implement it.
 
-Since there are 3 columns, it is easier to plot them together - we can simply repurpose our [previous batch file](Optics.md#batch) - just make sure to change file names as appropriate. The output should look like:
+Since there are 3 columns, it is easier to plot them together - we can simply repurpose our [previous batch file](#batch) - just make sure to change file names as appropriate. The output should look like:
 
 ![Conductivity](conductivity.png){width="40%"}
 
@@ -291,7 +271,7 @@ Plotting it together with `Si_loss_fn.dat` on xmgrace gives us the graph
 
 ## Changing Parameters
 
-Now that we know what Optados optics does and how it works, let's try changing some parameters in the [Optados input file](Optics.md#odi) `Si.odi`, and re-running Optados, to see what effects it has.
+Now that we know what Optados optics does and how it works, let's try changing some parameters in the [Optados input file](#odi) `Si.odi`, and re-running Optados, to see what effects it has.
 
 ### JDOS Parameters
 
@@ -303,7 +283,7 @@ while 100 gives us
 
 ![JDOS max energy 100](jdos_100.png){width="30%"}
 
-You can also compare with the result for [30](Optics.md#dielectric_plot). What you should notice is that all the plots are the same - what this does is change the maximum energy it calculates the optical properties up to. The graphs aren't particularly interesting (you could do a higher max energy calculation and just set `WORLD XMAX 10` to see it up to 10eV for example), but it does affect the results of the sum rules - which are in headers and thus not seen in graphs. Let's try seeing the results for `JDOS_MAX_ENERGY : ` 2, 5, 10, 30 and 100.
+You can also compare with the result for [30](#dielectric_plot). What you should notice is that all the plots are the same - what this does is change the maximum energy it calculates the optical properties up to. The graphs aren't particularly interesting (you could do a higher max energy calculation and just set `WORLD XMAX 10` to see it up to 10eV for example), but it does affect the results of the sum rules - which are in headers and thus not seen in graphs. Let's try seeing the results for `JDOS_MAX_ENERGY : ` 2, 5, 10, 30 and 100.
 
 In `Si_epsilon.dat` the sum rule results for the different max energies should be around as follows:
 
@@ -339,7 +319,7 @@ while for 0.001 it looks like
 
 ![JDOS spacing 0.001](spacing_001.png){width="40%"}
 
-As we see here, changing `JDOS_SPACING` simply affects the frequency of the sampling: the smaller the value, the smaller the energy intervals at which it examines the dielectric function and thus the smoother the curve. You may note that the graphs look the same as the when we first did it with the default 0.01 [above](Optics.md#dielectric_plot) - 0.01 is sufficient, and increasing the sampling frequency gives us virtually the same results but slower. This is reflected in the sum rule calculations - the higher the spacing, the more rough of an estimate they are, and that typically leads to them being larger, with it not getting much more accurate being 0.01.
+As we see here, changing `JDOS_SPACING` simply affects the frequency of the sampling: the smaller the value, the smaller the energy intervals at which it examines the dielectric function and thus the smoother the curve. You may note that the graphs look the same as the when we first did it with the default 0.01 [above](#dielectric_plot) - 0.01 is sufficient, and increasing the sampling frequency gives us virtually the same results but slower. This is reflected in the sum rule calculations - the higher the spacing, the more rough of an estimate they are, and that typically leads to them being larger, with it not getting much more accurate being 0.01.
 
 | JDOS Spacing | Epsilon Sum | Loss Sum 1 | Loss Sum 2 |
 |--------------|-------------|------------|------------|

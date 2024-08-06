@@ -39,34 +39,13 @@ Run Castep as usual. Then run Optados with the Optados input file
 *Al.odi*
 ```
 TASK               : optics
-
-# Sample the JDOS at 0.01 eV intervals
-JDOS_SPACING       : 10
-
-# Calculate the JDOS up to 60eV about the valence band maximum
+JDOS_SPACING       : 0.01
 JDOS_MAX_ENERGY    : 30
-
-# Include the intraband term in the calculation of the
-# dielectric function
 OPTICS_INTRABAND   : true
-
-# Recalculate the Fermi energy using the new DOS
-# (discasrd the CASTEP efermi)
 EFERMI             : optados
-
-# Since we're recalculating the Fermi energy we do
-# a DOS calculation first.
-# Sample the DOS at 0.1 eV intervals
 DOS_SPACING        : 0.1
-
-# The broadening parameter, A, when using adaptive smearing,
-# set by eye to be similar to the linear smearing method
 ADAPTIVE_SMEARING  : 0.8  
-
-# The broadening used, (also try linear, or fixed)
 BROADENING         : adaptive # Default
-
-# Specify the geometry to be used in the optics calculation
 OPTICS_GEOM        : polycrystalline     # Default
 ```
 There is 1 key difference to before: it contains the line `OPTICS_INTRABAND : true`. This is to include the intraband contribution, which is necessary for metals.
@@ -95,7 +74,7 @@ The file `Al_epsilon.dat` contains the following data:
 
 You can see here that there are 3 columns like before (energy, real and imaginary dielectric), but there's 3 separate sets of them, separated by a double space. The 1st set corresponds to the interband contribution, the 2nd to the intraband, and the 3rd to the total. Though normally it'd be easiest to visualise this data by plotting the `agr` file on xmgrace, this would only give the interband term - if you're interested in other information you will have to use the `.dat` file.
 
-You may choose to use/plot this data in your preferred method, but this tutorial will give you the necessary files to plot it using xmgrace. Firstly, we will create a new file called `Al_epsilon_sep.dat` file that turns separates the data into columns - we can do that with [this Python script](contrubtions_sep.py). The output file looks like
+You may choose to use/plot this data in your preferred method, but this tutorial will give you the necessary files to plot it using xmgrace. Firstly, we will create a new file called `Al_epsilon_sep.dat` file that turns separates the data into columns - we can do that with [this Python script](contributions_sep.py). The output file looks like
 
 ```
 0.0000000000000000           2.1445746376579851           0.0000000000000000      -32490.3191726066543197           0.0000000000000000      -32489.1745979689949309           0.0000000000000000
@@ -118,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-Alternatively down the [data](cleaned_data.dat) and [HTML file](interactive_graph_extra.html) and view it on your browser - or just view that HTML link on a new tab.
+Alternatively download the [data](cleaned_data.dat) and [HTML file](interactive_graph_extra.html) and view it on your browser - or just view that HTML link on a new tab.
 
 As loaded, the graph doesn't look great: because the values become extremely high towards 0eV, it just looks like 2 straight lines followed by 0. In the HTML, let's set the y min to -10 and y max to 10. Now we can make some general observations.
 
