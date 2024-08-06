@@ -78,11 +78,14 @@ nav:
         - 'Population Analysis': 'tutorials/Bonding_and_Charge/mulliken_population.md'
         - 'ELF': 'tutorials/Bonding_and_Charge/ELF.md'
       - 'Bands and DOS':
-        - 'Plotting - CASTEP tools': 'tutorials/Bands_and_DOS/plotting_perl.md'
-        - 'Plotting - SUMO': 'tutorials/Bands_and_DOS/plotting_sumo.md'
+        - 'Plotting':
+          - 'Plotting - CASTEP tools': 'tutorials/Bands_and_DOS/Plotting/plotting_perl.md'
+          - 'Plotting - SUMO': 'tutorials/Bands_and_DOS/Plotting/plotting_sumo.md'
         - 'Semiconductors':      'tutorials/Bands_and_DOS/semiconductors.md'
         - 'Metals':      'tutorials/Bands_and_DOS/metals.md'
         - 'Magnetic Materials':      'tutorials/Bands_and_DOS/magnetic.md'
+      - 'Optics':
+        - 'Optical Anisotropy': 'tutorials/Optics/Optics_ani.md'
       - 'Dispersion corrections': 'tutorials/dispersion_corrections/castep-ase-dispersion-tutorial.md'
       - 'Nudged elastic band': 'tutorials/NEB/neb_tutorial.md'
       - 'NMR Shielding':
