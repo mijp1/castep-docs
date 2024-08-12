@@ -41,8 +41,16 @@ nav:
         - 'Overview': 'documentation/Spectral/overview.md'
         - 'Keywords': 'documentation/Spectral/keywords.md'
         - 'Restarts': 'documentation/Spectral/restarts.md'
-      - 'Vibrations':
-        - 'Vibrations': 'documentation/Vibrations/overview.md'
+      - 'Phonons':
+        - 'Introduction': 'documentation/Phonons/Castep_Phonons/Introduction.md'
+        - 'Running-phonon-calculations': 'documentation/Phonons/Castep_Phonons/Running-phonon-calculations.md'
+        - 'Dielectric-properties': 'documentation/Phonons/Castep_Phonons/Dielectric-properties.md'
+        - 'Thermodynamic-properties': 'documentation/Phonons/Castep_Phonons/Thermodynamic-properties.md'
+        - 'Plotting-and-analysis-tools': 'documentation/Phonons/Castep_Phonons/Plotting-and-analysis-tools.md'
+        - 'Running-Large-Calculations': 'documentation/Phonons/Castep_Phonons/Running-Large-Calculations.md'
+        - 'Advanced-Topics': 'documentation/Phonons/Castep_Phonons/Advanced-Topics.md'
+        - 'Keyword-Reference': 'documentation/Phonons/Castep_Phonons/Keyword-Reference.md'
+        - 'Bibliography': 'documentation/Phonons/Castep_Phonons/Bibliography.md'
       - 'NMR':
         - 'NMR Overview': 'documentation/NMR/NMR_overview.md'
       - 'EPR':
@@ -118,6 +126,7 @@ extra_javascript:
 markdown_extensions:
   - attr_list
   - admonition
+  - attr_list
   - def_list
   - pymdownx.highlight:
       anchor_linenums: true
