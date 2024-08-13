@@ -1,7 +1,12 @@
 
-Additional tools and programs are available to help automate
+Several tools and programs are available to help automate
 post-processing analysis and plotting of the results of phonon
-calculations.
+calculations. The tools described below are supplied as part of the
+CASTEP source code distribution Other independently-developed
+[spectroscopy modelling
+tools](../../../Tools/tools/#spectroscopy-modelling-tools)
+may be installed to perform more advanced modelling of, for example
+inelastic neutron and IR spectra.
 
 Two programs `dispersion.pl` and `dos.pl` are supplied as part of the
 CASTEP source distribution to analyse and plot the results. Both of them

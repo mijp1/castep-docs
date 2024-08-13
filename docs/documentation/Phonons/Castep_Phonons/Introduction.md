@@ -5,12 +5,12 @@ spectroscopy. The material covers the various lattice-dynamical and
 related methods implemented in CASTEP, how to set up a calculation, and
 presents simple examples of the major types of calculation. It is
 assumed that the reader is familiar with the general CASTEP input and
-output files and keywords to the level of, for example the tutorials on
-geometry optimisation which may be found at
-[www.castep.org](http://www.castep.org). It describes how to analyse the
-results and generate graphical output using the CASTEP tools, but does
-not cover the modelling of IR, Raman or inelastic neutron or X-ray
-spectra, which are large subjects and beyond the scope of this document.
+output files and keywords to the level which may be found at
+<https://castep-docs.github.io/castep-docs/>. It describes how to
+analyse the results and generate graphical output using the CASTEP
+tools, but does not cover the modelling of IR, Raman or inelastic
+neutron or X-ray spectra, which are large subjects and beyond the scope
+of this document.
 
 It does not describe the compilation and installation of CASTEP and its
 tools, nor does it describe the operational details of invoking and
