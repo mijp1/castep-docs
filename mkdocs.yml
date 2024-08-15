@@ -94,6 +94,8 @@ nav:
         - 'Magnetic Materials':      'tutorials/Bands_and_DOS/magnetic.md'
       - 'Optics':
         - 'Optical Anisotropy': 'tutorials/Optics/Optics_ani.md'
+      - 'Coreloss':
+        - 'Coreloss': 'tutorials/Coreloss/Coreloss.md'
       - 'Dispersion corrections': 'tutorials/dispersion_corrections/castep-ase-dispersion-tutorial.md'
       - 'Nudged elastic band': 'tutorials/NEB/neb_tutorial.md'
       - 'NMR Shielding':
