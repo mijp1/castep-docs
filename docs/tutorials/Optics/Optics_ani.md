@@ -24,7 +24,7 @@ KPOINTS_MP_GRID 10 10 10
 SPECTRAL_KPOINTS_MP_GRID 14 14 14
 ```
 
-This `cell` file was obtained using cif2cell using the structure with the COD ID 1010942, found on the [Crystallography Open Database](www.crystallography.net)
+This `cell` file was obtained using cif2cell using the structure with the COD ID 1010942, found on the [Crystallography Open Database](https://www.crystallography.net)
 
 We will first run a castep calculation using the above cell with the `param` file
 

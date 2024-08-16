@@ -89,11 +89,15 @@ nav:
         - 'Plotting':
           - 'Plotting - CASTEP tools': 'tutorials/Bands_and_DOS/Plotting/plotting_perl.md'
           - 'Plotting - SUMO': 'tutorials/Bands_and_DOS/Plotting/plotting_sumo.md'
+          - 'OptaDOS - DOS': 'tutorials/Bands_and_DOS/Plotting/Optados/DOS.md'
+          - 'OptaDOS - pDOS': 'tutorials/Bands_and_DOS/Plotting/Optados/pDOS.md'
         - 'Semiconductors':      'tutorials/Bands_and_DOS/semiconductors.md'
         - 'Metals':      'tutorials/Bands_and_DOS/metals.md'
         - 'Magnetic Materials':      'tutorials/Bands_and_DOS/magnetic.md'
       - 'Optics':
         - 'Optical Anisotropy': 'tutorials/Optics/Optics_ani.md'
+      - 'Coreloss':
+        - 'Coreloss': 'tutorials/Coreloss/Coreloss.md'
       - 'Dispersion corrections': 'tutorials/dispersion_corrections/castep-ase-dispersion-tutorial.md'
       - 'Nudged elastic band': 'tutorials/NEB/neb_tutorial.md'
       - 'NMR Shielding':
