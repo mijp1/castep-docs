@@ -144,21 +144,7 @@ If you wish to see what's going on in the `castep` file as it runs (it's explain
 
 `./get_data.sh`
 
-to get the output file `out.put`. The file contains
-
-1.  Generation number.
-2.  Parent or child.
-3.  Member number.
-4.  Error file detected (T or F).
-5.  Geometry optimisation converged (T or F).
-6.  Number of ions in the cell.
-7.  Enthalpy per ion of converged cell (in eV/ion).
-8.  Volume of converged cell (in Angstrom/ion).
-9.  Member filename.
-
-in each line. In our case, 6 is actually missing since it is a fixed value of 8.
-
-Run the python script to see that data visually in `all_gens.png`. The graph should look like this
+to get the output file `out.put`. Run the python script to see that data visually in `all_gens.png`. The graph should look like this
 
 ![First image output](all_gens.png)
 
