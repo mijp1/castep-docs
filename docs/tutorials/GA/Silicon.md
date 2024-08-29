@@ -144,7 +144,21 @@ If you wish to see what's going on in the `castep` file as it runs (it's explain
 
 `./get_data.sh`
 
-to get the output file `out.put`, and the run the python script to see that data visually in `all_gens.png`. The graph should look like this
+to get the output file `out.put`. The file contains
+
+1.  Generation number.
+2.  Parent or child.
+3.  Member number.
+4.  Error file detected (T or F).
+5.  Geometry optimisation converged (T or F).
+6.  Number of ions in the cell.
+7.  Enthalpy per ion of converged cell (in eV/ion).
+8.  Volume of converged cell (in Angstrom/ion).
+9.  Member filename.
+
+in each line. In our case, 6 is actually missing since it is a fixed value of 8.
+
+Run the python script to see that data visually in `all_gens.png`. The graph should look like this
 
 ![First image output](all_gens.png)
 
@@ -229,103 +243,3 @@ According to c2x it is now more similar to diamond (though if you're being very 
 ![2nd vesta image](16_7_2x2.png)
 
 As expected of GA, it has managed to improve the structure through multiple generations. If you wish, you could continue to run it for more generations by keeping the `continuation` line and increasing `ga_max_gens` more - in fact, if using a different seed or if your environment processed said seed differently, you may have to - 6 more generations aren't guranteed to find a new lowest enthalpy structure!
-
-
-## Analysing the GA Output Files
-
-The GA saves the post geometry optimisation structures from all evaluated population members in the file `<SEED>.xyz` in standard xyz format. We can view a nice animation of all of the structures the GA explored with jmol by opening this xyz file in jmol with
-
-    Jmol.jar Si.xyz
-
-then going to `tools -> animate -> once`.
-
-In order to analyse the structures created by the GA in more detail we could look at just the enthalpy of the structures, where we may be most interested in the lowest enthalpy structure found. The GA always takes the lowest enthalpy cell into the next generation, so we can look at the last generation to find the lowest enthalpy cell with
-
-    grep Si.castep -e "GA: gen # 12" | tail -n 24 | sort -k10,10g
-
-which gives the final generation in order of enthalpy (in eV/ion).
-
-However, we gain a lot of information about the phase space with the other cells the GA finds on the way to the minimum enthalpy cell. To explore this a bit more run
-
-    ./get_data.sh
-
-You may need to make this executable by running `chmod u+x get_data.sh`. This script generates an output file `out.put` that contains a summary of the data for each population member in 9 columns:
-
-1.  Generation number.
-2.  Parent or child.
-3.  Member number.
-4.  Error file detected (T or F).
-5.  Geometry optimisation converged (T or F).
-6.  Number of ions in the cell.
-7.  Enthalpy per ion of converged cell (in eV/ion).
-8.  Volume of converged cell (in Angstrom/ion).
-9.  Member filename.
-
-We can then plot the population as the enthalpy (per ion) against the cell volume (per ion) by running the python script
-
-    python plot_results.py
-
-This will produce two plots; one is an animation of the population members in each generation, the other is every explored population member over all generations with the lowest enthalpy structure labeled. It will also save these to the current directory.
-
-From this representation we can gain information about the phase space of SW Si, where the lower enthalpy structures represent structures on the energy-volume curve for SW Si. There are also structures found by the GA above the energy-volume curve that are likely unstable.
-
-We can have a look at the structure of the lowest enthalpy cell (as labeled on your graph) with jmol (or your crystal structure viewing program of choice). If using jmol run
-
-    Jmol.jar <SEED>-out.cell
-
-where `<SEED>` is the seed of the lowest enthalpy population member given on the output graph and the `-out.cell` postfix gives us the structure post geometry optimisation (it is important to look at this cell rather than the input cell). For example, for me (though your seed may be different than this) this is
-
-    Jmol.jar Si.gen_006_mem_012-out.cell
-
-It can sometimes be difficult to figure out the exact space group of crystals from a visual inspection. So, we can use `c2x` to find the space group of our lowest enthalpy cell within a tolerance with
-
-    c2x --int -e=0.1-0.0001 <SEED>-out.cell
-
-which for my lowest enthalpy member is
-
-    c2x --int -e=0.1-0.0001 Si.gen_006_mem_012-out.cell
-
-For me this gives the output
-
-    Tol=0.001    International symmetry is Fd-3m
-
-which is the diamond structure space group we would expect for Si.
-
-
-## GA Continuation (Approx. 2 mins runtime)
-
-It is possible you won't find the $\text{Fd}\overline{3}\text{m}$ structure (or one close to it, remember the GA is a coarse search) as there is some randomness in a GA run and our population size and number of generations is small. But don't worry, it is possible to restart a GA run from exactly where you left off. Let's do this now (even if you did find the $\text{Fd}\overline{3}\text{m}$ structure).
-
-To perform a continuation open the `Si.param` file in your text editor of choice. We then tell CASTEP GA we want to continue from where we left off. We do this by giving the location of the `.xyz` file that contains all explored structures by uncommenting the following in the `Si.param` file
-
-    # continuation = Si.xyz
-
-so it reads
-
-    continuation = Si.xyz
-
-Also, we want to run for more generations, so change the value for `ga_max_gens` from 12 to 18 (to run 6 more generations) *i.e.* in the `Si.param` file change the line
-
-    ga_max_gens      = 12            # Max number of generations to run for
-
-to
-
-    ga_max_gens      = 18            # Max number of generations to run for
-
-**Important: Do not change the `ga_pop_size` as this will cause an error.**
-
-We can then call CASTEP GA as before with
-
-    castep_GA Si
-
-and it will read in the members from generation 12 of our last run and start generation 13 from these. Running for generations 13 to 16 should take approximately 1-2 minutes.
-
-Have a look at the outputs of this run by re-running
-
-    ./get_data.sh
-
-and then plotting with
-
-    python plot_results.py
-
-You may want to have a look at the lowest enthalpy structure with Jmol. You may also want to have a look at some of the other structures that are low on the energy/volume plot (a good way to find their seed names will be from the `out.put` file).
