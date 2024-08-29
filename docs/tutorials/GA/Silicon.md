@@ -35,7 +35,7 @@ symmetry_generate
 symmetry_tol : 0.05 ang
 ```
 
-The definition of the lattice and positions of the atoms is fairly inconsequential to the kind of result you will get: in the 0th generation it gets effectively randomised. The only thing that matters is the amount of Si atoms defined in the `POSITIONS_FRAC` block - here it is 8 so future structures will also have 8 atoms. Another thing worth noting is the QC5 potential being used - it is used due to its speed, which is essential considering how many calculations will be done.
+The definition of the lattice and positions of the atoms is fairly inconsequential to the result you will get: in the 0th generation it gets effectively randomised. The only thing that matters is the amount of Si atoms defined in the `POSITIONS_FRAC` block - here it is 8 so future structures will also have 8 atoms. Another thing worth noting is the QC5 potential being used - it is used due to its speed, which is essential considering how many calculations will be done.
 
 For the `param` file we will use
 *Si.param*
@@ -109,7 +109,11 @@ write_cell_structure = TRUE
 %endblock devel_code
 ```
 
-It is important to understand what is going on in this file. The line `task = genetic algor` is what tells is to actually run GA. The GA parameters tell the GA how to run- unlike in the previous tutorial (ADD LINK), all of these values are reasonable (the mutation amplitude and rate shouldn't be far off those values in most cases). As you can see, we will have 12 parents in each generation (meaning 12 cells will be chosen to breed), and it will run for 12 generations. `ga_fixed_N` is what ensures that there are fixed 8 ions in the cell (the more information is fixed, the faster it'll get a decent result as it'll have fewer things to try). `op_strategy = SPEED` and `geom_max_iter = 211` help ensure that the geometry optimisations (of which there are 12 per generation - so 144 in total for this first run!) are fast but reasonably accurate.
+It is important to understand what is going on in this file. The line `task = genetic algor` is what tells is to actually run GA. The GA parameters tell the GA how to run- unlike in the previous tutorial (ADD LINK), all of these values are reasonable (the mutation amplitude and rate shouldn't be far off those values in most cases). As you can see, we will have 12 parents in each generation (meaning 12 cells will be chosen to breed), and it will run for 12 generations. `ga_fixed_N` is what ensures that there are fixed 8 ions in the cell (the more information is fixed, the faster it'll get a decent result as it'll have fewer things to try).
+
+There are numerous lines that speed up the GA - with how many calculations are being performed, this is essential to be feasible. `op_strategy = SPEED` and `geom_max_iter = 211` help ensure that the geometry optimisations (of which there are 12 per generation - so 144 in total for this first run!) are fast but reasonably accurate. `AS=T` and `MS=3` allow asynchronous parellisation, where 3 population members will have geom-opts performed at the same time.
+
+The `devel_code` block is a bit more complex. The fact that pair potentials are used are defined in both the `GA` sub-block and `GEOM` sub-block, again necessary for speed. The `CMD` sub-block is there so that geometry optimisations are performed on all members: what happens is `cell` files are generated (initially randomly and in the 1st generation onwards by breeding + mutation), as well as respective `param` files that tell them to geometry optimise, for each member, and then they are run.
 
 A very important thing to note are the lines
 
@@ -225,70 +229,6 @@ According to c2x it is now more similar to diamond (though if you're being very 
 ![2nd vesta image](16_7_2x2.png)
 
 As expected of GA, it has managed to improve the structure through multiple generations. If you wish, you could continue to run it for more generations by keeping the `continuation` line and increasing `ga_max_gens` more - in fact, if using a different seed or if your environment processed said seed differently, you may have to - 6 more generations aren't guranteed to find a new lowest enthalpy structure!
-
-
-The `devel_code` block is a bit more complex. The fact that pair potentials are used are defined in both the `GA` sub-block and `GEOM` sub-block, again necessary for speed. The `CMD` sub-block is there so that geometry optimisations are performed on all members: what happens is `cell` files are generated (initially randomly and in the 1st generation onwards by breeding + mutation), as well as respective `param` files that tell them to geometry optimise, for each member, and then they are run.
-
-Like standard CASTEP, the CASTEP GA requires both a cell and a param file input. However, we likely do not know what the best cell structure is. As such, we give a cell that contains multiple ions of the species that we are interested in. The number of ions given in this cell is used as a baseline for the number of ions in cells created & bred over the course of the GA, where at least one ion of each species will always be represented at least once in each cell. We can also fix the number of ions in each population member to match that in the input cell. We should not add too few ions, as cells with more ions contain more \`genetic information', meaning smaller cells don't benefit from breeding operations as much.
-
-The exact positions of the ions in the input cell file does not matter, as they will be randomised during the initial population generation. However, the cell given should be a \`reasonable' guess w.r.t. the cell density (as the density of the input cell is used when creating the initial randomised population). I.e. the total density of the input cell should not be unreasonable, though the exact ionic positions do not matter.
-
-For example, looking at the `Si.cell` in `./1_Si_SW_GA/Si.cell` we see the cell is cubic with a not unreasonable volume for 8 Si ions, though the positions of those 8 ions is random.
-
-The param file is similar to a standard CASTEP input file, with some extra GA specific parameters. The GA copies all of the parameters to each bred population member, changing only the `task` to `geometry optimization`, before performing geometry optimisations for fitness evaluation. This means we can use any of the tools CASTEP has available during the populations geometry optimisation. N.B. any GA parameters passed to a standard CASTEP geometry optimisation, *e.g.* `ga_pop_size`, are ignored by CASTEP.
-
-Looking at the `Si.param` file we see the task is set to `genetic algor` and we are running with a population size of 12 over 12 generations. There are a few GA specific parameters given in the devel code block, the main ones are
-
--   `CMD: mpirun -n 1 castep.mpi :ENDCMD`
-    -   This gives the command that will be used to call CASTEP to perform the geometry optimisations on each population member. This can be changed to any valid call, for example to run over many cores.
-    -   A serial calculation is used here as we are using cheap pair potentials.
--   `AS=T` and `MS=3`
-    -   This allows asynchronous parellisation, where 3 population members will have geom-opts performed at the same time.
-
-These parameters are chosen due to computational resources available in this workshop, but can be trivially increased based on available resources.
-
-The large comment block at the bottom of the input file lists a lot of parameters that can be used with the various GA methods currently implemented. However, for now let's run a GA!
-
-
-## Running the CASTEP GA (Approx. 5-6 mins runtime)
-
-First lets check our CASTEP and CASTEP GA binaries are accessible by running:
-
-    which castep_GA && which castep.mpi
-
-This should return something like
-
-    /tmp/castep_GA_workshop_venv/bin/castep_GA
-    /tmp/castep_GA_workshop_venv/bin/castep.mpi
-
-Your paths may differ but as long as this command completes without error everything we need is (hopefully) set up correctly.
-
-To run CASTEP GA simply call
-
-    castep_GA Si
-
-and the GA will start, which will take approximately 5-6 minutes to run. While this is running have a look at the next subsection for a description of the output files that are being created.
-
-
-## CASTEP GA Output Files
-
-The CASTEP GA generates a lot of output files; as well as a main GA output `<seed>.castep` there are also input and output files for each population member. The population member seeds are labeled with the generation and population number, for example
-
-    Si.gen_002_mem_006.cell
-
-is the input cell file for the 6<sup>th</sup> member of generation 2. You should see input files being generated periodically (a generation at a time). In-between the output file generation geometry optimisations are automatically performed on each population member (here asynchronously 3 at a time).
-
-If the Si CASTEP run we started in the last section is still running we can have a look at the main output file. In a ***new*** terminal window navigate to
-
-    ./CASTEP_workshop_GA/1_Si_SW_GA
-
-and run
-
-    tail -f Si.castep
-
-This will show us the output of the main GA `Si.castep` file being generated in real time.
-
-The main output file contains a lot of information and can be a bit overwhelming. It gives all the parent structures and the pre and post geometry optimisation child structures as well as information about mutation operations. Once this GA run has completed move on to the next section to analyse our output files.
 
 
 ## Analysing the GA Output Files
