@@ -197,7 +197,7 @@ dfdiff['c/2'] = df['crange'] / 2
 styles = [f'{m}-' for m in ["o","v","^","s", "H", "+","x","D"]]
 
 # compared to this reference (and many others!) https://doi.org/10.1039/C3RA47187J
-ax = dfdiff.plot(x='c/2', y=['PBE-','PBE-G06', 'PBE-D3', 'PBE-D3-BJ', 'PBE-TS', 'PBE-MBD', 'PBE-XDM'],
+ax = dfdiff.plot(x='c/2', y=['PBE-','PBE-G06', 'PBE-D3', 'PBE-D3-BJ', 'D4', 'PBE-TS', 'PBE-MBD', 'PBE-XDM'],
                  ylabel='energy/atom (meV)',
                  ylim=(-100, 80), 
                  xlabel=r'interlayer spacing d ( = c/2) (${\AA}$)',
@@ -218,10 +218,11 @@ plt.savefig('graphite-interlayer-binding-castep-dispersions.png', dpi=300)
 
 which produces the following figure:
 
-    
-![png](graphite-interlayer-binding-castep-dispersions.png)
 
-where the dashed vertical line is the experimental interlayer spacing and the shaded grey region is the range of experimentally obtained interlayer binding energies. Please note that these are not fully converged calculations and so do not represent the actual performance of these methods but is simply a guide for how to use them with CASTEP. 
+![Fig1. Graphite binding energy](graphite-interlayer-binding-castep-dispersions.png){width="100%"}
+<figure style="display: inline-block;">
+  <figcaption style="text-align: left;">Fig1. Graphite interlayer binding energy using the PBE XC functional with various dispersion corrections. The dashed vertical line is the experimental interlayer spacing and the shaded grey region is the range of experimentally obtained interlayer binding energies. Please note that these are not fully converged calculations and so do not represent the actual performance of these methods but is simply a guide for how to use them with CASTEP. </figcaption>
+</figure>
 
 
 We can see that the plain PBE functional severely underestimates the binding energy of graphite and that many of the dispersion-corrected results are in much better agreement. The TS scheme strongly overbinds graphite, but has been found to be accurate for other types of systems. Testing such methods carefully is always required when you encounter a new system. 
@@ -239,7 +240,9 @@ We can see that the plain PBE functional severely underestimates the binding ene
     ```
 
     in the .param file. What effect does this have on the interlayer binding energy in graphite? (You may also want to set `IPRINT = 2`  to see more information about the dispersion correction parameters.)
+
 2.  Compare to other XC functionals with and without the dispersion corrections (though note that of the corrections are [only parameterised for a few functionals](../../documentation/Groundstate/dftd.md#table).) 
+
 3.  For CASTEP < 24.1 we get a warning for the TS, MBD and XDM schemes about the unit cell being too small for accurate corrections. If you get this warning, try repeating the above calculations for these three methods using a larger supercell to see what the effect is and what sized supercell you would need to converge the dispersion correction.
 
 
