@@ -37,7 +37,7 @@ xc_functional: LDA
 opt_strategy: speed
 ```
 
-Note that there should be a larger number of spectral k-points than the standard ones, and, to test if it is converged, you'd have to look at the whole spectrum (rather than examining a single value/result as in some other convergence tests). It is also important that you do not have `SYMMETRY_GENERATE` on for coreloss calculations.
+Note that a larger number of spectral k-point than standard one is usually required, and, to test if it is converged, you'd have to look at the whole spectrum (rather than examining a single value/result as in some other convergence tests). It is also important that you do not have `SYMMETRY_GENERATE` on for coreloss calculations.
 
 After running Castep, run Optados with the Optados input file
 
@@ -56,7 +56,7 @@ The line `TASK : core` is what determines that a core-loss calculation will be p
 
 `CORE_QDIR : 1 1 1`
 
-would simulate the results of an electron (or X-ray) beam going through a single crystal in the (1 1 1) direction. In this tutorial, we will be looking at the polycrystalline case, where it effectively uses the average of all directions.
+would simulate the results of an electron (or X-ray) beam going through a single crystal in the [1 1 1] direction. In this tutorial, we will be looking at the polycrystalline case, where it effectively uses the average of all directions.
 
 Running Optados should generate 2 files of interest: `cbn_B1K1_core_edge.dat` and `cbn_N1K1_core_edge.dat` - these are the results of the core-loss calculations. We will focus on the first `dat` file - let's look at the boron part specifically. The file starts off like
 
@@ -80,7 +80,7 @@ LAI_LORENTZIAN_SCALE : 0.1
 
 added to the `odi` file. Gaussian broadening is to simulate the instrument used, and is the same for the whole spectrum, while Lorentzian is to simulate the lifetime effects of the experiment, and is energy-dependent.
 
-A Gaussian width of 1.8 is used because we are going to compare it to the spectrum in the [EELS Database](https://eelsdb.eu/spectra/cubic-boron-nitride/), and that experiment had a resolution of 1.8eV - the Gaussian width should match the resolution. The Lorentzian width used depends on the element you are examining, and the value used depends on which element's edge you are examining, and the value used is recommended [here](https://doi.org/10.1006/adnd.2000.0848) (boron is not there, but 0.1 is recommended for carbon, which is close). A Lorentzian scale of 0.1 is a general and commonly-used value.
+A Gaussian width of 1.8 is used because we are going to compare it to the spectrum in the [EELS Database](https://eelsdb.eu/spectra/cubic-boron-nitride/), and that experiment had a resolution of 1.8eV. A Lorentzian can be used to account for the energy broadening due to the lifetime of the initial and final states.  The width depends on the element and edge you are examining, and the value used is recommended [here](https://doi.org/10.1006/adnd.2000.0848) (boron is not there, but 0.1 is recommended for carbon, which is close). A Lorentzian scale of 0.1 is a general and commonly-used value.
 
 Re-running it now yields 3 columns in the `dat` file - it now starts like
 
@@ -282,4 +282,4 @@ The output should look like this:
 
 ![Experimental and Castep plotted together](together.png)
 
-They are reasonably similar, but the Optados calculation retains the problem of dropping off faster towards higher energies. 
+They are reasonably similar, but the Optados calculation retains the problem of dropping off faster towards higher energies.
