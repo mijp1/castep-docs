@@ -47,11 +47,11 @@ Finally, the many-body correlated motion of electrons can be, to some extent, ca
 
 Every application will have its own set of important features and it is not possible to say with certainty which density functional approximation will be the most appropriate. With that said, here are some suggestions for different types of materials:
 
-  * Molecular crystals: D3/D3-BJ/XDM/MBD in combination with GGA or hybrid functionals (Dolgonos *et al*., 2019[@Dolgonos2019]).
+  * Molecular crystals: D3-BJ/XDM/MBD in combination with GGA or hybrid functionals (Dolgonos *et al*., 2019[@Dolgonos2019]).
   * Metals: vdW-DFs developed with solid state materials in mind (Klimeš *et al*., 2011[@Klimes2011]). <!-- TODO: what about methods available in CASTEP? -->
   * Interactions between molecules and surfaces of metals: vdW-DFs or dispersion methods that include screening, e.g. TSSCS
   * MOFs: dispersion corrected (e.g. TS, D3, etc.) GGAs
-  * Layered vdW materials: Beyond pairwise appraches, e.g. D3* or MBD.
+  * Layered vdW materials: Beyond pairwise approaches, e.g. D3-BJ* or MBD.
   <!-- * TODO: others? -->
 
 $^*$ See note below for how to include the three-body terms in the CASTEP D3 correction.
@@ -85,6 +85,7 @@ In the `.param` file, set:
 | [G06](#G06) (= D2)  [@GrimmeD2]                             | Predates 2012                                          | PBE, BLYP,  BP86, B3LYP, TPSS                           | Up to Z= 54                           | Analytic | DFPT & FD   |
 | [D3](#D3) [@GrimmeD3]                                       | CASTEP 20 ([Compilation instructions](#D3compilation)) | PBE, PBE0, HF                                           |                                       | Analytic | FD          |
 | [D3-BJ](#D3-BJ) [@GrimmeD3-BJ]                              | CASTEP 20 ([Compilation instructions](#D3compilation)) | PBE, PBE0, HF                                           |                                       | Analytic | FD          |
+| [D4](#D4) [@GrimmeD4-1;@GrimmeD4-2;@GrimmeD4-3]             | CASTEP 24.1                                            | PBE, RPBE, PBESOL, BLYP, PW91, RSCAN                    |                                       | Analytic | FD          |
 | [OBS](#OBS) [@Ortmann2006]                                  | Predates 2012                                          | LDA, PW91                                               | Up to Z=57                            | Analytic | DFPT & FD   |
 | [JCHS](#JCHS) [@Jurecka2007]                                | Predates 2012                                          | PBE, BLYP, B3LYP, TPSS                                  | H, C, N, O, F, Cl, Br                 | Analytic | DFPT & FD   |
 | [XDM](#XDM) [@Becke2007]                                    | CASTEP 20                                              | B86PBE, PBE, BLYP, PBESOL, PW91, RPBE, WC, RSCAN        | Up to Z=102                           | Analytic | FD          |
@@ -254,7 +255,7 @@ Note that default D2 parameters are available only for the PBE, BLYP, BP86, B3LY
 
 **D3**
 
-Grimme's DFT-D3 method. The D3 scheme with Becke-Johnson damping (D3-BJ) is generally more accurate[@Smith2016] than the 'zero-damping' method (D3).
+Grimme's DFT-D3 method. The D3 scheme with Becke-Johnson damping (D3-BJ) is generally more accurate[@Smith2016] than the 'zero-damping' method (D3). Note that most published results for "D3" are actually "D3-BJ", and that the original version of D3 is rarely used any more.
 
 Restrictions:
 
@@ -272,6 +273,8 @@ This is the Grimme D3 scheme with Becke-Johnson damping.
 
 !!! note
       When running a D3-BJ calculation with `IPRINT > 1`, you might see `Dispersion version: D4` in the .castep output file. Confusingly, this does **not** mean the Grimme D4 method has been used, it's just an interal CASTEP version label for this correction scheme.
+<!-- TODO is this note still valid for castep 24.1 ? -->
+
 
 
 ??? warning "Compilation flags: for the D3 correction, CASTEP must be compiled with `GRIMMED3 := compile`<a name="D3compilation"></a>"
@@ -284,6 +287,18 @@ This is the Grimme D3 scheme with Becke-Johnson damping.
       in the `Makefile`
 
       For CASTEP 20, the D3 library is included in the distribution and the setting the flag above should be sufficient.
+
+**D4**
+Generally applicable atomic-charge dependent London dispersion correction, termed DFT+D4. It is available from CASTEP 24.1 onwards via setting
+
+**`SEDC_SCHEME : D4`**<a name="D4"></a>
+
+Note that D4 is made available via using the external [dftd4](https://github.com/dftd4/dftd4) library. This library is included in the CASTEP 24.1 distribution and should be compiled by default when you build CASTEP.
+
+Restrictions:
+
+ * Default D4 parameters are available for the PBE, RPBE, PBESOL, BLYP, PW91 and RSCAN functionals.
+<!-- Is this list exhaustive? -->
 
 
 #### Exchange-dipole moment (XDM) method <a name="XDM"></a>
