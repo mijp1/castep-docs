@@ -111,6 +111,9 @@ nav:
         - 'Simple Delta SCF': 'tutorials/Delta_SCF/simple_delta_scf.md'
         - 'Linear expansion DeltaSCF': 'tutorials/Delta_SCF/lin_ex_delta_scf.md'
         - 'Molecular Projected DOS': 'tutorials/Delta_SCF/molpdos.md'
+      - 'GA':
+        - 'Silicon': 'tutorials/GA/Silicon.md'
+        - 'Introduction': 'tutorials/GA/Introduction.md'
       - 'Tools':
         - 'Elastic Constants': 'tutorials/Tools/elastic_constants.md'
    - 'Developer':
