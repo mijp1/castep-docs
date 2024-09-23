@@ -21,7 +21,7 @@ testing are performed using the
 platform. This handles all of the definition of test categories, the
 selection, sequencing and running of tests, and comparison of the run
 output with a benchmark. To run CASTEP, postprocess the output and
-extract the comparison data it invokes two scripts supplied in
+extract the comparison data, it invokes two scripts supplied in
 the CASTEP distribution `bin` directory named [`run_castep_test.py`](#creation-and-format-of-test-outputs-and-benchmarks) and
 [`extract_results.pl`](#extraction-of-properties).
 
@@ -50,7 +50,7 @@ Test
 
 ### A complete test run
 
-A run of the test suite is started by running the testcode scipt `<CASTEP_ROOT>/bin/testcode.py` from within the Test didectory, but as some options are usually required, this is most conveniently invoked via the build system by either
+A run of the test suite is started by running the testcode script `<CASTEP_ROOT>/bin/testcode.py` from within the Test directory, but as some options are usually required, this is most conveniently invoked via the build system by either
 
 ```Shell
     cd Test
@@ -73,11 +73,11 @@ rm -f */*/*.castep */*/*.dfpt_wvfn */*/*.fd_wvfn */*/*.wvfn.* */*/*.*.err
 ....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................... [487/487]
 ```
 
-if everything passes or with `F` replacing one or more of the `.` symbols to indicate a failed test or tests.
+if everything passes. If one or more tests fails the corresponding `.` is replaced with a `F` symbol, or an `S` to flag that the test was skipped (possibly because a prerequisite test failed). 
 
 In case of a failed test, more detailed information on which tests failed and why, the commands 
 `make compare`, `make diff`, `cmake -t compare`, or `cmake -t diff`
-will print a summary or detailed analysis of the failed tests to stdout.
+will print a summary or detailed analysis of the failed tests to stdout.  A deeper analysis may require a direct look at the corresponding `<test.out-...>` file, in the `Test/<category>` subdirectory which will contain the `.castep` output as well as the `.0001.err` error/traceback report file in case of an `io_abort`.
 
 ### Partial and incremental testing
 
@@ -123,7 +123,7 @@ and may be run individually using
 or the targets of the same name in cmake.
 
 ??? keyword "Running individual tests"
-    In fact the tests may be run at even finer granularity, down to the subdirectory. This is not implemented via the Makefile or cmake, and can only be accessed by invoking `testcode` directly.  The most straightforward means of doing this is to copy and paste the testcode invocation command printed by `make check-spe` including all of the run and argument setup and change the argument of the `-c` option to `<directory>/<subdirectory>`. See section [Invoking Testcode](#direct-invocation-of-testcode)
+    In fact the tests may be run at even finer granularity, down to the subdirectory. This is not implemented via the Makefile or cmake, and can only be accessed by invoking `testcode` directly as described [below](#direct-invocation-of-testcode). However the most straightforward means of doing this is to copy and paste the testcode invocation command printed by `make check-spe` including all of the run and argument setup and change the argument of the `-c` option to `<directory>/<subdirectory>`.
 
 ### Adding or changing tests
 
@@ -137,7 +137,7 @@ The changes required are
   * If any external pseudopotential files are required, these should be placed in the `Test/Pseudopotentials` subdirectory and a symbolic link made from the test subdirectory. Both the fle and the link should be added to the `git` repository. 
   * to modify [`bin/run_castep_test.py`](#test-outputs-and-benchmarks) if you need to test the contents of a new output file.
   * if testing a new quantity, either in the `.castep` file or any other output file, you must extend the [`bin/extract_results.pl`](#extraction-of-properties) script to scan for and report the new value to be tested.
-  * A new Stanza in [`jobconfig`](#jobconfig-file) will be required to specify tolerances for the comparison if the defaults in [`userconfig`](#userconfig-file) are not suitable.
+  * A new stanza in [`jobconfig`](#jobconfig-file) will be required to specify tolerances for the comparison if the defaults in [`userconfig`](#userconfig-file) are not suitable.
   * a new benchmark file containing CASTEP output from a known good
 run. Unfortunately creating benchmark files still requires some manual
 intervention.  Regrettably `testcode`s option to create a new
@@ -149,9 +149,9 @@ way to do this is
 fail because no benchmark is present for comparison.
 
     b. Copy or rename the just created test file
-"test.out.<date>?inp=<seedname>.param    to
-"benchmark.out.castep-<old-castep-version>castep-python-1.0.python-<old-python-version>.inp=<seedname>.param".
-where "<old-castep-version>" and "<old-python-version>" should be chosen to match the existing "benchmark.out" files from other tests.
+`test.out.<date>?inp=<seedname>.param`    to
+`benchmark.out.castep-<old-castep-version>castep-python-1.0.python-<old-python-version>.inp=<seedname>.param`.
+where `<old-castep-version>` and `<old-python-version>` should be chosen to match the existing `benchmark.out` files from other tests.
 
 ### Considerations for choice of new tests.
 
@@ -179,12 +179,27 @@ There are two or three common ways to achieve stability of a run with a test whi
    `ELEC_ENERGY_TOL` as the addition or removal of a single SCF iteration between
    benchmark and test can result in a change of, for example, forces sufficient
    to cause a test failure.
+   
+### Profiling the test suite
+
+A timing profile of the test suite may be generated following a successful run by the GNU make command
+
+```Shell
+make profile > profile.log
+```
+
+which writes a list of the tests executed sorted by execution time to
+the named file. If using `cmake`, the profile is generated
+unconditionally and written to a file with extension
+`test-profile-all.log` or `test-profile-<category>.log` in the `Test/`
+subdirectory.
 
 ## Components of test suite
 
 ### Direct Invocation of `testcode`
 
-For a serial run, the test suite may be invoked directly from the command line (with `Test/` as the current directory) by
+For a serial run, the test suite may be invoked directly from the
+command line (with `Test/` as the current directory) by
 
 ```Shell
     ../bin/testcode.py -q --total-processors=6 -e <castep-executable> -c simple -c d3-simple -c d4-simple -c solvation-simple
@@ -434,7 +449,7 @@ endforeach()
 
 #### Adding to Make
 
-To add the tests properly to the [GNU make build system](build-system.md#gnu-make)) you need to modify the `Makefile` at
+To add the tests properly to the [GNU make build system](build-system.md#gnu-make) you need to modify the `Makefile` at
 `Test/Makefile` and add the category in several places.
 
 Add it to the list of `.PHONY` :
