@@ -1,4 +1,4 @@
-This is a detailed description of options for CASTEP's cell file. See the [basic cell file page](/documentation/Getting_Started/basic_cell_file) for an overview. This page has the most frequently-used cell file options, but for a full set use [CASTEP's built-in help](/documentation/Getting_Started/built_in_help). There is also a [concise table of cell keywords](cell_keywords.md).
+This is a detailed description of options for CASTEP's cell file. See the [basic cell file page](../Getting_Started/basic_cell_file.md) for an overview. This page has the most frequently-used cell file options, but for a full set use [CASTEP's built-in help](../Getting_Started/built_in_help.md). There is also a [concise table of cell keywords](cell_keywords.md).
 
 The cell file is one of CASTEP's two main input files. It contains all of the information about the crystal lattice and the atomic positions, as well as additional information such as Brillouin zone sampling ('k-points'), pseudopotentials, cell symmetry, external pressure, constraints on motion of the atoms or cell, and atomic properties such as the mass of each species.
 
@@ -25,7 +25,7 @@ The definitions of these keywords are as follows:
 ```
 %BLOCK LATTICE_CART
 [units]
-a_x  a_y  a_z  
+a_x  a_y  a_z
 b_x  b_y  b_z
 c_x  c_y  c_z
 %ENDBLOCK LATTICE_CART
@@ -63,7 +63,7 @@ file.
 
 ```
 %BLOCK POSITIONS_FRAC
-CCC_1  R_{1i}  R_{1j}  R_{1k}  [SPIN=s_1]  
+CCC_1  R_{1i}  R_{1j}  R_{1k}  [SPIN=s_1]
 CCC_2  R_{2i}  R_{2j}  R_{2k}  [SPIN=s_2]
 ...
 %ENDBLOCK END POSITIONS_FRAC
@@ -85,7 +85,7 @@ present a non-spin polarised state will be assumed.
 ```
 %BLOCK POSITIONS_ABS
 [units]
-CCC_1  R_{1i}  R_{1j}  R_{1k}  [SPIN=s_1]  
+CCC_1  R_{1i}  R_{1j}  R_{1k}  [SPIN=s_1]
 CCC_2  R_{2i}  R_{2j}  R_{2k}  [SPIN=s_2]
 ...
 %ENDBLOCK POSITIONS_ABS

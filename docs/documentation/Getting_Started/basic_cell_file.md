@@ -1,4 +1,4 @@
-This is a basic overview of the cell file. See the [full cell file page](/documentation/Input_Files/cell_file) for more details.
+This is a basic overview of the cell file. See the [full cell file page](../Input_Files/cell_file.md) for more details.
 
 The cell file is one of CASTEP's two main input files. It contains all of the information about the crystal lattice and the atomic positions, as well as additional information such as Brillouin zone sampling ('k-points'), pseudopotentials, and atomic properties.
 
