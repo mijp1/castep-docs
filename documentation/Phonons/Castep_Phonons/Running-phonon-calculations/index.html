@@ -1,0 +1,4347 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.2.16">
+    
+    
+      
+        <title>Running-phonon-calculations - CASTEP Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.1c3799f8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sec:dfpt-gamma" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="CASTEP Docs" class="md-header__button md-logo" aria-label="CASTEP Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CASTEP Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Running-phonon-calculations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="CASTEP Docs" class="md-nav__button md-logo" aria-label="CASTEP Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    CASTEP Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Documentation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Getting_Started/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Getting_Started/built_in_help/" class="md-nav__link">
+        Command line help
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Getting_Started/running_castep/" class="md-nav__link">
+        Running CASTEP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Getting_Started/basic_cell_file/" class="md-nav__link">
+        cell File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Getting_Started/basic_param_file/" class="md-nav__link">
+        param File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Getting_Started/restarting/" class="md-nav__link">
+        Checkpoint and Restart
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Ground State
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ground State" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ground State
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Groundstate/intro/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Groundstate/dftd/" class="md-nav__link">
+        Dispersion Corrections
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Groundstate/soc/" class="md-nav__link">
+        Spin Orbit Coupling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Groundstate/spin_constraints/" class="md-nav__link">
+        Spin Constraints
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Groundstate/population_analysis/" class="md-nav__link">
+        Population analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Groundstate/ELF/" class="md-nav__link">
+        ELF
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Geometry Optimisation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Geometry Optimisation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Geometry Optimisation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Geometry_Optimisation/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Geometry_Optimisation/keywords/" class="md-nav__link">
+        Keywords
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Geometry_Optimisation/constraints/" class="md-nav__link">
+        Constraints
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Geometry_Optimisation/files/" class="md-nav__link">
+        Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Geometry_Optimisation/tools/" class="md-nav__link">
+        Tools
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Molecular Dynamics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Molecular Dynamics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Molecular Dynamics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Molecular_Dynamics/overview/" class="md-nav__link">
+        MD Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Molecular_Dynamics/basics/" class="md-nav__link">
+        MD Basics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Molecular_Dynamics/restarts/" class="md-nav__link">
+        MD Restarts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Molecular_Dynamics/files/" class="md-nav__link">
+        MD Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Molecular_Dynamics/keywords/" class="md-nav__link">
+        MD Keywords
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Molecular_Dynamics/tools/" class="md-nav__link">
+        MD Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Molecular_Dynamics/pimd/" class="md-nav__link">
+        PIMD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Molecular_Dynamics/hugoniostat/" class="md-nav__link">
+        Hugoniostat
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Transition State Search
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transition State Search" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Transition State Search
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Transition_State_Search/neb/" class="md-nav__link">
+        Nudged Elastic Band
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_6">
+          Exchange-Correlation (XC)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Exchange-Correlation (XC)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Exchange-Correlation (XC)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../XC/XCoverview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../XC/XC/" class="md-nav__link">
+        Controlling XC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../XC/libXC/" class="md-nav__link">
+        libXC
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_7" type="checkbox" id="__nav_2_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_7">
+          Spectral
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Spectral" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Spectral
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Spectral/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Spectral/keywords/" class="md-nav__link">
+        Keywords
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Spectral/restarts/" class="md-nav__link">
+        Restarts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_8" type="checkbox" id="__nav_2_8" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_8">
+          Phonons
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Phonons" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          Phonons
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Running-phonon-calculations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Running-phonon-calculations
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sec:dfpt-gamma" class="md-nav__link">
+    A DFPT phonon calculation at the \Gamma\Gamma-point
+  </a>
+  
+    <nav class="md-nav" aria-label="A DFPT phonon calculation at the \Gamma\Gamma-point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sec:input-basic" class="md-nav__link">
+    Input files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:output-gamma" class="md-nav__link">
+    Reading the output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:raman" class="md-nav__link">
+    Raman activity calculations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:ddos" class="md-nav__link">
+    Dispersion and density of states
+  </a>
+  
+    <nav class="md-nav" aria-label="Dispersion and density of states">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sec:interpolation-setup" class="md-nav__link">
+    Setting up an interpolation calculation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:continuation" class="md-nav__link">
+    Continuation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:interpolation-control" class="md-nav__link">
+    Control of interpolation scheme
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:asr" class="md-nav__link">
+    Acoustic Sum Rule correction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#density-of-states" class="md-nav__link">
+    Density of States
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:fd" class="md-nav__link">
+    Finite Displacement
+  </a>
+  
+    <nav class="md-nav" aria-label="Finite Displacement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primitive-cell-finite-displacement" class="md-nav__link">
+    Primitive Cell Finite Displacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#born-charges-permittivity-and-loto-splitting-with-fd" class="md-nav__link">
+    Born Charges, Permittivity and LO/TO splitting with FD
+  </a>
+  
+    <nav class="md-nav" aria-label="Born Charges, Permittivity and LO/TO splitting with FD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sec:berry-fd" class="md-nav__link">
+    Born charges from Berry Phase Polarization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:ndsc" class="md-nav__link">
+    Finite Displacement using non-diagonal supercells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:supercell" class="md-nav__link">
+    Legacy Finite Displacement/Supercell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:convergence" class="md-nav__link">
+    Convergence
+  </a>
+  
+    <nav class="md-nav" aria-label="Convergence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convergence-of-dfpt-solver" class="md-nav__link">
+    Convergence of DFPT solver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convergence-of-finite-displacement-forces" class="md-nav__link">
+    Convergence of finite displacement forces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convergence-of-interpolation-and-supercell" class="md-nav__link">
+    Convergence of Interpolation and Supercell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dielectric-properties/" class="md-nav__link">
+        Dielectric-properties
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Thermodynamic-properties/" class="md-nav__link">
+        Thermodynamic-properties
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Plotting-and-analysis-tools/" class="md-nav__link">
+        Plotting-and-analysis-tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Running-Large-Calculations/" class="md-nav__link">
+        Running-Large-Calculations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced-Topics/" class="md-nav__link">
+        Advanced-Topics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Keyword-Reference/" class="md-nav__link">
+        Keyword-Reference
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bibliography/" class="md-nav__link">
+        Bibliography
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_9" type="checkbox" id="__nav_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_9">
+          NMR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NMR" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          NMR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NMR/NMR_overview/" class="md-nav__link">
+        NMR Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          EPR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="EPR" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          EPR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EPR/overview/" class="md-nav__link">
+        EPR Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../XRD/overview/" class="md-nav__link">
+        XRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_12" type="checkbox" id="__nav_2_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_12">
+          TDDFT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="TDDFT" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_12">
+          <span class="md-nav__icon md-icon"></span>
+          TDDFT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TDDFT/overview/" class="md-nav__link">
+        TDDFT Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_13" type="checkbox" id="__nav_2_13" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_13">
+          Delta SCF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Delta SCF" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_13">
+          <span class="md-nav__icon md-icon"></span>
+          Delta SCF
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Delta_SCF/overview/" class="md-nav__link">
+        Delta SCF Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Delta_SCF/simple_delta_scf/" class="md-nav__link">
+        Simple Delta SCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Delta_SCF/lin_ex_delta_scf/" class="md-nav__link">
+        Linear expansion DeltaSCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Delta_SCF/mo_delta_scf/" class="md-nav__link">
+        MO Delta SCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Delta_SCF/molpdos/" class="md-nav__link">
+        Molecular Projected DOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_14" type="checkbox" id="__nav_2_14" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_14">
+          Pseudopotentials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pseudopotentials" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_14">
+          <span class="md-nav__icon md-icon"></span>
+          Pseudopotentials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Pseudopotentials/theory/" class="md-nav__link">
+        Theory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Pseudopotentials/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Pseudopotentials/reading_headers/" class="md-nav__link">
+        Headers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Pseudopotentials/otfg_string/" class="md-nav__link">
+        OTFG string
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_15" type="checkbox" id="__nav_2_15" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_15">
+          Input Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Input Files" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_15">
+          <span class="md-nav__icon md-icon"></span>
+          Input Files
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Input_Files/cell_file/" class="md-nav__link">
+        cell File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Input_Files/param_file/" class="md-nav__link">
+        param File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Input_Files/cell_keywords/" class="md-nav__link">
+        Cell Keywords
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_16" type="checkbox" id="__nav_2_16" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_16">
+          Output Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Output Files" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_16">
+          <span class="md-nav__icon md-icon"></span>
+          Output Files
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Output_Files/output_files/" class="md-nav__link">
+        Output Files
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_17" type="checkbox" id="__nav_2_17" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_17">
+          Other Codes and Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Other Codes and Tools" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_17">
+          <span class="md-nav__icon md-icon"></span>
+          Other Codes and Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/tools/" class="md-nav__link">
+        Other Codes and Tools
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_18" type="checkbox" id="__nav_2_18" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_18">
+          Troubleshooting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Troubleshooting" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_18">
+          <span class="md-nav__icon md-icon"></span>
+          Troubleshooting
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Troubleshooting/troubleshooting/" class="md-nav__link">
+        Common errors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Troubleshooting/linux_path/" class="md-nav__link">
+        Linux help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Bonding and Charge
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Bonding and Charge" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Bonding and Charge
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bonding_and_Charge/charge_density/" class="md-nav__link">
+        Plotting Charge Density
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bonding_and_Charge/mulliken_population/" class="md-nav__link">
+        Population Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bonding_and_Charge/ELF/" class="md-nav__link">
+        ELF
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Bands and DOS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Bands and DOS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Bands and DOS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" type="checkbox" id="__nav_3_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_1">
+          Plotting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Plotting" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Plotting
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bands_and_DOS/Plotting/plotting_perl/" class="md-nav__link">
+        Plotting - CASTEP tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bands_and_DOS/Plotting/plotting_sumo/" class="md-nav__link">
+        Plotting - SUMO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bands_and_DOS/Plotting/Optados/DOS/" class="md-nav__link">
+        OptaDOS - DOS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bands_and_DOS/Plotting/Optados/pDOS/" class="md-nav__link">
+        OptaDOS - pDOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bands_and_DOS/semiconductors/" class="md-nav__link">
+        Semiconductors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bands_and_DOS/metals/" class="md-nav__link">
+        Metals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Bands_and_DOS/magnetic/" class="md-nav__link">
+        Magnetic Materials
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Optics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Optics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Optics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Optics/Optics/" class="md-nav__link">
+        Optics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Optics/Optics_aluminium/" class="md-nav__link">
+        Optics - Aluminium
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Optics/Optics_ani/" class="md-nav__link">
+        Optical Anisotropy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4">
+          Coreloss
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Coreloss" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Coreloss
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Coreloss/Coreloss/" class="md-nav__link">
+        Coreloss
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Optics/JDOS/" class="md-nav__link">
+        JDOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/dispersion_corrections/castep-ase-dispersion-tutorial/" class="md-nav__link">
+        Dispersion corrections
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/NEB/neb_tutorial/" class="md-nav__link">
+        Nudged elastic band
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" type="checkbox" id="__nav_3_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_7">
+          NMR Shielding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NMR Shielding" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_7">
+          <span class="md-nav__icon md-icon"></span>
+          NMR Shielding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/NMR/Example_1_-Ethanol/" class="md-nav__link">
+        Example 1 - Ethanol
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/NMR/Example_2_-Diamond/" class="md-nav__link">
+        Example 2 - Diamond
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/NMR/Examples_3_-Alanine_and_Silicates/" class="md-nav__link">
+        Examples 3 - Alanine and Silicates
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_8" type="checkbox" id="__nav_3_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_8">
+          Delta SCF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Delta SCF" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_8">
+          <span class="md-nav__icon md-icon"></span>
+          Delta SCF
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Delta_SCF/simple_delta_scf/" class="md-nav__link">
+        Simple Delta SCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Delta_SCF/lin_ex_delta_scf/" class="md-nav__link">
+        Linear expansion DeltaSCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Delta_SCF/molpdos/" class="md-nav__link">
+        Molecular Projected DOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_9" type="checkbox" id="__nav_3_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_9">
+          GA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GA" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_9">
+          <span class="md-nav__icon md-icon"></span>
+          GA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/GA/Silicon/" class="md-nav__link">
+        Silicon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/GA/Introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_10" type="checkbox" id="__nav_3_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_10">
+          Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tools" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_10">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tutorials/Tools/elastic_constants/" class="md-nav__link">
+        Elastic Constants
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Developer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developer" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Developer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/using_devel_codes/" class="md-nav__link">
+        Using Devel Codes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/using_trace/" class="md-nav__link">
+        Using trace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/adding_pair_pots/" class="md-nav__link">
+        Adding empirical potentials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/build-system/" class="md-nav__link">
+        Build System
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/style_guide/" class="md-nav__link">
+        Style Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/test_suite/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/CI/" class="md-nav__link">
+        CI System
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/git_workflow/" class="md-nav__link">
+        Git workflow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../developer/release_procedure/" class="md-nav__link">
+        Release Procedure
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sec:dfpt-gamma" class="md-nav__link">
+    A DFPT phonon calculation at the \Gamma\Gamma-point
+  </a>
+  
+    <nav class="md-nav" aria-label="A DFPT phonon calculation at the \Gamma\Gamma-point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sec:input-basic" class="md-nav__link">
+    Input files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:output-gamma" class="md-nav__link">
+    Reading the output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:raman" class="md-nav__link">
+    Raman activity calculations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:ddos" class="md-nav__link">
+    Dispersion and density of states
+  </a>
+  
+    <nav class="md-nav" aria-label="Dispersion and density of states">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sec:interpolation-setup" class="md-nav__link">
+    Setting up an interpolation calculation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:continuation" class="md-nav__link">
+    Continuation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:interpolation-control" class="md-nav__link">
+    Control of interpolation scheme
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:asr" class="md-nav__link">
+    Acoustic Sum Rule correction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#density-of-states" class="md-nav__link">
+    Density of States
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:fd" class="md-nav__link">
+    Finite Displacement
+  </a>
+  
+    <nav class="md-nav" aria-label="Finite Displacement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primitive-cell-finite-displacement" class="md-nav__link">
+    Primitive Cell Finite Displacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#born-charges-permittivity-and-loto-splitting-with-fd" class="md-nav__link">
+    Born Charges, Permittivity and LO/TO splitting with FD
+  </a>
+  
+    <nav class="md-nav" aria-label="Born Charges, Permittivity and LO/TO splitting with FD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sec:berry-fd" class="md-nav__link">
+    Born charges from Berry Phase Polarization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:ndsc" class="md-nav__link">
+    Finite Displacement using non-diagonal supercells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec:supercell" class="md-nav__link">
+    Legacy Finite Displacement/Supercell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sec:convergence" class="md-nav__link">
+    Convergence
+  </a>
+  
+    <nav class="md-nav" aria-label="Convergence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convergence-of-dfpt-solver" class="md-nav__link">
+    Convergence of DFPT solver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convergence-of-finite-displacement-forces" class="md-nav__link">
+    Convergence of finite displacement forces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convergence-of-interpolation-and-supercell" class="md-nav__link">
+    Convergence of Interpolation and Supercell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+  <h1>Running-phonon-calculations</h1>
+
+<p>CASTEP contains implementations of several methods for computing the
+electronic response orbitals and the dynamical matrix (<a href="../Bibliography/#ref-Refson2006">Refson, Tulip,
+and Clark 2006</a>). There are implementation restrictions
+and the choice of the most suitable one depends on the type of
+calculation, the Hamiltonian, and the property calculations required.
+See table <a href="./#tbl:captable">[captable]</a> for details. For
+straightforward semi-local DFT calculations (LDA, PBE etc.) the
+<em>density-functional perturbation theory method</em> (DFPT) method is
+preferred (section <a href="./#sec:dfpt-gamma">[dfpt-gamma]</a>), as this is
+not only the most efficient, but also allows the calculation of infra
+red and Raman intensities for modelling of spectra. DFPT is not yet
+implemented for ultrasoft pseudopotentials, or for Hubbard U or some
+dispersion-corrected DFT methods (as of release 24.1), and in these
+cases the <em>finite displacement</em> method should be used
+(section <a href="./#sec:fd">[fd]</a>). If a density of states or finely
+sampled dispersion curve along high symmetry directions is needed, then
+either the DFPT method with <em>Fourier interpolation</em>
+(section <a href="./#sec:ddos">[ddos]</a>) is the most suitable or the
+<em>finite-displacement supercell</em>
+(section <a href="./#sec:supercell">[supercell]</a>; if ultrasoft
+pseudopotentials are required). A summary of the recommended approach
+for various property calculations is given in
+table <a href="./#tbl:method-selection">[method-selection]</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: center;">DFPT (Phonon)</th>
+<th style="text-align: center;">DFPT (E-field)</th>
+<th style="text-align: center;">FD (Phonon)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">USP</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">NCP</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">LDA, GGA</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">MGGA</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">DFT+U</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">NCM/SOC</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">PBE0, Hybrid XC</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">DFT+D: TS, D2</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td style="text-align: left;">DFT+D: D3,D4, MBD*,XDM</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dd id="tbl:captable"><strong>Table 1:</strong> CASTEP phonons implementation matrix. In general DFPT is avalable for
+semilocal DFPT, but not other Hamiltonians. The combination of DFPT and
+USPs is not implemented.  </dd>
+</dl>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Target Property</th>
+<th style="text-align: left;">Preferred method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">IR spectrum</td>
+<td style="text-align: left;">DFPT at q=0 with NCP potentials <em>(section. <a href="./#sec:dfpt-gamma">[dfpt-gamma]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FD at q=0 with NCP potentials and DFPT e-field <em>(section. <a href="./#sec:fd">[fd]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FD at q=0 with USP potentials and Berry Phase <span class="arithmatex"><span class="MathJax_Preview">Z^{*}</span><script type="math/tex">Z^{*}</script></span> <em>(section. <a href="./#sec:berry-fd">[berry-fd]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Raman spectrum</td>
+<td style="text-align: left;">DFPT at q=0 with NCP potentials (2n+1 theorem) <em>(section. <a href="./#sec:raman">[raman]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Born Effective Charges (<span class="arithmatex"><span class="MathJax_Preview">Z^{*}</span><script type="math/tex">Z^{*}</script></span>)</td>
+<td style="text-align: left;">DFPT E-field using NCP potentials <em>(section. <a href="../Dielectric-properties/#sec:efield">[efield]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FD at q=0 with USP potentials and Berry Phase <span class="arithmatex"><span class="MathJax_Preview">Z^{*}</span><script type="math/tex">Z^{*}</script></span>  <em>(section. <a href="./#sec:berry-fd">[berry-fd]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Dielectric Permittivity (<span class="arithmatex"><span class="MathJax_Preview">\epsilon_\infty</span><script type="math/tex">\epsilon_\infty</script></span>)</td>
+<td style="text-align: left;">DFPT E-field using NCP potentials <em>(section. <a href="../Dielectric-properties/#sec:efield">[efield]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Nonlinear optical susceptibility (<span class="arithmatex"><span class="MathJax_Preview">\chi^{(2)}</span><script type="math/tex">\chi^{(2)}</script></span>)</td>
+<td style="text-align: left;">DFPT E-field (2n+1 theorem) using NCP potentials <em>(section. <a href="../Dielectric-properties/#sec:nlo">[nlo]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Phonon dispersion or DOS</td>
+<td style="text-align: left;">DFPT plus interpolation with NCP potentials <em>(section. <a href="./#sec:ddos">[ddos]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FD plus interpolation using USP or NCP potentials <em>(section. <a href="./#sec:ndsc">[ndsc]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FD with supercell using USP or NCP potentials <em>(section. <a href="./#sec:supercell">[supercell]</a>)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Vibrational Thermodynamics</td>
+<td style="text-align: left;">same as DOS <em>(section. <a href="../Thermodynamic-properties/#sec:thermodynamics">[thermodynamics]</a>)</em></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dd id="tbl:method-selection"><strong>Table 2:</strong> Available and recommended methods for different property
+calculations.<br /></dd>
+</dl>
+<h3 id="sec:dfpt-gamma">A DFPT phonon calculation at the <span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span>-point</h3>
+<p>Many of the principles of setting up and running phonon calculations can
+be illustrated in the simplest case - computing phonon frequencies at
+the <span class="arithmatex"><span class="MathJax_Preview">q=(0,0,0)</span><script type="math/tex">q=(0,0,0)</script></span>, often referred to as the <span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span> point. This is a very
+common calculation, as it forms the basis of modelling of infra-red or
+Raman spectra and group theoretical analysis and assignment of the
+modes.</p>
+<h4 id="sec:input-basic">Input files</h4>
+<p>The setup for a CASTEP phonon calculation requires a few additional
+keywords in the <em>seedname</em><code>.cell</code> file. Like any type of calculation,
+the unit cell must be specified using either of <code>%block LATTICE_ABC</code> or
+<code>%block LATTICE_CART</code>, and the atomic co-ordinates using
+<code>%block POSITIONS_FRAC</code> or <code>%block POSITIONS_ABS</code>. Figure
+<a href="./#fig:example-gamma">[example-gamma]</a> shows a complete input file
+for a calculation on boron nitride in the hexagonal Wurtzite structure.
+The additional keywords. <code>phonon_kpoint_list</code> is used to specify that a
+single phonon wavevector (0,0,0) is to be computed<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">1</a></sup>. More wavevectors
+could be specified using additional lines in this block.<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">2</a></sup></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>%block LATTICE_ABC
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   2.536000   2.536000     4.199000  ! a, b, c
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  90.000000  90.000000   120.000000  ! alpha, beta, gamma
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>%endblock LATTICE_ABC
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>%block POSITIONS_FRAC
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  B   2/3   1/3    0.000000  ! Atom co-ordinates in crystallographic
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  N   2/3   1/3    0.374536  ! fractional system.
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  B   1/3   2/3    0.500000
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  N   1/3   2/3    0.874536
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>%endblock POSITIONS_FRAC
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>%block SPECIES_POT
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>B   B_00.recpot              ! File names of pseudopotential to use for B
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>N   N_00.recpot
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>%endblock SPECIES_POT
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>kpoints_mp_spacing 0.07      ! Generate MP grid of electronic k-points.
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>symmetry_generate            ! Find symmetry operations of crystal structure
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>%block PHONON_KPOINT_LIST
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    0.0   0.0   0.0    1.0   ! Wavevector of phonon(s) to compute ( qx qy qz, weight)
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>%endblock PHONON_KPOINT_LIST
+</code></pre></div>
+<dl>
+<dt><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>task             : PHONON    ! Choose a phonon calculation
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>xc_functional    : LDA
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>opt_strategy     : SPEED     ! Optimise for speed over memory saving
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>cut_off_energy   : 700.0 eV  ! Plane-wave cutoff for this system
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>elec_method      : DM        ! Use fast DM solver even for insulating system
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>phonon_sum_rule  : TRUE      ! Enforce acoustic sum rule on calculated D
+</code></pre></div></dt>
+<dd>
+<p id="fig:example-gamma"><strong>Figure 1:</strong> Annotated example cell and parameter files for BN in the Wurtzite
+structure. Note that <code>phonon_method</code> defaults to <code>DFPT</code>.  <br /></p>
+</dd>
+</dl>
+<h4 id="sec:output-gamma">Reading the output</h4>
+<p>Figure <a href="./#fig:example-gamma-out">[example-gamma-out]</a> shows part of
+the phonon-relevant output extracted from the <code>.castep</code> file obtained by
+running the input files of the previous section. There are several
+blocks of output, one per direction chosen for
+<span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}\rightarrow 0</span><script type="math/tex">{\mathbf{q}}\rightarrow 0</script></span> in the LO-TO splitting terms. Note that
+CASTEP has added a calculation without LO-TO splitting (the first
+block), even though this was not explicitly requested. Within each block
+frequencies are listed one per line. Also on the line are (a) a label
+indicating the irreducible representation of the mode from a group
+theory analysis, (b) the computed absorptivity of the mode in a powder
+(or otherwise orientationally averaged) infrared experiment, &copy; whether
+the mode is IR active, (d) the Raman activity (if computed) and (e)
+whether the mode is Raman active.</p>
+<dl>
+<dt><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a> ==============================================================================
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a> +                           Vibrational Frequencies                          +
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a> +                           -----------------------                          +
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a> +                                                                            +
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a> + Performing frequency calculation at  1 wavevector  (q-pt )                 +
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a> + ========================================================================== +
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a> +                                                                            +
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a> + -------------------------------------------------------------------------- +
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a> +  q-pt=    1 (  0.000000  0.000000  0.000000)     1.0000000000              +
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a> + -------------------------------------------------------------------------- +
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a> +  Acoustic sum rule correction &lt;   8.094974 cm-1 applied                    +
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a> +     N      Frequency irrep.    ir intensity active            raman active + 
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a> +                (cm-1)         ((D/A)**2/amu)                               + 
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a> +                                                                            +
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a> +     1      -0.049170   a          0.0000000  N                       N     + 
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a> +     2      -0.034768   b          0.0000000  N                       N     + 
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a> +     3      -0.034768   b          0.0000000  N                       N     + 
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a> +     4     475.116083   c          0.0000000  N                       Y     + 
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a> +     5     475.116083   c          0.0000000  N                       Y     + 
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a> +     6     952.000075   c          0.0000000  N                       Y     + 
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a> +     7     952.000075   c          0.0000000  N                       Y     + 
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a> +     8     963.032787   d          0.0000000  N                       N     + 
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a> +     9    1016.312039   a         28.5895083  Y                       Y     + 
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a> +    10    1051.124801   b         25.8079204  Y                       Y     + 
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a> +    11    1051.124801   b         25.8079204  Y                       Y     + 
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a> +    12    1123.472590   d          0.0000000  N                       N     + 
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a> + .......................................................................... +
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a> +        Character table from group theory analysis of eigenvectors          +
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a> +                           Point Group =  25, C6v                           +
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a> + .......................................................................... +
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a> +  Rep  Mul |    E   6   3   2 m_v m_v                                       +
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a> +           | ------------------------                                       +
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a> + a A1    2 |    1   1   1   1   1   1                                       +
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a> + b E1    2 |    2   1  -1  -2   0   0                                       +
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a> + c E2    2 |    2  -1  -1   2   0   0                                       +
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a> + d B1    2 |    1  -1   1  -1  -1   1                                       +
+</code></pre></div></dt>
+<dd>
+<p id="fig:example-gamma"><strong>Figure 2</strong> Output in the .castep file generated by the preceding input files for
+wurtzite BN. The columns show the mode frequencies, a letter labelling
+of the irreducible representation of the mode, the infrared absorptivity
+and Raman activity, and whether or not the mode is Raman and/or IR
+active. Not all of these are present in every calculation depending on
+the use of symmetry and input options.  <br /></p>
+</dd>
+</dl>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a> + -------------------------------------------------------------------------- +
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a> +  q-pt=    1 (  0.000000  0.000000  0.000000)     0.0000000000              +
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a> +  q-&gt;0 along (  0.000000  0.000000  1.000000)                               +
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> + -------------------------------------------------------------------------- +
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a> +  Acoustic sum rule correction &lt;   8.094974 cm-1 applied                    +
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a> +     N      Frequency irrep.    ir intensity active            raman active + 
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a> +                (cm-1)         ((D/A)**2/amu)                               + 
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a> +                                                                            +
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a> +     1      -0.037851   a          0.0000000  N                       N     + 
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a> +     2      -0.034768   b          0.0000000  N                       N     + 
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a> +     3      -0.034768   b          0.0000000  N                       N     + 
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a> +     4     475.116083   c          0.0000000  N                       Y     + 
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a> +     5     475.116083   c          0.0000000  N                       Y     + 
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a> +     6     952.000075   c          0.0000000  N                       Y     + 
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a> +     7     952.000075   c          0.0000000  N                       Y     + 
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a> +     8     963.032787   d          0.0000000  N                       N     + 
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a> +     9    1051.124801   b         25.8079204  Y                       Y     + 
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a> +    10    1051.124801   b         25.8079204  Y                       Y     + 
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a> +    11    1123.472590   d          0.0000000  N                       N     + 
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a> +    12    1262.933291   a         28.5895083  Y                       Y     + 
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a> + .......................................................................... +
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a> +        Character table from group theory analysis of eigenvectors          +
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a> +                           Point Group =  25, C6v                           +
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a> + (Due to LO/TO splitting this character table may not contain some symmetry +
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a> +  operations of the full crystallographic point group.  Additional          +
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a> +  representations may be also be present corresponding to split LO modes.   +
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a> +  A conventional analysis can be generated by specifying an additional null +
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a> +  (all zero) field direction or one along any unique crystallographic axis  +
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a> +  in %BLOCK PHONON_GAMMA_DIRECTIONS in &lt;seedname&gt;.cell.)                    +
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a> + .......................................................................... +
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a> +  Rep  Mul |    E   6   3   2 m_v m_v                                       +
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a> +           | ------------------------                                       +
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a> + a A1    2 |    1   1   1   1   1   1                                       +
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a> + b E1    2 |    2   1  -1  -2   0   0                                       +
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a> + c E2    2 |    2  -1  -1   2   0   0                                       +
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a> + d B1    2 |    1  -1   1  -1  -1   1                                       +
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a> ==============================================================================
+</code></pre></div>
+<p id="fig:example-gamma-out"><strong>Figure 2</strong> Run output (continued): If the LO-TO-splitting calculation is active the
+<span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span> point frequency table is repeated, both without and including
+the non-analytic contribution which generates the LO/TO splitting in one
+or more directions (See Gonze and Lee (<a href="../Bibliography/#ref-GonzeL97">Gonze and Lee
+1997</a>)). (The group theory analysis for LO modes is less
+useful than might be wanted and is likely to be the subject of future
+developments.)   <br /></p>
+<p>As with other calculations the amount of information written to the
+<code>.castep</code> file is controlled by the value of the parameter <code>iprint</code>. The
+levels of output are</p>
+<dl>
+<dt><code>iprint : 0</code></dt>
+<dd>
+<p>Minimal output as in
+figure <a href="./#fig:example-gamma-out">[example-gamma-out]</a>. No
+progress info.</p>
+</dd>
+<dt><code>iprint : 1</code></dt>
+<dd>
+<p>As for <code>iprint : 0</code> but including a reassuring progress report of
+q-points and perturbations.</p>
+</dd>
+<dt><code>iprint : 2</code></dt>
+<dd>
+<p>More detailed output including details of k-points and symmetry for
+each perturbation, cycle-by cycle DFPT minimiser report, printing of
+dynamical matrices (and force constant matrices).</p>
+</dd>
+</dl>
+<p>In addition to the user-readable output in the <code>.castep</code> file<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">3</a></sup>, every
+phonon calculation generates an additional output file with the suffix
+<code>.phonon</code> which is intended for postprocessing analysis by other
+programs. This includes not only the frequencies but also the
+eigenvectors <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{\varepsilon}_{m{\kappa,\alpha}{\mathbf{q}}}}</span><script type="math/tex">{\mathbf{\varepsilon}_{m{\kappa,\alpha}{\mathbf{q}}}}</script></span>
+resulting from diagonalising the dynamical matrix. These eigenvectors
+are orthonormal and the relationship between the eigenvectors and atomic
+displacements is given by</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">u_{\kappa,\alpha,a} = \frac{1}{\sqrt{M_{\kappa}}} Q_{m} {\mathbf{\varepsilon}_{m{\kappa,\alpha}{\mathbf{q}}}}\exp(i ({\mathbf{q}}\cdot {\mathbf{R}}_{\kappa,\alpha}(a) - \omega_m t))</div>
+<script type="math/tex; mode=display">u_{\kappa,\alpha,a} = \frac{1}{\sqrt{M_{\kappa}}} Q_{m} {\mathbf{\varepsilon}_{m{\kappa,\alpha}{\mathbf{q}}}}\exp(i ({\mathbf{q}}\cdot {\mathbf{R}}_{\kappa,\alpha}(a) - \omega_m t))</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">Q_M</span><script type="math/tex">Q_M</script></span> is the amplitude of mode <span class="arithmatex"><span class="MathJax_Preview">m</span><script type="math/tex">m</script></span> and the other notation is as
+set out in the introduction.</p>
+<h4 id="sec:raman">Raman activity calculations</h4>
+<p>In addition to the infrared absorptivity computed as a default part of a
+<span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span>-point phonon calculation, CASTEP is also capable of computing
+the Raman activity tensors in the case of non-resonant scattering for an
+insulating system<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">4</a></sup>. This calculation uses an extension of DFPT known
+as the “2n+1 theorem” (<a href="../Bibliography/#ref-BaroniDDG01">Baroni et al. 2001</a>; <a href="../Bibliography/#ref-Miwa2011">Miwa
+2011</a>) which requires substantially more computational
+effort than a bare phonon calculation and is therefore not enabled by
+default. To compute Raman activity set</p>
+<blockquote>
+<p><code>calculate_raman : TRUE</code></p>
+</blockquote>
+<p>in the <code>.param</code> file, which calculates and prints the Raman atomic
+susceptibility tensors and the mode susceptibility tensors to the
+<code>.castep</code> file. These may be extracted for use when modelling the Raman
+scattering in a polarised single-crystal geometry.<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">5</a></sup></p>
+<p>As with the Born effective charges and dynamical matrices, there is a
+sum rule on the values of the atomic polar tensors, which may not be
+well satisfied because of numerical approximations. A correction will be
+applied if parameter</p>
+<blockquote>
+<p><code>raman_sum_rule : TRUE</code></p>
+</blockquote>
+<p>is set.</p>
+<p>A 3d-average Raman activity (see Porezag and Pedersen (<a href="../Bibliography/#ref-PorezagP:96">Porezag and
+Pederson 1996</a>)) is computed from the susceptibility
+tensors and printed as an additional column in the usual frequency
+output given in
+figure <a href="./#fig:example-gamma-out">[example-gamma-out]</a>. This may be
+used for simple modelling of a powder spectrum, for example using the
+dos.pl tool (see section <a href="../Plotting-and-analysis-tools/#sec:dos-pl">[dos-pl]</a>).</p>
+<h3 id="sec:ddos">Dispersion and density of states</h3>
+<p>Phonons of a nonzero wavevector play an important role in the
+thermophysical properties of crystalline solids and the physics of many
+solid-state phase transitions. Proving the mechanical stability of a
+crystal structure by testing for real frequencies requires a vibrational
+calculation over the full Brillouin Zone. And dispersion curves and
+densities of states are frequently required for comparison with
+inelastic neutron and X-ray scattering experiments.</p>
+<p>One of the benefits of density functional perturbation theory is that
+CASTEP can calculate vibrational modes at <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}\ne \mathbf{0}</span><script type="math/tex">{\mathbf{q}}\ne \mathbf{0}</script></span>
+as easily as at <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}= \mathbf{0}</span><script type="math/tex">{\mathbf{q}}= \mathbf{0}</script></span> (but at the cost of an
+increase in CPU time due to the decreased symmetry). It is possible to
+perform this calculation simply by providing a list of q-points in the
+<code>.cell</code> file ( using one of the blocks <code>%block PHONON_KPOINT_LIST</code>, or
+<code>%block PHONON_KPOINT_PATH</code> or keyword <code>phonon_kpoint_mp_grid</code>). However
+to generate a reasonable quality dispersion plot or density of states
+will usually require hundreds or thousands of q-points. The time
+required by such a calculation would be several hundred times that for a
+single-point energy and therefore infeasibly large.</p>
+<p>Fortunately there is a way to achieve the same result at a far smaller
+computational cost. This method exploits the fact that the interatomic
+interactions in a solid have a finite range and decay rapidly to zero.
+Specifically, the elements of the force constant matrix in
+Eq. <a href="../Introduction/#eq:fcmat">[fcmat]</a> decrease as <span class="arithmatex"><span class="MathJax_Preview">1 / r^{5}</span><script type="math/tex">1 / r^{5}</script></span> with interatomic
+distance. Consequently the dynamical matrix defined by
+Eq. <a href="../Introduction/#eq:dmat">[dmat]</a> and its eigenvalues
+<span class="arithmatex"><span class="MathJax_Preview">\omega^{2}({\mathbf{q}})</span><script type="math/tex">\omega^{2}({\mathbf{q}})</script></span> are smoothly varying with wavevector
+<span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>. Fourier interpolation is used to generate dynamical
+matrices on an arbitrarily fine grid or linear path in reciprocal space
+from a set of DFPT calculations on a much coarser grid. For a full
+description of the method see references (<a href="../Bibliography/#ref-BaroniDDG01">Baroni et al.
+2001</a>; <a href="#ref-GianozziGPB91">Giannozzi et al. 1991</a>;
+<a href="../Bibliography/#ref-GonzeL97">Gonze and Lee 1997</a>).</p>
+<p>A complication arises in the case of polar solids where the
+dipole-dipole interaction generated upon displacing an atom leads to a
+longer ranged force constant matrix which decays only as <span class="arithmatex"><span class="MathJax_Preview">1 / r^{3}</span><script type="math/tex">1 / r^{3}</script></span>.
+CASTEP models this term analytically using Born effective charges and
+dielectric permittivity calculated using an electric field response DFPT
+calculation (see section <a href="../Dielectric-properties/#sec:efield">[efield]</a> and Ref. (<a href="../Bibliography/#ref-GonzeL97">Gonze
+and Lee 1997</a>)). It is therefore able to perform the
+Fourier interpolation for only the part of the force constant matrix
+which varies as <span class="arithmatex"><span class="MathJax_Preview">1 / r^{5}</span><script type="math/tex">1 / r^{5}</script></span>, and does not require a finer grid than in
+the case of non-polar solids.</p>
+<h4 id="sec:interpolation-setup">Setting up an interpolation calculation</h4>
+<p>In the <code>.cell</code> file choose the q-points of the coarse grid of points at
+which to perform DFPT calculations. This may be specified as a
+<code>%block PHONON_KPOINT_LIST</code> containing the reduced set of points in the
+irreducible Brillouin Zone, but is is almost always more straightforward
+to use the alternative keywords</p>
+<blockquote>
+<p><code>phonon_kpoint_mp_grid</code> : <em>p q r</em><br />
+<code>phonon_kpoint_mp_offset</code> : <code>INCLUDE_GAMMA</code></p>
+</blockquote>
+<p>to specify the grid parameters and offset<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">6</a></sup>. The grid parameters <em>p</em>,
+<em>q</em> and <em>r</em> should normally be chosen to give a roughly uniform sampling
+of reciprocal space taking length of the reciprocal lattice vectors into
+account, and should be compatible with the symmetry of the simulation
+cell. Alternatively a grid may be specified using the minimum spacing,
+for example</p>
+<blockquote>
+<p><code>phonon_kpoint_mp_grid_spacing 0.1 1/ang</code></p>
+</blockquote>
+<p>Normally the grid should be chosen to contain the <span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span> point, which
+usually gives better convergence properties of the interpolation
+(<em>i.e.*convergence at smaller *p,q,r</em>) than otherwise. This is the
+opposite behaviour to electronic k-point sampling (see Ref. (<a href="../Bibliography/#ref-ProbertP03">Probert
+and Payne 2003</a>)). The special keyword value
+<code>phonon_kpoint_mp_offset : INCLUDE_GAMMA</code> avoids the need to work out
+the offset explicitly.</p>
+<p>The choice of grid parameters <em>p</em>, <em>q</em> and <em>r</em> is governed by three
+considerations:</p>
+<ul>
+<li>
+<p>For a 3-dimensional crystal, <em>p,q,r</em> <em>should obey the crystallographic
+  symmetry</em>, so for a cubic or rhombohedral crystal you should set
+  <span class="arithmatex"><span class="MathJax_Preview">p = q = r</span><script type="math/tex">p = q = r</script></span>. In the case of a uniaxial crystal, such as tetragonal or
+  hexagonal we have <span class="arithmatex"><span class="MathJax_Preview">p = q \neq r</span><script type="math/tex">p = q \neq r</script></span> (assuming that <span class="arithmatex"><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span> is the unique
+  axis) and for lower symmetry there is no constraint.</p>
+</li>
+<li>
+<p>The value in any of the directions limits the <em>range of the force
+  constant matrix</em> in much the same way as the supercell multiplier does
+  in a finite-difference/supercell calculation
+  (Section <a href="./#sec:supercell">[supercell]</a>). Exactly how large this
+  should be depends on the nature of the chemical bonding. Ionically
+  bonded systems tend to have fairly short-ranged force-constant
+  matrices and need relatively coarse grids for convergence. For sodium
+  chloride in the rocksalt structure with a primitive lattice parameter
+  3.75Å a <span class="arithmatex"><span class="MathJax_Preview">4 \times 4 \times 4</span><script type="math/tex">4 \times 4 \times 4</script></span> grid is reasonably close to convergence.
+  This corresponds to a truncation of the force constant matrix at a
+  distance of approximately <span class="arithmatex"><span class="MathJax_Preview">7</span><script type="math/tex">7</script></span>Å (<span class="arithmatex"><span class="MathJax_Preview">\approx p \times 2 \pi / a</span><script type="math/tex">\approx p \times 2 \pi / a</script></span>). On the
+  other hand covalent systems tend to have fairly long-ranged
+  force-constant matrices and need finer grids for convergence. Silicon
+  is a good example of this. The primitive lattice parameter is similar
+  to sodium chloride at <span class="arithmatex"><span class="MathJax_Preview">3.81</span><script type="math/tex">3.81</script></span>Å, but the dispersion curve is not fully
+  converged until an <span class="arithmatex"><span class="MathJax_Preview">8 \times 8 \times 8</span><script type="math/tex">8 \times 8 \times 8</script></span> grid is used. A more detailed
+  examination of this point may be found in reference (<a href="../Bibliography/#ref-AcklandWC97">Ackland, Warren,
+  and Clark 1997</a>).</p>
+</li>
+<li>
+<p>While there is no essential physics relationship between the grid
+  sizes for phonon <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-points and that required for
+  electronic <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{k}}</span><script type="math/tex">{\mathbf{k}}</script></span>-point sampling <sup id="fnref:10"><a class="footnote-ref" href="#fn:10">7</a></sup>, there is a technical
+  connection resulting from the implementation of density-functional
+  perturbation theory and the requirement to generate and use
+  ground-state Kohn-Sham wavefunctions on grids containing both
+  <span class="arithmatex"><span class="MathJax_Preview">\{{\mathbf{k}}\}</span><script type="math/tex">\{{\mathbf{k}}\}</script></span> and <span class="arithmatex"><span class="MathJax_Preview">\{{\mathbf{k}}+ {\mathbf{q}}\}</span><script type="math/tex">\{{\mathbf{k}}+ {\mathbf{q}}\}</script></span> (See
+  ref. (<a href="../Bibliography/#ref-Gonze97">Gonze 1997</a>) for the mathematical details). For
+  best performance and stability of the DFPT calculation the <em>phonon</em>
+  grid parameters should be <em>commensurate</em> with the <em>electronic</em> grid
+  with an exact divisor as the simplest case. For example, in an
+  elemental metal with an hcp structure such as Mg, an electronic
+  <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{k}}</span><script type="math/tex">{\mathbf{k}}</script></span>-point sampling of <span class="arithmatex"><span class="MathJax_Preview">21 \times 21 \times 12</span><script type="math/tex">21 \times 21 \times 12</script></span> and a phonon
+  <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-point sampling of <span class="arithmatex"><span class="MathJax_Preview">7 \times 7 \times 6</span><script type="math/tex">7 \times 7 \times 6</script></span> might be most
+  effective. This is not a hard requirement and CASTEP will attempt to
+  work with whatever grids are specified, but in some cases there may be
+  a performance advantage to rounding up one or other of the grids to
+  meet the commensurability criterion.</p>
+</li>
+</ul>
+<p>Additional keywords in the <code>.param</code> file control the interpolation. Most
+importantly</p>
+<blockquote>
+<p><code>phonon_fine_method : INTERPOLATE</code></p>
+</blockquote>
+<p>instructs CASTEP to perform the Fourier interpolation step following the
+usual DFPT calculation.</p>
+<p>The target set of wavevectors for the interpolation is set up using
+additional keywords or blocks in the <em>.cell</em> file. Either</p>
+<blockquote>
+<p><code>phonon_fine_kpoint_mp_grid</code> <em>p q r</em><br />
+<code>phonon_fine_kpoint_mp_offset</code> <em>o<span class="arithmatex"><span class="MathJax_Preview">_1</span><script type="math/tex">_1</script></span> o<span class="arithmatex"><span class="MathJax_Preview">_2</span><script type="math/tex">_2</script></span> o<span class="arithmatex"><span class="MathJax_Preview">_3</span><script type="math/tex">_3</script></span></em></p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p><code>phonon_fine_kpoint_mp_spacing 0.03 1/ang</code> .</p>
+</blockquote>
+<p>will perform interpolation onto a regular (possibly offset) grid. In
+fact only the points in the irreducible wedge of the Brillouin Zone are
+included, and a suitable weight is computed so that the weighted average
+is identical to a uniform sampling of the BZ. This is the usual method
+for computing a phonon density of states.</p>
+<p>If a set of dispersion curves along high symmetry directions is
+required, an empty cell keyword block</p>
+<blockquote>
+<p><code>%block PHONON_FINE_KPOINT_PATH</code><br />
+<code>%endblock PHONON_FINE_KPOINT_PATH</code></p>
+</blockquote>
+<p>will internally generate a list of <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-points sampling a
+default path through the Brillouin-Zone according to the symmetry of the
+calculation. Alternatively a list of <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-points explicitly
+specifying the vertices of the path may be input as</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>%block PHONON_FINE_KPOINT_PATH
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>0.0 0.0 0.0
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>0.5 0.5 0.0
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>0.5 0.5 0.5
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>break
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>0.0 0.0 0.0
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>0.5 0.5 0.5
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>...
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>%endblock PHONON_FINE_KPOINT_PATH
+</code></pre></div>
+</blockquote>
+<p>which traverses the directions between the vertices specified, except in
+the presence of the <code>break</code> keyword where the path jumps without
+including any intermediate points. The fineness of sampling along the
+path is set by an additional keyword</p>
+<blockquote>
+<p><code>phonon_fine_kpoint_path_spacing : 0.03 1/ang</code> .</p>
+</blockquote>
+<p>As a final alternative, a simple list of points can be directly input to
+model any sampling you choose using</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>%block PHONON_FINE_KPOINT_LIST
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>0.0 0.0 0.0
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>0.1 0.2 0.3
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>...
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>%endblock PHONON_FINE_KPOINT_LIST
+</code></pre></div>
+</blockquote>
+<p>This is the approach used for files generated by Accelrys Materials
+Studio.</p>
+<p>The same keywords are used in the closely related method of a finite
+difference calculation; see the example <code>.cell</code> file of
+figure <a href="./#fig:al-sc-cell">[al-sc-cell]</a>.</p>
+<h4 id="sec:continuation">Continuation</h4>
+<p>CASTEP stores the results of all phonon calculations - dynamical
+matrices and force constant matrices - in the binary <em>seedname</em><code>.check</code>
+file written at the end of a successful run. This can be used to change
+some values of parameters relating to interpolation, and to change or
+indeed replace the entire fine phonon k-point set <em>without</em> any need to
+repeat the expensive DFPT (or supercell) part of the calculation. In
+fact a single calculation of the force constant matrix is sufficient to
+compute a DOS at a variety of sampling densities plus arbitrarily smooth
+dispersion curves.</p>
+<p>Setting up a continuation calculation is simple. Just add the
+continuation keyword in the usual way to a renamed copy of the param
+file</p>
+<blockquote>
+<p><code>continuation</code> <em>orig-seedname</em><code>.check</code></p>
+</blockquote>
+<p>and make any changes to the fine phonon k-point sampling parameters in a
+copy of the <em>seedname</em><code>.cell</code> file. It is recommended that you work with
+renamed copies to avoid overwriting the original and valuable
+<em>seedname</em><code>.check</code> file. Running CASTEP on the new set of input files is
+exactly the same as running a new calculation, except that the result
+will be generated much more quickly.</p>
+<p>When setting up a continuation run, take care not to change the standard
+phonon k-point set, the electronic k-point set or any electronic
+structure parameters such as <code>elec_energy_tol</code>. If a mismatch is
+detected with the values stored in the checkpoint file, CASTEP will
+discard the saved dynamical matrix data and restart the full calculation
+from the beginning.</p>
+<p>Continuation calculations are also used in conjunction with
+<em>checkpointing</em> where a partially complete calculation is written to a
+file, also in <code>.check</code> format and which may be used to restart an
+interrupted calculation. See
+section <a href="../Running-Large-Calculations/#sec:checkpointing">[checkpointing]</a> for a description.</p>
+<h4 id="sec:interpolation-control">Control of interpolation scheme</h4>
+<p>The final representation of the force constant matrix derived from the
+dynamical matrices is actually a periodic representation and is
+equivalent to the <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}=0</span><script type="math/tex">{\mathbf{q}}=0</script></span> dynamical matrix of a (fictitious)
+<span class="arithmatex"><span class="MathJax_Preview">p \times q \times r</span><script type="math/tex">p \times q \times r</script></span> supercell. (See
+section <a href="./#sec:supercell">[supercell]</a> for more explanation.)
+CASTEP must determine a mapping between elements of the periodic
+dynamical matrix and aperiodic force constant matrix using a
+minimum-image convention for ionic site pairs and impose a cutoff scheme
+in real space to exclude (supercell-) periodic images. In fact CASTEP
+implements two distinct schemes.</p>
+<p>The cumulant scheme  (<a href="../Bibliography/#ref-ParlinskiLK97">Parlinski, Li, and Kawazoe
+1997</a>) includes all image force constants with a
+suitable weighting to avoid multiple counting of images. This is
+achieved by including image force constants in any direction if they lie
+within half the distance to the nearest periodic repeat of the
+fictitious supercell lattice in that direction. If an atom-atom pair
+vector lies <em>exactly</em> half way to the supercell repeat so that image
+force constants occur, for example, at both <span class="arithmatex"><span class="MathJax_Preview">\mathbf{L}</span><script type="math/tex">\mathbf{L}</script></span> and
+<span class="arithmatex"><span class="MathJax_Preview">-\mathbf{L}</span><script type="math/tex">-\mathbf{L}</script></span>, all images at the same distance are included with a
+suitable weighting factor to preserve the symmetry of the cumulant force
+constant matrix. (See Refs. (<a href="../Bibliography/#ref-ParlinskiLK97">Parlinski, Li, and Kawazoe
+1997</a>) and (<a href="#ref-YeLWH04">Ye et al. 2004</a>) for a
+more detailed explanation). This scheme is selected by specifying the
+param file keyword</p>
+<blockquote>
+<p><code>phonon_fine_cutoff_method CUMULANT</code></p>
+</blockquote>
+<p>and is in fact the default method in CASTEP.</p>
+<p>CASTEP also implements a simple spherical cutoff, controlled by the
+parameter <span class="arithmatex"><span class="MathJax_Preview">R_c</span><script type="math/tex">R_c</script></span> and specified by parameter</p>
+<blockquote>
+<p><code>phonon_force_constant_cutoff 10.0 ang</code></p>
+</blockquote>
+<p>The value <span class="arithmatex"><span class="MathJax_Preview">R_c</span><script type="math/tex">R_c</script></span> should be chosen to satisfy
+<span class="arithmatex"><span class="MathJax_Preview">2 R_c &lt; min(p L_1,q L_2,r L_3) L</span><script type="math/tex">2 R_c < min(p L_1,q L_2,r L_3) L</script></span> where <span class="arithmatex"><span class="MathJax_Preview">L_n</span><script type="math/tex">L_n</script></span> is the cell edge of the
+simulation cell and <span class="arithmatex"><span class="MathJax_Preview">p,q,r</span><script type="math/tex">p,q,r</script></span> are the (coarse) grid of phonon wavevectors.
+It is usually easiest to specify a value of zero, in which case CASTEP
+chooses the largest allowable value automatically. This scheme is most
+suitable for bulk materials of cubic symmetry. The spherical scheme is
+chosen using keyword</p>
+<blockquote>
+<p><code>phonon_fine_cutoff_method SPHERICAL</code> .</p>
+</blockquote>
+<p>Within the default method a smaller cutoff volume can be decreased by a
+radius scaling factor, <em>e.g.</em></p>
+<blockquote>
+<p><code>phonon_force_constant_cut_scale : 1.0</code> .</p>
+</blockquote>
+<p>This may be useful for testing the effect of long-ranged contributions
+to the IFC matrix. However any departure of this parameter’s value from
+1 does not preserve the superior convergence properties of the cumulant
+scheme and will in general require a larger supercell than the exact
+cumulant method.</p>
+<h4 id="sec:asr">Acoustic Sum Rule correction</h4>
+<p id="eq:asr">The vibrational Hamiltonian is invariant to a uniform translation of the
+system in space. This symmetry is the origin of the well-known result
+that any crystal has three acoustic vibrational modes at
+<span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}=0</span><script type="math/tex">{\mathbf{q}}=0</script></span> with a frequency of zero. This leads to the so-called
+<em>acoustic sum rule</em> (or ASR) (<a href="../Bibliography/#ref-AcklandWC97">Ackland, Warren, and Clark
+1997</a>; <a href="#ref-Pick1970">Pick, Cohen, and Martin 1970</a>)
+which has mathematical expressions for the force constant and
+<span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span>-point dynamical matrices   <br /></p>
+<div class="arithmatex">
+<div class="MathJax_Preview">\begin{aligned}
+ \sum_{\kappa,a} {\Phi^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(a)}&amp;= 0\\
+ \sum_{\kappa} {D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q}=0)}&amp;= 0 
+\end{aligned}</div>
+<script type="math/tex; mode=display">\begin{aligned}
+ \sum_{\kappa,a} {\Phi^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(a)}&= 0\\
+ \sum_{\kappa} {D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q}=0)}&= 0 
+\end{aligned}</script>
+</div>
+<p>In plane-wave calculations the translational invariance is broken as
+atoms translate with respect to the fixed FFT grid, so the sum rule is
+never exactly satisfied. Consequently it is sometimes observed even in
+an otherwise apparently very well converged calculation that the three
+acoustic modes at <span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span> depart significantly from zero frequency.
+Depending on the XC functional<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">8</a></sup> these frequencies may reach or
+exceed 50 cm<span class="arithmatex"><span class="MathJax_Preview">^{\text{-1}}</span><script type="math/tex">^{\text{-1}}</script></span>. One solution is simply to increase number of
+grid points of CASTEP’s “fine” FFT grid used for densities and
+potentials by increasing <code>fine_grid_scale</code><sup id="fnref:12"><a class="footnote-ref" href="#fn:12">9</a></sup>. (N. B. This is distinct
+from <code>grid_scale</code> which controls the FFT grid used to represent
+wavefunctions.) However this can be very costly in computer time and
+memory.</p>
+<p>Provided that the amplitude of the symmetry violation is not too large,
+it is possible to apply a transformation to the computed dynamical or
+force constant matrix so that it exactly satisfies the ASR. CASTEP
+implements a scheme which projects out the acoustic mode eigenvectors
+and adjusts their frequency to zero, while having minimal impact on the
+optic mode frequencies. This scheme is controlled by parameters (in the
+<code>.param</code> file)</p>
+<blockquote>
+<p><code>phonon_sum_rule_method : REAL / RECIP / REAL-RECIP / NONE</code></p>
+</blockquote>
+<p>The first of these simply activates or deactivates the correction. The
+second chooses which of the variants of the ASR in
+equation <a href="./#eq:asr">[asr]</a> to enforce, the real-space force constant
+matrix, the reciprocal-space dynamical matrix, or both.
+(<code>phonon_sum_rule_method : NONE</code> is a synonym for
+<code>phonon_sum_rule : FALSE</code>). The real-space method is only applicable to
+interpolation or supercell/finite displacement calculations, but the
+reciprocal-space method can be used for any type of phonon calculation.</p>
+<p>Both variants change the acoustic mode frequencies away from but near
+<span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}=0</span><script type="math/tex">{\mathbf{q}}=0</script></span>, the realspace method implicitly, and the reciprocal
+space method explicitly, by determining the correction to
+<span class="arithmatex"><span class="MathJax_Preview">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q}=0)}</span><script type="math/tex">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q}=0)}</script></span> and
+subtracting it from
+<span class="arithmatex"><span class="MathJax_Preview">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</span><script type="math/tex">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</script></span> as
+suggested by Gonze (<a href="../Bibliography/#ref-GonzeL97">Gonze and Lee 1997</a>). This usually
+results in acoustic mode behaviour which is indistinguishable from a
+very well converged calculation using a very fine FFT grid<sup id="fnref:13"><a class="footnote-ref" href="#fn:13">10</a></sup>.</p>
+<p>In addition to the sum rule on frequencies there is another for the Born
+effective charges (see section <a href="../Dielectric-properties/#sec:efield">[efield]</a>)</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">\sum_{\kappa} {Z^{*}_{\kappa,\beta,\alpha} }= 0</div>
+<script type="math/tex; mode=display">\sum_{\kappa} {Z^{*}_{\kappa,\beta,\alpha} }= 0</script>
+</div>
+<p>which is activated by parameter</p>
+<blockquote>
+<p><code>born_charge_sum_rule : TRUE</code></p>
+</blockquote>
+<p>The default behaviour of CASTEP is that neither sum rule is enforced. If
+this was not requested in the original run, then it may be added in
+post-processing fashion in a continuation run, as per
+section <a href="./#sec:continuation">[continuation]</a>. Only the raw
+dynamical and/or force constant matrices are stored in the checkpoint
+file <em>without</em> the effect of ASR enforcement, which is only applied at
+the printout stage. Therefore the effect can be turned off, or altered
+by a post-processing calculation as well as turned on.</p>
+<h4 id="density-of-states">Density of States</h4>
+<p id="eq:dos">The definition of the phonon density of states requires an integration
+of the calculated frequencies <span class="arithmatex"><span class="MathJax_Preview">\omega_{i{\mathbf{q}}}</span><script type="math/tex">\omega_{i{\mathbf{q}}}</script></span> over the
+Brillouin-Zone   <br /></p>
+<div class="arithmatex">
+<div class="MathJax_Preview">g(\omega) = \int_{\text{BZ}}d^3{\mathbf{q}}\sum_i \delta(\omega -
+\omega_{i{\mathbf{q}}})  .</div>
+<script type="math/tex; mode=display">g(\omega) = \int_{\text{BZ}}d^3{\mathbf{q}}\sum_i \delta(\omega -
+\omega_{i{\mathbf{q}}})  .</script>
+</div>
+<p id="eq:broadendos">A simple computational approximation would be to compute
+<span class="arithmatex"><span class="MathJax_Preview">\omega_{i{\mathbf{q}}}</span><script type="math/tex">\omega_{i{\mathbf{q}}}</script></span> on a regular, discrete grid of <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>,
+replace the integral with a sum over the grid and convolute the result
+with some peak shape function <span class="arithmatex"><span class="MathJax_Preview">h(\omega)</span><script type="math/tex">h(\omega)</script></span> such as a Gaussian   <br /></p>
+<div class="arithmatex">
+<div class="MathJax_Preview">g(\omega) \approx \int d\omega^{\prime} h(\omega - \omega^{\prime}) \sum_{{\mathbf{q}}} \sum_i \delta(\omega^{\prime} -
+\omega_{i{\mathbf{q}}})  .</div>
+<script type="math/tex; mode=display">g(\omega) \approx \int d\omega^{\prime} h(\omega - \omega^{\prime}) \sum_{{\mathbf{q}}} \sum_i \delta(\omega^{\prime} -
+\omega_{i{\mathbf{q}}})  .</script>
+</div>
+<p>In the CASTEP toolset, this is implemented by performing a Fourier
+interpolation calculation onto a suitably fine <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-point set,
+specifying either <code>phonon_fine_kpoint_mp_grid</code> or
+<code>phonon_fine_kpoint_mp_spacing</code>. The resulting <code>.phonon</code> file may then
+be analysed using the <code>dos.pl</code> tool (see
+section <a href="../Plotting-and-analysis-tools/#sec:dos-pl">[dos-pl]</a>) which implements
+equation <a href="./#eq:broadendos">[broadendos]</a>.</p>
+<p>However the broadening smooths out any sharp features of the DOS, and
+fails to reproduce the smoothly-curved or sharply peaked segments
+typical of theoretical densities-of-states. This is discussed in more
+detail in references (<a href="../Bibliography/#ref-YatesWVS07">Yates et al. 2007</a>) and
+ (<a href="../Bibliography/#ref-Pickard97">Pickard 1997</a>). A more faithful rendering may be
+obtained using the so-called <em>adaptive broadening</em> approach of Yates et.
+al (<a href="../Bibliography/#ref-YatesWVS07">Yates et al. 2007</a>) which uses the <em>gradients</em> of
+the phonon branch dispersion to narrow or widen the broadening for flat
+or steep branches respectively. It is activated by the parameters
+keyword</p>
+<blockquote>
+<p><code>phonon_calculate_dos : TRUE</code></p>
+</blockquote>
+<p>which computes an adaptively-broadened DOS during the Fourier
+interpolation stage of the calculation and writes an output file named
+<code>&lt;seedname&gt;.phonon_dos</code> containing the tabulated DOS, plus the
+per-atomic-species resolved DOS in additional columns. The <code>dos.pl</code>
+script is able to read and present <code>.phonon_dos</code> files just as with
+<code>.phonon</code>.</p>
+<p>The range and resolution may be modified using additional parameters,
+for example</p>
+<blockquote>
+<p><code>phonon_dos_spacing : 0.01 THz</code><br />
+<code>phonon_dos_limit : 10.0 THz</code></p>
+</blockquote>
+<p>Example output for the phonons of diamond is shown in
+figure <a href="./#fig:c2-pdos">[c2-pdos]</a>.</p>
+<dl>
+<dt><img alt="" src="../diamond-DOS.svg" /></dt>
+<dd>
+<p id="fig:c2-pdos"><strong>Figure 3</strong> Phonon DOS for Diamond, with an <span class="arithmatex"><span class="MathJax_Preview">18^3</span><script type="math/tex">18^3</script></span> fine grid comparing Gaussian
+broadened (red) vs adaptively broadened (black) methods. Artefactual
+wiggles are clearly visible in the Gaussian-broadened case, and the
+height of the sharp peaks is not well reproduced.   <br /></p>
+</dd>
+</dl>
+<h3 id="sec:fd">Finite Displacement</h3>
+<p>In addition to the DFPT method of computing force constants, CASTEP
+implements schemes based on numerical differentiation of forces when
+atoms are displaced by a small amount from their equilibrium positions.
+This method is useful for cases where DFPT has not been implemented,
+which as of CASTEP release 24.1 includes ultrasoft pseudopotentials,
+Hubbard U and exact exchange and hybrid functionals, and some of the
+newer classes of dispersion correction.</p>
+<p>There are three variants of this scheme.</p>
+<h4 id="primitive-cell-finite-displacement">Primitive Cell Finite Displacement</h4>
+<p>The basic finite displacement method is selected by setting parameter</p>
+<blockquote>
+<p><code>phonon_method : FINITEDISPLACEMENT</code></p>
+</blockquote>
+<p>In contrast to DFPT such displacements are necessarily periodic with the
+simulation cell, and therefore only <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}=0</span><script type="math/tex">{\mathbf{q}}=0</script></span> phonons are
+commensurate with this condition. As in the case of DFPT lattice
+dynamics the phonon wavevectors are specified by
+<code>%block PHONON_KPOINT_LIST</code>, <code>%block PHONON_KPOINT_PATH</code> or
+<code>phonon_kpoint_mp_grid</code> in the <code>.cell</code> file but only the <span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span> point,
+<span class="arithmatex"><span class="MathJax_Preview">(0,0,0)</span><script type="math/tex">(0,0,0)</script></span> is meaningful. CASTEP will print a warning in the output file
+and ignore any non-zero value in the list.</p>
+<p id="eq:finite-diff">CASTEP proceeds by shifting each atom by a small amount, then performing
+a SCF calculation to evaluate the forces on the perturbed configuration.
+Both positive and negative displacements are performed in each direction
+so that the corresponding force constants can be evaluated using the
+accurate “central difference” method of numerical differentiation.   <br /></p>
+<div class="arithmatex">
+<div class="MathJax_Preview">\frac{d^{2} E_{0}}{d u_{\kappa,\alpha}
+        d u_{\kappa^{\prime},\alpha^{\prime}}} = \frac{d F_{\kappa,\alpha}}{d u} \approx \frac{F^{+}_{\kappa,\alpha} - F^{-}_{\kappa,\alpha}}{2 u} \;.</div>
+<script type="math/tex; mode=display">\frac{d^{2} E_{0}}{d u_{\kappa,\alpha}
+        d u_{\kappa^{\prime},\alpha^{\prime}}} = \frac{d F_{\kappa,\alpha}}{d u} \approx \frac{F^{+}_{\kappa,\alpha} - F^{-}_{\kappa,\alpha}}{2 u} \;.</script>
+</div>
+<p>Equation <a href="./#eq:finite-diff">[finite-diff]</a> demonstrates that a
+single pair of displaced calculation yields an entire row of the
+dynamical matrix. As with DFPT calculations, only the minimal set of
+perturbations is performed and the space-group symmetry is used to build
+the complete dynamical matrix.</p>
+<p>The SCF calculations on the perturbed configuration are efficient,
+typically taking only only a few cycles in CASTEP 5.0 or later. This
+efficiency is achieved by first making a good guess for the electron
+density of the perturbed system based on the ground state of the
+unperturbed system, and applying a displacement of an atomic-like
+density of the pseudo-atom in question. Second, the SCF is started using
+the Kohn-Sham orbitals of the unperturbed state as the initial guess for
+the perturbed configuration. To exploit this efficiency it is essential
+to use the density-mixing (Davidson) minimiser, selected by
+<code>elec_method : DM</code> in the <code>.param</code> file. (As the all-bands method has no
+means of initialising the density).</p>
+<p>The default displacement used is <span class="arithmatex"><span class="MathJax_Preview">0.01</span><script type="math/tex">0.01</script></span> bohr This can be changed if
+necessary by setting a parameter,</p>
+<blockquote>
+<p><code>phonon_finite_disp : 0.02 ang</code></p>
+</blockquote>
+<p>in the <code>.param</code> file. Except for the differences discussed above, input
+and output formats are the same as for DFPT calculations.</p>
+<h4 id="born-charges-permittivity-and-loto-splitting-with-fd">Born Charges, Permittivity and LO/TO splitting with FD</h4>
+<p>FD phonon calculations are useful where atomic-displacement response
+DFPT is not implemented, notably for ultrasoft pseudopotentials (USPs)
+and post-DFT exchange and correlation including LDA+U, SOC, hybrid
+functionals (see table <a href="./#tbl:captable">[captable]</a>). However
+properties including IR spectral intensity, LO/TO splitting and the
+effectiveness of Fourier interpolation of dynamical matrices depend on
+the Born effective charges and dielectric permittivity (see
+section <a href="../Dielectric-properties/#sec:efield">[efield]</a>), whose calculation by electric
+field response DFPT is not implemented.</p>
+<p>In some cases it may be convenient to read in externally computed or
+approximate values of Born charges and permittivity to be used to
+calculate IR spectra, LO/TO splitting etc. For example, a DFT+U,
+meta-GGA, or hybrid calculation might make use of values calculated
+using PBE-DFPT and NCPs as a fair approximation, or even computed using
+a different DFT code.</p>
+<p>This may be accomplished by specifying the name of an external file
+containing the values (in this case <code>BORN.DAT</code>) in the <code>.param</code> file</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>%block DEVEL_CODE
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>PHONON:READ_EXTERNAL_BORN=BORN.DAT:ENDPHONON
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>%endblock DEVEL_CODE
+</code></pre></div>
+</blockquote>
+<p>The file should be formatted as for the Phonopy code
+(<a href="https://phonopy.github.io/phonopy/input-files.html#born-optional">https://phonopy.github.io/phonopy/input-files.html#born-optional</a>). A
+file of this format may be written at the end of a DFT, NCP E-field
+response calculation by</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>%block DEVEL_CODE
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>PHONON:WRITE_EXTERNAL_BORN=BORN.DAT:ENDPHONON
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>%endblock DEVEL_CODE
+</code></pre></div>
+</blockquote>
+<h5 id="sec:berry-fd">Born charges from Berry Phase Polarization</h5>
+<p>As of CASTEP release 25.1, it will be possible to calculate Born
+effective charges (but not dielectric permittivity) using a
+finite-difference numerical differentiation of the Berry-phase
+polarization. This is performed as an adjunct to the FD phonon
+calculation, and will be automatically selected in the case of an FD
+phonon calculation with USPs. This works for any compatible Hamiltonian,
+including DFT+U, mGGAs such as rSCAN as well as hybrid XC functionals.</p>
+<h4 id="sec:ndsc">Finite Displacement using non-diagonal supercells</h4>
+<p>As with the DFPT method, calculation of phonon dispersion and DOS using
+the finite displacement method is achieved using Fourier interpolation
+of dynamical matrixes. First, an approximation of the full
+force-constant-matrix
+<span class="arithmatex"><span class="MathJax_Preview">{\Phi^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}}</span><script type="math/tex">{\Phi^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}}</script></span> is calculated by
+explicitly computing a set of
+<span class="arithmatex"><span class="MathJax_Preview">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</span><script type="math/tex">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</script></span> with
+<span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span> sampling a coarse grid of <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span> and using the
+inverse Fourier relation to equation <a href="../Introduction/#eq:dmat">[dmat]</a>. Then
+equation <a href="../Introduction/#eq:dmat">[dmat]</a> is used to generate the dynamical
+matrices at all of the (fine) phonon wavevectors required.</p>
+<p>The key step of computing every
+<span class="arithmatex"><span class="MathJax_Preview">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</span><script type="math/tex">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</script></span> on the
+“coarse” regular grid is achieved by constructing a list of supercells
+commensurate with each of the coarse <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-points in turn (so
+that <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}\cdot T_{\text{SC}} = 2 n \pi</span><script type="math/tex">{\mathbf{q}}\cdot T_{\text{SC}} = 2 n \pi</script></span> where <span class="arithmatex"><span class="MathJax_Preview">T_{\text{SC}}</span><script type="math/tex">T_{\text{SC}}</script></span>
+is a lattice vector of that supercell). This <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span> maps to a
+<span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span> point calculation on the corresponding supercell despite being
+incommensurate with the primitive cell, and
+<span class="arithmatex"><span class="MathJax_Preview">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</span><script type="math/tex">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</script></span> for the
+primitive cell at <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span> may be extracted using
+equation <a href="../Introduction/#eq:dmat">[dmat]</a>. It was shown by Lloyd-Williams and
+Monserrat (<a href="../Bibliography/#ref-LWM15">Lloyd-Williams and Monserrat 2015</a>) that by
+using so-called non-diagonal supercells such a set need contain only the
+least common multiple of the coarse grid subdivisions (<span class="arithmatex"><span class="MathJax_Preview">p, q, r</span><script type="math/tex">p, q, r</script></span>).
+Consequently the number of distinct supercell calculations requires is
+much smaller than the number of <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-vectors of the grid, and
+most importantly increases with the linear dimension of the grid instead
+of the product.</p>
+<p>A non-diagonal supercell calculation is selected by setting the
+parameters</p>
+<blockquote>
+<p><code>phonon_method : FINITEDISPLACEMENT</code><br />
+<code>phonon_fine_method : INTERPOLATE</code>,</p>
+</blockquote>
+<p>the cell keywords</p>
+<blockquote>
+<p><code>phonon_kpoint_mp_grid : p q r</code></p>
+</blockquote>
+<p>and one of the specifications of <code>phonon_fine_kpoints</code> exactly as in the
+case of a DFPT calculation. When the phonon calculation begins, CASTEP
+generates a list of supercells using the algorithm of Lloyd-Williams and
+Monserrat (<a href="../Bibliography/#ref-LWM15">Lloyd-Williams and Monserrat 2015</a>). For each of
+these, CASTEP generates the corresponding supercell and performs a
+finite-displacement phonon calculation. The dynamical matrices
+<span class="arithmatex"><span class="MathJax_Preview">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</span><script type="math/tex">{D^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q})}</script></span> are then
+extracted for each <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span> on the coarse KPOINT grid, and the
+calculation proceeds exactly as if the DFPT method has been used.</p>
+<p>The choice of coarse <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-point sampling set by
+<code>phonon_kpoint_mp_grid</code> requires one additional consideration compared
+to the DFPT case to give best computational performance. The
+supercell-generation algorithm of Lloyd Williams and Monserrat
+guarantees that the largest supercell in the generated list contains
+<span class="arithmatex"><span class="MathJax_Preview">N_\text{SC} = \text{LCM}  (p, q, r)</span><script type="math/tex">N_\text{SC} = \text{LCM}  (p, q, r)</script></span> replications of the primitive
+cell. For example, an <span class="arithmatex"><span class="MathJax_Preview">4 \times 4 \times 4</span><script type="math/tex">4 \times 4 \times 4</script></span> sampling of a cubic cell
+gives <span class="arithmatex"><span class="MathJax_Preview">N_\text{SC} = 4</span><script type="math/tex">N_\text{SC} = 4</script></span>. However a <span class="arithmatex"><span class="MathJax_Preview">2 \times 3 \times 4</span><script type="math/tex">2 \times 3 \times 4</script></span> sampling of an
+orthorhombic primitive cell yields <span class="arithmatex"><span class="MathJax_Preview">N_\text{SC} = 12</span><script type="math/tex">N_\text{SC} = 12</script></span>, the LCM of 4 and
+3. In that case it might be more efficient to use a <span class="arithmatex"><span class="MathJax_Preview">2 \times 4
+\times 4</span><script type="math/tex">2 \times 4
+\times 4</script></span> sampling which only requires <span class="arithmatex"><span class="MathJax_Preview">N_\text{SC} = 8</span><script type="math/tex">N_\text{SC} = 8</script></span> for the largest
+of the generated supercells.</p>
+<p>As well as the <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span>-point sampling, FD interpolation
+calculations require one further parameter choice, namely to select the
+<em>electronic</em> k-point sampling for the supercell calculations. This may
+most conveniently be set using the cell keyword</p>
+<blockquote>
+<p><code>supercell_kpoint_mp_spacing : 0.1 1/ang</code>.</p>
+</blockquote>
+<p>An explicit setting of grid sampling divisions with
+<code>supercell_kpoint_mp_grid</code> would be inappropriate as the correct choice
+will be different for each supercell, and unknown until run-time. By
+default CASTEP chooses a default spacing which is consistent with the
+primitive cell spacing, in an attempt to achieve a consistent level of
+convergence across supercells.</p>
+<p>Apart from the above two considerations, the setting up and execution of
+the FD interpolation follows exactly the same lines as with DFPT. In
+particular sum-rule, DOS and thermodynamics calculations and
+interpolation scheme tweaks apply identically.</p>
+<h4 id="sec:supercell">Legacy Finite Displacement/Supercell</h4>
+<p>The limitation of the primitive-cell finite displacement approach to
+<span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}=0</span><script type="math/tex">{\mathbf{q}}=0</script></span> may also be overcome by combining the method with the
+use of a supercell. This method, sometimes known as the “direct
+method” (<a href="../Bibliography/#ref-KuncM82">Kunc and Martin 1982, sec. 19.2</a>) relies on the
+short-ranged decay of the force constant matrix with interatomic
+distance and makes the assumption that force constants for separations
+larger than some value, <span class="arithmatex"><span class="MathJax_Preview">R_c</span><script type="math/tex">R_c</script></span> are negligibly small and can be treated as
+zero. A supercell can be constructed to contain an imaginary sphere of
+radius <span class="arithmatex"><span class="MathJax_Preview">R_c</span><script type="math/tex">R_c</script></span> beyond which force constants may be neglected. Then the
+<em>dynamical matrix</em> of a supercell satisfying <span class="arithmatex"><span class="MathJax_Preview">L &gt; 2 R_{c}</span><script type="math/tex">L > 2 R_{c}</script></span> is identical
+to the <em>force constant matrix</em>, <em>i.e.</em>
+<span class="arithmatex"><span class="MathJax_Preview">{C^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q}=0)}= {\Phi^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}}</span><script type="math/tex">{C^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}(\mathbf{q}=0)}= {\Phi^{\kappa,\kappa^\prime}_{\alpha,\alpha^\prime}}</script></span>.
+Therefore complete knowledge of the force constant matrix to a
+reasonable approximation may be derived from a single calculation of the
+<span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}=0</span><script type="math/tex">{\mathbf{q}}=0</script></span> dynamical matrix of a supercell containing several
+primitive cells. From this set of force constants the dynamical matrices
+at any phonon wavevector may be computed using
+equation <a href="../Introduction/#eq:dmat">[dmat]</a> in exactly the same way as used in an
+interpolation calculation.</p>
+<p><strong>Note:</strong> This method is mostly superceded by the non-diagonal
+supercell/finite displacement approach of
+section <a href="./#sec:ndsc">[ndsc]</a>. That method gives an equivalent
+calculation of the force constant matrix, usually with a smaller
+computational cost, because of its superior scaling with cell size.</p>
+<dl>
+<dt><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>%block LATTICE_CART
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>          0     2.02475      2.02475
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    2.02475           0      2.02475
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    2.02475     2.02475            0
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>%endblock LATTICE_CART
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>%block POSITIONS_ABS
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Al          0       0       0
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>%endblock POSITIONS_ABS
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>%block SPECIES_POT
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>Al Al_00.usp
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>%endblock SPECIES_POT
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>kpoint_mp_grid           14 14 14
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>supercell_kpoint_mp_grid  2  2  2
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>symmetry_generate
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>%block PHONON_FINE_KPOINT_PATH
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>0.0 0.0 0.0
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>0.5 0.5 0.0
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>1.0 1.0 1.0
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>0.5 0.5 0.5
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>0.5 0.5 0.0
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>0.5 0.75 0.25
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>0.5 0.5 0.5
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>%endblock PHONON_FINE_KPOINT_PATH
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>%block PHONON_SUPERCELL_MATRIX
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>-3  3  3
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a> 3 -3  3
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a> 3  3 -3
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>%endblock PHONON_SUPERCELL_MATRIX
+</code></pre></div></dt>
+<dd>
+<p id="fig:al-sc-cell"><strong>Figure 4</strong> Example cell file for aluminium supercell phonon calculation. This
+calculation computes a set of dispersion curves along high-symmetry
+directions. Note that this calculation is not fully converged with
+supercell size - there is a noticeable change in frequency on some of
+the branches on increasing the supercell matrix entries from 3 to 4.
+  <br /></p>
+</dd>
+<dt><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>task                            : PHONON
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>phonon_fine_method              : SUPERCELL
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>phonon_calc_lo_to_splitting     : FALSE
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>phonon_sum_rule                 : TRUE
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>calculate_born_charges          : FALSE
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>phonon_force_constant_ellipsoid : 1.0
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>cut_off_energy    : 150 eV
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>elec_method       : DM
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>smearing_width    : 0.04 eV
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>nextra_bands      : 4
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>spin_polarized    : FALSE
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>opt_strategy      : SPEED
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>num_dump_cycles   : 0
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>xc_functional     : LDA
+</code></pre></div></dt>
+<dd>
+<p id="fig:-sc-paramal"><strong>Figure 5</strong> Example param file for aluminium supercell phonon calculation. It is not
+strictly necessary to turn off the LO/TO splitting calculation - CASTEP
+will warn that this is not possible and turn it off anyway. The explicit
+request for a non-spin polarized calculation is necessary for fcc Al,
+because CASTEP chooses spin-polarized by default due to the odd number
+of electrons.   <br /></p>
+</dd>
+</dl>
+<p>In a CASTEP calculation the supercell must be chosen and explicitly
+specified in the input files. It is defined by a matrix, which
+multiplies the ordinary simulation cell vectors and is specified as a
+<span class="arithmatex"><span class="MathJax_Preview">3\times3</span><script type="math/tex">3\times3</script></span> matrix in the <code>.cell</code> file of the form</p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>%block PHONON_SUPERCELL_MATRIX
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a> 4  0  0
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a> 0  4  0
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a> 0  0  4
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>%endblock PHONON_SUPERCELL_MATRIX
+</code></pre></div>
+</blockquote>
+<p>This typical example using a diagonal matrix creates a supercell
+expanded along each lattice vector <strong>a</strong>, <strong>b</strong> and <strong>c</strong> by factor of
+4.</p>
+<p>The supercell to be used in a phonon calculation needs to be chosen with
+care.</p>
+<ul>
+<li>
+<p>It must be large enough to contain a sphere of radius <span class="arithmatex"><span class="MathJax_Preview">R_c</span><script type="math/tex">R_c</script></span>, the
+  typical range of a force constant matrix. In a simple metal a value of
+  <span class="arithmatex"><span class="MathJax_Preview">R_c</span><script type="math/tex">R_c</script></span> as small as 6Å may be satisfactory, but more complex and
+  structured systems will need a larger value<sup id="fnref:14"><a class="footnote-ref" href="#fn:14">11</a></sup>. In a covalent
+  semiconductor the required <span class="arithmatex"><span class="MathJax_Preview">R_c</span><script type="math/tex">R_c</script></span> may be 10Å or larger.</p>
+</li>
+<li>
+<p>However a supercell can quickly grow to generate a very large
+  calculation indeed. For example a <span class="arithmatex"><span class="MathJax_Preview">4 \times 4 \times 4</span><script type="math/tex">4 \times 4 \times 4</script></span> supercell of
+  even a 2 atom primitive cell contains 128 atoms. Consequently it is
+  rarely feasible to use this method on a uniprocessor or desktop
+  computer, and a substantial parallel computer is usually required.</p>
+</li>
+<li>
+<p>The <em>shape</em> of the supercell should usually be as near cubic as
+  possible, irrespective of the shape of the primitive cell, to optimise
+  the supercell size/<span class="arithmatex"><span class="MathJax_Preview">R_c</span><script type="math/tex">R_c</script></span> ratio. This can be achieved using an
+  off-diagonal supercell matrix, as in the example input files of
+  figure <a href="./#fig:al-sc-cell">[al-sc-cell]</a> where a cubic supercell
+  containing 108 atoms (<span class="arithmatex"><span class="MathJax_Preview">3 \times 4 = 12</span><script type="math/tex">3 \times 4 = 12</script></span> unit cells) is generated from
+  the rhombohedral primitive cell of aluminium containing a single atom.</p>
+</li>
+<li>
+<p>If the system is highly anisotropic, perhaps a slab model of a surface
+  then a uniform supercell is clearly not appropriate and a suitable
+  supercell must be designed from a consideration of the exact nature of
+  the model.</p>
+</li>
+</ul>
+<p>The electronic Brillouin-Zone integrals for the supercell calculation
+use the special k-points method, which are specified in the .<code>cell</code> file
+using an separate but analogous set of keywords to those pertaining to
+the primitive cell sampling. Specifically,</p>
+<ul>
+<li>
+<p><code>%block SUPERCELL_KPOINT_LIST</code> allows an exact specification of
+  k-points and weights</p>
+</li>
+<li>
+<p><code>supercell_kpoint_mp_grid_spacing d</code> chooses a Monkhorst-Pack grid
+  with the specified spacing.</p>
+</li>
+<li>
+<p><code>supercell_kpoint_mp_grid p q r</code> (and optionally
+  <code>supercell_kpoint_mp_offset</code> ) allow an exact specification of a
+  Monkhorst-Pack grid.</p>
+</li>
+<li>
+<p>Finally if no supercell kpoint keywords or blocks are given, a grid is
+  chosen to generate a similar sampling density to the primitive cell
+  calculation.</p>
+</li>
+</ul>
+<p>Once the force constant matrix has been calculated using the supercell,
+the remainder of the lattice dynamics proceeds exactly as in the case of
+a Fourier interpolation calculation. The keywords controlling the
+interpolation scheme and cutoff radius, the fine phonon kpoint set and
+the acoustic sum rule enforcement work in exactly the same way. See
+section <a href="./#sec:interpolation-setup">[interpolation-setup]</a> for
+details.</p>
+<h3 id="sec:convergence">Convergence</h3>
+<p>Phonon and dielectric response calculations give rise to a number of
+issues with convergence, in addition to those encountered in
+ground-state calculations, and a systematic and step-by-step approach is
+necessary to achieve well-converged results. CASTEP assists the user by
+setting default values for many convergence parameters based on the
+particular task which incorporate the experience of many calculations.
+Therefore it is a good practice not to specify convergence parameters
+explicitly unless specific convergence test results are known -
+otherwise a well-chosen default could be overridden with an untested
+value. (The example input of
+figure <a href="./#fig:example-gamma">[example-gamma]</a> contains no
+phonon-specific convergence parameters.)</p>
+<p>It was emphasised previously (section <a href="../Introduction/#sec:geometry">[geometry]</a>)
+that a well-converged geometry optimisation is a prerequisite for a
+phonon calculation. In turn this mandates a reasonably high level of
+convergence of plane-wave cutoff, SCF convergence and electronic k-point
+sampling. It is typical to run phonon calculations at a
+<code>basis_precision : FINE</code> level of plane-wave cutoff, (The header of each
+<code>.usp</code> or <code>.recpot</code> pseudopotential file contains a translation into eV
+units.) DFPT electric field response calculations can require finer
+electronic k-point sampling than suffices for a ground state
+calculation, so the effect of the <code>kpoint_mp_grid</code> on the dielectric
+permittivity should be tested.</p>
+<h4 id="convergence-of-dfpt-solver">Convergence of DFPT solver</h4>
+<p>The second stage of a phonon or E-field calculation is the variational
+DFPT solver, and there are a number of associated parameters to control
+the convergence. Parameters</p>
+<blockquote>
+<p><code>phonon_energy_tol 1.0e-5 eV/ang**2</code></p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p><code>efield_energy_tol 1.0e-5 ang**3</code></p>
+</blockquote>
+<p>govern the exit criterion for the DFPT self-consistency loop. The above
+default values are usually sufficient for frequencies converged to
+<span class="arithmatex"><span class="MathJax_Preview">&lt; 1 \text{cm}^{-1}</span><script type="math/tex">< 1 \text{cm}^{-1}</script></span> and permittivities to two or three decimal places
+and rarely need to be changed.</p>
+<p>However the converged results depend not only on the DFPT SCF
+calculation, but also, and rather strongly on the degree of convergence
+of the <em>ground state</em> electron density and wavefunctions. These enter
+the DFPT equations both directly and as a consequence of the
+orthogonality condition between ground-state and first-order response
+orbitals (<a href="../Bibliography/#ref-Refson2006">Refson, Tulip, and Clark 2006</a>; <a href="../Bibliography/#ref-GonzeL97">Gonze and
+Lee 1997</a>).</p>
+<p>To generate sufficiently accurate ground-state wavefunctions, the value
+of <code>elec_energy_tol</code> should be much lower than needed for an SCF or
+geometry optimuzation calculation. CASTEP sets a default value of
+roughly <code>phonon_energy_tol</code> squared and it is wise to rely on this and
+<em>not</em> to set <code>elec_energy_tol</code> explicitly in a phonon calculation. <sup id="fnref:15"><a class="footnote-ref" href="#fn:15">12</a></sup></p>
+<h4 id="convergence-of-finite-displacement-forces">Convergence of finite displacement forces</h4>
+<p>The criteria for choosing the “ground-state” convergence parameters for
+a finite-displacement phonon calculation (in either primitive or
+supercell mode) are naturally almost identical to those governing DFPT
+calculations. In this case there is no additional self-consistent
+electronic calculation; instead there is a sequence of additional
+ground-state calculations at displaced geometries.</p>
+<p>Finite-displacement calculations require very well converged <em>forces</em> to
+be computed in the ground state SCF calculation. This is because the
+numerical evaluation of the second derivative depends on differences
+between the (small) forces at perturbed configurations
+(equation <a href="./#eq:finite-diff">[finite-diff]</a>). Clearly the numerical
+derivative has lower relative precision than the argument (the forces),
+which must therefore be evaluated to a rather high precision. Unlike the
+ground-state <em>energy</em>, which is variational with respect to the
+orbitals, the forces are not and the error in the forces is linear in
+the error in the orbitals. The main parameter governing their accuracy
+is again</p>
+<blockquote>
+<p><code>elec_energy_tol</code></p>
+</blockquote>
+<p>which is again set by default from the value of <code>phonon_energy_tol</code><span class="arithmatex"><span class="MathJax_Preview">^2</span><script type="math/tex">^2</script></span>.</p>
+<p>It is normally sufficient to use the default value of <code>elec_energy_tol</code>
+chosen as the default in a phonon calculation. However there is also a
+way of <em>directly</em> achieving the requested force tolerance, by setting
+parameter</p>
+<blockquote>
+<p><code>elec_force_tol 1e-3 eV/ang</code> .</p>
+</blockquote>
+<p>This is not used by default as it adds some overhead to the SCF
+calculation resulting in longer run times. However it does guarantee
+that the forces really are converged to the required accuracy, unlike
+setting <code>elec_energy_tol</code>.</p>
+<h4 id="convergence-of-interpolation-and-supercell">Convergence of Interpolation and Supercell</h4>
+<p>Fourier interpolation and supercell calculations add yet another
+criterion which must be satisfied to achieve well-converged results -
+the range of the force-constant matrix in real space.
+Sections <a href="./#sec:interpolation-setup">[interpolation-setup]</a>
+and <a href="./#sec:supercell">[supercell]</a> discuss some of the criteria
+applicable to these types of calculation.</p>
+<p>Unfortunately convergence testing of the size of the supercell for
+FD/supercell calculations can be prohibitively expensive as the the
+volume and number of atoms increase as the cube of the linear dimension
+under test. Consequently the CPU time will increase with the sixth power
+or higher! There is no easy solution to this problem and the reader is
+cautioned not to necessarily take on trust that FD/supercell phonon
+calculations published in the literature are fully converged!</p>
+<p>However some progress may be made by performing a calculation using the
+largest feasible supercell. If</p>
+<blockquote>
+<p><code>phonon_fine_cutoff_method : SPHERICAL</code></p>
+</blockquote>
+<p>is selected, it is then possible to vary the cutoff radius using
+parameter</p>
+<blockquote>
+<p><code>phonon_force_constant_CUTOFF</code></p>
+</blockquote>
+<p>to lower values than the maximum of half the largest box size. These
+tests may be performed using the “continuation” method
+(section <a href="./#sec:continuation">[continuation]</a>) or the “phonons”
+utility (section <a href="../Plotting-and-analysis-tools/#sec:phonons-tool">[phonons-tool]</a>) without
+repeating the expensive supercell calculation.</p>
+<p>Another convergence test is automatically performed if the spherical
+cutoff method is selected. The frequencies resulting from the
+interpolation with the spherical cutoff are compared to those from an
+“exact” interpolation at wavevectors commensurate with the supercell.
+The results are written to the <code>.castep</code> file. This provides a
+quantitative measure of the interpolation error.</p>
+<p>A similar cutoff scaling test might be possible for the
+<code>phonon_fine_cutoff_method : DEFAULT</code> case, although it is considerably
+less useful. Parameter</p>
+<blockquote>
+<p><code>phonon_force_constant_cut_scale 0.9</code></p>
+</blockquote>
+<p>will scale the range of the cutoff by the factor specified. However the
+default value of 1.0 is “special” in including constants separated by
+exactly half the supercell Wigner Seitz cell. Consequently convergence
+is not smooth in this parameter and while 0.95 might be underconverged,
+1.0 could be very well converged. (This is also the reason for its
+superior convergence performance over the spherical cutoff scheme.)</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:4">
+<p>In general phonon wavevectors <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}</span><script type="math/tex">{\mathbf{q}}</script></span> are specified using
+one of the variants of the <code>phonon_kpoint_*</code> cell keywords for
+lists, grids or paths. The example given uses a list of length 1 to
+specify a single point.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>This example will use the DFPT method which is the default if
+<code>phonon_method</code> is not present.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Further optional output writing to <code>.castep</code> of the dynamical
+matrixes and force constant matrices is enabled at any iprint level
+by the parameters <code>phonon_write_dynamical</code> and
+<code>phonon_write_force_constants</code> respectively.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>The Placzek theory applies to the case of insulators only, and no
+general formulation to compute the activity for Raman scattering of
+conducting systems is available&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>If the parameter <code>raman_method : FINITEDISPLACEMENT</code> is set the
+calculation uses an older, finite-difference implementation (see
+section <a href="./#sec:fd">[fd]</a>) to compute the mode displacement
+derivatives of the polarizability tensor
+(section <a href="../Dielectric-properties/#sec:efield">[efield]</a>) using the approach of
+Porezag and Pedersen (<a href="../Bibliography/#ref-PorezagP:96">Porezag and Pederson
+1996</a>). The first stage is to perform a full
+phonon calculation at <span class="arithmatex"><span class="MathJax_Preview">{\mathbf{q}}=0</span><script type="math/tex">{\mathbf{q}}=0</script></span>, to determine the mode
+eigenvectors and identify the Raman-active modes. Then CASTEP loops
+over the active modes only computing the Raman tensor, activity and
+depolarization for each. This method is deprecated as obsolete and
+computationally expensive.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>The offset may be specified as three fractions of the grid
+spacing, so <span class="arithmatex"><span class="MathJax_Preview">1/2p \; 1/2q \; 1/2r</span><script type="math/tex">1/2p \; 1/2q \; 1/2r</script></span> shifts the grid exactly half a
+subdivision in each of the three directions. As of release 24.1 the
+<code>INCLUDE_GAMMA</code> keyword will automate this calculation and in fact
+is the default so that omitting <code>phonon_kpoint_mp_offset</code> entirely
+will do the right thing.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>The latter is governed by the effective range of electronic
+interactions which bears no relationship to the elastic range of the
+atomic displacements as required for the force constants.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>The effect is usually small for LDA, intermediate for PBE and
+largest for PW91, as the gradient terms are most sensitive to the
+ASR violation.&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>(or <code>fine_gmax</code> or <code>fine_cut_off_energy</code>&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>There is one known case where the reciprocal-space ASR correction
+fails to give the correct behaviour. Two-dimensional planar or
+layered systems with weak inter-layer bonding such as graphene or
+graphite exhibit a quadratic behaviour of an acoustic mode near
+<span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span>. The reciprocal space scheme fails to reproduce the
+correct, quadratic behaviour and linearises the dispersion. The
+realspace method generates correct behaviour in these cases.&#160;<a class="footnote-backref" href="#fnref:13" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>A non-negligible force constant at longer range may also occur in
+a metallic system in the presence of a Kohn anomaly.&#160;<a class="footnote-backref" href="#fnref:14" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:15">
+<p>Specifically, the error in the second-order energy or force
+constants is variational, and therefore depends <em>quadratically</em> on
+the error in the DFPT first-order response orbitals. However it is
+<em>non-variational</em> and <em>linear</em> with respect to the error in the
+ground-state orbitals. The practical consequence is that there is an
+error in DFPT results which varies as the <em>square root</em> of the
+ground-state convergence parameter <code>elec_energy_tol</code> which therefore
+must be very small for good accuracy. A heuristic rule of thumb is
+that <code>elec_energy_tol</code> <span class="arithmatex"><span class="MathJax_Preview">\approx</span><script type="math/tex">\approx</script></span> <code>phonon_energy_tol</code><span class="arithmatex"><span class="MathJax_Preview">^2</span><script type="math/tex">^2</script></span> is
+necessary to converge the second order energy to the value of
+<code>phonon_energy_tol</code>.&#160;<a class="footnote-backref" href="#fnref:15" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../Introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Dielectric-properties/" class="md-footer__link md-footer__link--next" aria-label="Next: Dielectric-properties" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Dielectric-properties
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3361 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.2.16">
+    
+    
+      
+        <title>Testing - CASTEP Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1c3799f8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#casteps-test-suite" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CASTEP Docs" class="md-header__button md-logo" aria-label="CASTEP Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CASTEP Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CASTEP Docs" class="md-nav__button md-logo" aria-label="CASTEP Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    CASTEP Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Documentation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Getting_Started/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Getting_Started/built_in_help/" class="md-nav__link">
+        Command line help
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Getting_Started/running_castep/" class="md-nav__link">
+        Running CASTEP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Getting_Started/basic_cell_file/" class="md-nav__link">
+        cell File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Getting_Started/basic_param_file/" class="md-nav__link">
+        param File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Getting_Started/restarting/" class="md-nav__link">
+        Checkpoint and Restart
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Ground State
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ground State" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ground State
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Groundstate/intro/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Groundstate/dftd/" class="md-nav__link">
+        Dispersion Corrections
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Groundstate/soc/" class="md-nav__link">
+        Spin Orbit Coupling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Groundstate/spin_constraints/" class="md-nav__link">
+        Spin Constraints
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Groundstate/population_analysis/" class="md-nav__link">
+        Population analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Groundstate/ELF/" class="md-nav__link">
+        ELF
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Geometry Optimisation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Geometry Optimisation" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Geometry Optimisation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Geometry_Optimisation/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Geometry_Optimisation/keywords/" class="md-nav__link">
+        Keywords
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Geometry_Optimisation/constraints/" class="md-nav__link">
+        Constraints
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Geometry_Optimisation/files/" class="md-nav__link">
+        Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Geometry_Optimisation/tools/" class="md-nav__link">
+        Tools
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Molecular Dynamics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Molecular Dynamics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Molecular Dynamics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Molecular_Dynamics/overview/" class="md-nav__link">
+        MD Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Molecular_Dynamics/basics/" class="md-nav__link">
+        MD Basics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Molecular_Dynamics/restarts/" class="md-nav__link">
+        MD Restarts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Molecular_Dynamics/files/" class="md-nav__link">
+        MD Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Molecular_Dynamics/keywords/" class="md-nav__link">
+        MD Keywords
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Molecular_Dynamics/tools/" class="md-nav__link">
+        MD Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Molecular_Dynamics/pimd/" class="md-nav__link">
+        PIMD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Molecular_Dynamics/hugoniostat/" class="md-nav__link">
+        Hugoniostat
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Transition State Search
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transition State Search" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Transition State Search
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Transition_State_Search/neb/" class="md-nav__link">
+        Nudged Elastic Band
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_6">
+          Exchange-Correlation (XC)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Exchange-Correlation (XC)" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Exchange-Correlation (XC)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/XC/XCoverview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/XC/XC/" class="md-nav__link">
+        Controlling XC
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/XC/libXC/" class="md-nav__link">
+        libXC
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_7" type="checkbox" id="__nav_2_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_7">
+          Spectral
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Spectral" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Spectral
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Spectral/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Spectral/keywords/" class="md-nav__link">
+        Keywords
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Spectral/restarts/" class="md-nav__link">
+        Restarts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_8" type="checkbox" id="__nav_2_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_8">
+          Phonons
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Phonons" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          Phonons
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Running-phonon-calculations/" class="md-nav__link">
+        Running-phonon-calculations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Dielectric-properties/" class="md-nav__link">
+        Dielectric-properties
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Thermodynamic-properties/" class="md-nav__link">
+        Thermodynamic-properties
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Plotting-and-analysis-tools/" class="md-nav__link">
+        Plotting-and-analysis-tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Running-Large-Calculations/" class="md-nav__link">
+        Running-Large-Calculations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Advanced-Topics/" class="md-nav__link">
+        Advanced-Topics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Keyword-Reference/" class="md-nav__link">
+        Keyword-Reference
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Phonons/Castep_Phonons/Bibliography/" class="md-nav__link">
+        Bibliography
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_9" type="checkbox" id="__nav_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_9">
+          NMR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NMR" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          NMR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/NMR/NMR_overview/" class="md-nav__link">
+        NMR Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          EPR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="EPR" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          EPR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/EPR/overview/" class="md-nav__link">
+        EPR Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/XRD/overview/" class="md-nav__link">
+        XRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_12" type="checkbox" id="__nav_2_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_12">
+          TDDFT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="TDDFT" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_12">
+          <span class="md-nav__icon md-icon"></span>
+          TDDFT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/TDDFT/overview/" class="md-nav__link">
+        TDDFT Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_13" type="checkbox" id="__nav_2_13" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_13">
+          Delta SCF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Delta SCF" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_13">
+          <span class="md-nav__icon md-icon"></span>
+          Delta SCF
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Delta_SCF/overview/" class="md-nav__link">
+        Delta SCF Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Delta_SCF/simple_delta_scf/" class="md-nav__link">
+        Simple Delta SCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Delta_SCF/lin_ex_delta_scf/" class="md-nav__link">
+        Linear expansion DeltaSCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Delta_SCF/mo_delta_scf/" class="md-nav__link">
+        MO Delta SCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Delta_SCF/molpdos/" class="md-nav__link">
+        Molecular Projected DOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_14" type="checkbox" id="__nav_2_14" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_14">
+          Pseudopotentials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pseudopotentials" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_14">
+          <span class="md-nav__icon md-icon"></span>
+          Pseudopotentials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Pseudopotentials/theory/" class="md-nav__link">
+        Theory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Pseudopotentials/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Pseudopotentials/reading_headers/" class="md-nav__link">
+        Headers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Pseudopotentials/otfg_string/" class="md-nav__link">
+        OTFG string
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_15" type="checkbox" id="__nav_2_15" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_15">
+          Input Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Input Files" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_15">
+          <span class="md-nav__icon md-icon"></span>
+          Input Files
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Input_Files/cell_file/" class="md-nav__link">
+        cell File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Input_Files/param_file/" class="md-nav__link">
+        param File
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Input_Files/cell_keywords/" class="md-nav__link">
+        Cell Keywords
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_16" type="checkbox" id="__nav_2_16" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_16">
+          Output Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Output Files" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_16">
+          <span class="md-nav__icon md-icon"></span>
+          Output Files
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Output_Files/output_files/" class="md-nav__link">
+        Output Files
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_17" type="checkbox" id="__nav_2_17" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_17">
+          Other Codes and Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Other Codes and Tools" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_17">
+          <span class="md-nav__icon md-icon"></span>
+          Other Codes and Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Tools/tools/" class="md-nav__link">
+        Other Codes and Tools
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_18" type="checkbox" id="__nav_2_18" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_18">
+          Troubleshooting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Troubleshooting" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_18">
+          <span class="md-nav__icon md-icon"></span>
+          Troubleshooting
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Troubleshooting/troubleshooting/" class="md-nav__link">
+        Common errors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation/Troubleshooting/linux_path/" class="md-nav__link">
+        Linux help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Bonding and Charge
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Bonding and Charge" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Bonding and Charge
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bonding_and_Charge/charge_density/" class="md-nav__link">
+        Plotting Charge Density
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bonding_and_Charge/mulliken_population/" class="md-nav__link">
+        Population Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bonding_and_Charge/ELF/" class="md-nav__link">
+        ELF
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Bands and DOS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Bands and DOS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Bands and DOS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" type="checkbox" id="__nav_3_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_1">
+          Plotting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Plotting" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Plotting
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bands_and_DOS/Plotting/plotting_perl/" class="md-nav__link">
+        Plotting - CASTEP tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bands_and_DOS/Plotting/plotting_sumo/" class="md-nav__link">
+        Plotting - SUMO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bands_and_DOS/Plotting/Optados/DOS/" class="md-nav__link">
+        OptaDOS - DOS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bands_and_DOS/Plotting/Optados/pDOS/" class="md-nav__link">
+        OptaDOS - pDOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bands_and_DOS/semiconductors/" class="md-nav__link">
+        Semiconductors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bands_and_DOS/metals/" class="md-nav__link">
+        Metals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Bands_and_DOS/magnetic/" class="md-nav__link">
+        Magnetic Materials
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Optics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Optics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Optics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Optics/Optics/" class="md-nav__link">
+        Optics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Optics/Optics_aluminium/" class="md-nav__link">
+        Optics - Aluminium
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Optics/Optics_ani/" class="md-nav__link">
+        Optical Anisotropy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4">
+          Coreloss
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Coreloss" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Coreloss
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Coreloss/Coreloss/" class="md-nav__link">
+        Coreloss
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Optics/JDOS/" class="md-nav__link">
+        JDOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/dispersion_corrections/castep-ase-dispersion-tutorial/" class="md-nav__link">
+        Dispersion corrections
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/NEB/neb_tutorial/" class="md-nav__link">
+        Nudged elastic band
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" type="checkbox" id="__nav_3_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_7">
+          NMR Shielding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NMR Shielding" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_7">
+          <span class="md-nav__icon md-icon"></span>
+          NMR Shielding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/NMR/Example_1_-Ethanol/" class="md-nav__link">
+        Example 1 - Ethanol
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/NMR/Example_2_-Diamond/" class="md-nav__link">
+        Example 2 - Diamond
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/NMR/Examples_3_-Alanine_and_Silicates/" class="md-nav__link">
+        Examples 3 - Alanine and Silicates
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_8" type="checkbox" id="__nav_3_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_8">
+          Delta SCF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Delta SCF" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_8">
+          <span class="md-nav__icon md-icon"></span>
+          Delta SCF
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Delta_SCF/simple_delta_scf/" class="md-nav__link">
+        Simple Delta SCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Delta_SCF/lin_ex_delta_scf/" class="md-nav__link">
+        Linear expansion DeltaSCF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Delta_SCF/molpdos/" class="md-nav__link">
+        Molecular Projected DOS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_9" type="checkbox" id="__nav_3_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_9">
+          GA
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GA" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_9">
+          <span class="md-nav__icon md-icon"></span>
+          GA
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/GA/Silicon/" class="md-nav__link">
+        Silicon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/GA/Introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_10" type="checkbox" id="__nav_3_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_10">
+          Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tools" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_10">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/Tools/elastic_constants/" class="md-nav__link">
+        Elastic Constants
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Developer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developer" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Developer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using_devel_codes/" class="md-nav__link">
+        Using Devel Codes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using_trace/" class="md-nav__link">
+        Using trace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adding_pair_pots/" class="md-nav__link">
+        Adding empirical potentials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build-system/" class="md-nav__link">
+        Build System
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style_guide/" class="md-nav__link">
+        Style Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Testing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Testing
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-your-code" class="md-nav__link">
+    Testing your code
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing your code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-complete-test-run" class="md-nav__link">
+    A complete test run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-and-incremental-testing" class="md-nav__link">
+    Partial and incremental testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-or-changing-tests" class="md-nav__link">
+    Adding or changing tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#considerations-for-choice-of-new-tests" class="md-nav__link">
+    Considerations for choice of new tests.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiling-the-test-suite" class="md-nav__link">
+    Profiling the test suite
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components-of-test-suite" class="md-nav__link">
+    Components of test suite
+  </a>
+  
+    <nav class="md-nav" aria-label="Components of test suite">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-invocation-of-testcode" class="md-nav__link">
+    Direct Invocation of testcode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-outputs-and-benchmarks" class="md-nav__link">
+    Test Outputs and Benchmarks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extraction-of-properties" class="md-nav__link">
+    Extraction of Properties
+  </a>
+  
+    <nav class="md-nav" aria-label="Extraction of Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userconfig-file" class="md-nav__link">
+    userconfig file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobconfig-file" class="md-nav__link">
+    jobconfig file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-to-the-build-system" class="md-nav__link">
+    Adding to the Build System
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding to the Build System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-to-cmake" class="md-nav__link">
+    Adding to CMake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-to-make" class="md-nav__link">
+    Adding to Make
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CI/" class="md-nav__link">
+        CI System
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git_workflow/" class="md-nav__link">
+        Git workflow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release_procedure/" class="md-nav__link">
+        Release Procedure
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-your-code" class="md-nav__link">
+    Testing your code
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing your code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-complete-test-run" class="md-nav__link">
+    A complete test run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-and-incremental-testing" class="md-nav__link">
+    Partial and incremental testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-or-changing-tests" class="md-nav__link">
+    Adding or changing tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#considerations-for-choice-of-new-tests" class="md-nav__link">
+    Considerations for choice of new tests.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiling-the-test-suite" class="md-nav__link">
+    Profiling the test suite
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components-of-test-suite" class="md-nav__link">
+    Components of test suite
+  </a>
+  
+    <nav class="md-nav" aria-label="Components of test suite">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-invocation-of-testcode" class="md-nav__link">
+    Direct Invocation of testcode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-outputs-and-benchmarks" class="md-nav__link">
+    Test Outputs and Benchmarks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extraction-of-properties" class="md-nav__link">
+    Extraction of Properties
+  </a>
+  
+    <nav class="md-nav" aria-label="Extraction of Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userconfig-file" class="md-nav__link">
+    userconfig file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobconfig-file" class="md-nav__link">
+    jobconfig file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-to-the-build-system" class="md-nav__link">
+    Adding to the Build System
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding to the Build System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-to-cmake" class="md-nav__link">
+    Adding to CMake
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-to-make" class="md-nav__link">
+    Adding to Make
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="casteps-test-suite">CASTEP's test suite</h1>
+<h2 id="overview">Overview</h2>
+<p>The CASTEP source distribution includes a test suite to aid developers and users or HPC admins alike by</p>
+<ul>
+<li>Ensuring that new development and refactored code does not cause a crash or significantly change any results;</li>
+<li>Testing a new compiler, or new version of an existing compiler for failures due to language standard support, 
+  non-portable code or bugs in the compiler itself;</li>
+<li>Ensuring that serial and parallel execution yield the same results;</li>
+<li>Automating the tests so they may be run as a routine part of
+  development, either my the developer or routinely by the "Jenkins"
+  Continuous Integration (CI) system.</li>
+</ul>
+<p>We adopt the testing method known as <em>regression testing</em> whereby
+CASTEP is run on a large set of input decks for small calculations,
+and the result compared to a previously generated and known good
+outputs, known as the <em>benchmark</em> for each test. The automation and
+testing are performed using the
+<a href="https://testcode.readthedocs.io/en/latest/"><code>testcode</code></a> testing
+platform. This handles all of the definition of test categories, the
+selection, sequencing and running of tests, and comparison of the run
+output with a benchmark. To run CASTEP, postprocess the output and
+extract the comparison data, it invokes two scripts supplied in
+the CASTEP distribution <code>bin</code> directory named <a href="#creation-and-format-of-test-outputs-and-benchmarks"><code>run_castep_test.py</code></a> and
+<a href="#extraction-of-properties"><code>extract_results.pl</code></a>.</p>
+<p>The directory structure of the suite consists of a top-level <code>Test</code> directory containing testcode's configuration files, a GNU Makefile which contains targets to drive the tests, and a set of subdirectories dividing the tests into categories; in outline</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Test
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> |-- CMakeLists.txt
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> |-- Makefile
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> |-- jobconfig
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> |-- userconfig
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> |-- Electronic
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>         |-- Cr-AFM
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>             |-- Cr_00PBE.uspcc
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>             |-- Cr_AFM.cell
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>             |-- Cr_AFM.param
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>             |-- benchmark.out.castep-23.1.castep-python-1.0.python-3.6.9.inp=Cr_AFM.param
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>         |-- &lt;Electronic test 2&gt; 
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>|-- &lt;Category 2&gt;
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>         |-- &lt;Category 2 test 1&gt;
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>         |-- &lt;Category 2 test 2&gt;
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a> ...
+</code></pre></div>
+<h2 id="testing-your-code">Testing your code</h2>
+<h3 id="a-complete-test-run">A complete test run</h3>
+<p>A run of the test suite is started by running the testcode script <code>&lt;CASTEP_ROOT&gt;/bin/testcode.py</code> from within the Test directory, but as some options are usually required, this is most conveniently invoked via the build system by either</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="nb">cd</span><span class="w"> </span>Test
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>make<span class="w"> </span>check
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span>cmake<span class="w"> </span>-t<span class="w"> </span>check
+</code></pre></div>
+<p>following a compile with either the GNU make or cmake build systems. This will produce a brief summary output along the lines of</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>make<span class="w"> </span>check<span class="w"> </span><span class="nv">COMMS_ARCH</span><span class="o">=</span>mpi
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Found<span class="w"> </span>mpirun,<span class="w"> </span>using<span class="w"> </span><span class="nv">PARALLEL_CMD</span><span class="o">=</span>mpirun<span class="w"> </span>-np<span class="w"> </span>tc.nprocs
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>rm<span class="w"> </span>-f<span class="w"> </span>*/*/*.castep<span class="w"> </span>*/*/*.dfpt_wvfn<span class="w"> </span>*/*/*.fd_wvfn<span class="w"> </span>*/*/*.wvfn.*<span class="w"> </span>*/*/*.*.err
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>../bin/testcode.py<span class="w"> </span>-q<span class="w">  </span>--processors<span class="o">=</span><span class="m">4</span><span class="w"> </span>--total-processors<span class="o">=</span><span class="m">36</span><span class="w"> </span>--user-option<span class="w"> </span>castep<span class="w"> </span>run_cmd_template<span class="w"> </span><span class="s2">&quot;../../../bin/run_castep_test.pl tc.program tc.args tc.input tc.output mpirun -np tc.nprocs&quot;</span><span class="w"> </span>-e<span class="w"> </span>/home/user/CASTEP-23.1/bin/castep.mpi<span class="w"> </span>-c<span class="w"> </span>simple<span class="w"> </span>-c<span class="w"> </span>d3-simple<span class="w"> </span>-c<span class="w"> </span>d4-simple<span class="w"> </span>-c<span class="w"> </span>md-parallel
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>.......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................<span class="w"> </span><span class="o">[</span><span class="m">487</span>/487<span class="o">]</span>
+</code></pre></div>
+<p>if everything passes. If one or more tests fails the corresponding <code>.</code> is replaced with a <code>F</code> symbol, or an <code>S</code> to flag that the test was skipped (possibly because a prerequisite test failed). </p>
+<p>In case of a failed test, more detailed information on which tests failed and why, the commands 
+<code>make compare</code>, <code>make diff</code>, <code>cmake -t compare</code>, or <code>cmake -t diff</code>
+will print a summary or detailed analysis of the failed tests to stdout.  A deeper analysis may require a direct look at the corresponding <code>&lt;test.out-...&gt;</code> file, in the <code>Test/&lt;category&gt;</code> subdirectory which will contain the <code>.castep</code> output as well as the <code>.0001.err</code> error/traceback report file in case of an <code>io_abort</code>.</p>
+<h3 id="partial-and-incremental-testing">Partial and incremental testing</h3>
+<p>During a code development process, running the entire test suite to
+check every change will be too time consuming and functionally
+unnecessary.  The tests are divided into categories, named <code>spe</code>
+,<code>bs</code> ,<code>geom</code> ,<code>md</code> ,<code>magres</code> ,<code>misc</code>
+,<code>pair-pot</code> ,<code>phonon</code> ,<code>otf</code> ,<code>pseudo</code>
+,<code>tddft</code> ,<code>ts</code> ,<code>xc</code> ,<code>nlxc</code> ,<code>libxc</code>
+,<code>solvation</code> ,<code>d3</code> ,<code>d4</code> ,<code>python</code>
+and <code>parallel</code> corresponding roughly to the subdirectories</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Test/
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  |-Electronic
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  |-Excitations
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  |-Geometry
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  |-MD
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  |-Magres
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  |-Misc
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  |-Pair-Pot
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  |-Phonon
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  |-Pseudo
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  |-TDDFT
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  |-XC
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  |-Solvation
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>  |-Dispersion
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>  |-Pseudopotentials
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>  |-Python
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>  |-Utilities
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>  |-LibXC
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>  |-Parallel
+</code></pre></div>
+<p>and may be run individually using</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>    make check-&lt;category&gt;
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    make compare-&lt;category&gt;
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    make diff-&lt;category&gt;
+</code></pre></div>
+<p>or the targets of the same name in cmake.</p>
+<details class="keyword">
+<summary>Running individual tests</summary>
+<p>In fact the tests may be run at even finer granularity, down to the subdirectory. This is not implemented via the Makefile or cmake, and can only be accessed by invoking <code>testcode</code> directly as described <a href="#direct-invocation-of-testcode">below</a>. However the most straightforward means of doing this is to copy and paste the testcode invocation command printed by <code>make check-spe</code> including all of the run and argument setup and change the argument of the <code>-c</code> option to <code>&lt;directory&gt;/&lt;subdirectory&gt;</code>.</p>
+</details>
+<h3 id="adding-or-changing-tests">Adding or changing tests</h3>
+<p>Code sustainability requires that when developing any new functionality or extending existing capabilities, the test suite is also enhanced to test any new outputs.</p>
+<p>The changes required are</p>
+<ul>
+<li>(Optionally) a new test subdirectory. This will be automatically scanned by <code>testcode</code> and included if a subdirectory of one of the existing major categories. If the new output is an enhancement or option to an existing functionality, it may be appropriate to simply add the new test to an existing second-level subdirectory.</li>
+<li>When adding is a major new capability, it may be appropriate to add a new top-level category and subdirectory tree. In that case the <a href="#adding-to-make"><code>Makefile</code></a> and <a href="#adding-to-cmake"><code>CMakeLists.txt</code></a> will need to be extended to add the new <code>check</code>, <code>compare</code>, <code>diff</code> and <code>recheck</code> targets.</li>
+<li>CASTEP input files: <code>.cell</code> and <code>.param</code></li>
+<li>If any external pseudopotential files are required, these should be placed in the <code>Test/Pseudopotentials</code> subdirectory and a symbolic link made from the test subdirectory. Both the fle and the link should be added to the <code>git</code> repository. </li>
+<li>to modify <a href="#test-outputs-and-benchmarks"><code>bin/run_castep_test.py</code></a> if you need to test the contents of a new output file.</li>
+<li>if testing a new quantity, either in the <code>.castep</code> file or any other output file, you must extend the <a href="#extraction-of-properties"><code>bin/extract_results.pl</code></a> script to scan for and report the new value to be tested.</li>
+<li>A new stanza in <a href="#jobconfig-file"><code>jobconfig</code></a> will be required to specify tolerances for the comparison if the defaults in <a href="#userconfig-file"><code>userconfig</code></a> are not suitable.</li>
+<li>
+<p>a new benchmark file containing CASTEP output from a known good
+run. Unfortunately creating benchmark files still requires some manual
+intervention.  Regrettably <code>testcode</code>s option to create a new
+benchmark is unsuitable as it is too inflexible to create a single
+test without requiring updates to the entire test suite.  The easiest
+way to do this is</p>
+<p>a. Run testcode, either from Make or by hand.  The new test will
+fail because no benchmark is present for comparison.</p>
+<p>b. Copy or rename the just created test file
+<code>test.out.&lt;date&gt;?inp=&lt;seedname&gt;.param</code>    to
+<code>benchmark.out.castep-&lt;old-castep-version&gt;castep-python-1.0.python-&lt;old-python-version&gt;.inp=&lt;seedname&gt;.param</code>.
+where <code>&lt;old-castep-version&gt;</code> and <code>&lt;old-python-version&gt;</code> should be chosen to match the existing <code>benchmark.out</code> files from other tests.</p>
+</li>
+</ul>
+<h3 id="considerations-for-choice-of-new-tests">Considerations for choice of new tests.</h3>
+<p>Tests in CASTEP are generally defined via a short CASTEP run (complete
+with <code>.cell</code> and <code>.param</code> files) which is:</p>
+<ul>
+<li>Sufficient to demonstrate the functionality in question</li>
+<li>Short enough that it does not take significant time to run</li>
+<li>Stable enough that the results do not change significantly from run to
+  run.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These calculations do not necessarily need to be physically meaningful
+and in general should not, due to the time requirements.  Under-convergence is usually fine, and often required.</p>
+</div>
+<p>There are two or three common ways to achieve stability of a run with a test which may be underconverged:</p>
+<ol>
+<li>Set an explicit <code>random_seed</code> in the <code>.param</code> file</li>
+<li>Specify k-points using <code>%BLOCK KPOINT_LIST</code> rather than use a grid
+   or spacing.  This avoids the propensity of the k-point symmetry
+   reduction to generate different but equivalent sets depending on
+   hardware, compiler options and the like. Usually a very coarse set will suffice.</li>
+<li>It is frequently counterproductive to use too loose a value for 
+   <code>ELEC_ENERGY_TOL</code> as the addition or removal of a single SCF iteration between
+   benchmark and test can result in a change of, for example, forces sufficient
+   to cause a test failure.</li>
+</ol>
+<h3 id="profiling-the-test-suite">Profiling the test suite</h3>
+<p>A timing profile of the test suite may be generated following a successful run by the GNU make command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>make<span class="w"> </span>profile<span class="w"> </span>&gt;<span class="w"> </span>profile.log
+</code></pre></div>
+<p>which writes a list of the tests executed sorted by execution time to
+the named file. If using <code>cmake</code>, the profile is generated
+unconditionally and written to a file with extension
+<code>test-profile-all.log</code> or <code>test-profile-&lt;category&gt;.log</code> in the <code>Test/</code>
+subdirectory.</p>
+<h2 id="components-of-test-suite">Components of test suite</h2>
+<h3 id="direct-invocation-of-testcode">Direct Invocation of <code>testcode</code></h3>
+<p>For a serial run, the test suite may be invoked directly from the
+command line (with <code>Test/</code> as the current directory) by</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span>../bin/testcode.py<span class="w"> </span>-q<span class="w"> </span>--total-processors<span class="o">=</span><span class="m">6</span><span class="w"> </span>-e<span class="w"> </span>&lt;castep-executable&gt;<span class="w"> </span>-c<span class="w"> </span>simple<span class="w"> </span>-c<span class="w"> </span>d3-simple<span class="w"> </span>-c<span class="w"> </span>d4-simple<span class="w"> </span>-c<span class="w"> </span>solvation-simple
+</code></pre></div>
+<p>where <code>-q</code> sets the verbosity to minimal, <code>--total-processors=&lt;n&gt;</code> restricts the maximum number of test to run concurrently, <code>-c simple</code> specifies the common core set of tests.  The other <code>-c</code> options specify optional components of the CASTEP build, and should be selected to match the libraries linked in to the test executable.  For testing in MPI parallel, the invocation is more complex:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span>../bin/testcode.py<span class="w"> </span>-q<span class="w">  </span>--processors<span class="o">=</span><span class="m">4</span><span class="w"> </span>--total-processors<span class="o">=</span><span class="m">6</span><span class="w"> </span>--user-option<span class="w"> </span>castep<span class="w"> </span>run_cmd_template<span class="w"> </span><span class="s2">&quot;../../../bin/run_castep_test.py tc.program tc.args tc.input tc.output -- mpirun -np tc.nprocs&quot;</span><span class="w"> </span>-e<span class="w"> </span>&lt;castep-executable&gt;<span class="w"> </span>-c<span class="w"> </span>simple<span class="w"> </span>-c<span class="w"> </span>d3-simple<span class="w"> </span>-c<span class="w"> </span>d4-simple<span class="w"> </span>-c<span class="w"> </span>solvation-simple<span class="w"> </span>-c<span class="w"> </span>parallel-simple
+</code></pre></div>
+<p>Here, the testcode option <code>run_cmd_template</code> is being explicitly specified, overriding the value in <code>userconfig</code> in order to add the <code>mpirun</code> option to the <code>run_castep_test.py</code> script's options.  Note the quoting of the strings and the use of testcodes's variables <code>tc.program</code>, <code>tc.args</code>, <code>tc.input</code>, <code>tc.output</code> and <code>tc.nprocs</code> which testcode replaces before invoking the <code>run_cmd_template</code> command.  The additional testcode options <code>--processors=&lt;n&gt;</code> specifies the maximum number of MPI processes to pass to mpirun, and we add the additional test category <code>parallel-simple</code> which contains the MPI tests.</p>
+<p>When invoking testcode in this way, the "category" argument of <code>-c</code> may be replaced by the name of a subdirectory of <code>Test</code>, for example</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">    </span>-c<span class="w"> </span>Phonon/Si2-raman
+</code></pre></div>
+<p>which will run only the tests in that subdirectory.</p>
+<h3 id="test-outputs-and-benchmarks">Test Outputs and Benchmarks</h3>
+<p>During execution of a test suite run, individual tests are run via a
+wrapper script <code>run_castep_test.py</code>. This controls the execution of
+CASTEP, and gathers up and appends any additional output files generated 
+for this particular task.  This concatenated format is used for both the 
+test outputs (<code>test.out-...</code>) and benchmark files (<code>benchmark.out-...</code>). </p>
+<p>The invocation is</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">    </span>run_castep_test.py<span class="w"> </span><span class="o">[</span>-d<span class="p">|</span>--dryrun<span class="o">]</span><span class="w"> </span>-<span class="o">[</span>h<span class="p">|</span>--helpme<span class="o">]</span><span class="w"> </span>&lt;castep-executable&gt;<span class="w"> </span>&lt;param-file&gt;<span class="w"> </span>&lt;output-file&gt;<span class="w"> </span>--<span class="w"> </span><span class="o">[</span>&lt;mpirun-cmd&gt;<span class="o">]</span>
+</code></pre></div>
+<ul>
+<li><code>&lt;castep-executable&gt;</code> is the path to the serial or parallel CASTEP executable.</li>
+<li><code>&lt;param-file&gt;</code> is <code>&lt;seed&gt;.param</code> for the test to run.</li>
+<li><code>&lt;output-file&gt;</code> is the test output file name; Testcode's  format is of the form <code>test.out.&lt;date&gt;-&lt;count&gt;.inp=&lt;param-file&gt;</code></li>
+<li><code>&lt;mpirun-cmd&gt;</code> is optional followng the end of other arguments marked by <code>--</code>. This is the command that <code>run_castep_test</code> will invoke to execute <code>&lt;castep-executable&gt;</code> in parallel - usually <code>mpirun -np &lt;nprocs&gt;</code>.</li>
+</ul>
+<h3 id="extraction-of-properties">Extraction of Properties</h3>
+<p>The <code>extract_results.pl</code> script is invoked by <code>testcode.py</code> to process both 
+the test (<code>test.out-...</code>) and benchmark  (<code>benchmark.out-...</code>) files and extract 
+the specific output data for comparison.
+It can extract the following properties</p>
+<details class="known-properties">
+<summary>Known-properties</summary>
+<p>Those in <code>code-style</code> are the names for the properties,
+those without are just divisions used here</p>
+<ul>
+<li><code>Energy</code></li>
+<li><code>PS_Energy</code></li>
+<li><code>FreeEnergy</code></li>
+<li><code>SolvationEnergy</code></li>
+<li><code>dEtot/dlogE</code></li>
+<li><code>Spin</code></li>
+<li><code>AbsSpin</code></li>
+<li><code>Force</code></li>
+<li>
+<p><code>Stress</code></p>
+</li>
+<li>
+<p>Phonons</p>
+<ul>
+<li><code>Phonon-q</code></li>
+<li><code>Phonon</code></li>
+<li><code>Grad_q(f)</code></li>
+<li><code>Freq</code></li>
+<li><code>g(f)</code></li>
+<li><code>ir</code></li>
+<li><code>Raman</code></li>
+</ul>
+</li>
+<li>
+<p>Born</p>
+<ul>
+<li><code>Species</code></li>
+<li><code>Ion</code></li>
+<li><code>Born</code></li>
+</ul>
+</li>
+<li>
+<p>Permittivity</p>
+<ul>
+<li><code>Polarisability</code></li>
+<li><code>Permittivity</code></li>
+<li><code>epsilon(f)</code></li>
+</ul>
+</li>
+<li>
+<p><code>NLO_Chi2</code></p>
+</li>
+<li>
+<p>Raman</p>
+<ul>
+<li><code>Raman_Tr</code></li>
+<li><code>Raman_II</code></li>
+<li><code>depolarisation</code></li>
+</ul>
+</li>
+<li>
+<p><code>Electric_constants</code></p>
+</li>
+<li><code>Compliance_mat</code></li>
+<li>
+<p>Mulliken Populations</p>
+<ul>
+<li><code>Species</code></li>
+<li><code>Ion</code></li>
+<li><code>s</code></li>
+<li><code>p</code></li>
+<li><code>d</code></li>
+<li><code>f</code></li>
+<li><code>Total</code></li>
+<li><code>Charge</code></li>
+</ul>
+</li>
+<li>
+<p>Hirshfeld populations</p>
+<ul>
+<li><code>Species</code></li>
+<li><code>Ion</code></li>
+<li><code>Hirshfeld</code></li>
+<li><code>Spin</code></li>
+</ul>
+</li>
+<li>
+<p><code>ELF Data</code></p>
+</li>
+<li>
+<p>elf_fmt</p>
+<ul>
+<li><code>gx</code></li>
+<li><code>gy</code></li>
+<li><code>gz</code></li>
+<li><code>ELF(chi)</code></li>
+</ul>
+</li>
+<li>
+<p>den_fmt</p>
+<ul>
+<li><code>gx</code></li>
+<li><code>gy</code></li>
+<li><code>gz</code></li>
+<li><code>density</code></li>
+</ul>
+</li>
+<li>
+<p>chdiff_fmt</p>
+<ul>
+<li><code>gx</code></li>
+<li><code>gy</code></li>
+<li><code>gz</code></li>
+<li><code>diff-den</code></li>
+</ul>
+</li>
+<li>
+<p>pot_fmt</p>
+<ul>
+<li><code>gx</code></li>
+<li><code>gy</code></li>
+<li><code>gz</code></li>
+<li><code>potential</code></li>
+</ul>
+</li>
+<li>
+<p>Band Structure</p>
+<ul>
+<li><code>kx</code></li>
+<li><code>ky</code></li>
+<li><code>kz</code></li>
+<li><code>weight</code></li>
+<li><code>Eigenvalue</code></li>
+</ul>
+</li>
+<li>
+<p>MD Data</p>
+<ul>
+<li>MD Labels from the block</li>
+</ul>
+</li>
+<li>
+<p>magres</p>
+<ul>
+<li><code>cs_iso</code></li>
+<li><code>cs_aniso</code></li>
+<li><code>cs_eta</code></li>
+<li><code>Cq</code></li>
+<li><code>eta_q</code></li>
+<li><code>hf_iso</code></li>
+<li><code>FC</code></li>
+<li><code>SD</code></li>
+<li><code>PARA</code></li>
+<li><code>DIA</code></li>
+<li><code>TOT</code></li>
+</ul>
+</li>
+<li>
+<p><code>TDDFT_Eigenvalues</code></p>
+</li>
+<li>
+<p>Hugoniostat</p>
+<ul>
+<li><code>H-Compression</code></li>
+<li><code>H-Temperature</code></li>
+<li><code>H-Pressure</code></li>
+<li><code>H-Energy</code></li>
+</ul>
+</li>
+<li>
+<p><code>EFermi</code></p>
+</li>
+<li>
+<p>xrd_sf</p>
+<ul>
+<li><code>h</code></li>
+<li><code>k</code></li>
+<li><code>l</code></li>
+<li><code>Re(...)</code>, <code>Im(...)</code> from output file</li>
+</ul>
+</li>
+</ul>
+</details>
+<h4 id="userconfig-file"><code>userconfig</code> file</h4>
+<p>This is one of the two configuration files read by testcode (<a href="https://testcode.readthedocs.io/en/latest/userconfig.html">documentation</a>) and sets up the testcode default options including the run commands to invoke CASTEP via the <code>run_castep_test.py</code>  script in serial and parallel.</p>
+<p>It also contains the default tolerances for each individual property, which may be overridden on a per-test basis in the <code>jobconfig</code> file.</p>
+<h4 id="jobconfig-file"><code>jobconfig</code> file</h4>
+<p>The second of testcode's configuration files (<a href="https://testcode.readthedocs.io/en/latest/jobconfig.html">documentation</a>) specifies the category- and test-specific quantities including overrides for the default property tolerances, and specifications of the parallelism required.</p>
+<p>The structure of the <code>jobconfig</code> is as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Run all tests on this folder and all subfolders with the given settings.</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">[Electronic/*]</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="na">run_concurrent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span><span class="w"> </span><span class="c1"># (1)</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="na">tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(0.015,  None, &#39;Spin&#39;)</span><span class="w"> </span><span class="c1"># (2)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># Override the settings of the general folder for a specific case.</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">[Electronic/Si2-fine-grid]</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="na">tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(0.0003, None, &#39;Energy&#39;), (0.0003, None, &#39;PS_Energy&#39;)</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="k">[categories]</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="na">spe-simple</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s">Electronic/*</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="na">bs-simple</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">Excitations/*</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="na">phonon-simple</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">Phonon/*</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="na">...</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="na">simple</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s">spe-simple bs-simple phonon-simple [...]</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="na">...</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>&lt;path_to_tests&gt;</code> can contain wildcards, or absolute paths</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All paths are relative to the location of <code>jobconfig</code> in CASTEP's
+case that is the <code>&lt;root&gt;/Test</code></p>
+</div>
+<p>At the end of the <code>jobconfig</code> file, there is a section called <code>categories</code> which
+contains the list of categories testcode knows about. The structure is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">&lt;</span><span class="nc">category_name</span><span class="p">&gt;</span> := <span class="p">&lt;</span><span class="nc">path_to_tests</span><span class="p">&gt;</span>|<span class="p">&lt;</span><span class="nc">other categories</span><span class="p">&gt;</span>
+</code></pre></div>
+<ol>
+<li>Enable running tests within this folder in parallel.</li>
+<li>Set the tolerance for a given <a href="#valid-properties">property</a>.</li>
+</ol>
+<h3 id="adding-to-the-build-system">Adding to the Build System</h3>
+<h4 id="adding-to-cmake">Adding to CMake</h4>
+<p>To add the tests to be compatible with the <a href="../build-system/#cmake">CMake build system</a> you need to modify the <code>CMakeLists.txt</code> at
+<code>Test/CMakeLists.txt</code> and add the category to the list on line 157, which looks like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">foreach</span><span class="w"> </span><span class="p">(</span><span class="s">CASTEP_TEST_CATEGORY</span><span class="w"> </span><span class="s2">&quot;spe&quot;</span><span class="w"> </span><span class="s2">&quot;bs&quot;</span><span class="w"> </span><span class="s2">&quot;phonon&quot;</span><span class="w"> </span><span class="s">...</span><span class="p">)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nb">ADD_CATEGORY_TARGETS</span><span class="p">(</span><span class="o">${</span><span class="nv">CASTEP_TEST_CATEGORY</span><span class="o">}</span><span class="w"> </span><span class="s">TRUE</span><span class="p">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">endforeach</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="adding-to-make">Adding to Make</h4>
+<p>To add the tests properly to the <a href="../build-system/#gnu-make">GNU make build system</a> you need to modify the <code>Makefile</code> at
+<code>Test/Makefile</code> and add the category in several places.</p>
+<p>Add it to the list of <code>.PHONY</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">check</span> <span class="n">check</span>-<span class="n">simple</span> <span class="n">check</span>-<span class="n">spe</span>-<span class="n">simple</span> ...
+</code></pre></div>
+<p>and create an entry in the appropriate lists for each of the five classes of test jobs:</p>
+<ol>
+<li><code>check</code></li>
+<li><code>recheck</code></li>
+<li><code>benchmark</code></li>
+<li><code>compare</code></li>
+<li><code>diff</code></li>
+</ol>
+<p>to call your tests when the target is called e.g.:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nf">check-solvation</span><span class="o">:</span><span class="w"> </span><span class="n">exe</span>-<span class="n">exists</span> <span class="n">prepare</span>-<span class="n">clean</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">$(</span>TESTCODE<span class="k">)</span><span class="w"> </span><span class="k">$(</span>QUIET_FLAG<span class="k">)</span><span class="w">  </span><span class="k">$(</span>PARALLEL<span class="k">)</span><span class="w"> </span>-e<span class="w"> </span><span class="k">$(</span>CASTEPEXE<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>solvation-simple
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>exe-exists</code> and <code>prepare-clean</code> are to ensure that CASTEP is compiled and that
+any old test runs are cleared out before starting the tests.</p>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../style_guide/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Style Guide" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Style Guide
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../CI/" class="md-footer__link md-footer__link--next" aria-label="Next: CI System" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              CI System
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
